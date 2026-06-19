@@ -1,0 +1,94 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE } from '@/config/site';
+import { breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Privacy Policy', url: '/privacy-policy' },
+];
+const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs));
+---
+
+<BaseLayout
+  title="Privacy Policy"
+  description={`The privacy policy for ${SITE.name} — what data we collect, how affiliate links work, and your choices.`}
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>Privacy Policy</h1>
+      <p class="lead"><em>Last updated: June 19, 2026</em></p>
+
+      <p>
+        This Privacy Policy explains how {SITE.name} ({SITE.domain}) ("we", "us") handles information
+        when you visit our website. We aim to collect as little personal data as possible.
+      </p>
+
+      <h2>Information we collect</h2>
+      <p>
+        We do not require you to create an account or submit personal information to read our
+        content. We may collect:
+      </p>
+      <ul>
+        <li>
+          <strong>Standard server and analytics data</strong> such as your browser type, device,
+          approximate region and the pages you visit, used in aggregate to understand and improve the
+          site.
+        </li>
+        <li>
+          <strong>Information you choose to send us</strong>, for example if you email us — limited to
+          what you include in your message.
+        </li>
+      </ul>
+
+      <h2>Affiliate links and Amazon</h2>
+      <p>
+        This site contains affiliate links to Amazon. When you click an affiliate link, Amazon may
+        place cookies on your device and collect information in accordance with
+        <a href="https://www.amazon.com/gp/help/customer/display.html?nodeId=468496" rel="nofollow noopener" target="_blank">Amazon's own privacy notice</a>.
+        These cookies allow Amazon to attribute any resulting purchase to us so we can earn a
+        commission. We do not receive your name, payment details or order contents — only aggregate
+        commission reporting.
+      </p>
+
+      <h2>Cookies</h2>
+      <p>
+        We use only the cookies necessary to operate the site and, where enabled, privacy-respecting
+        analytics. Third parties such as Amazon may set their own cookies as described above. You can
+        control or delete cookies through your browser settings at any time.
+      </p>
+
+      <h2>Third-party services</h2>
+      <p>
+        Product images and data are served from Amazon. Outbound links to Amazon and other sites are
+        governed by those sites' privacy policies, not ours.
+      </p>
+
+      <h2>Children's privacy</h2>
+      <p>
+        Our site is intended for a general audience and is not directed at children under 13. We do
+        not knowingly collect personal information from children.
+      </p>
+
+      <h2>Your choices</h2>
+      <p>
+        You can browse the site without providing personal information, block or clear cookies in
+        your browser, and contact us to ask about any data you've sent us directly.
+      </p>
+
+      <h2>Changes to this policy</h2>
+      <p>
+        We may update this policy from time to time. Material changes will be reflected by the "last
+        updated" date above.
+      </p>
+
+      <h2>Contact</h2>
+      <p>
+        Questions about this policy? <a href="/contact">Contact us</a> and we'll be happy to help.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

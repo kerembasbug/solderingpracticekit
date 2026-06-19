@@ -1,0 +1,101 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import { articleSchema, breadcrumbSchema, faqSchema, jsonLdGraph } from '@/lib/seo';
+
+export const getStaticPaths = (async () => {
+  const guides = await getCollection('guides', ({ data }) => !data.draft);
+  return guides.map((entry) => ({ params: { slug: entry.id }, props: { entry } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  entry: CollectionEntry<'guides'>;
+}
+const { entry } = Astro.props;
+const { Content } = await render(entry);
+const { data } = entry;
+
+const words = entry.body?.split(/\s+/).length ?? 0;
+const readingTime = Math.max(1, Math.round(words / 200));
+
+const allProducts = await getProducts();
+const related = data.relatedProducts
+  .map((slug) => allProducts.find((p) => p.slug === slug))
+  .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Guides', url: '/guides' },
+  { name: data.title, url: `/guides/${entry.id}` },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: data.title,
+    description: data.description,
+    url: `/guides/${entry.id}`,
+    datePublished: data.pubDate.toISOString(),
+    dateModified: (data.updatedDate ?? data.pubDate).toISOString(),
+  }),
+  breadcrumbSchema(crumbs),
+  ...(data.faqs.length ? [faqSchema(data.faqs)] : []),
+);
+
+const dateFmt = (d: Date) =>
+  d.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout
+  title={data.title}
+  description={data.description}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime={data.pubDate.toISOString()}
+  modifiedTime={(data.updatedDate ?? data.pubDate).toISOString()}
+>
+  <article class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+
+    <header class="mx-auto mt-6 max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-wide text-brand-600">{data.category}</span>
+      <h1 class="mt-2 text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        {data.title}
+      </h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-600">{data.description}</p>
+      <p class="mt-4 text-sm text-ink-400">
+        {dateFmt(data.updatedDate ?? data.pubDate)} · {readingTime} min read
+      </p>
+    </header>
+
+    <div class="mx-auto mt-6 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="prose prose-lg mx-auto mt-10 max-w-3xl">
+      <Content />
+    </div>
+
+    {
+      related.length > 0 && (
+        <section class="mx-auto mt-14 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 lg:p-8">
+          <h2 class="text-xl font-extrabold tracking-tight text-ink-900">Recommended kits from this guide</h2>
+          <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {related.map((p) => <ProductCard product={p} />)}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      data.faqs.length > 0 && (
+        <section class="mt-16">
+          <FAQ faqs={data.faqs} />
+        </section>
+      )
+    }
+  </article>
+</BaseLayout>

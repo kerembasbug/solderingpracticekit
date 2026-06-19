@@ -1,0 +1,51 @@
+---
+import type { Product } from '@/lib/types';
+import AffiliateButton from '@/components/AffiliateButton.astro';
+import ProsCons from '@/components/ProsCons.astro';
+import StarRating from '@/components/StarRating.astro';
+
+interface Props {
+  product: Product;
+  position: number;
+}
+const { product: p, position } = Astro.props;
+---
+
+<article id={p.slug} class="scroll-mt-24 rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card)] lg:p-8">
+  <div class="grid gap-8 lg:grid-cols-[300px_1fr]">
+    <div>
+      <div class="flex items-center gap-3">
+        <span class="grid h-9 w-9 shrink-0 place-items-center rounded-full bg-ink-900 text-sm font-extrabold text-white">{position}</span>
+        {p.award && <span class="rounded-full bg-brand-500 px-3 py-1 text-xs font-bold text-white">{p.award}</span>}
+      </div>
+      <a href={`/reviews/${p.slug}`} class="mt-4 block aspect-square overflow-hidden rounded-2xl border border-ink-100 bg-white p-4">
+        <img src={p.image} alt={p.fullTitle} width={p.imageWidth} height={p.imageHeight} loading={position <= 2 ? 'eager' : 'lazy'} decoding="async" class="h-full w-full object-contain" />
+      </a>
+      <div class="mt-4">
+        <AffiliateButton product={p} fullWidth />
+      </div>
+    </div>
+
+    <div>
+      <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">{p.brand}</p>
+      <h3 class="mt-1 text-2xl font-bold leading-snug text-ink-900">
+        <a href={`/reviews/${p.slug}`} class="hover:text-brand-600">{p.title}</a>
+      </h3>
+      <div class="mt-3 flex flex-wrap items-center gap-x-4 gap-y-2">
+        <div class="flex items-center gap-2">
+          <StarRating score={p.ourScore} />
+          <span class="font-bold text-ink-800">{p.ourScore.toFixed(1)}</span>
+          <span class="text-sm text-ink-400">/ 10</span>
+        </div>
+        <span class="rounded-md bg-ink-100 px-2.5 py-1 text-xs font-semibold text-ink-600">Best for: {p.bestFor}</span>
+      </div>
+      <p class="mt-4 leading-relaxed text-ink-600">{p.excerpt}</p>
+      <div class="mt-5">
+        <ProsCons pros={p.pros} cons={p.cons} />
+      </div>
+      <a href={`/reviews/${p.slug}`} class="mt-5 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
+        Read the full {p.title} review →
+      </a>
+    </div>
+  </div>
+</article>

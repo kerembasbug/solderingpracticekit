@@ -1,0 +1,67 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE } from '@/config/site';
+import { breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Affiliate Disclosure', url: '/affiliate-disclosure' },
+];
+const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs));
+---
+
+<BaseLayout
+  title="Affiliate Disclosure"
+  description={`How ${SITE.name} earns affiliate commissions through the Amazon Associates Program.`}
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>Affiliate Disclosure</h1>
+      <p class="lead"><em>Last updated: June 19, 2026</em></p>
+
+      <p>
+        {SITE.name} ({SITE.domain}) is a participant in the Amazon Services LLC Associates Program,
+        an affiliate advertising program designed to provide a means for sites to earn advertising
+        fees by advertising and linking to Amazon.com.
+      </p>
+
+      <p>
+        <strong>As an Amazon Associate, we earn from qualifying purchases.</strong> When you click a
+        link on this site and make a purchase on Amazon, we may receive a small commission — at no
+        additional cost to you. The price you pay is exactly the same whether or not you use our
+        links.
+      </p>
+
+      <h2>Our editorial independence</h2>
+      <p>
+        Affiliate commissions help fund the research and writing on this site, but they do not
+        influence our opinions, rankings or recommendations. We recommend products based on their
+        merits for learning to solder, not on the commission they pay. We would rather recommend the
+        right kit and keep your trust than chase a slightly higher fee.
+      </p>
+
+      <h2>Pricing and availability</h2>
+      <p>
+        Product prices and availability are accurate as of the date and time indicated next to each
+        product and are subject to change at any time. Any price displayed on Amazon at the time of
+        purchase will apply to your purchase. We do our best to keep prices current, but we cannot
+        guarantee they are up to date at the moment you read a page.
+      </p>
+
+      <h2>Amazon trademark notice</h2>
+      <p>
+        Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates. We are an
+        independent review site and are not endorsed by, affiliated with, or sponsored by Amazon or
+        any product manufacturer.
+      </p>
+
+      <h2>Questions</h2>
+      <p>
+        If you have any questions about this disclosure, please <a href="/contact">contact us</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

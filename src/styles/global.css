@@ -1,0 +1,114 @@
+@import 'tailwindcss';
+@plugin '@tailwindcss/typography';
+
+/* ------------------------------------------------------------------ *
+ *  Design tokens — a warm "electronics workshop" palette:
+ *  copper/amber accents over cool slate neutrals.
+ * ------------------------------------------------------------------ */
+@theme {
+  --color-brand-50: #fdf6ec;
+  --color-brand-100: #f8e6c8;
+  --color-brand-200: #f0cb8d;
+  --color-brand-300: #e6a94f;
+  --color-brand-400: #d98a2b;
+  --color-brand-500: #c2410c; /* copper / hot solder */
+  --color-brand-600: #a3340a;
+  --color-brand-700: #7f2809;
+  --color-brand-800: #5e1f0a;
+  --color-brand-900: #431609;
+
+  --color-ink-50: #f8fafc;
+  --color-ink-100: #f1f5f9;
+  --color-ink-200: #e2e8f0;
+  --color-ink-300: #cbd5e1;
+  --color-ink-400: #94a3b8;
+  --color-ink-500: #64748b;
+  --color-ink-600: #475569;
+  --color-ink-700: #334155;
+  --color-ink-800: #1e293b;
+  --color-ink-900: #0f172a;
+  --color-ink-950: #020617;
+
+  /* Amazon-native CTA amber (used only for buy buttons) */
+  --color-buy: #ff9900;
+  --color-buy-dark: #e88a00;
+
+  --font-sans:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica,
+    Arial, sans-serif;
+  --font-display:
+    'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 0.04), 0 8px 24px -12px rgb(15 23 42 / 0.18);
+  --shadow-card-hover: 0 1px 2px rgb(15 23 42 / 0.06), 0 16px 40px -16px rgb(15 23 42 / 0.28);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Base
+ * ------------------------------------------------------------------ */
+html {
+  scroll-behavior: smooth;
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-ink-50);
+  color: var(--color-ink-800);
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-brand-500);
+  outline-offset: 2px;
+  border-radius: 3px;
+}
+
+/* Reusable layout container */
+@utility container-px {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 76rem;
+  padding-inline: 1.25rem;
+}
+
+/* Buy / affiliate CTA button */
+@utility btn-buy {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background-color: var(--color-buy);
+  color: var(--color-ink-900);
+  font-weight: 700;
+  border-radius: 0.625rem;
+  padding: 0.75rem 1.25rem;
+  box-shadow: 0 1px 0 rgb(0 0 0 / 0.06);
+  transition: background-color 0.15s ease, transform 0.05s ease;
+}
+@utility btn-buy-hover {
+  background-color: var(--color-buy-dark);
+}
+
+/* ------------------------------------------------------------------ *
+ *  Prose tuning for article content
+ * ------------------------------------------------------------------ */
+.prose {
+  --tw-prose-links: var(--color-brand-600);
+  --tw-prose-headings: var(--color-ink-900);
+  --tw-prose-body: var(--color-ink-700);
+  --tw-prose-bullets: var(--color-brand-300);
+  --tw-prose-quote-borders: var(--color-brand-300);
+  max-width: 70ch;
+}
+.prose a {
+  text-decoration-thickness: 1px;
+  text-underline-offset: 2px;
+}
+.prose h2 {
+  scroll-margin-top: 6rem;
+}
+.prose h3 {
+  scroll-margin-top: 6rem;
+}

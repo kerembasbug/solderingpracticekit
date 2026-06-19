@@ -1,0 +1,26 @@
+---
+interface Props {
+  variant?: 'banner' | 'inline';
+}
+const { variant = 'banner' } = Astro.props;
+---
+
+{
+  variant === 'banner' ? (
+    <div class="flex items-start gap-3 rounded-xl border border-brand-100 bg-brand-50/70 px-4 py-3 text-sm text-ink-600">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" class="mt-0.5 shrink-0 text-brand-500">
+        <circle cx="12" cy="12" r="10" /><path d="M12 16v-4M12 8h.01" />
+      </svg>
+      <p>
+        <strong class="font-semibold text-ink-700">Affiliate disclosure:</strong> As an Amazon
+        Associate we earn from qualifying purchases. We may earn a commission when you buy through
+        links on this page — at no extra cost to you. <a href="/affiliate-disclosure" class="font-medium text-brand-600 underline underline-offset-2 hover:text-brand-700">Learn more</a>.
+      </p>
+    </div>
+  ) : (
+    <p class="text-xs text-ink-400">
+      We earn from qualifying Amazon purchases at no extra cost to you.
+      <a href="/affiliate-disclosure" class="underline underline-offset-2 hover:text-brand-600">Disclosure</a>.
+    </p>
+  )
+}

@@ -1,0 +1,64 @@
+---
+import type { Product } from '@/lib/types';
+import { affiliateUrl } from '@/lib/amazon/links';
+import StarRating from '@/components/StarRating.astro';
+
+interface Props {
+  products: Product[];
+  caption?: string;
+}
+const { products, caption } = Astro.props;
+---
+
+<div class="overflow-x-auto rounded-2xl border border-ink-200 bg-white shadow-[var(--shadow-card)]">
+  <table class="w-full min-w-[720px] border-collapse text-left">
+    {caption && <caption class="px-5 pt-4 text-left text-sm text-ink-400">{caption}</caption>}
+    <thead>
+      <tr class="border-b border-ink-200 bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+        <th scope="col" class="px-5 py-3.5">Product</th>
+        <th scope="col" class="px-4 py-3.5">Best For</th>
+        <th scope="col" class="px-4 py-3.5">Our Score</th>
+        <th scope="col" class="px-4 py-3.5">Price</th>
+        <th scope="col" class="px-5 py-3.5 text-right">&nbsp;</th>
+      </tr>
+    </thead>
+    <tbody class="divide-y divide-ink-100">
+      {
+        products.map((p) => (
+          <tr class="align-middle transition-colors hover:bg-ink-50/60">
+            <td class="px-5 py-4">
+              <div class="flex items-center gap-3">
+                <img src={p.image} alt={p.fullTitle} width="48" height="48" loading="lazy" decoding="async" class="h-12 w-12 shrink-0 rounded-md object-contain" />
+                <div class="min-w-0">
+                  {p.award && <span class="text-[0.7rem] font-bold uppercase tracking-wide text-brand-600">{p.award}</span>}
+                  <a href={`/reviews/${p.slug}`} class="block truncate font-semibold text-ink-900 hover:text-brand-600">{p.title}</a>
+                </div>
+              </div>
+            </td>
+            <td class="px-4 py-4 text-sm text-ink-600">{p.bestFor}</td>
+            <td class="px-4 py-4">
+              <div class="flex items-center gap-2">
+                <StarRating score={p.ourScore} size={14} />
+                <span class="text-sm font-bold text-ink-700">{p.ourScore.toFixed(1)}</span>
+              </div>
+            </td>
+            <td class="px-4 py-4 text-sm font-semibold text-ink-700">
+              {p.live?.price ?? <span class="font-normal text-ink-400">See on Amazon</span>}
+              <span class="block text-[0.7rem] font-normal text-ink-400">{p.priceTier}</span>
+            </td>
+            <td class="px-5 py-4 text-right">
+              <a
+                href={affiliateUrl(p.asin)}
+                target="_blank"
+                rel="sponsored nofollow noopener"
+                class="btn-buy hover:btn-buy-hover px-4 py-2 text-sm whitespace-nowrap"
+              >
+                Check Price
+              </a>
+            </td>
+          </tr>
+        ))
+      }
+    </tbody>
+  </table>
+</div>

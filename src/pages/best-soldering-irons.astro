@@ -1,0 +1,114 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getByCategory } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const tools = (await getByCategory('tool')).sort((a, b) => a.rank - b.rank);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Irons', url: '/best-soldering-irons' },
+];
+
+const faqs = [
+  {
+    question: 'What soldering iron should a beginner buy?',
+    answer:
+      'A temperature-controlled soldering station is the best beginner choice — stable heat removes the most common cause of bad joints. The YIHUA 926 III is our pick because it includes tips, helping hands and consumables. If budget is tight, a basic adjustable iron kit will get you started.',
+  },
+  {
+    question: 'What wattage soldering iron do I need?',
+    answer:
+      'For electronics and practice kits, 40–60W with temperature control is ideal. Higher wattage simply means the iron recovers heat faster between joints; it does not mean it runs dangerously hotter, because the temperature is regulated.',
+  },
+  {
+    question: 'Is a cordless soldering iron good for beginners?',
+    answer:
+      'Cordless irons are brilliant for portability and quick repairs, but their battery life limits long sessions. For learning at a bench, a mains-powered station is usually the better first tool; add a cordless iron later for on-the-go work.',
+  },
+  {
+    question: 'What else do I need besides a soldering iron?',
+    answer:
+      'At minimum: thin rosin-core solder, a brass-wool tip cleaner, flux, helping hands or a vise, and safety glasses. A solder sucker or desoldering braid is invaluable for fixing mistakes. Many station kits bundle several of these.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Soldering Irons & Stations for 2026',
+    description:
+      'The best soldering irons and stations to pair with a practice kit — for beginners, hobbyists and portable repairs. Reviewed and ranked.',
+    url: '/best-soldering-irons',
+    datePublished: '2026-01-25',
+    dateModified: '2026-06-19',
+  }),
+  itemListSchema(tools, '/best-soldering-irons'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Irons & Stations for 2026"
+  description="The best soldering irons and stations to pair with any practice kit — beginner stations, cordless irons and budget picks. Ranked, with pros, cons and live prices."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-01-25"
+  modifiedTime="2026-06-19"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Irons &amp; Stations for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Most failed first attempts at soldering come down to the iron, not the hands. The right tool
+        — ideally temperature-controlled — makes clean joints almost easy. These are the irons and
+        stations we recommend pairing with any practice or project kit, at every budget.
+      </p>
+      <p class="mt-4 text-sm text-ink-400">Last updated June 19, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={tools} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The irons, reviewed</h2>
+      {tools.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a soldering iron</h2>
+      <p>
+        For learning electronics, prioritize <strong>temperature control</strong> above all else. A
+        regulated station holds a steady tip temperature so your joints are consistent — the single
+        biggest factor in good results. Look for 40–60W, a range that covers everything from fine
+        surface-mount work to chunkier through-hole joints.
+      </p>
+      <p>
+        Decide between a <strong>bench station</strong> (best for learning and long sessions) and a
+        <strong>cordless iron</strong> (best for portability and quick repairs). Whichever you pick,
+        budget for thin rosin-core solder, a brass tip cleaner, flux and safety glasses. Then grab a
+        <a href="/best-soldering-practice-kits">practice kit</a> and put it all to work.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

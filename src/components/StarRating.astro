@@ -1,0 +1,28 @@
+---
+interface Props {
+  /** Score out of 10. */
+  score: number;
+  size?: number;
+  showNumber?: boolean;
+}
+const { score, size = 16, showNumber = false } = Astro.props;
+const pct = Math.max(0, Math.min(100, (score / 10) * 100));
+const star =
+  'M12 2.5l2.9 6.06 6.6.94-4.8 4.6 1.16 6.56L12 17.9 6.14 20.66 7.3 14.1 2.5 9.5l6.6-.94L12 2.5z';
+---
+
+<span class="inline-flex items-center gap-1.5" role="img" aria-label={`${score} out of 10`}>
+  <span class="relative inline-block leading-none" style={`height:${size}px`}>
+    <span class="flex text-ink-200">
+      {Array.from({ length: 5 }).map(() => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d={star} /></svg>
+      ))}
+    </span>
+    <span class="absolute inset-0 flex overflow-hidden text-brand-400" style={`width:${pct}%`}>
+      {Array.from({ length: 5 }).map(() => (
+        <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor" class="shrink-0" aria-hidden="true"><path d={star} /></svg>
+      ))}
+    </span>
+  </span>
+  {showNumber && <span class="text-sm font-bold text-ink-700">{score.toFixed(1)}</span>}
+</span>

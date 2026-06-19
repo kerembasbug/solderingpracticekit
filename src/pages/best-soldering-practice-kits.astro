@@ -1,0 +1,159 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const all = await getProducts();
+const kits = all.filter((p) => p.category !== 'tool').sort((a, b) => a.rank - b.rank);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Practice Kits', url: '/best-soldering-practice-kits' },
+];
+
+const faqs = [
+  {
+    question: 'What is the best soldering practice kit overall?',
+    answer:
+      'Our top overall pick is the amomii Testudo. It turns soldering practice into three working gadgets — a digital piano, a game console and a keypad — on an Arduino-compatible board, and the beginner-grade PDF and video tutorials mean people actually finish it.',
+  },
+  {
+    question: 'What is the best soldering practice kit for absolute beginners?',
+    answer:
+      'The Elenco Practical Soldering Project Kit (SP-1A) is the safest first purchase. It has been used in classrooms for years, the instructions are exceptionally clear, and you finish with a working device — all for very little money.',
+  },
+  {
+    question: 'Do I need a soldering iron as well as a kit?',
+    answer:
+      'Almost always, yes — most kits include the board and parts but not the iron or solder. A temperature-controlled station like the YIHUA 926 III makes learning far easier; if budget is tight, a basic adjustable iron kit will do to start.',
+  },
+  {
+    question: 'Through-hole or surface-mount — which should I practice first?',
+    answer:
+      'Start with through-hole. It is more forgiving and teaches the fundamentals of a clean joint. Once you are confident, move to a surface-mount (SMD/SMT) practice board to learn the finer tweezer-and-flux technique modern electronics require.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Soldering Practice Kits for 2026',
+    description:
+      'Our hands-on ranking of the best soldering practice kits for beginners and hobbyists, with detailed reviews, pros and cons, and a buying guide.',
+    url: '/best-soldering-practice-kits',
+    datePublished: '2026-01-15',
+    dateModified: '2026-06-19',
+  }),
+  itemListSchema(kits, '/best-soldering-practice-kits'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Practice Kits for 2026"
+  description="The 9 best soldering practice kits, ranked and reviewed. Compare beginner kits, project builds and SMD/SMT boards — with pros, cons and live Amazon prices."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-01-15"
+  modifiedTime="2026-06-19"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Practice Kits for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Soldering is a skill you can only learn with an iron in your hand. A good practice kit gives
+        you something worth building while you learn — and the best ones leave you with a gadget you
+        actually keep. We compared the leading kits on instructions, finished result and the range
+        of technique they teach. Here are the nine we recommend, from absolute-beginner projects to
+        surface-mount training boards.
+      </p>
+      <p class="mt-4 text-sm text-ink-400">
+        Last updated June 19, 2026 · Written by the {`SolderingPracticeKit`} team
+      </p>
+    </header>
+
+    <div class="mt-8 max-w-3xl">
+      <AffiliateDisclosure />
+    </div>
+
+    <!-- Comparison -->
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={kits} caption="Our ranked picks — scroll for more." />
+    </section>
+
+    <!-- Detailed reviews -->
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The kits, reviewed</h2>
+      {kits.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <!-- Don't forget tools -->
+    <section class="mt-16 rounded-3xl bg-ink-900 p-8 text-white lg:p-10">
+      <div class="max-w-2xl">
+        <h2 class="text-2xl font-extrabold tracking-tight">Don't forget the iron</h2>
+        <p class="mt-3 leading-relaxed text-ink-200">
+          Almost every kit on this page needs a soldering iron and solder you supply yourself. The
+          single biggest upgrade to your results is a temperature-controlled station. See our
+          picks for the irons and tools that pair best with these kits.
+        </p>
+        <a href="/best-soldering-irons" class="mt-6 inline-block rounded-xl bg-buy px-6 py-3 font-bold text-ink-900 transition-colors hover:bg-[var(--color-buy-dark)]">
+          See recommended soldering irons →
+        </a>
+      </div>
+    </section>
+
+    <!-- Buying guide -->
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a soldering practice kit</h2>
+      <p>
+        Every kit here will teach you to solder. The differences that matter are about how
+        <em>enjoyable</em> and <em>transferable</em> that learning is. Here is what we weigh.
+      </p>
+      <h3>1. The quality of the instructions</h3>
+      <p>
+        This is the single biggest predictor of whether you finish a kit. Look for step-by-step,
+        illustrated manuals — ideally with video tutorials. Kits aimed at education (like the
+        Elenco SP-1A) and modern guided kits (like the amomii Testudo) win here.
+      </p>
+      <h3>2. Through-hole vs. surface-mount</h3>
+      <p>
+        Through-hole components have legs that poke through the board — they are forgiving and
+        perfect for fundamentals. Surface-mount (SMD/SMT) parts sit flat on the board and are
+        smaller and fiddlier. Beginners should start through-hole, then graduate to an SMD practice
+        board once their hands are steady.
+      </p>
+      <h3>3. A finished project you actually want</h3>
+      <p>
+        You will solder with far more care if the result is a working clock, radio or game console
+        rather than a board you throw away. Pick a project that appeals to you or the person you are
+        buying for.
+      </p>
+      <h3>4. What's in the box — and what isn't</h3>
+      <p>
+        Check whether the kit includes solder and an iron (most do not). Budget for a
+        temperature-controlled station or at least a decent adjustable iron, plus flux, a brass tip
+        cleaner and safety glasses.
+      </p>
+    </section>
+
+    <section class="mt-16">
+      <FAQ faqs={faqs} />
+    </section>
+  </div>
+</BaseLayout>

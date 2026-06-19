@@ -1,0 +1,64 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE } from '@/config/site';
+import { breadcrumbSchema, organizationSchema, jsonLdGraph } from '@/lib/seo';
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'About', url: '/about' },
+];
+const jsonLd = jsonLdGraph(organizationSchema(), breadcrumbSchema(crumbs));
+---
+
+<BaseLayout
+  title="About Us"
+  description={`How ${SITE.name} researches, tests and ranks soldering practice kits and tools — and how we make money.`}
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>About {SITE.name}</h1>
+      <p class="lead">
+        We help people learn to solder by cutting through the noise of cheap, near-identical kits to
+        recommend the ones genuinely worth your time and money.
+      </p>
+
+      <h2>What we do</h2>
+      <p>
+        {SITE.name} is an independent review site focused on a single niche: soldering practice kits
+        and the tools that go with them. We research the market, weigh real strengths and weaknesses,
+        and rank the kits that teach the skill best — whether you're an absolute beginner, buying a
+        STEM gift, or moving up to surface-mount work.
+      </p>
+
+      <h2>How we evaluate kits</h2>
+      <p>We judge every kit on the things that actually matter to a learner:</p>
+      <ul>
+        <li><strong>Instructions</strong> — clear, illustrated, ideally with video.</li>
+        <li><strong>The finished result</strong> — a kit you want to complete teaches more than a throwaway board.</li>
+        <li><strong>Technique taught</strong> — a useful mix of through-hole and surface-mount practice.</li>
+        <li><strong>Value</strong> — what you learn for the price, not just the lowest sticker.</li>
+      </ul>
+      <p>
+        Prices and availability shown on the site are pulled from Amazon and reflect the figure at
+        the date and time noted next to each product.
+      </p>
+
+      <h2>How we make money</h2>
+      <p>
+        {SITE.name} is funded by affiliate commissions. As an Amazon Associate we earn from
+        qualifying purchases — when you buy through our links, we may receive a small commission at
+        no extra cost to you. This never changes our rankings or opinions. Read our full
+        <a href="/affiliate-disclosure">affiliate disclosure</a> for details.
+      </p>
+
+      <h2>Get in touch</h2>
+      <p>
+        Spotted an error, or want us to look at a kit? We'd love to hear from you — head to our
+        <a href="/contact">contact page</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

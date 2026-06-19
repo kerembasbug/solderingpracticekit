@@ -1,0 +1,57 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import { getProducts } from '@/lib/products';
+import { breadcrumbSchema, itemListSchema, jsonLdGraph } from '@/lib/seo';
+
+const all = await getProducts();
+const groups = [
+  { key: 'practice', label: 'Practice & Skill Boards', href: '/best-soldering-practice-kits' },
+  { key: 'project', label: 'Project Kits', href: '/best-soldering-project-kits' },
+  { key: 'tool', label: 'Irons & Tools', href: '/best-soldering-irons' },
+] as const;
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Reviews', url: '/reviews' },
+];
+const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs), itemListSchema(all, '/reviews'));
+---
+
+<BaseLayout
+  title="All Soldering Kit & Tool Reviews"
+  description="Browse every soldering practice kit, project kit and soldering iron we've reviewed — organized by type, with scores, pros and cons and live Amazon prices."
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold tracking-tight text-ink-900 sm:text-5xl">Reviews</h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-600">
+        Every kit and tool we've put through its paces, grouped by what it's for. Each review covers
+        the build experience, what you learn, and an honest take on the value.
+      </p>
+    </header>
+    <div class="mt-6 max-w-3xl"><AffiliateDisclosure /></div>
+
+    {
+      groups.map((group) => {
+        const items = all.filter((p) => p.category === group.key);
+        if (items.length === 0) return null;
+        return (
+          <section class="mt-14">
+            <div class="flex items-end justify-between">
+              <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">{group.label}</h2>
+              <a href={group.href} class="text-sm font-semibold text-brand-600 hover:text-brand-700">Best {group.label.toLowerCase()} →</a>
+            </div>
+            <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((p) => <ProductCard product={p} />)}
+            </div>
+          </section>
+        );
+      })
+    }
+  </div>
+</BaseLayout>

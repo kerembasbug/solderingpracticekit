@@ -1,0 +1,243 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateButton from '@/components/AffiliateButton.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import StarRating from '@/components/StarRating.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, getTopPicks } from '@/lib/products';
+import {
+  websiteSchema,
+  organizationSchema,
+  itemListSchema,
+  faqSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const all = await getProducts();
+const topPicks = await getTopPicks(6);
+const hero = topPicks[0];
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const faqs = [
+  {
+    question: 'What is a soldering practice kit?',
+    answer:
+      'A soldering practice kit is a low-cost circuit board with components designed to be assembled by hand. You practice making solder joints — often building a working gadget like a clock, radio or LED display — so you can learn the skill safely before working on real electronics.',
+  },
+  {
+    question: 'Do soldering practice kits include a soldering iron?',
+    answer:
+      'Most practice kits include the board and components but <strong>not</strong> the iron or solder. If you are starting from zero, pair a kit with a temperature-controlled soldering station or a starter iron — we recommend specific options in our tools section.',
+  },
+  {
+    question: 'Are soldering practice kits good for beginners and kids?',
+    answer:
+      'Yes. Kits with step-by-step instructions and a fun end product (a game console, clock or radio) are ideal for beginners and supervised older children. Soldering involves a hot iron, so adult supervision is essential for younger makers.',
+  },
+  {
+    question: 'How do you choose the best soldering practice kit?',
+    answer:
+      'Look at three things: the quality of the instructions, whether the finished project is something you actually want, and the variety of joints it teaches (through-hole for fundamentals, surface-mount for advanced practice). Our buying guide walks through each in detail.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  organizationSchema(),
+  websiteSchema(),
+  itemListSchema(topPicks, '/best-soldering-practice-kits'),
+  faqSchema(faqs),
+);
+
+const categories = [
+  {
+    title: 'Practice & Skill Boards',
+    desc: 'Through-hole and surface-mount boards built to drill clean-joint technique.',
+    href: '/best-soldering-practice-kits',
+    count: all.filter((p) => p.category === 'practice').length,
+  },
+  {
+    title: 'Project Kits',
+    desc: 'Solder a working clock, radio, or game console — practice with a payoff.',
+    href: '/best-soldering-project-kits',
+    count: all.filter((p) => p.category === 'project').length,
+  },
+  {
+    title: 'Irons & Tools',
+    desc: 'The soldering stations, irons and accessories to pair with any kit.',
+    href: '/best-soldering-irons',
+    count: all.filter((p) => p.category === 'tool').length,
+  },
+];
+---
+
+<BaseLayout
+  title="Best Soldering Practice Kits (2026 Reviews & Buying Guide)"
+  description="Independent, hands-on reviews of the best soldering practice kits for beginners and hobbyists. Compare top kits, irons and projects — then buy with confidence on Amazon."
+  jsonLd={jsonLd}
+>
+  <!-- Hero -->
+  <section class="relative overflow-hidden border-b border-ink-200 bg-gradient-to-b from-white to-ink-50">
+    <div class="container-px grid items-center gap-10 py-14 lg:grid-cols-[1.1fr_0.9fr] lg:py-20">
+      <div>
+        <span class="inline-flex items-center gap-2 rounded-full border border-brand-200 bg-brand-50 px-3 py-1 text-xs font-bold uppercase tracking-wide text-brand-700">
+          <span class="h-1.5 w-1.5 rounded-full bg-brand-500"></span>
+          2026 Edition · {all.length} kits tested
+        </span>
+        <h1 class="mt-5 text-4xl font-extrabold leading-[1.05] tracking-tight text-ink-900 sm:text-5xl lg:text-6xl">
+          The best <span class="text-brand-500">soldering practice kits</span>, ranked
+        </h1>
+        <p class="mt-5 max-w-xl text-lg leading-relaxed text-ink-600">
+          Learning to solder is a skill best learned by doing. We tested the kits, boards and
+          irons that teach it fastest — from absolute-beginner projects to surface-mount training
+          boards — so you can pick the right one in minutes.
+        </p>
+        <div class="mt-8 flex flex-wrap items-center gap-3">
+          <a href="/best-soldering-practice-kits" class="rounded-xl bg-brand-500 px-6 py-3.5 font-bold text-white shadow-sm transition-colors hover:bg-brand-600">
+            See the Top Picks
+          </a>
+          <a href="/guides/how-to-solder-for-beginners" class="rounded-xl border border-ink-300 bg-white px-6 py-3.5 font-bold text-ink-700 transition-colors hover:border-ink-400 hover:bg-ink-50">
+            Learn to solder →
+          </a>
+        </div>
+        <div class="mt-6">
+          <AffiliateDisclosure variant="inline" />
+        </div>
+      </div>
+
+      {
+        hero && (
+          <div class="relative">
+            <div class="rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card-hover)]">
+              <div class="flex items-center justify-between">
+                <span class="rounded-full bg-brand-500 px-3 py-1 text-xs font-bold text-white">
+                  {hero.award}
+                </span>
+                <div class="flex items-center gap-1.5">
+                  <StarRating score={hero.ourScore} />
+                  <span class="text-sm font-bold text-ink-700">{hero.ourScore.toFixed(1)}</span>
+                </div>
+              </div>
+              <a href={`/reviews/${hero.slug}`} class="mt-4 block aspect-square overflow-hidden rounded-xl">
+                <img src={hero.image} alt={hero.fullTitle} width={hero.imageWidth} height={hero.imageHeight} class="h-full w-full object-contain" fetchpriority="high" />
+              </a>
+              <p class="mt-4 text-xs font-semibold uppercase tracking-wide text-ink-400">{hero.brand}</p>
+              <h2 class="mt-1 text-lg font-bold text-ink-900">
+                <a href={`/reviews/${hero.slug}`} class="hover:text-brand-600">{hero.title}</a>
+              </h2>
+              <p class="mt-2 text-sm text-ink-600">{hero.tagline}</p>
+              <div class="mt-4">
+                <AffiliateButton product={hero} fullWidth />
+              </div>
+            </div>
+          </div>
+        )
+      }
+    </div>
+  </section>
+
+  <!-- Top picks -->
+  <section class="container-px py-16">
+    <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+      <div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Our top picks</h2>
+        <p class="mt-2 text-ink-600">The kits and tools we recommend most, across every budget.</p>
+      </div>
+      <a href="/best-soldering-practice-kits" class="text-sm font-semibold text-brand-600 hover:text-brand-700">View full ranking →</a>
+    </div>
+    <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+      {topPicks.map((p, i) => <ProductCard product={p} showRank rank={i + 1} />)}
+    </div>
+  </section>
+
+  <!-- Comparison -->
+  <section class="container-px pb-16">
+    <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Quick comparison</h2>
+    <p class="mt-2 mb-6 text-ink-600">Side-by-side, at a glance.</p>
+    <ComparisonTable products={topPicks} />
+  </section>
+
+  <!-- Categories -->
+  <section class="border-y border-ink-200 bg-white">
+    <div class="container-px py-16">
+      <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Browse by type</h2>
+      <div class="mt-8 grid gap-6 md:grid-cols-3">
+        {
+          categories.map((cat) => (
+            <a href={cat.href} class="group flex flex-col rounded-2xl border border-ink-200 bg-ink-50/40 p-6 transition-colors hover:border-brand-300 hover:bg-brand-50/40">
+              <span class="text-xs font-bold uppercase tracking-wide text-brand-600">{cat.count} reviewed</span>
+              <h3 class="mt-2 text-xl font-bold text-ink-900 group-hover:text-brand-700">{cat.title}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{cat.desc}</p>
+              <span class="mt-4 text-sm font-semibold text-brand-600">Explore →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- How we choose -->
+  <section class="container-px py-16">
+    <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
+      <div>
+        <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">How we choose</h2>
+        <p class="mt-4 leading-relaxed text-ink-600">
+          We are makers, not a price-comparison robot. Every kit on this site is judged on the
+          quality that actually matters to a learner: how clear the instructions are, how rewarding
+          the finished build is, and how well it teaches real technique. Prices are pulled live so
+          you always see the current Amazon figure.
+        </p>
+        <a href="/about" class="mt-6 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">More about our method →</a>
+      </div>
+      <div class="grid gap-4 sm:grid-cols-2">
+        {
+          [
+            ['Clear instructions', 'Step-by-step manuals and video tutorials beat a bag of parts every time.'],
+            ['A worthwhile result', 'A kit you finish — a clock, radio or console — teaches more than a scrap board.'],
+            ['Real technique', 'A good mix of through-hole and surface-mount work builds transferable skill.'],
+            ['Honest value', 'We weigh price against what you learn, not just the lowest sticker.'],
+          ].map(([title, body]) => (
+            <div class="rounded-2xl border border-ink-200 bg-white p-5">
+              <h3 class="font-bold text-ink-900">{title}</h3>
+              <p class="mt-2 text-sm leading-relaxed text-ink-600">{body}</p>
+            </div>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Guides -->
+  {
+    guides.length > 0 && (
+      <section class="border-t border-ink-200 bg-white">
+        <div class="container-px py-16">
+          <div class="flex items-end justify-between">
+            <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Guides & how-tos</h2>
+            <a href="/guides" class="text-sm font-semibold text-brand-600 hover:text-brand-700">All guides →</a>
+          </div>
+          <div class="mt-8 grid gap-6 md:grid-cols-3">
+            {guides.map((g) => (
+              <a href={`/guides/${g.id}`} class="group flex flex-col rounded-2xl border border-ink-200 bg-white p-6 transition-shadow hover:shadow-[var(--shadow-card)]">
+                <span class="text-xs font-bold uppercase tracking-wide text-brand-600">{g.data.category}</span>
+                <h3 class="mt-2 text-lg font-bold leading-snug text-ink-900 group-hover:text-brand-700">{g.data.title}</h3>
+                <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{g.data.description}</p>
+                <span class="mt-4 text-sm font-semibold text-brand-600">Read guide →</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+    )
+  }
+
+  <!-- FAQ -->
+  <section class="container-px py-16">
+    <FAQ faqs={faqs} />
+  </section>
+</BaseLayout>

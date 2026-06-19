@@ -1,0 +1,110 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getByCategory } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const kits = (await getByCategory('project')).sort((a, b) => a.rank - b.rank);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Project Kits', url: '/best-soldering-project-kits' },
+];
+
+const faqs = [
+  {
+    question: 'What is a soldering project kit?',
+    answer:
+      'A soldering project kit is a build-it-yourself electronics kit where the finished result is a working gadget — a clock, an FM radio, a game console — rather than a throwaway practice board. You learn soldering while making something you keep.',
+  },
+  {
+    question: 'Are soldering project kits good gifts for teens?',
+    answer:
+      'They are among the best STEM gifts going. A kit that ends in a playable game console or a working radio keeps a teenager engaged far longer than a bare board, and many offer adjustable difficulty so they grow with the maker.',
+  },
+  {
+    question: 'Do soldering project kits come with an iron?',
+    answer:
+      'Usually not. You will need to supply a soldering iron and solder. A temperature-controlled station makes the build much easier and more enjoyable — see our soldering iron recommendations.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Soldering Project Kits for 2026',
+    description:
+      'The best soldering project kits that build a working gadget — clocks, radios, game consoles and more. Reviewed and ranked.',
+    url: '/best-soldering-project-kits',
+    datePublished: '2026-01-20',
+    dateModified: '2026-06-19',
+  }),
+  itemListSchema(kits, '/best-soldering-project-kits'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Project Kits for 2026"
+  description="The best soldering project kits that end in a working gadget — clocks, radios and game consoles. Ranked, reviewed, with pros, cons and live Amazon prices."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-01-20"
+  modifiedTime="2026-06-19"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Project Kits for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        The fastest way to fall in love with soldering is to build something that <em>does</em>
+        something. These project kits turn practice into a working clock, radio or handheld
+        console — the kind of result that keeps beginners (and teens) soldering to the last joint.
+      </p>
+      <p class="mt-4 text-sm text-ink-400">Last updated June 19, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={kits} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The project kits, reviewed</h2>
+      {kits.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to pick a soldering project kit</h2>
+      <p>
+        Choose the project first — motivation matters more than spec sheets. A learner who wants a
+        radio will happily solder one; the same person may stall on a board they don't care about.
+        After that, check the joint count (more joints means more practice but a longer build),
+        whether an enclosure is included for a tidy result, and whether the difficulty is adjustable
+        so the kit can grow with the maker.
+      </p>
+      <p>
+        Remember that almost none of these include a soldering iron. Pair your kit with a
+        <a href="/best-soldering-irons">temperature-controlled iron or station</a> and some thin
+        rosin-core solder, and read our
+        <a href="/guides/how-to-solder-for-beginners">beginner soldering guide</a> before you start.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

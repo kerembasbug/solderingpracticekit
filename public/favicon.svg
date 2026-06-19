@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Soldering Practice Kit">
+  <rect width="64" height="64" rx="14" fill="#c2410c"/>
+  <g fill="none" stroke="#ffffff" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M14 50l9-3 24-24-6-6-24 24-3 9z"/>
+    <path d="M41 17l6 6"/>
+    <path d="M47 11l6 6"/>
+  </g>
+  <circle cx="18" cy="46" r="3" fill="#ff9900"/>
+</svg>

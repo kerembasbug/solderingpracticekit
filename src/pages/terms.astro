@@ -1,0 +1,85 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE } from '@/config/site';
+import { breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Terms of Use', url: '/terms' },
+];
+const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs));
+---
+
+<BaseLayout
+  title="Terms of Use"
+  description={`The terms of use governing your access to and use of ${SITE.name}.`}
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>Terms of Use</h1>
+      <p class="lead"><em>Last updated: June 19, 2026</em></p>
+
+      <p>
+        By accessing {SITE.name} ({SITE.domain}) you agree to these Terms of Use. If you do not
+        agree, please do not use the site.
+      </p>
+
+      <h2>Informational purpose only</h2>
+      <p>
+        Our content is provided for general informational and educational purposes. While we strive
+        for accuracy, we make no warranties about the completeness, reliability or timeliness of any
+        information, including product details, prices and availability. Always verify current
+        details on Amazon before purchasing.
+      </p>
+
+      <h2>Safety disclaimer</h2>
+      <p>
+        Soldering involves high temperatures, hot tools and materials that can cause burns, fire or
+        exposure to fumes. Our guides are general advice, not professional instruction. You are
+        responsible for working safely, supervising children, following the instructions provided
+        with your equipment and kits, and complying with local regulations. We accept no liability
+        for injury, damage or loss arising from soldering or from following any information on this
+        site.
+      </p>
+
+      <h2>Affiliate links</h2>
+      <p>
+        This site contains affiliate links and earns commissions from qualifying purchases. See our
+        <a href="/affiliate-disclosure">Affiliate Disclosure</a> for full details.
+      </p>
+
+      <h2>Intellectual property</h2>
+      <p>
+        The original content on this site (text, design and original graphics) is owned by
+        {SITE.name} and may not be reproduced without permission. Product names, images and
+        trademarks belong to their respective owners; Amazon and the Amazon logo are trademarks of
+        Amazon.com, Inc. or its affiliates.
+      </p>
+
+      <h2>Third-party links</h2>
+      <p>
+        We link to external sites, including Amazon, that we do not control. We are not responsible
+        for their content, policies or practices.
+      </p>
+
+      <h2>Limitation of liability</h2>
+      <p>
+        To the fullest extent permitted by law, {SITE.name} and its contributors shall not be liable
+        for any damages arising out of your use of, or inability to use, this site or any linked
+        third-party site.
+      </p>
+
+      <h2>Changes</h2>
+      <p>
+        We may revise these Terms at any time. Continued use of the site after changes constitutes
+        acceptance of the updated Terms.
+      </p>
+
+      <h2>Contact</h2>
+      <p>Questions about these Terms? <a href="/contact">Contact us</a>.</p>
+    </div>
+  </div>
+</BaseLayout>
