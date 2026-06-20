@@ -15,7 +15,9 @@
  */
 function pick(importVal: string | undefined, key: string, fallback = ''): string {
   const fromProcess = typeof process !== 'undefined' ? process.env?.[key] : undefined;
-  return (fromProcess ?? importVal ?? fallback) as string;
+  // Use ||, not ??, so an empty string (e.g. an unset Docker ARG that becomes
+  // ENV KEY="") falls through to the next source rather than sticking as "".
+  return (fromProcess || importVal || fallback) as string;
 }
 
 export const SITE = {
