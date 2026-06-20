@@ -9,7 +9,8 @@ const SITE_URL = process.env.SITE_URL || 'https://solderingpracticekit.com';
 export default defineConfig({
   site: SITE_URL,
   output: 'static',
-  trailingSlash: 'ignore',
+  // Clean, slash-free URLs that match our internal links (no redirect hops).
+  trailingSlash: 'never',
   prefetch: {
     prefetchAll: true,
     defaultStrategy: 'viewport',
