@@ -1,5 +1,5 @@
 ---
-title: 'What Tools Do You Need to Start Soldering? (Beginner Checklist)'
+title: 'Soldering Tools Checklist for Beginners'
 description: 'A complete beginner soldering tools checklist: the must-have iron, solder and safety gear, plus the nice-to-have extras that make soldering easier.'
 pubDate: 2026-03-24
 updatedDate: 2026-06-19

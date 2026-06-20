@@ -1,5 +1,5 @@
 ---
-title: 'Soldering Iron Temperature Guide: What Setting Should You Use?'
+title: 'Soldering Iron Temperature Guide (Settings Chart)'
 description: 'The right soldering temperature for electronics, by solder type and job. A simple chart plus how to tell if your iron is too hot or too cold.'
 pubDate: 2026-03-30
 updatedDate: 2026-06-19

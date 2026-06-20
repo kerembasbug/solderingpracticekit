@@ -31,7 +31,10 @@ const {
 
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl(image);
-const fullTitle = path === '/' ? title : `${title} | ${SITE.name}`;
+// Keep the <title> under ~60 chars: append the brand only when it still fits.
+const brandSuffix = ` | ${SITE.name}`;
+const fullTitle =
+  path === '/' || title.length + brandSuffix.length > 60 ? title : `${title}${brandSuffix}`;
 ---
 
 <meta charset="utf-8" />
