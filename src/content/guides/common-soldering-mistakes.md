@@ -1,4 +1,5 @@
 ---
+heroImage: '/images/guides/common-soldering-mistakes.jpg'
 title: '10 Common Soldering Mistakes (and How to Fix Them)'
 description: 'Cold joints, solder bridges, lifted pads and more — the most common soldering mistakes beginners make, why they happen, and how to fix and avoid them.'
 pubDate: 2026-02-26

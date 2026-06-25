@@ -1,4 +1,5 @@
 ---
+heroImage: '/images/guides/lead-free-vs-leaded-solder.jpg'
 title: 'Lead-Free vs. Leaded Solder: Which Should You Use?'
 description: 'Leaded vs lead-free solder explained for beginners — melting points, ease of use, safety, RoHS rules, and which to choose for learning to solder.'
 pubDate: 2026-03-12

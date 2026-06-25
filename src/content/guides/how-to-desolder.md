@@ -1,4 +1,5 @@
 ---
+heroImage: '/images/guides/how-to-desolder.jpg'
 title: 'How to Desolder: Removing Solder and Components Safely'
 description: 'How to desolder like a pro — using desoldering braid (solder wick) and a solder sucker to remove solder, fix mistakes and salvage components without damaging the board.'
 pubDate: 2026-04-05

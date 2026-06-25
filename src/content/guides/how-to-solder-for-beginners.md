@@ -1,4 +1,5 @@
 ---
+heroImage: '/images/guides/how-to-solder-for-beginners.jpg'
 title: 'How to Solder for Beginners: A Complete Step-by-Step Guide'
 description: 'Learn how to solder from scratch — the tools you need, how to tin a tip, how to make a perfect joint, and the mistakes to avoid. A beginner-friendly walkthrough.'
 pubDate: 2026-02-01

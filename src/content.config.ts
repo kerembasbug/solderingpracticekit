@@ -15,6 +15,7 @@ const guides = defineCollection({
     faqs: z
       .array(z.object({ question: z.string(), answer: z.string() }))
       .default([]),
+    heroImage: z.string().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

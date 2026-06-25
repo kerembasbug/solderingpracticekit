@@ -1,4 +1,5 @@
 ---
+heroImage: '/images/guides/through-hole-vs-surface-mount-soldering.jpg'
 title: 'Through-Hole vs. Surface-Mount Soldering Explained'
 description: 'Through-hole (THT) and surface-mount (SMD/SMT) soldering explained: the differences, which to learn first, and the tools and practice kits for each.'
 pubDate: 2026-02-10
