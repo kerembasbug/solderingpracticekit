@@ -1,6 +1,7 @@
 ---
 heroImage: '/images/guides/best-soldering-kits-for-kids-and-teens.jpg'
 title: 'Best Soldering Kits for Kids and Teens (STEM Gift Guide)'
+seoTitle: 'Best Soldering Kits for Kids & Teens (STEM)'
 description: 'A parent''s guide to soldering kits for kids and teens: what age is appropriate, safety tips, and the most fun, beginner-friendly STEM soldering projects.'
 pubDate: 2026-03-05
 updatedDate: 2026-06-19

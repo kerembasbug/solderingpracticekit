@@ -5,6 +5,9 @@ const guides = defineCollection({
   loader: glob({ pattern: '**/*.md', base: './src/content/guides' }),
   schema: z.object({
     title: z.string(),
+    /** Optional SEO <title>. Falls back to `title`; set it when you want the
+     *  SERP title to differ from the on-page H1 (avoids duplicate H1/title). */
+    seoTitle: z.string().optional(),
     description: z.string(),
     pubDate: z.coerce.date(),
     updatedDate: z.coerce.date().optional(),

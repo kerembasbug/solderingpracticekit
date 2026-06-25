@@ -1,6 +1,7 @@
 ---
 heroImage: '/images/guides/lead-free-vs-leaded-solder.jpg'
 title: 'Lead-Free vs. Leaded Solder: Which Should You Use?'
+seoTitle: 'Leaded vs Lead-Free Solder: A Beginner''s Guide'
 description: 'Leaded vs lead-free solder explained for beginners — melting points, ease of use, safety, RoHS rules, and which to choose for learning to solder.'
 pubDate: 2026-03-12
 updatedDate: 2026-06-19
@@ -45,7 +46,7 @@ That said, *both* solders release flux fumes when heated. Those fumes — not th
 ## So which should you buy?
 
 - **Learning at home, by yourself?** Leaded 60/40 (0.6–0.8 mm) is the gentlest way to build technique. Wash your hands and ventilate.
-- **Soldering with or for kids, or building something others will handle?** Choose lead-free.
+- **Soldering with or for [kids and teens](/guides/best-soldering-kits-for-kids-and-teens), or building something others will handle?** Choose lead-free.
 - **Building products to sell, or in a RoHS region?** Lead-free is required.
 
 Whatever you pick, get **thin, rosin-core** solder so flux is built in, and pair it with the right [iron](/guides/how-to-choose-a-soldering-iron) and a [practice kit](/best-soldering-practice-kits). Then work through our [beginner soldering guide](/guides/how-to-solder-for-beginners).

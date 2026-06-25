@@ -1,6 +1,7 @@
 ---
 heroImage: '/images/guides/how-to-choose-a-soldering-iron.jpg'
 title: 'How to Choose a Soldering Iron: A Beginner''s Buying Guide'
+seoTitle: 'How to Choose a Soldering Iron (Beginner Guide)'
 description: 'Soldering iron vs. station, wattage, temperature control, tips and tinning — everything a beginner needs to choose the right soldering iron for electronics.'
 pubDate: 2026-02-18
 updatedDate: 2026-06-19

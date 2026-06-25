@@ -48,10 +48,15 @@ const crumbs = [
 ];
 
 const jsonLd = jsonLdGraph(productSchema(product), breadcrumbSchema(crumbs));
+
+// SEO <title> carries a year for freshness and to differ from the on-page H1
+// (`${product.title} Review`), avoiding the duplicate H1/title warning.
+const reviewYear = new Date(`${product.updatedAt}T00:00:00Z`).getUTCFullYear();
+const seoTitle = `${product.title} Review (${reviewYear})`;
 ---
 
 <BaseLayout
-  title={`${product.title} Review`}
+  title={seoTitle}
   description={product.excerpt}
   image={product.image}
   type="article"

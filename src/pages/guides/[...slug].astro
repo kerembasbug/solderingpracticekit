@@ -65,7 +65,7 @@ const dateFmt = (d: Date) =>
 ---
 
 <BaseLayout
-  title={data.title}
+  title={data.seoTitle ?? data.title}
   description={data.description}
   type="article"
   jsonLd={jsonLd}

@@ -1,6 +1,7 @@
 ---
 heroImage: '/images/guides/how-to-clean-and-tin-a-soldering-iron-tip.jpg'
 title: 'How to Clean and Tin a Soldering Iron Tip (and Make It Last)'
+seoTitle: 'How to Clean & Tin a Soldering Iron Tip'
 description: 'Keep your soldering iron working like new: how to clean a dirty or oxidized tip, how to tin it properly, and how to stop tips from going black and dead.'
 pubDate: 2026-03-18
 updatedDate: 2026-06-19
