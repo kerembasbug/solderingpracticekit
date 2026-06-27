@@ -1,0 +1,130 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+// Hand-picked kid- and teen-friendly builds (a playable, motivating result and
+// forgiving joints). Ordered by suitability for younger makers first.
+const KID_SLUGS = [
+  'learn-to-solder-jitterbug-kit',
+  'mioyoow-line-following-robot-soldering-kit',
+  'pemenol-retro-game-console-soldering-kit',
+  'akeysrc-led-arcade-soldering-kit',
+  'vogurtime-diy-piano-soldering-kit',
+  'pemenol-rotating-globe-soldering-kit',
+];
+
+const all = await getProducts();
+const kits = KID_SLUGS.map((slug) => all.find((p) => p.slug === slug)).filter(
+  (p): p is NonNullable<typeof p> => Boolean(p),
+);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Kits for Kids', url: '/best-soldering-kits-for-kids' },
+];
+
+const faqs = [
+  {
+    question: 'What age can a child start soldering?',
+    answer:
+      'With close adult supervision, many children can solder from around 8–10 years old, starting with a simple kit that has few, large joints. The soldering iron reaches 300°C or more, so an adult should always be present and handle or closely supervise the hot iron. Maturity matters more than exact age.',
+  },
+  {
+    question: 'Which soldering kit is best for a complete beginner child?',
+    answer:
+      'A kit with very few joints and a fun, moving result — like the Jitterbug vibrating bug — is the classic first choice. It can be finished in one sitting, which keeps a child motivated, and there is little to go wrong. From there, a line-following robot or a game console kit adds more challenge.',
+  },
+  {
+    question: 'Is soldering safe for kids?',
+    answer:
+      'It can be, with the right precautions: adult supervision at all times, a fume extractor or open window, safety glasses, and lead-free or carefully handled solder with hand-washing afterward. Never leave a child alone with a hot iron. See our soldering safety and fume guidance for the full checklist.',
+  },
+  {
+    question: 'Do these kits include a soldering iron?',
+    answer:
+      'Usually not. You will need a soldering iron and solder as well. A low-wattage, temperature-controlled iron is safest and easiest for a young learner — see our soldering iron recommendations and pair it with thin rosin-core solder.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Soldering Kits for Kids & Teens for 2026',
+    description:
+      'The best soldering kits for kids and teens — safe, fun STEM builds with playable results, ranked for younger makers. Plus age and safety guidance for parents.',
+    url: '/best-soldering-kits-for-kids',
+    datePublished: '2026-06-23',
+    dateModified: '2026-06-23',
+  }),
+  itemListSchema(kits, '/best-soldering-kits-for-kids'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Kits for Kids & Teens (2026)"
+  description="Safe, fun soldering kits for kids and teens — STEM builds with playable results, ranked for younger makers, plus age and safety guidance for parents."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-23"
+  modifiedTime="2026-06-23"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Kits for Kids &amp; Teens
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Soldering is one of the most rewarding STEM skills a child can learn — as long as the kit
+        ends in something fun. These picks all finish as a playable gadget, with forgiving joints
+        and clear instructions. For the full safety and age rundown, read our
+        <a href="/guides/best-soldering-kits-for-kids-and-teens" class="font-semibold text-brand-600 hover:text-brand-700">parent's guide to soldering with kids</a>.
+      </p>
+      <p class="mt-4 text-sm text-ink-400">Last updated June 23, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={kits} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The kits, reviewed</h2>
+      {kits.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a soldering kit for a child</h2>
+      <p>
+        Match the kit to the child, not the other way round. A younger or first-time maker does best
+        with very few joints and a quick, moving payoff — the <a href="/reviews/learn-to-solder-jitterbug-kit">Jitterbug</a>
+        is the classic. Older or more patient kids can handle a <a href="/reviews/mioyoow-line-following-robot-soldering-kit">line-following robot</a>
+        or a game console, which teach sensors and more components.
+      </p>
+      <p>
+        Whatever you pick, set them up safely: an adult on the hot iron, a
+        <a href="/best-soldering-accessories">fume extractor or open window</a>, safety glasses, and
+        a temperature-controlled <a href="/best-soldering-irons">iron</a> kept at a sensible heat.
+        Our <a href="/guides/how-to-solder-for-beginners">beginner soldering guide</a> is a good
+        thing to read together before you start.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

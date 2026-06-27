@@ -68,6 +68,66 @@ const GUIDES = [
     prompt:
       'Smiling teenager assembling a colorful DIY electronic kit at a desk with LED components spread out, bright learning environment, educational, photorealistic, no text',
   },
+  {
+    slug: 'how-to-use-flux',
+    prompt:
+      'Macro photo of a flux pen and a tube of solder flux paste beside a green PCB, a bright shiny solder joint flowing, warm workshop light, shallow depth of field, photorealistic, no text',
+  },
+  {
+    slug: 'solder-wire-types-and-gauge',
+    prompt:
+      'Several spools of solder wire of different thicknesses arranged on a dark workbench, close-up product photography, soft directional light, photorealistic, no text',
+  },
+  {
+    slug: 'how-to-solder-wires-together',
+    prompt:
+      'Close-up of two stripped copper wires being soldered together with a soldering iron, helping-hands clamp holding them, heat-shrink tubing nearby, warm light, photorealistic, no text',
+  },
+  {
+    slug: 'how-to-fix-a-cold-solder-joint',
+    prompt:
+      'Extreme macro of a dull grainy cold solder joint next to a shiny smooth one on a green circuit board, sharp comparison, soft side lighting, photorealistic, no text',
+  },
+  {
+    slug: 'soldering-fume-safety',
+    prompt:
+      'A solder fume extractor fan beside a soldering iron with a thin wisp of smoke being drawn sideways away from the work, electronics bench, soft light, photorealistic, no text',
+  },
+  {
+    slug: 'helping-hands-and-pcb-holders',
+    prompt:
+      'A helping-hands soldering tool with flexible arms and a magnifier holding a green circuit board on a workbench, clean product photography, soft light, photorealistic, no text',
+  },
+  {
+    slug: 'esd-safety-for-soldering',
+    prompt:
+      'An anti-static wrist strap on a wrist resting on a grey ESD mat with electronic components and a circuit board, clean tidy workbench, soft light, photorealistic, no text',
+  },
+  {
+    slug: 'smd-rework-hot-air-and-reflow',
+    prompt:
+      'A hot air rework station nozzle above a circuit board with tiny surface-mount components, tweezers placing a chip, detailed electronics rework, bright light, photorealistic, no text',
+  },
+  {
+    slug: 'how-to-solder-battery-tabs',
+    prompt:
+      'Close-up of nickel tabs and 18650 lithium battery cells with a powerful soldering iron, battery pack building on a workbench, careful detailed shot, photorealistic, no text',
+  },
+  {
+    slug: 'soldering-for-rc-and-drones',
+    prompt:
+      'Close-up of soldering an XT60 connector and motor wires on an FPV drone flight controller, thick red and black battery leads, electronics workbench, photorealistic, no text',
+  },
+  {
+    slug: 'soldering-vs-welding-vs-brazing',
+    prompt:
+      'Three side-by-side metal joining processes: a soldering iron on a circuit board, a brazing torch on copper pipe, and a welding arc on steel, split composition, photorealistic, no text',
+  },
+  {
+    slug: 'how-to-read-a-schematic',
+    prompt:
+      'An electronic schematic circuit diagram on paper beside a populated green circuit board and a pencil on a wooden desk, warm study light, photorealistic, no text',
+  },
 ];
 
 async function generateImage(prompt) {

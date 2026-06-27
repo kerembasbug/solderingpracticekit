@@ -1,0 +1,115 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getByCategory } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const items = (await getByCategory('accessory')).sort((a, b) => a.rank - b.rank);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Accessories', url: '/best-soldering-accessories' },
+];
+
+const faqs = [
+  {
+    question: 'What soldering accessories do I actually need as a beginner?',
+    answer:
+      'Beyond an iron and solder, the three that make the biggest difference are a solder sucker (or wick) to fix mistakes, a helping-hands tool to hold the board, and a fume extractor so you are not breathing flux smoke. None of them are expensive, and each one removes a common source of frustration.',
+  },
+  {
+    question: 'Solder sucker or solder wick — which should I get?',
+    answer:
+      'Get both; they do different jobs. A solder sucker (desoldering pump) is best for clearing solder from through-hole pads, while wick (desoldering braid) lifts solder from flat pads and surface-mount work where a pump cannot reach. A wick-and-flux combo is cheap and covers the gaps.',
+  },
+  {
+    question: 'Do I really need a fume extractor for hobby soldering?',
+    answer:
+      'It is the most overlooked safety upgrade. The smoke from soldering is vaporised flux, not the lead, and you should not breathe it. A small carbon-filter fan pulls it away from your face for very little money. For heavy use, combine it with an open window or proper ventilation.',
+  },
+  {
+    question: 'What solder should a beginner use?',
+    answer:
+      'Thin (0.6–0.8 mm) rosin-core solder. Leaded 60/40 is the most forgiving to learn on because it melts at a low temperature and flows easily; switch to lead-free once your technique is solid or if the work will be handled by others. See our lead-free vs leaded guide for the full picture.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Soldering Accessories for 2026',
+    description:
+      'The soldering accessories that actually matter — desoldering pumps, wick, flux, helping hands, fume extractors and beginner solder. Reviewed and ranked.',
+    url: '/best-soldering-accessories',
+    datePublished: '2026-06-23',
+    dateModified: '2026-06-23',
+  }),
+  itemListSchema(items, '/best-soldering-accessories'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Accessories for 2026"
+  description="The soldering accessories worth owning — solder suckers, wick & flux, helping hands and fume extractors. Ranked and reviewed, with the gear that fixes mistakes and keeps you safe."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-23"
+  modifiedTime="2026-06-23"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Accessories for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        An iron and solder get you started, but the accessories are what make soldering
+        <em>enjoyable</em>. These are the desoldering tools, holders, fume extractors and beginner
+        solder that fix mistakes, hold your work steady and keep the smoke out of your face — pair
+        them with one of our <a href="/best-soldering-irons" class="font-semibold text-brand-600 hover:text-brand-700">recommended irons</a>.
+      </p>
+      <p class="mt-4 text-sm text-ink-400">Last updated June 23, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={items} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The accessories, reviewed</h2>
+      {items.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Building your soldering kit</h2>
+      <p>
+        You do not need everything at once. Start with a solder sucker and some thin rosin-core
+        solder, add a helping-hands tool the first time the board slips while both hands are busy,
+        and add a fume extractor as soon as you are soldering indoors regularly. Wick and flux round
+        out the cleanup kit for when you move on to surface-mount work.
+      </p>
+      <p>
+        New to all of this? Our <a href="/guides/soldering-tools-checklist-for-beginners">beginner
+        tools checklist</a> walks through the must-haves and the nice-to-haves, and the
+        <a href="/guides/how-to-solder-for-beginners">beginner soldering guide</a> shows you how to
+        use them.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

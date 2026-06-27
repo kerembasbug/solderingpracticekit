@@ -30,16 +30,20 @@ const related = all
 
 const categoryLabel =
   product.category === 'tool'
-    ? 'Soldering Irons & Tools'
-    : product.category === 'project'
-      ? 'Project Kits'
-      : 'Practice Kits';
+    ? 'Soldering Irons & Stations'
+    : product.category === 'accessory'
+      ? 'Soldering Accessories'
+      : product.category === 'project'
+        ? 'Project Kits'
+        : 'Practice Kits';
 const categoryUrl =
   product.category === 'tool'
     ? '/best-soldering-irons'
-    : product.category === 'project'
-      ? '/best-soldering-project-kits'
-      : '/best-soldering-practice-kits';
+    : product.category === 'accessory'
+      ? '/best-soldering-accessories'
+      : product.category === 'project'
+        ? '/best-soldering-project-kits'
+        : '/best-soldering-practice-kits';
 
 const crumbs = [
   { name: 'Home', url: '/' },

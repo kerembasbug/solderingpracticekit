@@ -1,7 +1,7 @@
 /** Editorial price tier (NOT a live price — used for budget context only). */
 export type PriceTier = '$' | '$$' | '$$$';
 
-export type ProductCategory = 'practice' | 'project' | 'tool';
+export type ProductCategory = 'practice' | 'project' | 'tool' | 'accessory';
 
 /** Live data fetched from the Amazon Product Advertising API at build time. */
 export interface LiveData {

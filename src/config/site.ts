@@ -73,10 +73,19 @@ export const NAV: { label: string; href: string }[] = [
 
 export const FOOTER_LINKS: { heading: string; links: { label: string; href: string }[] }[] = [
   {
-    heading: 'Site',
+    heading: 'Soldering Kits',
     links: [
-      { label: 'Best Soldering Practice Kits', href: '/best-soldering-practice-kits' },
+      { label: 'Best Practice Kits', href: '/best-soldering-practice-kits' },
+      { label: 'Best Project Kits', href: '/best-soldering-project-kits' },
+      { label: 'Best Kits for Kids', href: '/best-soldering-kits-for-kids' },
       { label: 'All Reviews', href: '/reviews' },
+    ],
+  },
+  {
+    heading: 'Tools & Guides',
+    links: [
+      { label: 'Best Soldering Irons', href: '/best-soldering-irons' },
+      { label: 'Best Accessories', href: '/best-soldering-accessories' },
       { label: 'Guides & How-Tos', href: '/guides' },
       { label: 'About Us', href: '/about' },
       { label: 'Contact', href: '/contact' },
