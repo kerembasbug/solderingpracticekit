@@ -9,6 +9,8 @@ category: 'Technique'
 relatedProducts:
   - yihua-926-iii-soldering-station
   - dzrcoxi-smd-smt-practice-kit-3-pack
+  - viralloy-solder-sucker
+  - towot-solder-wick-flux-kit
 faqs:
   - question: 'What is the best way to remove solder?'
     answer: 'For flat joints and excess solder, desoldering braid (solder wick) is cleanest. For filling through-holes, a solder sucker (desoldering pump) is faster. Many jobs use both: a pump to remove the bulk, then braid to clean up the rest.'

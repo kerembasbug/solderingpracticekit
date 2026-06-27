@@ -10,6 +10,9 @@ relatedProducts:
   - yihua-926-iii-soldering-station
   - amomii-testudo-soldering-practice-kit
   - fanttik-t1-max-cordless-soldering-iron
+  - kotto-solder-fume-extractor
+  - kaisiking-helping-hands-magnifier
+  - hgmzzq-60-40-rosin-core-solder
 faqs:
   - question: 'What do I need to start soldering as a beginner?'
     answer: 'At minimum: a temperature-controlled soldering iron, thin rosin-core solder, a brass-wool tip cleaner, a stand, helping hands or a vise, safety glasses, and something to practice on. A practice kit gives you a safe, rewarding first project.'

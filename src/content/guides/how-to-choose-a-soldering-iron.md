@@ -10,6 +10,8 @@ relatedProducts:
   - yihua-926-iii-soldering-station
   - fanttik-t1-max-cordless-soldering-iron
   - q-ming-60w-soldering-iron-kit
+  - fnirsi-hs-03-cordless-soldering-iron
+  - fnirsi-hs-02a-soldering-iron
 faqs:
   - question: 'Soldering iron or soldering station — which is better for beginners?'
     answer: 'A station is better for learning. It regulates the tip temperature precisely and holds it steady, which makes consistent joints far easier. A bare iron can work, but uneven heat is a common cause of beginner frustration.'

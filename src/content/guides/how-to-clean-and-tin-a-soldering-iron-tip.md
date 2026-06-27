@@ -9,6 +9,7 @@ category: 'Maintenance'
 relatedProducts:
   - yihua-926-iii-soldering-station
   - q-ming-60w-soldering-iron-kit
+  - fnirsi-hs-02a-soldering-iron
 faqs:
   - question: 'Why is my soldering iron tip black and not melting solder?'
     answer: 'A black, dull tip is oxidized — the oxide layer blocks heat transfer so solder won''t melt or stick. Clean it on brass wool, and if that fails use a tip tinner/activator or a gentle re-tinning routine to restore a shiny, solderable surface.'
