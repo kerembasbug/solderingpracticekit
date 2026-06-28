@@ -1,0 +1,138 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('elenco-practical-soldering-project-kit');
+const b = await getProductBySlug('pemenol-retro-game-console-soldering-kit');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Practice Kit vs Project Kit', url: '/practice-kit-vs-project-kit' },
+];
+
+const faqs = [
+  {
+    question: 'What is the difference between a soldering practice kit and a project kit?',
+    answer:
+      'A practice kit is a training board designed purely for drilling soldering technique — you solder components to a PCB to learn the skill, and the board itself is the point, not the end product. A project kit also teaches soldering, but the goal is a working gadget you keep: a radio, a game console, a clock. Practice kits are cheaper and more forgiving; project kits are more motivating because you get something to show for your work.',
+  },
+  {
+    question: 'Should a complete beginner start with a practice kit or a project kit?',
+    answer:
+      'Either can work, but it depends on your risk tolerance. A practice kit is more forgiving — a bad joint does not ruin a finished gadget, and boards are cheap enough to re-buy. A project kit is more engaging because the payoff is tangible, but a beginner who makes several cold joints on the last component of a game console may feel defeated. If patience is in short supply, start with a practice kit first.',
+  },
+  {
+    question: 'Can I use a practice kit to learn SMD soldering?',
+    answer:
+      'Yes — there are purpose-built SMD practice boards with surface-mount footprints in multiple sizes. These are the best way to progress from through-hole work to the finer technique that modern electronics demand. See our best SMD practice boards for recommendations.',
+  },
+  {
+    question: 'Is a project kit good for kids?',
+    answer:
+      'Project kits tend to engage kids better because the payoff is something they can play with or show off. The Jitterbug (a vibrating bug with very few joints) is the classic first project for children. Game console kits like the PEMENOL work well for older children and teens who can handle a longer build. Always supervise children around a hot iron.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Soldering Practice Kit vs Project Kit: Which Should You Start With?',
+    description:
+      'Practice kit or project kit for beginners? We compare a classic training board with a gadget kit so you can pick the right first purchase.',
+    url: '/practice-kit-vs-project-kit',
+    datePublished: '2026-06-28',
+    dateModified: '2026-06-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Practice Kit vs Project Kit: Which to Start With?"
+  description="Soldering practice kit or project kit — which is right for a beginner? We explain the difference, compare a training board with a gadget kit, and give you a clear first-buy recommendation."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-28"
+  modifiedTime="2026-06-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Practice Kit vs Project Kit
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        The first question every new solderer faces: should you buy a
+        <strong>practice board</strong> to drill the skill, or a <strong>project kit</strong>
+        that builds a gadget you actually keep? Both teach soldering — they just have very
+        different ideas about what the end result should be.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>What is a practice kit?</h2>
+      <p>
+        A <strong>practice kit</strong> is a PCB loaded with resistors, LEDs, capacitors and
+        headers — the components that appear on almost every real circuit board. The point is not
+        the gadget; the point is the joint. You solder each component, learn to feed the right
+        amount of solder at the right temperature, and build the muscle memory that transfers to
+        every PCB you touch afterward. Kits like the <strong>{a.title}</strong> are cheap and
+        classroom-trusted precisely because they are low-pressure: a bad joint does not break a
+        finished product, so you can desolder and try again without consequence.
+      </p>
+
+      <h2>What is a project kit?</h2>
+      <p>
+        A <strong>project kit</strong> also teaches soldering, but the destination is a working
+        gadget. Once you solder the last joint, you have something — a game console, a radio, a
+        clock — that you can show off, use and keep. The <strong>{b.title}</strong> is a good
+        example: it builds a retro handheld with seven games and three selectable difficulty
+        levels. The payoff is real, which is exactly why project kits keep beginners engaged
+        through a longer, more demanding build.
+      </p>
+
+      <h2>Choose the {a.title} (practice kit) if…</h2>
+      <ul>
+        <li>You are a complete beginner and want a pressure-free first attempt.</li>
+        <li>You are teaching a class or workshop where boards will be reused.</li>
+        <li>Budget is the priority — practice boards cost very little.</li>
+        <li>You want to re-solder the same joints until they look right.</li>
+      </ul>
+
+      <h2>Choose the {b.title} (project kit) if…</h2>
+      <ul>
+        <li>You learn better when there is a tangible reward at the end.</li>
+        <li>You are buying a gift for a teen or young maker.</li>
+        <li>You want a kit that grows with the learner (three difficulty levels).</li>
+        <li>You already have some comfort with a soldering iron.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        If patience is your strength, start with a
+        <a href={`/reviews/${a.slug}`}>practice board</a> — you will nail the fundamentals
+        faster with zero pressure to protect a gadget. If motivation is the issue and you know
+        you will finish more when there is a game to play at the end, go straight to a
+        <a href={`/reviews/${b.slug}`}>project kit</a>. There is no wrong answer; many makers
+        do both. Whatever you choose, pair it with our
+        <a href="/best-soldering-irons">recommended irons</a> and browse the full
+        <a href="/best-soldering-practice-kits">practice kit roundup</a> and
+        <a href="/best-soldering-project-kits">project kit roundup</a> for more options.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

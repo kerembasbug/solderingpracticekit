@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('fnirsi-hs-02a-soldering-iron');
+const b = await getProductBySlug('fnirsi-hs-03-cordless-soldering-iron');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'FNIRSI HS-02A vs HS-03', url: '/fnirsi-hs-02a-vs-fnirsi-hs-03' },
+];
+
+const faqs = [
+  {
+    question: 'FNIRSI HS-02A or HS-03 — which is better?',
+    answer:
+      'They are the same brand but completely different tools. The HS-02A is a 100W corded smart iron that runs off mains power — it never runs out of energy and holds temperature under heavy loads. The HS-03 is a 2600mAh cordless battery iron that heats in three seconds with no cable. The best pick depends entirely on whether you need cable-free portability or sustained mains power.',
+  },
+  {
+    question: 'Can the FNIRSI HS-03 replace a corded iron for bench work?',
+    answer:
+      'For light to medium bench work — practice kits, PCB rework, small repairs — yes. Its battery lasts for a reasonable session and 3-second heat-up means you are never waiting long. For heavy joints, large ground planes or very long sessions, the HS-02A\'s 100W corded output holds temperature better and never runs dry.',
+  },
+  {
+    question: 'Which FNIRSI iron heats up faster?',
+    answer:
+      'The HS-03 claims three seconds to working temperature; the HS-02A also heats very fast, typically within three seconds as well thanks to its 100W element. In practice, both are far faster than a traditional pencil iron — you will not notice a meaningful difference in heat-up speed.',
+  },
+  {
+    question: 'Are FNIRSI irons good quality?',
+    answer:
+      'FNIRSI has established a solid reputation in the hobby-electronics market for well-featured irons at keen prices. Both the HS-02A and HS-03 have clear temperature displays, smart heat-up, and perform above their price point. They are not Hakko or Weller, but for practice kits, PCB work and repairs they are genuinely capable tools.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'FNIRSI HS-02A vs HS-03: Corded Smart Iron or Cordless?',
+    description:
+      'FNIRSI HS-02A vs HS-03 compared: corded 100W smart iron versus cordless battery iron — heat-up speed, power, battery life and which to buy.',
+    url: '/fnirsi-hs-02a-vs-fnirsi-hs-03',
+    datePublished: '2026-06-28',
+    dateModified: '2026-06-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="FNIRSI HS-02A vs HS-03: Corded or Cordless Iron?"
+  description="FNIRSI HS-02A vs HS-03 compared — 100W corded smart iron versus cordless battery iron. Which FNIRSI should you buy for your bench or repairs?"
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-28"
+  modifiedTime="2026-06-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        FNIRSI HS-02A vs HS-03
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Same brand, completely different tools. The <strong>{a.title}</strong> is a 100W mains-powered
+        smart iron; the <strong>{b.title}</strong> is a 2600mAh cordless iron that needs no cable.
+        Both heat fast and show you the temperature — the question is whether you want unlimited
+        mains power or total cable-free freedom.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>The core difference: mains vs battery</h2>
+      <p>
+        The <strong>{a.title}</strong> draws its power from the wall, which means it never runs
+        out of energy mid-session and its 100W element holds temperature even when you push it
+        into a large solder pad or thick wire. Three preset temperature groups and a clear smart
+        display give you proper control. Six F245 tips and a storage case come in the box — it
+        is a complete, capable kit that earns a permanent place at the bench.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> earns its place on portability alone. A 2600mAh built-in
+        battery charges over USB, so you can top it up from a power bank. Three-second heat-up
+        and five temperature levels give you surprisingly capable performance from a cordless
+        tool, and the 0.96" IPS display shows exactly what the tip is doing. The trade-off is
+        battery life: fine for a repair session or a short practice build, but a mains iron wins
+        for a long bench evening.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>Your soldering happens at a bench with a power outlet.</li>
+        <li>You tackle heavy joints, large pads or long sessions.</li>
+        <li>You want a complete kit with tips and a case included.</li>
+        <li>Running out of power mid-joint is not acceptable.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You need a cable-free iron for repairs around the house or on the go.</li>
+        <li>A tidy, uncluttered workspace matters to you.</li>
+        <li>Your work is mostly small to medium joints and short sessions.</li>
+        <li>You want a second iron that goes wherever the repair is.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        If you only own one iron, the <a href={`/reviews/${a.slug}`}>HS-02A</a> is the safer
+        choice — mains power never fails you, and 100W with a case full of tips is a proper
+        bench setup. Add the <a href={`/reviews/${b.slug}`}>HS-03</a> later as the grab-and-go
+        tool for quick fixes away from the bench. If portability is the primary need, see how the
+        HS-03 also compares in our
+        <a href="/fnirsi-hs-03-vs-fanttik-t1-max">FNIRSI HS-03 vs Fanttik T1 Max</a> head-to-head,
+        or browse the full <a href="/best-soldering-irons">soldering irons roundup</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

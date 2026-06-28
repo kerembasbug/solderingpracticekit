@@ -1,0 +1,133 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('yihua-926-iii-soldering-station');
+const b = await getProductBySlug('fnirsi-hs-02a-soldering-iron');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YIHUA 926 III vs FNIRSI HS-02A', url: '/yihua-926-iii-vs-fnirsi-hs-02a' },
+];
+
+const faqs = [
+  {
+    question: 'What is the difference between a soldering station and a smart pencil iron?',
+    answer:
+      'A soldering station has a separate base unit that regulates temperature and powers the iron — it holds temperature rock-steadily under load and usually comes bundled with tips, a stand and accessories. A smart pencil iron is a self-contained corded iron with an integrated display and preset temperatures, smaller and more portable, but without the dedicated base. Both offer proper temperature control; the station wins for sustained heavy work, the pencil iron wins for a smaller footprint.',
+  },
+  {
+    question: 'Is the YIHUA 926 III or FNIRSI HS-02A better for a beginner?',
+    answer:
+      'Both are excellent, but the YIHUA 926 III edges it for beginners because it bundles more accessories (helping hands, solder, sucker, tweezers, six tips) and the base unit holds temperature very steadily under a beginner\'s slower work pace. The FNIRSI HS-02A is a stronger pick for someone who already has accessories and wants a compact, high-wattage workhorse.',
+  },
+  {
+    question: 'Does wattage matter — 60W vs 100W?',
+    answer:
+      'Higher wattage means faster heat recovery between joints, not a hotter tip (temperature is still regulated). For most hobby and electronics work — practice kits, PCB rework, small repairs — 60W is more than adequate. 100W becomes genuinely useful on large ground planes, heavy cables, or high-thermal-mass joints where the iron would otherwise sag and stall.',
+  },
+  {
+    question: 'Can I use the FNIRSI HS-02A with a practice kit?',
+    answer:
+      'Absolutely. The three temperature presets cover everything from fine practice-board joints to heavier through-hole work, and the six included F245 tips give you the right shape for each task. The storage case is a nice bonus if you move the iron around.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'YIHUA 926 III vs FNIRSI HS-02A: Soldering Station or Smart Pencil Iron?',
+    description:
+      'YIHUA 926 III vs FNIRSI HS-02A compared: temperature control, accessories, wattage and value — which iron is right for your bench?',
+    url: '/yihua-926-iii-vs-fnirsi-hs-02a',
+    datePublished: '2026-06-28',
+    dateModified: '2026-06-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="YIHUA 926 III vs FNIRSI HS-02A: Station or Smart Iron?"
+  description="YIHUA 926 III vs FNIRSI HS-02A compared — soldering station versus smart pencil iron. Which offers better temperature control, accessories and value for your bench?"
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-28"
+  modifiedTime="2026-06-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        YIHUA 926 III vs FNIRSI HS-02A
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Two of the most capable irons in their class — a full
+        <strong>temperature-controlled station</strong> versus a <strong>smart 100W pencil iron</strong>.
+        Both offer proper temperature regulation and fast heat-up; what separates them is form
+        factor, accessories and which type of work they are optimised for.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>Station vs smart pencil iron — the real trade-off</h2>
+      <p>
+        The <strong>{a.title}</strong> is a classic bench station: the base holds a regulated
+        60W element, the digital display shows exactly what the tip is doing, and the kit
+        bundles six tips, helping hands, solder, a sucker, and tweezers. Everything arrives in
+        one box. For a beginner, the bundle alone is worth it — and a station's separate base
+        unit holds temperature more steadily under a slow, careful work pace.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> takes a different approach: all 100W of regulation fits
+        inside a pencil iron no bigger than a chunky pen, with a clear smart display and three
+        preset temperatures. It heats in seconds and holds temperature under load — more so than
+        the YIHUA, watt for watt, because 100W has more thermal headroom when you push it into
+        a big ground plane. The storage case is a neat bonus. What it lacks is the accessory
+        bundle; you bring your own solder, sucker and tip cleaner.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>You are new to soldering and want everything in one box.</li>
+        <li>You value the steadiness of a dedicated station base.</li>
+        <li>You want helping hands and consumables included.</li>
+        <li>Long, unhurried bench sessions are your primary use case.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You already have tips, solder, and accessories sorted.</li>
+        <li>You want a compact, high-wattage iron that travels well.</li>
+        <li>You tackle heavier joints where 100W headroom matters.</li>
+        <li>A tidy storage case appeals to you.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        For a first iron, the <a href={`/reviews/${a.slug}`}>YIHUA 926 III</a> wins on
+        completeness — the bundle means you start soldering the day it arrives, not after a
+        second shopping trip. Once you have your bench equipped, the
+        <a href={`/reviews/${b.slug}`}>FNIRSI HS-02A</a> is the more powerful and compact
+        daily driver. If you want portability without losing the cable, also consider the
+        cordless <a href="/reviews/fnirsi-hs-03-cordless-soldering-iron">FNIRSI HS-03</a> or
+        read our full <a href="/best-soldering-irons">soldering irons roundup</a> for the
+        complete picture.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
