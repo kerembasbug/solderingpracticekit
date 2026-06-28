@@ -1,0 +1,129 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('viralloy-solder-sucker');
+const b = await getProductBySlug('towot-solder-wick-flux-kit');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Solder Sucker vs Solder Wick', url: '/solder-sucker-vs-solder-wick' },
+];
+
+const faqs = [
+  {
+    question: 'Solder sucker or solder wick — which is better?',
+    answer:
+      'Neither is strictly better; they do different jobs. A solder sucker (desoldering pump) is best for clearing solder from through-hole holes and pads, while solder wick (desoldering braid) excels at lifting thin films of solder from flat pads and surface-mount work. Most benches want both.',
+  },
+  {
+    question: 'Do I need both a solder sucker and wick?',
+    answer:
+      'Ideally yes, because they cover different situations. A sucker quickly empties a through-hole joint of a stuck component; wick cleans up the residue and handles flat or fine-pitch pads a pump cannot reach. They are both cheap, so owning the pair removes almost every desoldering headache.',
+  },
+  {
+    question: 'How do you use solder wick?',
+    answer:
+      'Lay the braid over the joint, press your hot iron on top, and the molten solder wicks up into the braid by capillary action. Add a little flux first for best results, and snip off the used, solder-filled section afterward. A wick-and-flux kit gives you both essentials together.',
+  },
+  {
+    question: 'Why is my solder sucker not picking up solder?',
+    answer:
+      'Usually the solder was not fully molten when you triggered it, or the nozzle is clogged with old solder. Reheat the joint until the solder is liquid, position the nozzle right over it, then fire the pump. A no-clog silicone tip helps, as does clearing the pump regularly.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Solder Sucker vs Solder Wick: Which Desoldering Tool?',
+    description:
+      'Solder sucker vs solder wick compared: when to use a desoldering pump versus braid, how each works, and why most benches need both for clean rework.',
+    url: '/solder-sucker-vs-solder-wick',
+    datePublished: '2026-06-23',
+    dateModified: '2026-06-23',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Solder Sucker vs Solder Wick: Which to Use?"
+  description="Solder sucker vs solder wick compared — when to use a desoldering pump versus braid, how each works, and why most benches want both for clean, easy rework."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-23"
+  modifiedTime="2026-06-23"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Solder Sucker vs Solder Wick
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Every beginner makes mistakes — and these two tools are how you undo them. A
+        <strong>solder sucker</strong> vacuums molten solder away; <strong>solder wick</strong> soaks
+        it up. They sound like rivals, but they are really a team. Here is what each does best, and
+        why you probably want both.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>Two tools, two jobs</h2>
+      <p>
+        A <strong>solder sucker</strong> like the {a.title} is a spring-loaded vacuum pump. Melt a
+        through-hole joint, hold the nozzle over it, and fire — the molten solder is sucked clean out
+        of the hole. It is the fastest way to free a stuck component from a board and the tool you
+        reach for first on through-hole work.
+      </p>
+      <p>
+        <strong>Solder wick</strong> — the braid in the {b.title} — works by capillary action. Lay it
+        over a joint, heat it, and the solder climbs up into the copper braid. It cannot empty a deep
+        hole the way a pump does, but it is unbeatable for lifting thin films of solder off flat
+        pads, cleaning up bridges, and any
+        <a href="/guides/through-hole-vs-surface-mount-soldering">surface-mount work</a> where a
+        pump simply cannot reach.
+      </p>
+
+      <h2>Reach for the {a.title} when…</h2>
+      <ul>
+        <li>You are removing a through-hole component from a board.</li>
+        <li>You need to empty a hole of solder quickly.</li>
+        <li>You want a reusable tool that never runs out.</li>
+      </ul>
+
+      <h2>Reach for the {b.title} when…</h2>
+      <ul>
+        <li>You are cleaning solder off flat pads or fixing bridges.</li>
+        <li>You are doing fine-pitch or surface-mount rework.</li>
+        <li>You want the included flux to make every joint flow better.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        This is not really an either/or. A <a href={`/reviews/${a.slug}`}>solder sucker</a> and a
+        <a href={`/reviews/${b.slug}`}>roll of wick</a> cost very little together and cover every
+        desoldering job between them — which is why both sit on our
+        <a href="/best-soldering-accessories">recommended accessories list</a>. If you can only buy
+        one to start, get the sucker for general through-hole work, then add wick the first time you
+        meet a flat pad or a solder bridge. Learn the technique in our
+        <a href="/guides/how-to-desolder">how to desolder guide</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

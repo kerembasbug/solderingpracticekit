@@ -1,0 +1,127 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('fnirsi-hs-03-cordless-soldering-iron');
+const b = await getProductBySlug('fanttik-t1-max-cordless-soldering-iron');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'FNIRSI HS-03 vs Fanttik T1 Max', url: '/fnirsi-hs-03-vs-fanttik-t1-max' },
+];
+
+const faqs = [
+  {
+    question: 'Is the FNIRSI HS-03 or Fanttik T1 Max better?',
+    answer:
+      'Both are excellent cordless irons that heat in seconds and run off a built-in battery. The FNIRSI HS-03 leans toward a clear IPS display and multiple temperature levels at a keen price; the Fanttik T1 Max is prized for its refined, premium build and pocketable design. The best pick depends on whether you prioritise value and readout or polish and portability.',
+  },
+  {
+    question: 'Are cordless soldering irons powerful enough for real work?',
+    answer:
+      'For electronics repair, PCB work and small projects, yes — both reach full soldering temperature quickly. Like all battery irons, they are happiest on small to medium joints; very large joints or thick wires are better suited to a mains station that holds heat indefinitely.',
+  },
+  {
+    question: 'How are these cordless irons powered?',
+    answer:
+      'Both use a rechargeable lithium battery and charge over USB, so you can top them up from a power bank or laptop. That makes them ideal for field repairs and tidy, cable-free desks, with no mains outlet required at the point of use.',
+  },
+  {
+    question: 'Should I buy a cordless iron as my only soldering iron?',
+    answer:
+      'A cordless iron can be a capable primary tool for light, mobile or occasional work. If you plan long bench sessions or heavy joints, a mains station is a better main iron — see our soldering station vs cordless comparison — with a cordless iron as the grab-and-go second tool.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'FNIRSI HS-03 vs Fanttik T1 Max: Cordless Iron Showdown',
+    description:
+      'FNIRSI HS-03 vs Fanttik T1 Max compared: heat-up speed, display, battery, build quality and value — which cordless soldering iron should you buy?',
+    url: '/fnirsi-hs-03-vs-fanttik-t1-max',
+    datePublished: '2026-06-23',
+    dateModified: '2026-06-23',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="FNIRSI HS-03 vs Fanttik T1 Max (Cordless Irons)"
+  description="FNIRSI HS-03 vs Fanttik T1 Max compared — heat-up speed, display, battery and value. Which cordless soldering iron wins? Our head-to-head pick."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-23"
+  modifiedTime="2026-06-23"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        FNIRSI HS-03 vs Fanttik T1 Max
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Cordless soldering irons have gone from gimmick to genuinely good, and these two lead the
+        pack. Both ditch the cable, heat in seconds and run off a battery — but they aim at slightly
+        different buyers. Here is how the <strong>{a.title}</strong> and
+        <strong>{b.title}</strong> stack up head to head.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>How they compare</h2>
+      <p>
+        The <strong>{a.title}</strong> makes its case on <strong>readout and value</strong>: a clear
+        IPS display, multiple temperature levels and fast heat-up at a price that undercuts much of
+        the field. If you want to see exactly what your tip is doing without paying a premium, it is
+        a compelling choice.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> plays the <strong>premium, pocketable</strong> card. It is
+        prized for a refined build and a genuinely take-anywhere design, the kind of tool that feels
+        as good as it works. You pay a little more for that polish, but for a grab-and-go repair iron
+        it is hard to fault.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>You want a clear temperature display and multiple presets.</li>
+        <li>Value matters and you want the most capability per dollar.</li>
+        <li>You like to see and tweak exactly what your iron is doing.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You want the most refined, premium-feeling cordless iron.</li>
+        <li>Pocketable portability is your top priority.</li>
+        <li>You will pay a little extra for build quality and design.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        Both are genuinely good, so it comes down to priorities. For most people the
+        <a href={`/reviews/${a.slug}`}>{a.title}</a> is the smarter buy — the display and value are
+        hard to argue with. Choose the <a href={`/reviews/${b.slug}`}>{b.title}</a> if you want the
+        most polished, pocketable tool and do not mind paying for it. Still deciding whether cordless
+        is right at all? Read our
+        <a href="/soldering-station-vs-cordless-iron">station vs cordless comparison</a> and our
+        <a href="/best-soldering-irons">full irons roundup</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

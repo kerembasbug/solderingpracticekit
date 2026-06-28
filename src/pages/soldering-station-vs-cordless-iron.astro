@@ -1,0 +1,129 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('yihua-926-iii-soldering-station');
+const b = await getProductBySlug('fnirsi-hs-03-cordless-soldering-iron');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Soldering Station vs Cordless Iron', url: '/soldering-station-vs-cordless-iron' },
+];
+
+const faqs = [
+  {
+    question: 'Is a soldering station or a cordless iron better for beginners?',
+    answer:
+      'For learning at a bench, a temperature-controlled station is usually the better first tool: the heat is rock-steady, sessions are unlimited, and kits often bundle tips and accessories. A cordless iron is a brilliant second tool for portability and quick repairs once your technique is solid.',
+  },
+  {
+    question: 'Do cordless soldering irons get hot enough?',
+    answer:
+      'Modern battery irons reach full soldering temperature (over 400°C) and heat up in seconds. The limitation is not peak heat but sustained power: they can struggle on large joints or thick wires that pull heat away fast, where a mains station holds temperature better.',
+  },
+  {
+    question: 'How long does a cordless soldering iron last on a charge?',
+    answer:
+      'It varies by model and how heavy your joints are, but expect anywhere from 30 minutes to a couple of hours of intermittent use. That is plenty for repairs and small projects, but for a long bench session a mains-powered station never needs recharging.',
+  },
+  {
+    question: 'Can one tool do both bench and portable work?',
+    answer:
+      'A smart pencil iron is the closest compromise — mains-powered for steady heat but compact and portable around the house. True cordless freedom still needs a battery iron, and a full bench station still wins for long, heavy sessions. Many hobbyists eventually own both a station and a cordless iron.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Soldering Station vs Cordless Iron: Which Should You Buy?',
+    description:
+      'Soldering station vs cordless iron compared: heat stability, portability, battery life and value, with a clear recommendation for beginners and hobbyists.',
+    url: '/soldering-station-vs-cordless-iron',
+    datePublished: '2026-06-23',
+    dateModified: '2026-06-23',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Soldering Station vs Cordless Iron: Which to Buy?"
+  description="Soldering station vs cordless iron compared — heat stability, portability, battery life and value. A clear pick for beginners, with reviews of our top station and cordless iron."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-06-23"
+  modifiedTime="2026-06-23"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Soldering Station vs Cordless Iron
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        It is the first real decision most learners face: a steady bench
+        <strong>station</strong>, or the freedom of a <strong>cordless iron</strong>? Both make
+        clean joints — they just suit different ways of working. Here is how our top pick in each
+        camp compares, and which one belongs on your bench first.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>The real difference: power vs portability</h2>
+      <p>
+        A mains <strong>station</strong> like the {a.title} gives you one thing above all:
+        <strong>unlimited, rock-steady heat</strong>. It recovers temperature instantly between
+        joints and never needs recharging, which is exactly what a beginner needs while building the
+        muscle memory of a clean joint. Station kits also tend to bundle tips, a stand and
+        consumables, so you start with everything in one box.
+      </p>
+      <p>
+        A <strong>cordless iron</strong> like the {b.title} trades a little sustained power for
+        genuine freedom. No cable to fight, no bench required — just grab it and fix something on the
+        kitchen table or in the field. The catch is battery life and a little less grunt on big
+        joints, so it shines as a repair-and-go tool rather than a primary learning iron.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>You are learning to solder and want the steadiest possible heat.</li>
+        <li>You work at a bench and value long, uninterrupted sessions.</li>
+        <li>You want tips and accessories bundled in one kit.</li>
+        <li>You will tackle larger joints, thick wires or through-hole boards.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You need portability for repairs around the house or on the go.</li>
+        <li>You hate cables cluttering a small workspace.</li>
+        <li>Your work is mostly small joints and quick fixes.</li>
+        <li>You already have a bench iron and want a grab-and-go second tool.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        For a first iron, the <a href={`/reviews/${a.slug}`}>station wins for most beginners</a> —
+        steady heat is the single biggest factor in good joints, and you will never be interrupted
+        by a dying battery. Add the <a href={`/reviews/${b.slug}`}>cordless iron</a> later as the
+        repair tool you reach for when dragging out the station feels like overkill. Pair either with
+        our <a href="/best-soldering-accessories">recommended accessories</a> and a
+        <a href="/best-soldering-practice-kits">practice kit</a> to get going.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
