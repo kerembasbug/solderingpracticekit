@@ -51,6 +51,39 @@ const crumbs = [
   { name: product.title, url: `/reviews/${product.slug}` },
 ];
 
+// Manual map of this product to relevant "X vs Y" comparison pages.
+const VS_LINKS: Record<string, { href: string; label: string }[]> = {
+  'yihua-926-iii-soldering-station': [
+    { href: '/soldering-station-vs-cordless-iron', label: 'Station vs Cordless Iron' },
+    { href: '/yihua-926-iii-vs-fnirsi-hs-02a', label: 'vs FNIRSI HS-02A' },
+  ],
+  'fnirsi-hs-03-cordless-soldering-iron': [
+    { href: '/soldering-station-vs-cordless-iron', label: 'Station vs Cordless Iron' },
+    { href: '/fnirsi-hs-03-vs-fanttik-t1-max', label: 'vs Fanttik T1 Max' },
+    { href: '/fnirsi-hs-02a-vs-fnirsi-hs-03', label: 'vs FNIRSI HS-02A' },
+  ],
+  'fanttik-t1-max-cordless-soldering-iron': [
+    { href: '/fnirsi-hs-03-vs-fanttik-t1-max', label: 'vs FNIRSI HS-03' },
+  ],
+  'fnirsi-hs-02a-soldering-iron': [
+    { href: '/yihua-926-iii-vs-fnirsi-hs-02a', label: 'vs YIHUA 926 III' },
+    { href: '/fnirsi-hs-02a-vs-fnirsi-hs-03', label: 'vs FNIRSI HS-03' },
+  ],
+  'viralloy-solder-sucker': [
+    { href: '/solder-sucker-vs-solder-wick', label: 'Solder Sucker vs Solder Wick' },
+  ],
+  'towot-solder-wick-flux-kit': [
+    { href: '/solder-sucker-vs-solder-wick', label: 'Solder Sucker vs Solder Wick' },
+  ],
+  'elenco-practical-soldering-project-kit': [
+    { href: '/practice-kit-vs-project-kit', label: 'Practice Kit vs Project Kit' },
+  ],
+  'pemenol-retro-game-console-soldering-kit': [
+    { href: '/practice-kit-vs-project-kit', label: 'Practice Kit vs Project Kit' },
+  ],
+};
+const vsLinks = VS_LINKS[product.slug] ?? [];
+
 const jsonLd = jsonLdGraph(productSchema(product), breadcrumbSchema(crumbs));
 
 // SEO <title> carries a year for freshness and to differ from the on-page H1
@@ -161,6 +194,25 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
           <h2 class="text-lg font-bold">Who it's for</h2>
           <p class="mt-2 text-ink-200">{product.bestFor}</p>
         </div>
+
+        {
+          vsLinks.length > 0 && (
+            <div class="mt-8">
+              <h2 class="text-xl font-bold text-ink-900">How it compares</h2>
+              <div class="mt-4 flex flex-wrap gap-3">
+                {vsLinks.map((v) => (
+                  <a
+                    href={v.href}
+                    class="inline-flex items-center gap-2 rounded-full border border-ink-200 bg-white px-4 py-2 text-sm font-semibold text-ink-700 transition-colors hover:border-brand-400 hover:text-brand-700"
+                  >
+                    {v.label}
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M12 5l7 7-7 7" /></svg>
+                  </a>
+                ))}
+              </div>
+            </div>
+          )
+        }
       </div>
 
       <!-- Sticky buy box -->
