@@ -1,0 +1,132 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('learn-to-solder-jitterbug-kit');
+const b = await getProductBySlug('mioyoow-line-following-robot-soldering-kit');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Jitterbug vs Robot Car Kit', url: '/jitterbug-vs-robot-car-kit' },
+];
+
+const faqs = [
+  {
+    question: 'Jitterbug or robot car kit — which is better for kids?',
+    answer:
+      'It depends on the child\'s age and soldering experience. The Jitterbug has only a handful of large, forgiving joints and is finishable in one sitting, making it the better choice for a first-ever solder, especially for younger children. The line-following robot car has more components and teaches sensors and motor control, so it suits an older child or one who has already soldered something before.',
+  },
+  {
+    question: 'What age is appropriate for a kids soldering kit?',
+    answer:
+      'With direct adult supervision of the hot iron, the Jitterbug works for children as young as about 8, since the build is short and the joints are large. The line-following robot car, with its higher component count and finer work, is better suited to ages 10 and up, or a younger child working alongside an adult. Always supervise any child using a soldering iron.',
+  },
+  {
+    question: 'Do either of these kits include a soldering iron?',
+    answer:
+      'No — like almost every soldering kit, both include the board, components and (for the Jitterbug) a battery, but you supply your own temperature-controlled iron and solder. See our best soldering irons roundup and pick a station for stable, safe heat around kids.',
+  },
+  {
+    question: 'Which kit holds a kid\'s attention longer after it is built?',
+    answer:
+      'The robot car tends to win here — a line-following robot invites repeated play as kids test it on different drawn paths, while the Jitterbug\'s appeal (skittering across a table) is real but simpler and fades faster. For a child who wants to keep playing with the result, the robot car is the stronger pick; for the quickest confidence-building first solder, the Jitterbug wins.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Jitterbug vs Robot Car Kit: Best First Soldering Kit for Kids',
+    description:
+      'Jitterbug vs line-following robot car kit compared — which soldering kit is the better first project for kids, by age, joint count and lasting play value.',
+    url: '/jitterbug-vs-robot-car-kit',
+    datePublished: '2026-07-01',
+    dateModified: '2026-07-01',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Jitterbug vs Robot Car Kit: Best Kids Soldering Kit"
+  description="Jitterbug vs line-following robot car kit compared — which is the better first soldering kit for kids? Joint count, age fit and lasting play value, with a clear pick."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-07-01"
+  modifiedTime="2026-07-01"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Jitterbug vs Robot Car Kit
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Two of the best-loved first soldering kits for kids, and two very different builds. The
+        <strong>{a.title}</strong> is over in a handful of joints; the <strong>{b.title}</strong>
+        is a bigger project that teaches sensors and motors. Here is how to pick the right one
+        for the child (and the afternoon) you have in mind.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>A quick win vs a bigger build</h2>
+      <p>
+        The <strong>{a.title}</strong> is built for speed and confidence. A handful of large,
+        forgiving through-hole joints, a battery, and it skitters across the table — the classic
+        workshop staple that has introduced thousands of kids to soldering in a single sitting.
+        There is very little to go wrong, which makes it the safer bet for a nervous first-timer
+        or a younger child.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> asks for more patience and more joints, but pays it back
+        with a robot that actually senses and follows a line you draw yourself. It teaches real
+        concepts — sensors, motor control — alongside the soldering, and the open-ended play
+        (draw a new track, watch it follow) gives it more lasting appeal than a kit that is
+        "done" the moment it is built.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>This is the child's very first time holding a soldering iron.</li>
+        <li>You want a project finishable in a single sitting.</li>
+        <li>The child is younger or you want the simplest possible build.</li>
+        <li>You are running a classroom or workshop with limited time.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>The child has soldered something before, or is 10 and up.</li>
+        <li>You want the build to teach sensors and motor control, not just joints.</li>
+        <li>Lasting play value after the build matters as much as the build itself.</li>
+        <li>You have a bit more time for a longer, more involved project.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        For a genuine first solder, start with the <a href={`/reviews/${a.slug}`}>Jitterbug</a> —
+        it is nearly impossible to fail, and that early win matters more than anything else. Once
+        a child has one successful build behind them, the
+        <a href={`/reviews/${b.slug}`}>line-following robot car</a> is the natural next step up,
+        with a result they will keep coming back to. Either way, supervise the iron closely and
+        pair the kit with a stable, temperature-controlled station from our
+        <a href="/best-soldering-irons">soldering irons roundup</a>. For more gift ideas, see our
+        <a href="/best-soldering-kits-for-kids">best soldering kits for kids</a> roundup.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
