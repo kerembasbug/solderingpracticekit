@@ -193,6 +193,33 @@ const categories = [
     </div>
   </section>
 
+  <!-- Head-to-head comparisons -->
+  <section class="border-y border-ink-200 bg-ink-50/40">
+    <div class="container-px py-16">
+      <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Head-to-head comparisons</h2>
+      <p class="mt-2 text-ink-600">Deciding between two options? We put them side by side.</p>
+      <div class="mt-8 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          [
+            { href: '/practice-kit-vs-project-kit', title: 'Practice Kit vs Project Kit', desc: 'Which type of kit should a beginner start with?' },
+            { href: '/soldering-station-vs-cordless-iron', title: 'Station vs Cordless Iron', desc: 'Bench station or battery-powered iron?' },
+            { href: '/yihua-926-iii-vs-fnirsi-hs-02a', title: 'YIHUA 926 III vs FNIRSI HS-02A', desc: 'Full station or a smart pencil iron?' },
+            { href: '/fnirsi-hs-02a-vs-fnirsi-hs-03', title: 'FNIRSI HS-02A vs HS-03', desc: 'Corded 100W smart iron or cordless?' },
+            { href: '/fnirsi-hs-03-vs-fanttik-t1-max', title: 'FNIRSI HS-03 vs Fanttik T1 Max', desc: 'Two top cordless irons, head to head.' },
+            { href: '/solder-sucker-vs-solder-wick', title: 'Solder Sucker vs Solder Wick', desc: 'Which desoldering tool do you actually need?' },
+            { href: '/jitterbug-vs-robot-car-kit', title: 'Jitterbug vs Robot Car Kit', desc: 'The best first soldering kit for kids, by age.' },
+          ].map((c) => (
+            <a href={c.href} class="group flex flex-col rounded-2xl border border-ink-200 bg-white p-5 transition-shadow hover:shadow-[var(--shadow-card)]">
+              <h3 class="text-base font-bold leading-snug text-ink-900 group-hover:text-brand-700">{c.title}</h3>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{c.desc}</p>
+              <span class="mt-3 text-sm font-semibold text-brand-600">Compare →</span>
+            </a>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
   <!-- How we choose -->
   <section class="container-px py-16">
     <div class="grid gap-10 lg:grid-cols-[0.9fr_1.1fr]">
