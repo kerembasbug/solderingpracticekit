@@ -35,7 +35,19 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Best Soldering Practice Kits](${origin}/best-soldering-practice-kits): Ranked beginner-friendly practice kits with pros, cons, and a buying guide.
 - [Best Soldering Project Kits](${origin}/best-soldering-project-kits): Kits that finish as a working gadget — radios, clocks, game consoles.
 - [Best Soldering Irons & Stations](${origin}/best-soldering-irons): Temperature-controlled irons and stations for learning to solder.
+- [Best Soldering Accessories](${origin}/best-soldering-accessories): Desoldering pumps, wick and flux, helping hands, and fume extractors.
+- [Best Soldering Kits for Kids & Teens](${origin}/best-soldering-kits-for-kids): Safe, fun STEM builds ranked for younger makers.
 - [All Reviews](${origin}/reviews): Every individual product review.
+
+## Comparisons (X vs Y)
+
+- [Practice Kit vs Project Kit](${origin}/practice-kit-vs-project-kit): Which type of soldering kit a beginner should start with.
+- [Soldering Station vs Cordless Iron](${origin}/soldering-station-vs-cordless-iron): Bench station versus battery-powered iron.
+- [YIHUA 926 III vs FNIRSI HS-02A](${origin}/yihua-926-iii-vs-fnirsi-hs-02a): Full soldering station versus a smart pencil iron.
+- [FNIRSI HS-02A vs HS-03](${origin}/fnirsi-hs-02a-vs-fnirsi-hs-03): Corded 100W smart iron versus cordless battery iron.
+- [FNIRSI HS-03 vs Fanttik T1 Max](${origin}/fnirsi-hs-03-vs-fanttik-t1-max): Two top cordless soldering irons head to head.
+- [Solder Sucker vs Solder Wick](${origin}/solder-sucker-vs-solder-wick): Which desoldering tool to use, and why most benches need both.
+- [Jitterbug vs Robot Car Kit](${origin}/jitterbug-vs-robot-car-kit): The best first soldering kit for kids, by age and joint count.
 
 ## Guides
 
