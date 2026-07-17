@@ -48,6 +48,7 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [FNIRSI HS-03 vs Fanttik T1 Max](${origin}/fnirsi-hs-03-vs-fanttik-t1-max): Two top cordless soldering irons head to head.
 - [Solder Sucker vs Solder Wick](${origin}/solder-sucker-vs-solder-wick): Which desoldering tool to use, and why most benches need both.
 - [Jitterbug vs Robot Car Kit](${origin}/jitterbug-vs-robot-car-kit): The best first soldering kit for kids, by age and joint count.
+- [YIHUA 926 III vs Weller WE1010NA](${origin}/yihua-926-iii-vs-weller-we1010na): Budget station bundle versus the premium, professional-grade Weller brand.
 
 ## Guides
 

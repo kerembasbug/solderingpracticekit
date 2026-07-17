@@ -1,0 +1,131 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('yihua-926-iii-soldering-station');
+const b = await getProductBySlug('weller-we1010na-soldering-station');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'YIHUA 926 III vs Weller WE1010NA', url: '/yihua-926-iii-vs-weller-we1010na' },
+];
+
+const faqs = [
+  {
+    question: 'Is Weller worth the extra money over a budget station like YIHUA?',
+    answer:
+      'It depends on how much you solder and for how long. Weller\'s reputation is built on decades of reliability on professional and classroom benches — you are paying for consistency over years of heavy use, not a feature you can not get elsewhere. For occasional hobby use, a well-reviewed budget station like the YIHUA 926 III performs very similarly for a fraction of the price. For daily or professional use, the Weller\'s durability track record justifies the premium.',
+  },
+  {
+    question: 'What is the difference between the YIHUA 926 III and Weller WE1010NA?',
+    answer:
+      'Both are digital, temperature-controlled 60-70W stations that heat accurately and hold temperature well. The YIHUA bundles far more accessories (helping hands, tips, sucker, tweezers, solder) at a budget price. The Weller is a more minimal 5-piece kit, but carries a professional-grade reputation, an ESD-safe design, and the kind of long-term reliability that repair shops and schools have trusted for generations.',
+  },
+  {
+    question: 'Should a beginner buy the Weller WE1010NA as a first iron?',
+    answer:
+      'You can, but it is not necessary. A beginner gets more immediate value from the YIHUA 926 III because the bundled accessories mean you do not need to buy anything else to get started. The Weller makes more sense once you already have accessories and want to invest in a station you will not outgrow or replace.',
+  },
+  {
+    question: 'Is Weller a good brand for soldering irons?',
+    answer:
+      'Yes — Weller is one of the most established names in soldering, widely used in professional electronics repair and educational settings for decades. Their stations are known for consistent, reliable temperature control over long service lives, which is exactly why the brand carries a price premium over newer budget competitors.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'YIHUA 926 III vs Weller WE1010NA: Is the Premium Brand Worth It?',
+    description:
+      'YIHUA 926 III vs Weller WE1010NA compared: budget bundle versus professional-grade brand. Which soldering station is actually worth your money?',
+    url: '/yihua-926-iii-vs-weller-we1010na',
+    datePublished: '2026-07-17',
+    dateModified: '2026-07-17',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="YIHUA 926 III vs Weller WE1010NA: Worth the Upgrade?"
+  description="YIHUA 926 III vs Weller WE1010NA compared — budget bundle versus professional-grade brand. Is Weller's reputation worth the extra money over a value station?"
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-07-17"
+  modifiedTime="2026-07-17"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        YIHUA 926 III vs Weller WE1010NA
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        One question comes up constantly once you start shopping for a soldering station:
+        is the famous <strong>Weller</strong> name actually worth paying more for, or does a
+        well-specced budget station like the <strong>YIHUA 926 III</strong> get you the same
+        results? Here is an honest comparison of value versus reputation.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>Budget bundle vs professional reputation</h2>
+      <p>
+        The <strong>{a.title}</strong> wins on immediate value: a 60W digital station with six
+        spare tips, helping hands, solder, a solder sucker and tweezers, all in one box at a
+        budget-friendly price. For most hobby soldering — practice kits, project builds, small
+        repairs — it performs every bit as well as stations costing much more, and you are not
+        stuck buying accessories separately.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> is a different kind of purchase. You are not paying for
+        more accessories — the kit is comparatively minimal — you are paying for a brand that
+        has anchored professional repair benches and electronics classrooms for decades. Its
+        ESD-safe design and precise, stable temperature control are built to run reliably for
+        years of regular, even daily, use. That reputation and longevity is the entire premium.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>You are new to soldering and want everything bundled in one box.</li>
+        <li>You solder occasionally — practice kits, projects, the odd repair.</li>
+        <li>Getting the most capability per dollar matters most to you.</li>
+        <li>You do not yet know if soldering will become a regular hobby.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You already have the accessories and just want the best iron.</li>
+        <li>You solder often, or professionally, and value long-term reliability.</li>
+        <li>ESD-safe design matters for the components you work with.</li>
+        <li>You want a station you will not need to replace or upgrade later.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        For nearly every beginner and hobbyist, the <a href={`/reviews/${a.slug}`}>YIHUA 926 III</a>
+        is the smarter first purchase — the accessory bundle alone makes it excellent value, and
+        the temperature control is genuinely solid. Reach for the
+        <a href={`/reviews/${b.slug}`}>Weller WE1010NA</a> once you know soldering is a lasting
+        hobby (or profession) and you want to invest in a station built to outlast a decade of use.
+        See the full <a href="/best-soldering-irons">soldering irons roundup</a> for more options
+        at every price point.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

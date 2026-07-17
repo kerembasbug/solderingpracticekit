@@ -1014,6 +1014,45 @@ export const PRODUCTS: Product[] = [
     imageHeight: 500,
     updatedAt: UPDATED,
   },
+  {
+    asin: 'B077JDGY1J',
+    slug: 'weller-we1010na-soldering-station',
+    title: 'Weller WE1010NA 70W Digital Soldering Station',
+    fullTitle: 'Weller 70 Watt Digital Soldering Station | WE1010NA, 5-Piece Kit',
+    brand: 'Weller',
+    category: 'tool',
+    award: 'Best Premium Station',
+    rank: 31,
+    ourScore: 9.3,
+    priceTier: '$$$',
+    featured: true,
+    tagline: 'The professional-grade station serious hobbyists eventually graduate to.',
+    excerpt:
+      'A 70W digital station from the brand most repair benches and electronics classrooms already trust. ESD-safe, precise to the degree, and built to run for years rather than seasons.',
+    bestFor: 'Hobbyists who have outgrown a starter iron and want a trusted, professional-grade tool.',
+    pros: [
+      'Trusted, professional-grade brand with decades of reputation',
+      'Precise digital temperature control, stable under load',
+      'ESD-safe design protects sensitive components',
+      'Built for years of regular use, not just a starter kit',
+    ],
+    cons: [
+      'Noticeably pricier than budget and mid-range stations',
+      'Overkill if you only solder occasionally',
+    ],
+    features: [
+      '70W digital soldering station',
+      'ESD-safe grounded design',
+      'Precise, stable temperature control',
+      '5-piece kit with stand and sponge',
+    ],
+    verdict:
+      'This is the iron people buy once and keep for a decade. Weller has been the reference brand on professional and educational benches for generations, and the WE1010NA brings that reliability to a hobbyist desk with precise digital control and an ESD-safe build. It costs more than the budget and mid-range picks on this page, but if you have outgrown a starter iron and want something that will not need replacing, this is the upgrade.',
+    image: 'https://m.media-amazon.com/images/I/41yRK+nzODL.jpg',
+    imageWidth: 500,
+    imageHeight: 362,
+    updatedAt: '2026-07-17',
+  },
 
   // ---- Accessories ----
   {
