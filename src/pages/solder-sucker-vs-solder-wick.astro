@@ -28,6 +28,11 @@ const faqs = [
       'Ideally yes, because they cover different situations. A sucker quickly empties a through-hole joint of a stuck component; wick cleans up the residue and handles flat or fine-pitch pads a pump cannot reach. They are both cheap, so owning the pair removes almost every desoldering headache.',
   },
   {
+    question: 'Is there an alternative to solder wick?',
+    answer:
+      'A solder sucker is the usual alternative for through-hole joints. In a pinch, stripped multi-strand copper wire dipped in flux can act as a makeshift wick, though it works less well than proper braid. For flat surface-mount pads, real wick remains the best tool.',
+  },
+  {
     question: 'How do you use solder wick?',
     answer:
       'Lay the braid over the joint, press your hot iron on top, and the molten solder wicks up into the braid by capillary action. Add a little flux first for best results, and snip off the used, solder-filled section afterward. A wick-and-flux kit gives you both essentials together.',
@@ -46,7 +51,7 @@ const jsonLd = jsonLdGraph(
       'Solder sucker vs solder wick compared: when to use a desoldering pump versus braid, how each works, and why most benches need both for clean rework.',
     url: '/solder-sucker-vs-solder-wick',
     datePublished: '2026-06-23',
-    dateModified: '2026-06-23',
+    dateModified: '2026-09-15',
   }),
   breadcrumbSchema(crumbs),
   faqSchema(faqs),
@@ -59,7 +64,7 @@ const jsonLd = jsonLdGraph(
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-06-23"
-  modifiedTime="2026-06-23"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />
@@ -82,6 +87,22 @@ const jsonLd = jsonLdGraph(
     </div>
 
     <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>What is solder wick?</h2>
+      <p>
+        <strong>Solder wick</strong> (also called desoldering braid) is a flat braid of fine copper
+        wire, usually coated with flux. When you press it onto a joint with a hot iron, capillary
+        action pulls the melted solder into the braid, leaving a clean pad. It is used to remove
+        excess solder, clear solder bridges between pins and clean pads before fitting a new part.
+      </p>
+
+      <h2>What is a solder sucker?</h2>
+      <p>
+        A <strong>solder sucker</strong> (desoldering pump) is a spring-loaded vacuum tool. You
+        cock the plunger, melt the joint, hold the nozzle against it and press the release — the
+        sudden suction pulls molten solder out of the joint and the hole. It is the quickest way to
+        free through-hole component leads.
+      </p>
+
       <h2>Two tools, two jobs</h2>
       <p>
         A <strong>solder sucker</strong> like the {a.title} is a spring-loaded vacuum pump. Melt a

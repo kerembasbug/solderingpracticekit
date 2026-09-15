@@ -4,6 +4,7 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import RankedReview from '@/components/RankedReview.astro';
+import AffiliateButton from '@/components/AffiliateButton.astro';
 import FAQ from '@/components/FAQ.astro';
 import { getByCategory } from '@/lib/products';
 import {
@@ -15,6 +16,18 @@ import {
 } from '@/lib/seo';
 
 const tools = await getByCategory('tool');
+
+// Editorial "quick picks" by need; the full list below stays ordered by score.
+const QUICK_PICKS: { slug: string; label: string }[] = [
+  { slug: 'yihua-926-iii-soldering-station', label: 'Best for most beginners' },
+  { slug: 'weller-we1010na-soldering-station', label: 'Best premium station' },
+  { slug: 'fnirsi-hs-02a-soldering-iron', label: 'Best compact corded iron' },
+  { slug: 'fnirsi-hs-03-cordless-soldering-iron', label: 'Best cordless iron' },
+  { slug: 'plusivo-60w-digital-soldering-iron-kit', label: 'Best budget starter kit' },
+];
+const quickPicks = QUICK_PICKS.map((q) => ({ ...q, product: tools.find((t) => t.slug === q.slug) })).filter(
+  (q): q is typeof q & { product: NonNullable<typeof q.product> } => Boolean(q.product),
+);
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -28,6 +41,11 @@ const faqs = [
       'A temperature-controlled soldering station is the best beginner choice — stable heat removes the most common cause of bad joints. The YIHUA 926 III is our pick because it includes tips, helping hands and consumables. If budget is tight, a basic adjustable iron kit will get you started.',
   },
   {
+    question: 'What is the best soldering iron for electronics?',
+    answer:
+      'For electronics, the best soldering iron is one with adjustable, regulated temperature and a fine conical or chisel tip. A bench station such as the YIHUA 926 III is the best value for learning; the Weller WE1010NA is the premium choice if you solder often; and the FNIRSI HS-02A packs station-like control into a compact corded pen.',
+  },
+  {
     question: 'What wattage soldering iron do I need?',
     answer:
       'For electronics and practice kits, 40–60W with temperature control is ideal. Higher wattage simply means the iron recovers heat faster between joints; it does not mean it runs dangerously hotter, because the temperature is regulated.',
@@ -38,6 +56,16 @@ const faqs = [
       'Cordless irons are brilliant for portability and quick repairs, but their battery life limits long sessions. For learning at a bench, a mains-powered station is usually the better first tool; add a cordless iron later for on-the-go work.',
   },
   {
+    question: 'Are cordless soldering irons any good?',
+    answer:
+      'Modern cordless irons like the FNIRSI HS-03 heat up in seconds and are genuinely good for repairs, small joints and working away from a desk. Their limits are battery runtime and less sustained power on large joints, so they make an excellent second iron rather than the only iron for long bench sessions.',
+  },
+  {
+    question: 'What soldering temperature should I use?',
+    answer:
+      'For general through-hole electronics, around 315–340°C (600–650°F) suits leaded solder and 350–370°C (660–700°F) suits lead-free. Use the lowest temperature that makes the solder flow within two or three seconds; our soldering iron temperature guide has a full chart by job.',
+  },
+  {
     question: 'What else do I need besides a soldering iron?',
     answer:
       'At minimum: thin rosin-core solder, a brass-wool tip cleaner, flux, helping hands or a vise, and safety glasses. A solder sucker or desoldering braid is invaluable for fixing mistakes. See our best soldering accessories roundup for the gear worth owning; many station kits bundle several of these.',
@@ -46,7 +74,7 @@ const faqs = [
 
 const jsonLd = jsonLdGraph(
   articleSchema({
-    title: 'Best Soldering Irons & Stations for 2026',
+    title: 'The Best Soldering Iron for 2026: Stations, Cordless & Budget Picks',
     description:
       'The best soldering irons and stations to pair with a practice kit — for beginners, hobbyists and portable repairs. Reviewed and ranked.',
     url: '/best-soldering-irons',
@@ -60,8 +88,8 @@ const jsonLd = jsonLdGraph(
 ---
 
 <BaseLayout
-  title="Best Soldering Irons & Stations for 2026"
-  description="The best soldering irons and stations to pair with any practice kit — beginner stations, cordless irons and budget picks. Ranked, with honest pros, cons and who each one suits."
+  title="Best Soldering Iron (2026): Stations, Cordless & Budget"
+  description={`The best soldering iron for your budget: ${tools.length} stations, cordless and pen-style irons ranked — with quick picks for beginners, electronics, portable repairs and premium benches.`}
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-01-25"
@@ -71,17 +99,38 @@ const jsonLd = jsonLdGraph(
     <Breadcrumbs items={crumbs} />
     <header class="mt-6 max-w-3xl">
       <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
-        The Best Soldering Irons &amp; Stations for 2026
+        The Best Soldering Iron for 2026: Stations, Cordless &amp; Budget Picks
       </h1>
       <p class="mt-5 text-lg leading-relaxed text-ink-600">
-        Most failed first attempts at soldering come down to the iron, not the hands. The right tool
-        — ideally temperature-controlled — makes clean joints almost easy. These are the irons and
-        stations we recommend pairing with any practice or project kit, at every budget.
+        Most failed first attempts at soldering come down to the iron, not the hands. The best
+        soldering iron is the one with <strong>regulated, adjustable temperature</strong> in the form
+        that suits how you work — a bench station, a compact pen or a cordless iron. Below are our
+        quick picks by need, then all {tools.length} irons ranked.
       </p>
       <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-10" aria-labelledby="quick-picks">
+      <h2 id="quick-picks" class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">Quick picks</h2>
+      <ol class="grid gap-4 sm:grid-cols-2 lg:grid-cols-5">
+        {
+          quickPicks.map((q) => (
+            <li class="flex flex-col rounded-2xl border border-ink-200 bg-white p-4 shadow-[var(--shadow-card)]">
+              <span class="text-xs font-bold uppercase tracking-wide text-brand-700">{q.label}</span>
+              <a href={`/reviews/${q.product.slug}`} class="mt-2 flex-1 text-sm font-bold leading-snug text-ink-900 hover:text-brand-600">
+                {q.product.title}
+              </a>
+              <span class="mt-2 text-xs text-ink-500">Our score {q.product.ourScore.toFixed(1)} / 10</span>
+              <div class="mt-3">
+                <AffiliateButton product={q.product} variant="card" position="card" size="sm" fullWidth showTimestamp={false} />
+              </div>
+            </li>
+          ))
+        }
+      </ol>
+    </section>
 
     <section class="mt-12">
       <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
@@ -94,7 +143,7 @@ const jsonLd = jsonLdGraph(
     </section>
 
     <section class="prose prose-lg mt-16 max-w-3xl">
-      <h2>How to choose a soldering iron</h2>
+      <h2>How to choose the best soldering iron</h2>
       <p>
         For learning electronics, prioritize <strong>temperature control</strong> above all else. A
         regulated station holds a steady tip temperature so your joints are consistent — the single
@@ -113,6 +162,28 @@ const jsonLd = jsonLdGraph(
         owning. Then grab a <a href="/best-soldering-practice-kits">practice kit</a>, read
         <a href="/guides/how-to-choose-a-soldering-iron">how to choose a soldering iron</a>, and put
         it all to work.
+      </p>
+      <h3>Station, pen or cordless?</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Type</th><th scope="col" class="px-4 py-3">Best for</th><th scope="col" class="px-4 py-3">Strength</th><th scope="col" class="px-4 py-3">Trade-off</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Bench station</th><td class="px-4 py-3">Learning, long sessions</td><td class="px-4 py-3">Steadiest temperature, often bundled tools</td><td class="px-4 py-3">Takes desk space</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Smart pen (corded)</th><td class="px-4 py-3">Compact benches, heavier joints</td><td class="px-4 py-3">Fast heat-up, display, high wattage</td><td class="px-4 py-3">Needs mains power</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Cordless</th><td class="px-4 py-3">Repairs, working away from a desk</td><td class="px-4 py-3">No cable, heats in seconds</td><td class="px-4 py-3">Battery runtime, less sustained power</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Budget iron kit</th><td class="px-4 py-3">Trying the hobby cheaply</td><td class="px-4 py-3">Iron plus basic tools in one box</td><td class="px-4 py-3">Less precise control, budget build</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Wattage, temperature and tips</h3>
+      <p>
+        Wattage is about <strong>heat recovery</strong>, not peak temperature: a 60–100W regulated
+        iron stays hot when a joint pulls heat away. Look for a range that reaches at least 400°C,
+        and keep a fine conical tip for small parts plus a small chisel tip for through-hole joints
+        and wires. Our <a href="/guides/soldering-iron-temperature-guide">temperature guide</a> lists
+        the right settings for leaded and lead-free solder.
       </p>
       <p>
         Still weighing your options? Compare a bench station against a battery iron in our

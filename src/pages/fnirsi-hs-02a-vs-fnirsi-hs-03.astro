@@ -28,6 +28,11 @@ const faqs = [
       'For light to medium bench work — practice kits, PCB rework, small repairs — yes. Its battery lasts for a reasonable session and 3-second heat-up means you are never waiting long. For heavy joints, large ground planes or very long sessions, the HS-02A\'s 100W corded output holds temperature better and never runs dry.',
   },
   {
+    question: 'Is the FNIRSI HS-02 the same as the HS-02A?',
+    answer:
+      'Searches for "HS-02 vs HS-03" usually mean this same corded-versus-cordless choice. We compare the HS-02A, a corded smart iron in FNIRSI\'s HS-02 line; because the line has more than one variant, check the exact model name and included tips on the listing before buying.',
+  },
+  {
     question: 'Which FNIRSI iron heats up faster?',
     answer:
       'The HS-03 claims three seconds to working temperature; the HS-02A also heats very fast, typically within three seconds as well thanks to its 100W element. In practice, both are far faster than a traditional pencil iron — you will not notice a meaningful difference in heat-up speed.',
@@ -46,7 +51,7 @@ const jsonLd = jsonLdGraph(
       'FNIRSI HS-02A vs HS-03 compared: corded 100W smart iron versus cordless battery iron — heat-up speed, power, battery life and which to buy.',
     url: '/fnirsi-hs-02a-vs-fnirsi-hs-03',
     datePublished: '2026-06-28',
-    dateModified: '2026-06-28',
+    dateModified: '2026-09-15',
   }),
   breadcrumbSchema(crumbs),
   faqSchema(faqs),
@@ -54,12 +59,12 @@ const jsonLd = jsonLdGraph(
 ---
 
 <BaseLayout
-  title="FNIRSI HS-02A vs HS-03: Corded or Cordless Iron?"
-  description="FNIRSI HS-02A vs HS-03 compared — 100W corded smart iron versus cordless battery iron. Which FNIRSI should you buy for your bench or repairs?"
+  title="FNIRSI HS-02 (HS-02A) vs HS-03: Corded or Cordless?"
+  description="FNIRSI HS-02A (HS-02) vs HS-03 compared — the 100W corded smart iron versus the cordless battery iron. Heat-up, power, battery and which FNIRSI to buy."
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-06-28"
-  modifiedTime="2026-06-28"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />

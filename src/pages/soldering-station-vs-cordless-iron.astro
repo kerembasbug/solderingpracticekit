@@ -23,6 +23,11 @@ const faqs = [
       'For learning at a bench, a temperature-controlled station is usually the better first tool: the heat is rock-steady, sessions are unlimited, and kits often bundle tips and accessories. A cordless iron is a brilliant second tool for portability and quick repairs once your technique is solid.',
   },
   {
+    question: 'Are cordless soldering irons any good?',
+    answer:
+      'Yes — current cordless irons such as the FNIRSI HS-03 heat up in seconds and handle repairs, PCB work and small projects well. Their weak points are battery runtime and sustained power on big joints, which is why they suit a second, portable iron better than the only iron on a busy bench.',
+  },
+  {
     question: 'Do cordless soldering irons get hot enough?',
     answer:
       'Modern battery irons reach full soldering temperature (over 400°C) and heat up in seconds. The limitation is not peak heat but sustained power: they can struggle on large joints or thick wires that pull heat away fast, where a mains station holds temperature better.',
@@ -46,7 +51,7 @@ const jsonLd = jsonLdGraph(
       'Soldering station vs cordless iron compared: heat stability, portability, battery life and value, with a clear recommendation for beginners and hobbyists.',
     url: '/soldering-station-vs-cordless-iron',
     datePublished: '2026-06-23',
-    dateModified: '2026-06-23',
+    dateModified: '2026-09-15',
   }),
   breadcrumbSchema(crumbs),
   faqSchema(faqs),
@@ -59,7 +64,7 @@ const jsonLd = jsonLdGraph(
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-06-23"
-  modifiedTime="2026-06-23"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />
