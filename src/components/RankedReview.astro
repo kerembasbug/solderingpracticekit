@@ -22,7 +22,7 @@ const { product: p, position } = Astro.props;
         <img src={p.image} alt={p.fullTitle} width={p.imageWidth} height={p.imageHeight} loading={position <= 2 ? 'eager' : 'lazy'} decoding="async" class="h-full w-full object-contain" />
       </a>
       <div class="mt-4">
-        <AffiliateButton product={p} fullWidth />
+        <AffiliateButton product={p} variant="card" position="card" fullWidth />
       </div>
     </div>
 

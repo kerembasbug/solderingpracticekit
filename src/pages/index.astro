@@ -144,7 +144,7 @@ const categories = [
               </h2>
               <p class="mt-2 text-sm text-ink-600">{hero.tagline}</p>
               <div class="mt-4">
-                <AffiliateButton product={hero} fullWidth />
+                <AffiliateButton product={hero} variant="card" position="hero" fullWidth />
               </div>
             </div>
           </div>
@@ -160,7 +160,7 @@ const categories = [
         <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Our top picks</h2>
         <p class="mt-2 text-ink-600">The kits and tools we recommend most, across every budget.</p>
       </div>
-      <a href="/best-soldering-practice-kits" class="text-sm font-semibold text-brand-600 hover:text-brand-700">View full ranking →</a>
+      <a href="/best-soldering-practice-kits" data-cta-label={`See All ${categories[0].count} →`} data-cta-position="inline" class="text-sm font-semibold text-brand-600 hover:text-brand-700">See All {categories[0].count} →</a>
     </div>
     <div class="mt-8 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
       {topPicks.map((p, i) => <ProductCard product={p} showRank rank={i + 1} />)}
@@ -181,11 +181,11 @@ const categories = [
       <div class="mt-8 grid gap-6 md:grid-cols-3">
         {
           categories.map((cat) => (
-            <a href={cat.href} class="group flex flex-col rounded-2xl border border-ink-200 bg-ink-50/40 p-6 transition-colors hover:border-brand-300 hover:bg-brand-50/40">
+            <a href={cat.href} data-cta-label={`See All ${cat.count} →`} data-cta-position="card" class="group flex flex-col rounded-2xl border border-ink-200 bg-ink-50/40 p-6 transition-colors hover:border-brand-300 hover:bg-brand-50/40">
               <span class="text-xs font-bold uppercase tracking-wide text-brand-600">{cat.count} reviewed</span>
               <h3 class="mt-2 text-xl font-bold text-ink-900 group-hover:text-brand-700">{cat.title}</h3>
               <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{cat.desc}</p>
-              <span class="mt-4 text-sm font-semibold text-brand-600">Explore →</span>
+              <span class="mt-4 text-sm font-semibold text-brand-600">See All {cat.count} →</span>
             </a>
           ))
         }

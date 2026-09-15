@@ -16,6 +16,7 @@ import {
 
 const all = await getProducts();
 const kits = all.filter((p) => p.category !== 'tool').sort((a, b) => a.rank - b.rank);
+const toolCount = all.filter((p) => p.category === 'tool').length;
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -112,8 +113,8 @@ const jsonLd = jsonLdGraph(
           single biggest upgrade to your results is a temperature-controlled station. See our
           picks for the irons and tools that pair best with these kits.
         </p>
-        <a href="/best-soldering-irons" class="mt-6 inline-block rounded-xl bg-buy px-6 py-3 font-bold text-ink-900 transition-colors hover:bg-[var(--color-buy-dark)]">
-          See recommended soldering irons →
+        <a href="/best-soldering-irons" data-cta-label={`See All ${toolCount} →`} data-cta-position="inline" class="mt-6 inline-flex min-h-11 items-center rounded-xl border border-white/30 px-6 py-3 font-bold text-white transition-colors hover:bg-white/10">
+          See All {toolCount} →
         </a>
       </div>
     </section>

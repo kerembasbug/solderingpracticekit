@@ -39,6 +39,8 @@ export const SITE = {
   language: 'en',
   themeColor: '#b45309',
   contactEmail: pick(import.meta.env.CONTACT_EMAIL, 'CONTACT_EMAIL', 'hello@solderingpracticekit.com'),
+  /** GA4 measurement id (G-XXXX). Empty = no analytics script is loaded. */
+  ga4Id: pick(import.meta.env.PUBLIC_GA4_ID, 'PUBLIC_GA4_ID', ''),
   social: {
     pinterest: pick(import.meta.env.SOCIAL_PINTEREST, 'SOCIAL_PINTEREST', ''),
     youtube: pick(import.meta.env.SOCIAL_YOUTUBE, 'SOCIAL_YOUTUBE', ''),

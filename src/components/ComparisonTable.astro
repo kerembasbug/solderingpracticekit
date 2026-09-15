@@ -51,9 +51,12 @@ const { products, caption } = Astro.props;
                 href={affiliateUrl(p.asin)}
                 target="_blank"
                 rel="sponsored nofollow noopener"
-                class="btn-buy hover:btn-buy-hover px-4 py-2 text-sm whitespace-nowrap"
+                aria-label={`Check the price of ${p.title} on Amazon (opens in a new tab)`}
+                data-cta-label="Check Price →"
+                data-cta-position="inline"
+                class="btn-buy hover:btn-buy-hover min-h-11 px-4 py-2.5 text-sm whitespace-nowrap"
               >
-                Check Price
+                Check Price →
               </a>
             </td>
           </tr>

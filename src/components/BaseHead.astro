@@ -72,6 +72,20 @@ const fullTitle =
 <meta name="twitter:description" content={description} />
 <meta name="twitter:image" content={ogImage} />
 
+{
+  SITE.ga4Id && (
+    <>
+      <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
+      <script is:inline define:vars={{ ga4Id: SITE.ga4Id }}>
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = function () { dataLayer.push(arguments); };
+        gtag('js', new Date());
+        gtag('config', ga4Id);
+      </script>
+    </>
+  )
+}
+
 <!-- Preconnect to Amazon's image CDN for faster product images -->
 <link rel="preconnect" href="https://m.media-amazon.com" crossorigin />
 <script

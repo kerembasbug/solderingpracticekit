@@ -7,6 +7,7 @@ import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import ProsCons from '@/components/ProsCons.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import StarRating from '@/components/StarRating.astro';
+import StickyCta from '@/components/StickyCta.astro';
 import { getProducts } from '@/lib/products';
 import type { Product } from '@/lib/types';
 import { productSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
@@ -134,7 +135,7 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
         <p class="mt-6 text-lg leading-relaxed text-ink-700">{product.excerpt}</p>
 
         <div class="mt-6 lg:hidden">
-          <AffiliateButton product={product} fullWidth size="lg" showTimestamp={false} />
+          <AffiliateButton product={product} position="hero" fullWidth size="lg" showTimestamp={false} />
         </div>
 
         <!-- Quick Specs table -->
@@ -183,7 +184,7 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
         </div>
 
         <div class="mt-6">
-          <AffiliateButton product={product} fullWidth size="lg" />
+          <AffiliateButton product={product} position="inline" fullWidth size="lg" />
         </div>
 
         <div class="mt-8 rounded-2xl border border-ink-200 bg-white p-6">
@@ -223,6 +224,10 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
             </div>
           )
         }
+
+        <div class="mt-10 hidden lg:block">
+          <AffiliateButton product={product} position="footer" size="lg" />
+        </div>
       </div>
 
       <!-- Sticky buy box -->
@@ -242,7 +247,7 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
             )
           }
           <div class="mt-4">
-            <AffiliateButton product={product} fullWidth size="lg" />
+            <AffiliateButton product={product} position="hero" fullWidth size="lg" />
           </div>
           <div class="mt-4">
             <AffiliateDisclosure variant="inline" />
@@ -283,4 +288,5 @@ const seoTitle = `${product.title} Review (${reviewYear})`;
       </div>
     </section>
   </div>
+  <StickyCta product={product} />
 </BaseLayout>

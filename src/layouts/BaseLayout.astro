@@ -36,5 +36,28 @@ const path = Astro.url.pathname;
       <slot />
     </main>
     <Footer />
+    <script is:inline>
+      // Every CTA click -> GA4 `cta_click` (cta_label, cta_position, page_type).
+      document.addEventListener('click', function (e) {
+        var el = e.target.closest && e.target.closest('[data-cta-label]');
+        if (!el) return;
+        var p = location.pathname;
+        var pageType =
+          p === '/' ? 'home'
+          : p.indexOf('/reviews/') === 0 && p.length > 9 ? 'review'
+          : p.indexOf('/guides/') === 0 && p.length > 8 ? 'guide'
+          : p.indexOf('/best-') === 0 ? 'roundup'
+          : p.indexOf('-vs-') > -1 ? 'comparison'
+          : 'other';
+        var params = {
+          cta_label: el.getAttribute('data-cta-label'),
+          cta_position: el.getAttribute('data-cta-position') || 'inline',
+          page_type: pageType,
+          transport_type: 'beacon',
+        };
+        if (typeof window.gtag === 'function') window.gtag('event', 'cta_click', params);
+        else (window.dataLayer = window.dataLayer || []).push(Object.assign({ event: 'cta_click' }, params));
+      });
+    </script>
   </body>
 </html>

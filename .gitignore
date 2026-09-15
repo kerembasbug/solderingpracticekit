@@ -22,3 +22,6 @@ pnpm-debug.log*
 
 # jetbrains setting folder
 .idea/
+
+# Google Search Console service account key (secret, never commit)
+gsc-service-account.json
