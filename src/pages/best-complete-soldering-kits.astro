@@ -1,0 +1,141 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+// Kits that put the iron and the basic consumables in one box.
+const COMPLETE_SLUGS = [
+  'qlouni-100w-smd-soldering-practice-kit-with-iron',
+  'yihua-926-iii-soldering-station',
+  'plusivo-60w-digital-soldering-iron-kit',
+  'kepiog-100w-lcd-soldering-iron-kit',
+  'meakest-60w-soldering-iron-premium-kit',
+  'q-ming-60w-soldering-iron-kit',
+];
+
+const all = await getProducts();
+const kits = sortByScore(all.filter((p) => COMPLETE_SLUGS.includes(p.slug)));
+const practicePick = all.find((p) => p.slug === 'elenco-practical-soldering-project-kit');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Complete Soldering Kits', url: '/best-complete-soldering-kits' },
+];
+
+const faqs = [
+  {
+    question: 'Do soldering practice kits come with a soldering iron?',
+    answer:
+      'Most do not — the typical practice kit is a board and a bag of parts, and you supply the iron and solder. A few, like the QLOUNI SMD kit on this page, bundle a digital iron with the training boards. Otherwise, pair any practice kit with one of the complete iron kits here.',
+  },
+  {
+    question: 'What should a complete soldering kit for beginners include?',
+    answer:
+      'At minimum: a temperature-adjustable iron, a stand, a couple of tip shapes, thin rosin-core solder and a way to remove solder (a desoldering pump or wick). Flux and a helping-hands holder are the next most useful extras. A practice board to solder on is the final piece — few iron kits include one.',
+  },
+  {
+    question: 'Is a complete kit better than buying tools separately?',
+    answer:
+      'For a first purchase, usually yes: a kit is cheaper than buying each item and guarantees nothing essential is missing. The trade-off is quality — bundled consumables and accessories are budget-grade. Many people start with a kit and upgrade the iron to a station once soldering becomes a regular hobby.',
+  },
+  {
+    question: 'Should a beginner get a station or a pen-style iron kit?',
+    answer:
+      'A station such as the YIHUA 926 III holds temperature more steadily over long sessions and is the better learning tool if your budget allows. A pen-style kit is cheaper and more compact, and is perfectly fine for practice kits and small repairs. Either works as long as the temperature is adjustable.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Best Complete Soldering Kits for Beginners (2026)',
+    description:
+      'Complete soldering kits that put the iron, solder and basic tools in one box — plus the rare practice kit that includes the iron. Ranked for beginners.',
+    url: '/best-complete-soldering-kits',
+    datePublished: '2026-09-15',
+    dateModified: '2026-09-15',
+  }),
+  itemListSchema(kits, '/best-complete-soldering-kits'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Complete Soldering Kits for Beginners (2026)"
+  description={`The ${kits.length} best complete soldering kits for beginners — iron, solder and tools in one box, plus a practice kit that includes the iron. Ranked, with honest pros and cons.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-15"
+  modifiedTime="2026-09-15"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Complete Soldering Kits for Beginners
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Almost every soldering practice kit leaves out the iron, the solder and the tools. These
+        kits put them in one box, so a first-timer can start the day the parcel arrives. We picked
+        options from a digital bench station to budget pen-style kits — and the rare practice kit
+        that actually ships with its own iron.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={kits} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The complete kits, reviewed</h2>
+      {kits.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>What "complete" should mean</h2>
+      <p>
+        A kit is only complete if you can make a clean joint straight out of the box. That means a
+        <strong>temperature-adjustable iron</strong> (a digital readout is a bonus), a stand, thin
+        rosin-core solder, and something to undo mistakes — a desoldering pump or
+        <a href="/solder-sucker-vs-solder-wick">solder wick</a>. Flux and a
+        <a href="/guides/helping-hands-and-pcb-holders">helping-hands holder</a> make the learning
+        curve noticeably gentler.
+      </p>
+      <p>
+        The one thing iron kits almost never include is something to solder. Pair any of them with a
+        practice board —
+        {practicePick ? <a href={`/reviews/${practicePick.slug}`}>{practicePick.title}</a> : 'a simple through-hole kit'}
+        is the classic first build — or browse our full
+        <a href="/best-soldering-practice-kits">practice kit ranking</a>. The QLOUNI kit above is the
+        exception: its three surface-mount boards come with the iron, though SMD work is a tougher
+        start than through-hole.
+      </p>
+      <h2>Kit or separate tools?</h2>
+      <p>
+        A kit is the cheaper, no-gaps way to begin; separate tools let you buy better quality where
+        it matters. A common path is to start with a complete kit, then upgrade the iron to a
+        <a href="/best-soldering-irons">temperature-controlled station</a> once soldering sticks.
+        Our <a href="/guides/soldering-tools-checklist-for-beginners">beginner tools checklist</a>
+        covers what to add next, and the <a href="/best-soldering-accessories">accessories roundup</a>
+        has the upgrades worth making.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

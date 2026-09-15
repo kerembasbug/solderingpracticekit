@@ -80,6 +80,7 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; href: stri
       { label: 'Best Practice Kits', href: '/best-soldering-practice-kits' },
       { label: 'Best Project Kits', href: '/best-soldering-project-kits' },
       { label: 'Best Kits for Kids', href: '/best-soldering-kits-for-kids' },
+      { label: 'Complete Kits (Iron Included)', href: '/best-complete-soldering-kits' },
       { label: 'All Reviews', href: '/reviews' },
     ],
   },

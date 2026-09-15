@@ -28,7 +28,7 @@ You don't need a professional bench to start soldering, but a few key tools make
 
 These you genuinely need:
 
-- **A temperature-controlled soldering iron or station.** This is the most important purchase. Stable, adjustable heat makes clean joints far easier. The [YIHUA 926 III station](/reviews/yihua-926-iii-soldering-station) is our top pick because it bundles tips and accessories; for portability, a cordless iron like the [Fanttik T1 Max](/reviews/fanttik-t1-max-cordless-soldering-iron) is excellent.
+- **A temperature-controlled soldering iron or station.** This is the most important purchase. Stable, adjustable heat makes clean joints far easier. The [YIHUA 926 III station](/reviews/yihua-926-iii-soldering-station) is our top pick because it bundles tips and accessories; for portability, a cordless iron like the [Fanttik T1 Max](/reviews/fanttik-t1-max-cordless-soldering-iron) is excellent. Want the iron, solder and basic tools in one purchase? See our [complete soldering kits for beginners](/best-complete-soldering-kits).
 - **Thin rosin-core solder** (0.6–0.8 mm). Rosin-core means flux is built in. See our [lead-free vs leaded guide](/guides/lead-free-vs-leaded-solder) to choose.
 - **A soldering iron stand.** Never rest a hot iron on the bench. Most stations include one.
 - **Brass-wool tip cleaner.** Better than a wet sponge — see [tip care](/guides/how-to-clean-and-tin-a-soldering-iron-tip).

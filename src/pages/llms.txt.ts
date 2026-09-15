@@ -37,6 +37,7 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Best Soldering Irons & Stations](${origin}/best-soldering-irons): Temperature-controlled irons and stations for learning to solder.
 - [Best Soldering Accessories](${origin}/best-soldering-accessories): Desoldering pumps, wick and flux, helping hands, and fume extractors.
 - [Best Soldering Kits for Kids & Teens](${origin}/best-soldering-kits-for-kids): Safe, fun STEM builds ranked for younger makers.
+- [Best Complete Soldering Kits for Beginners](${origin}/best-complete-soldering-kits): Kits that bundle the iron, solder and basic tools in one box.
 - [All Reviews](${origin}/reviews): Every individual product review.
 
 ## Comparisons (X vs Y)
