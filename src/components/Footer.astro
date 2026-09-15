@@ -16,7 +16,7 @@ const year = new Date().getFullYear();
           <span class="font-extrabold tracking-tight text-ink-900">{SITE.shortName}</span>
         </div>
         <p class="mt-4 max-w-sm text-sm leading-relaxed text-ink-500">{SITE.description}</p>
-        <p class="mt-4 max-w-sm text-xs leading-relaxed text-ink-400">
+        <p class="mt-4 max-w-sm text-xs leading-relaxed text-ink-500">
           As an Amazon Associate we earn from qualifying purchases. Prices and availability are
           accurate as of the date/time shown and are subject to change.
         </p>
@@ -25,7 +25,7 @@ const year = new Date().getFullYear();
       {
         FOOTER_LINKS.map((col) => (
           <div>
-            <h2 class="text-xs font-bold uppercase tracking-wider text-ink-400">{col.heading}</h2>
+            <h2 class="text-xs font-bold uppercase tracking-wider text-ink-500">{col.heading}</h2>
             <ul class="mt-4 space-y-2.5">
               {col.links.map((link) => (
                 <li>
@@ -40,7 +40,7 @@ const year = new Date().getFullYear();
       }
     </div>
 
-    <div class="mt-10 flex flex-col gap-3 border-t border-ink-100 pt-6 text-xs text-ink-400 sm:flex-row sm:items-center sm:justify-between">
+    <div class="mt-10 flex flex-col gap-3 border-t border-ink-100 pt-6 text-xs text-ink-500 sm:flex-row sm:items-center sm:justify-between">
       <p>© {year} {SITE.name}. All rights reserved.</p>
       <p>
         Amazon and the Amazon logo are trademarks of Amazon.com, Inc. or its affiliates. We are

@@ -48,7 +48,7 @@ const asOf = live?.fetchedAt
     href={href}
     target="_blank"
     rel="sponsored nofollow noopener"
-    aria-label={`Check the price of ${product.title} on Amazon (opens in a new tab)`}
+    aria-label={`${text.replace(' →', '')}: ${product.title} (opens in a new tab)`}
     data-cta-label={text}
     data-cta-position={position}
     class:list={['btn-buy hover:btn-buy-hover min-h-11 active:scale-[0.99]', pad, fullWidth && 'w-full']}
@@ -57,14 +57,14 @@ const asOf = live?.fetchedAt
   </a>
   {
     showTimestamp && asOf && (
-      <p class="mt-1.5 text-center text-[0.7rem] leading-tight text-ink-400">
+      <p class="mt-1.5 text-center text-[0.7rem] leading-tight text-ink-500">
         Price as of {asOf}. {live?.isPrimeEligible ? 'Prime eligible. ' : ''}Details on Amazon.
       </p>
     )
   }
   {
     showTimestamp && !asOf && (
-      <p class="mt-1.5 text-center text-[0.7rem] leading-tight text-ink-400">
+      <p class="mt-1.5 text-center text-[0.7rem] leading-tight text-ink-500">
         We earn a commission, at no extra cost to you.
       </p>
     )

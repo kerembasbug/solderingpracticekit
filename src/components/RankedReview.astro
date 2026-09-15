@@ -27,7 +27,7 @@ const { product: p, position } = Astro.props;
     </div>
 
     <div>
-      <p class="text-xs font-semibold uppercase tracking-wide text-ink-400">{p.brand}</p>
+      <p class="text-xs font-semibold uppercase tracking-wide text-ink-500">{p.brand}</p>
       <h3 class="mt-1 text-2xl font-bold leading-snug text-ink-900">
         <a href={`/reviews/${p.slug}`} class="hover:text-brand-600">{p.title}</a>
       </h3>
@@ -35,7 +35,7 @@ const { product: p, position } = Astro.props;
         <div class="flex items-center gap-2">
           <StarRating score={p.ourScore} />
           <span class="font-bold text-ink-800">{p.ourScore.toFixed(1)}</span>
-          <span class="text-sm text-ink-400">/ 10</span>
+          <span class="text-sm text-ink-500">/ 10</span>
         </div>
         <span class="rounded-md bg-ink-100 px-2.5 py-1 text-xs font-semibold text-ink-600">Best for: {p.bestFor}</span>
       </div>
