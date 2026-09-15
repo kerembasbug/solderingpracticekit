@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+// Irons that work without a mains cable: battery, USB-C power bank or butane.
+const CORDLESS_SLUGS = [
+  'fnirsi-hs-03-cordless-soldering-iron',
+  'fanttik-t1-max-cordless-soldering-iron',
+  'pinecil-smart-mini-portable-soldering-iron',
+  'milwaukee-m12-soldering-iron',
+  'hoto-snapbloq-cordless-soldering-iron-kit',
+  'lexivon-butane-soldering-iron-kit-lx-770',
+];
+
+const all = await getProducts();
+const irons = sortByScore(all.filter((p) => CORDLESS_SLUGS.includes(p.slug)));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Irons', url: '/best-soldering-irons' },
+  { name: 'Best Cordless Soldering Irons', url: '/best-cordless-soldering-irons' },
+];
+
+const faqs = [
+  {
+    question: 'Are cordless soldering irons any good?',
+    answer:
+      'Yes, for the right jobs. Current battery irons such as the FNIRSI HS-03 and Fanttik T1 Max heat up in seconds and handle electronics repairs, PCB work and small projects well. Their limits are battery runtime and less sustained power on big joints, so they shine as a portable or second iron rather than the only iron on a busy bench.',
+  },
+  {
+    question: 'How long does a cordless soldering iron battery last?',
+    answer:
+      'It depends on the battery size, the temperature you run and how big the joints are. Expect enough runtime for a repair session or a small project rather than a full evening of heavy soldering. Auto-sleep helps a lot, and irons that can be used while charging over USB-C are the least likely to leave you stuck.',
+  },
+  {
+    question: 'Is a USB-C iron like the Pinecil cordless?',
+    answer:
+      'Not in the battery sense — the Pinecil has no battery inside and draws power over USB-C. Paired with a capable USB-C power bank it is just as portable as a battery iron, and plugged into a strong USB-C charger at a desk it performs like a small smart iron. Its performance depends on the power source, so use a charger or power bank that supports higher-wattage USB-C Power Delivery.',
+  },
+  {
+    question: 'Battery or butane soldering iron?',
+    answer:
+      'Choose a battery or USB-C iron for electronics, because it gives you precise, adjustable temperature. Choose butane, like the LEXIVON LX-770, for car wiring, boats and places with no way to charge — it runs as long as you have gas, but its heat is harder to control on delicate circuit boards.',
+  },
+  {
+    question: 'Should my first soldering iron be cordless?',
+    answer:
+      'For most beginners learning at a desk, a mains-powered station is the better first iron because the heat is steadier and it never runs out mid-joint. If you mainly do quick repairs or need to work away from a bench, a cordless iron is a perfectly good first tool. See our soldering station vs cordless iron comparison for the full trade-off.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'The Best Cordless Soldering Irons for 2026',
+    description:
+      'The best cordless and portable soldering irons — battery, USB-C and butane — ranked for repairs, electronics and field work.',
+    url: '/best-cordless-soldering-irons',
+    datePublished: '2026-09-15',
+    dateModified: '2026-09-15',
+  }),
+  itemListSchema(irons, '/best-cordless-soldering-irons'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Cordless Soldering Iron (2026): Battery, USB-C & Butane"
+  description={`The ${irons.length} best cordless soldering irons, ranked — battery irons that heat in seconds, USB-C portable irons and butane irons for off-grid repairs. Honest pros, cons and who each suits.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-15"
+  modifiedTime="2026-09-15"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Cordless Soldering Irons for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        A good cordless soldering iron heats up in seconds and goes wherever the repair is — the
+        kitchen table, the car, the garden shed. We ranked the best battery-powered irons alongside
+        a USB-C portable iron and a butane iron, because "no cable" can mean three quite different
+        tools. Here is which one suits the work you actually do.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={irons} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The cordless irons, reviewed</h2>
+      {irons.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a cordless soldering iron</h2>
+      <h3>Battery, USB-C or butane?</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Power</th><th scope="col" class="px-4 py-3">Best for</th><th scope="col" class="px-4 py-3">Strength</th><th scope="col" class="px-4 py-3">Trade-off</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Built-in battery</th><td class="px-4 py-3">Electronics repairs, small projects</td><td class="px-4 py-3">No cable, fast heat-up, temperature control</td><td class="px-4 py-3">Limited runtime</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Tool battery (M12 etc.)</th><td class="px-4 py-3">Jobsite, automotive, electrical</td><td class="px-4 py-3">Rugged, shares batteries with other tools</td><td class="px-4 py-3">Bulkier; costly without the batteries</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">USB-C powered</th><td class="px-4 py-3">Makers with power banks and chargers</td><td class="px-4 py-3">Tiny, strong performance on good power</td><td class="px-4 py-3">No internal battery</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Butane</th><td class="px-4 py-3">Cars, boats, off-grid</td><td class="px-4 py-3">Never needs charging</td><td class="px-4 py-3">Less precise heat for PCBs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>What matters most</h3>
+      <p>
+        For electronics, prioritise <strong>adjustable temperature</strong> and a
+        <strong>clear readout</strong>, then heat-up time and auto-sleep, which quietly extends battery
+        life. Check whether the iron can be used while charging, and which tips it takes — common tip
+        families are easier to replace. For heavy joints and long sessions, no cordless iron matches a
+        mains unit, so see our <a href="/best-soldering-stations">best soldering stations</a> if most
+        of your soldering happens at a desk.
+      </p>
+      <p>
+        Still deciding? Compare the two top battery irons in
+        <a href="/fnirsi-hs-03-vs-fanttik-t1-max">FNIRSI HS-03 vs Fanttik T1 Max</a>, weigh a corded
+        smart pen against a battery iron in
+        <a href="/fnirsi-hs-02a-vs-fnirsi-hs-03">FNIRSI HS-02A vs HS-03</a>, or read
+        <a href="/soldering-station-vs-cordless-iron">soldering station vs cordless iron</a>. For every
+        type of iron in one list, see our <a href="/best-soldering-irons">best soldering iron</a> ranking.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

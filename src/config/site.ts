@@ -88,6 +88,8 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; href: stri
     heading: 'Tools & Guides',
     links: [
       { label: 'Best Soldering Irons', href: '/best-soldering-irons' },
+      { label: 'Best Soldering Stations', href: '/best-soldering-stations' },
+      { label: 'Best Cordless Irons', href: '/best-cordless-soldering-irons' },
       { label: 'Best Accessories', href: '/best-soldering-accessories' },
       { label: 'Guides & How-Tos', href: '/guides' },
       { label: 'About Us', href: '/about' },

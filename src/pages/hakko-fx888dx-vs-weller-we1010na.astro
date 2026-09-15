@@ -1,0 +1,128 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import VsComparison from '@/components/VsComparison.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProductBySlug } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const a = await getProductBySlug('hakko-fx888dx-digital-soldering-station');
+const b = await getProductBySlug('weller-we1010na-soldering-station');
+if (!a || !b) throw new Error('Comparison products not found');
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Hakko FX-888DX vs Weller WE1010NA', url: '/hakko-fx888dx-vs-weller-we1010na' },
+];
+
+const faqs = [
+  {
+    question: 'Is Hakko or Weller better?',
+    answer:
+      'Neither is universally better — both are trusted, long-lasting station brands. The Hakko FX-888DX is loved for stable heat, a comfortable iron and an enormous tip range. The Weller WE1010NA is a reliable ESD-safe station from a brand used in schools and repair shops for generations. Pick on tips, feel and which ecosystem you already own.',
+  },
+  {
+    question: 'Which is better for a beginner, Hakko FX-888DX or Weller WE1010NA?',
+    answer:
+      'Both are more station than most beginners strictly need, and both will last for years. If you are starting from nothing, remember that neither comes loaded with helping hands and consumables like budget kit stations do. If you want a single premium station to learn on and keep, either is a sound choice.',
+  },
+  {
+    question: 'Do Hakko and Weller tips fit each other?',
+    answer:
+      'No. The FX-888DX uses Hakko T18-series tips and the Weller WE1010NA uses Weller tips, so they are not interchangeable. Tip availability and price are worth checking before you commit, because you will buy tips for as long as you own the station.',
+  },
+  {
+    question: 'Are there cheaper alternatives to Hakko and Weller?',
+    answer:
+      'Yes. The YIHUA 926 III is a digital station kit that bundles tips and accessories for much less, and the YIHUA 939D+ offers an ESD-safe, transformer-based station at a value price. They do not have the same long track record, but they are very capable for hobby work.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Hakko FX-888DX vs Weller WE1010NA: Which Soldering Station?',
+    description:
+      'Hakko FX-888DX vs Weller WE1010NA compared: temperature control, tips, ESD safety and long-term value from two trusted station brands.',
+    url: '/hakko-fx888dx-vs-weller-we1010na',
+    datePublished: '2026-09-15',
+    dateModified: '2026-09-15',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Hakko FX-888DX vs Weller WE1010NA: Which Station to Buy?"
+  description="Hakko FX-888DX vs Weller WE1010NA compared — temperature control, tips, ESD safety and long-term value. Which trusted soldering station suits your bench?"
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-15"
+  modifiedTime="2026-09-15"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Hakko FX-888DX vs Weller WE1010NA
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Hakko and Weller are the two names that come up whenever people ask which soldering station
+        to buy once and keep. Both make stable, well-built benches; the differences are in the feel,
+        the tips and the ecosystem. Here is how the <strong>{a.title}</strong> and the
+        <strong>{b.title}</strong> compare.
+      </p>
+    </header>
+
+    <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-12">
+      <VsComparison a={a} b={b} />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-16 max-w-3xl">
+      <h2>Two buy-once stations</h2>
+      <p>
+        The <strong>{a.title}</strong> continues one of the most recommended station lines in
+        hobby electronics. It is a 70W digital station with steady, precise heat, an ESD-safe design
+        and a rotary encoder that makes changing temperature quick. Its biggest long-term advantage
+        is the huge range of Hakko T18 tips, so there is a shape for almost any job.
+      </p>
+      <p>
+        The <strong>{b.title}</strong> brings Weller's decades of classroom and repair-shop
+        reputation to a 70W digital, ESD-safe station. It is a straightforward, reliable bench tool
+        that holds temperature well and is built to keep going for years of regular use.
+      </p>
+
+      <h2>Choose the {a.title} if…</h2>
+      <ul>
+        <li>You want the widest choice of replacement tips.</li>
+        <li>Quick temperature changes with a dial appeal to you.</li>
+        <li>You do a lot of fine electronics and PCB work.</li>
+        <li>You like a light, comfortable iron for long sessions.</li>
+      </ul>
+
+      <h2>Choose the {b.title} if…</h2>
+      <ul>
+        <li>You already use Weller tips or tools.</li>
+        <li>You want a simple, proven station from a long-standing brand.</li>
+        <li>Your school, club or workplace standardises on Weller.</li>
+        <li>You value a straightforward, no-fuss interface.</li>
+      </ul>
+
+      <h2>Our verdict</h2>
+      <p>
+        For most hobbyists we lean slightly towards the <a href={`/reviews/${a.slug}`}>Hakko
+        FX-888DX</a>, mainly for its tip range and quick dial control. The
+        <a href={`/reviews/${b.slug}`}>Weller WE1010NA</a> is just as sensible if you prefer Weller
+        or already own its tips — you will not regret either. If the price of both feels high, see
+        how Weller compares with a value kit in
+        <a href="/yihua-926-iii-vs-weller-we1010na">YIHUA 926 III vs Weller WE1010NA</a>, or browse
+        all our <a href="/best-soldering-stations">best soldering stations</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

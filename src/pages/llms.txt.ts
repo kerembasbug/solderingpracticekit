@@ -35,6 +35,8 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Best Soldering Practice Kits](${origin}/best-soldering-practice-kits): Ranked beginner-friendly practice kits with pros, cons, and a buying guide.
 - [Best Soldering Project Kits](${origin}/best-soldering-project-kits): Kits that finish as a working gadget — radios, clocks, game consoles.
 - [Best Soldering Irons & Stations](${origin}/best-soldering-irons): Temperature-controlled irons and stations for learning to solder.
+- [Best Soldering Stations](${origin}/best-soldering-stations): Beginner station kits, Hakko and Weller pro benches, and a 2-in-1 hot air station.
+- [Best Cordless Soldering Irons](${origin}/best-cordless-soldering-irons): Battery, USB-C and butane irons for repairs away from the bench.
 - [Best Soldering Accessories](${origin}/best-soldering-accessories): Desoldering pumps, wick and flux, helping hands, and fume extractors.
 - [Best Soldering Kits for Kids & Teens](${origin}/best-soldering-kits-for-kids): Safe, fun STEM builds ranked for younger makers.
 - [Best Complete Soldering Kits for Beginners](${origin}/best-complete-soldering-kits): Kits that bundle the iron, solder and basic tools in one box.
@@ -50,6 +52,7 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Solder Sucker vs Solder Wick](${origin}/solder-sucker-vs-solder-wick): Which desoldering tool to use, and why most benches need both.
 - [Jitterbug vs Robot Car Kit](${origin}/jitterbug-vs-robot-car-kit): The best first soldering kit for kids, by age and joint count.
 - [YIHUA 926 III vs Weller WE1010NA](${origin}/yihua-926-iii-vs-weller-we1010na): Budget station bundle versus the premium, professional-grade Weller brand.
+- [Hakko FX-888DX vs Weller WE1010NA](${origin}/hakko-fx888dx-vs-weller-we1010na): The two trusted pro station brands compared on tips, control and value.
 
 ## Guides
 

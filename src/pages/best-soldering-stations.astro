@@ -1,0 +1,151 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+// Bench stations with a separate control unit (including one 2-in-1 hot air station).
+const STATION_SLUGS = [
+  'hakko-fx888dx-digital-soldering-station',
+  'weller-we1010na-soldering-station',
+  'yihua-926-iii-soldering-station',
+  'yihua-939d-plus-digital-soldering-station',
+  'wep-882d-hot-air-rework-soldering-station',
+  'crtsweker-100w-digital-soldering-station-kit',
+];
+
+const all = await getProducts();
+const stations = sortByScore(all.filter((p) => STATION_SLUGS.includes(p.slug)));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Best Soldering Irons', url: '/best-soldering-irons' },
+  { name: 'Best Soldering Stations', url: '/best-soldering-stations' },
+];
+
+const faqs = [
+  {
+    question: 'What is the best soldering station for beginners?',
+    answer:
+      'The YIHUA 926 III is our pick for most beginners: a digital, temperature-controlled station that bundles helping hands, spare tips, solder and a desoldering pump. On a tighter budget, the Crtsweker 100W kit covers the same basics. If you want a station you will not outgrow, the Hakko FX-888DX and Weller WE1010NA are the long-term choices.',
+  },
+  {
+    question: 'Is a soldering station better than a soldering iron?',
+    answer:
+      'For regular bench work, usually yes. A station keeps the temperature control in a separate base, which gives steadier heat, faster recovery between joints and a proper stand. A standalone pen iron is cheaper and more portable. If you solder often at a desk, a station is the better tool; for occasional repairs, a good temperature-controlled pen iron is enough.',
+  },
+  {
+    question: 'Hakko or Weller — which soldering station is better?',
+    answer:
+      'Both are trusted, long-lasting brands. The Hakko FX-888DX is prized for its stable heat, comfortable iron and huge tip range; the Weller WE1010NA is a reliable ESD-safe station from a brand used in schools and repair shops for decades. Either is a buy-once station — see our Hakko vs Weller comparison for the details.',
+  },
+  {
+    question: 'What is a 2-in-1 soldering station?',
+    answer:
+      'A 2-in-1 station combines a soldering iron with a hot air rework gun in one unit, like the WEP 882D. Hot air is used to remove and reflow surface-mount parts without touching them with an iron. It is a smart upgrade for SMD work, but more than you need for through-hole kits.',
+  },
+  {
+    question: 'What does ESD-safe mean on a soldering station?',
+    answer:
+      'ESD-safe means the station and iron are designed to avoid electrostatic discharge that could damage sensitive components such as chips and transistors. It matters most for modern electronics and repair work. Combine an ESD-safe station with a grounded mat or wrist strap for the best protection.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'The Best Soldering Stations for 2026',
+    description:
+      'The best soldering stations ranked — beginner station kits, pro-grade Hakko and Weller benches, an ESD-safe value pick and a 2-in-1 hot air station.',
+    url: '/best-soldering-stations',
+    datePublished: '2026-09-15',
+    dateModified: '2026-09-15',
+  }),
+  itemListSchema(stations, '/best-soldering-stations'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Soldering Station (2026): Beginner, Pro & 2-in-1 Picks"
+  description={`The ${stations.length} best soldering stations, ranked — beginner station kits, Hakko and Weller pro benches, an ESD-safe value station and a 2-in-1 hot air rework station.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-15"
+  modifiedTime="2026-09-15"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Stations for 2026
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        A soldering station is the most reliable way to make consistent joints: the separate base
+        holds a steady temperature and recovers heat fast between joints. We ranked the best
+        stations from budget beginner kits to the Hakko and Weller benches professionals keep for
+        years — plus a 2-in-1 station with hot air for surface-mount work.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={stations} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The stations, reviewed</h2>
+      {stations.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a soldering station</h2>
+      <h3>Kit, pro bench or 2-in-1?</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Type</th><th scope="col" class="px-4 py-3">Best for</th><th scope="col" class="px-4 py-3">Strength</th><th scope="col" class="px-4 py-3">Trade-off</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Station kit</th><td class="px-4 py-3">Beginners setting up a first bench</td><td class="px-4 py-3">Helping hands, tips and consumables included</td><td class="px-4 py-3">Budget-grade extras</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Pro-grade station</th><td class="px-4 py-3">Frequent soldering, repair benches</td><td class="px-4 py-3">Stable heat, durability, wide tip range</td><td class="px-4 py-3">Higher price, fewer extras</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">ESD-safe value station</th><td class="px-4 py-3">Sensitive electronics on a budget</td><td class="px-4 py-3">Precise control, ESD-safe</td><td class="px-4 py-3">Less power headroom</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">2-in-1 hot air</th><td class="px-4 py-3">SMD rework and repair</td><td class="px-4 py-3">Iron plus hot air in one unit</td><td class="px-4 py-3">More to learn; overkill for through-hole</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Features worth paying for</h3>
+      <p>
+        Look for <strong>digital temperature control</strong> with a readout, a range that reaches
+        at least 450°C, <strong>auto sleep</strong> to protect the tip, and an
+        <strong>ESD-safe</strong> design if you work on modern electronics. Wattage matters for heat
+        recovery on big joints rather than peak temperature. Finally, check tip availability — a
+        station is only as useful as the tips you can buy for it. Our
+        <a href="/guides/soldering-iron-temperature-guide">temperature guide</a> covers the right
+        settings for each job.
+      </p>
+      <p>
+        Comparing two stations? Read <a href="/hakko-fx888dx-vs-weller-we1010na">Hakko FX-888DX vs
+        Weller WE1010NA</a> or <a href="/yihua-926-iii-vs-weller-we1010na">YIHUA 926 III vs Weller
+        WE1010NA</a>. Need to work away from a desk? See the
+        <a href="/best-cordless-soldering-irons">best cordless soldering irons</a>, or browse every
+        type in our <a href="/best-soldering-irons">best soldering iron</a> ranking.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
