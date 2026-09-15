@@ -112,3 +112,11 @@ body {
 .prose h3 {
   scroll-margin-top: 6rem;
 }
+/* Markdown tables sit directly inside .prose; let wide ones scroll on phones
+   instead of spilling past the viewport. */
+.prose > table {
+  display: block;
+  max-width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
