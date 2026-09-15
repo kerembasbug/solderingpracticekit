@@ -59,16 +59,25 @@ export async function getProductBySlug(slug: string): Promise<Product | undefine
   return (await getProducts()).find((p) => p.slug === slug);
 }
 
+/** Best first: our score, then catalog rank as the tie-break. */
+export function sortByScore(list: Product[]): Product[] {
+  return [...list].sort((a, b) => b.ourScore - a.ourScore || a.rank - b.rank);
+}
+
 export async function getByCategory(category: ProductCategory): Promise<Product[]> {
-  return (await getProducts()).filter((p) => p.category === category);
+  return sortByScore((await getProducts()).filter((p) => p.category === category));
 }
 
 export async function getFeatured(): Promise<Product[]> {
   return (await getProducts()).filter((p) => p.featured);
 }
 
+/** Featured kits (practice + project) for the practice-kit landing pages. */
 export async function getTopPicks(limit = 5): Promise<Product[]> {
-  return (await getProducts()).slice(0, limit);
+  const kits = (await getProducts()).filter(
+    (p) => p.featured && (p.category === 'practice' || p.category === 'project'),
+  );
+  return sortByScore(kits).slice(0, limit);
 }
 
 /** Display label for price: live amount when available, otherwise a CTA. */

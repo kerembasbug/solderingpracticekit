@@ -14,7 +14,7 @@ import {
   jsonLdGraph,
 } from '@/lib/seo';
 
-const tools = (await getByCategory('tool')).sort((a, b) => a.rank - b.rank);
+const tools = await getByCategory('tool');
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -51,7 +51,7 @@ const jsonLd = jsonLdGraph(
       'The best soldering irons and stations to pair with a practice kit — for beginners, hobbyists and portable repairs. Reviewed and ranked.',
     url: '/best-soldering-irons',
     datePublished: '2026-01-25',
-    dateModified: '2026-06-19',
+    dateModified: '2026-09-15',
   }),
   itemListSchema(tools, '/best-soldering-irons'),
   breadcrumbSchema(crumbs),
@@ -61,11 +61,11 @@ const jsonLd = jsonLdGraph(
 
 <BaseLayout
   title="Best Soldering Irons & Stations for 2026"
-  description="The best soldering irons and stations to pair with any practice kit — beginner stations, cordless irons and budget picks. Ranked, with pros, cons and live prices."
+  description="The best soldering irons and stations to pair with any practice kit — beginner stations, cordless irons and budget picks. Ranked, with honest pros, cons and who each one suits."
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-01-25"
-  modifiedTime="2026-06-19"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />
@@ -78,7 +78,7 @@ const jsonLd = jsonLdGraph(
         — ideally temperature-controlled — makes clean joints almost easy. These are the irons and
         stations we recommend pairing with any practice or project kit, at every budget.
       </p>
-      <p class="mt-4 text-sm text-ink-400">Last updated June 19, 2026</p>
+      <p class="mt-4 text-sm text-ink-400">Last updated September 15, 2026</p>
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

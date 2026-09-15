@@ -14,7 +14,7 @@ import {
   jsonLdGraph,
 } from '@/lib/seo';
 
-const kits = (await getByCategory('project')).sort((a, b) => a.rank - b.rank);
+const kits = await getByCategory('project');
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -46,7 +46,7 @@ const jsonLd = jsonLdGraph(
       'The best soldering project kits that build a working gadget — clocks, radios, game consoles and more. Reviewed and ranked.',
     url: '/best-soldering-project-kits',
     datePublished: '2026-01-20',
-    dateModified: '2026-06-19',
+    dateModified: '2026-09-15',
   }),
   itemListSchema(kits, '/best-soldering-project-kits'),
   breadcrumbSchema(crumbs),
@@ -56,11 +56,11 @@ const jsonLd = jsonLdGraph(
 
 <BaseLayout
   title="Best Soldering Project Kits for 2026"
-  description="The best soldering project kits that end in a working gadget — clocks, radios and game consoles. Ranked, reviewed, with pros, cons and live Amazon prices."
+  description="The best soldering project kits that end in a working gadget — clocks, radios and game consoles. Ranked and reviewed, with honest pros, cons and who each one suits."
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-01-20"
-  modifiedTime="2026-06-19"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />
@@ -73,7 +73,7 @@ const jsonLd = jsonLdGraph(
         something. These project kits turn practice into a working clock, radio or handheld
         console — the kind of result that keeps beginners (and <a href="/guides/best-soldering-kits-for-kids-and-teens" class="font-semibold text-brand-600 hover:text-brand-700">kids and teens</a>) soldering to the last joint.
       </p>
-      <p class="mt-4 text-sm text-ink-400">Last updated June 19, 2026</p>
+      <p class="mt-4 text-sm text-ink-400">Last updated September 15, 2026</p>
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

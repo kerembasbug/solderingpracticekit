@@ -4,8 +4,9 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import RankedReview from '@/components/RankedReview.astro';
+import ProductCard from '@/components/ProductCard.astro';
 import FAQ from '@/components/FAQ.astro';
-import { getProducts } from '@/lib/products';
+import { getProducts, getByCategory } from '@/lib/products';
 import {
   itemListSchema,
   faqSchema,
@@ -15,7 +16,10 @@ import {
 } from '@/lib/seo';
 
 const all = await getProducts();
-const kits = all.filter((p) => p.category !== 'tool').sort((a, b) => a.rank - b.rank);
+const kits = await getByCategory('practice');
+const projectKits = (await getByCategory('project')).slice(0, 3);
+const projectCount = all.filter((p) => p.category === 'project').length;
+const countWord = ['zero','one','two','three','four','five','six','seven','eight','nine','ten','eleven','twelve'][kits.length] ?? String(kits.length);
 const toolCount = all.filter((p) => p.category === 'tool').length;
 
 const crumbs = [
@@ -53,7 +57,7 @@ const jsonLd = jsonLdGraph(
       'Our hands-on ranking of the best soldering practice kits for beginners and hobbyists, with detailed reviews, pros and cons, and a buying guide.',
     url: '/best-soldering-practice-kits',
     datePublished: '2026-01-15',
-    dateModified: '2026-06-19',
+    dateModified: '2026-09-15',
   }),
   itemListSchema(kits, '/best-soldering-practice-kits'),
   breadcrumbSchema(crumbs),
@@ -63,11 +67,11 @@ const jsonLd = jsonLdGraph(
 
 <BaseLayout
   title="Best Soldering Practice Kits for 2026"
-  description="The 9 best soldering practice kits, ranked and reviewed. Compare beginner kits, project builds and SMD/SMT boards — with pros, cons and live Amazon prices."
+  description={`The ${kits.length} best soldering practice kits, ranked and reviewed — beginner trainers, gadget builds and SMD/SMT boards, with honest pros, cons and who each one suits.`}
   type="article"
   jsonLd={jsonLd}
   publishedTime="2026-01-15"
-  modifiedTime="2026-06-19"
+  modifiedTime="2026-09-15"
 >
   <div class="container-px py-8 lg:py-12">
     <Breadcrumbs items={crumbs} />
@@ -80,11 +84,11 @@ const jsonLd = jsonLdGraph(
         Soldering is a skill you can only learn with an iron in your hand. A good practice kit gives
         you something worth building while you learn — and the best ones leave you with a gadget you
         actually keep. We compared the leading kits on instructions, finished result and the range
-        of technique they teach. Here are the nine we recommend, from absolute-beginner projects to
+        of technique they teach. Here are the {countWord} we recommend, from absolute-beginner boards to
         surface-mount training boards.
       </p>
       <p class="mt-4 text-sm text-ink-400">
-        Last updated June 19, 2026 · Written by the {`SolderingPracticeKit`} team
+        Last updated September 15, 2026 · Written by the {`SolderingPracticeKit`} team
       </p>
     </header>
 
@@ -102,6 +106,23 @@ const jsonLd = jsonLdGraph(
     <section class="mt-16 space-y-12">
       <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The kits, reviewed</h2>
       {kits.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <!-- Project kits teaser (full reviews live on the project roundup) -->
+    <section class="mt-16">
+      <div class="flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Want a gadget at the end? Try a project kit</h2>
+          <p class="mt-2 max-w-2xl text-ink-600">
+            Project kits teach the same joints but finish as a radio, console or robot you keep. These
+            are our highest-rated — see the full ranking for all of them.
+          </p>
+        </div>
+        <a href="/best-soldering-project-kits" data-cta-label={`See All ${projectCount} →`} data-cta-position="inline" class="text-sm font-semibold text-brand-600 hover:text-brand-700">See All {projectCount} →</a>
+      </div>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        {projectKits.map((p) => <ProductCard product={p} />)}
+      </div>
     </section>
 
     <!-- Don't forget tools -->
