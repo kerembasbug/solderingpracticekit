@@ -1,7 +1,6 @@
 ---
 import type { Product } from '@/lib/types';
 import AffiliateButton from '@/components/AffiliateButton.astro';
-import ProsCons from '@/components/ProsCons.astro';
 import StarRating from '@/components/StarRating.astro';
 
 interface Props {
@@ -39,12 +38,16 @@ const { product: p, position } = Astro.props;
         </div>
         <span class="rounded-md bg-ink-100 px-2.5 py-1 text-xs font-semibold text-ink-600">Best for: {p.bestFor}</span>
       </div>
-      <p class="mt-4 leading-relaxed text-ink-600">{p.excerpt}</p>
-      <div class="mt-5">
-        <ProsCons pros={p.pros} cons={p.cons} />
-      </div>
+      <p class="mt-4 leading-relaxed text-ink-600">{p.roundupNote ?? p.excerpt}</p>
+      {
+        p.cons[0] && (
+          <p class="mt-3 text-sm text-ink-600">
+            <span class="font-semibold text-ink-800">Watch out for:</span> {p.cons[0]}
+          </p>
+        )
+      }
       <a href={`/reviews/${p.slug}`} class="mt-5 inline-block text-sm font-semibold text-brand-600 hover:text-brand-700">
-        Read the full {p.title} review →
+        Read the full {p.title} review — pros, cons and verdict →
       </a>
     </div>
   </div>

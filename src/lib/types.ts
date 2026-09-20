@@ -52,6 +52,18 @@ export interface Product {
   /** Longer review-page verdict. */
   verdict: string;
 
+  /** One-line reason this product earns its place, written for roundup pages
+   *  so the ranked list does not repeat the review page's copy. */
+  roundupNote?: string;
+  /** What the box actually contains, taken from the listing. */
+  inTheBox?: string[];
+  /** Product-specific advice for the first session with it. */
+  firstSteps?: string;
+  /** Two alternatives worth weighing, with the reason to prefer each. */
+  alternatives?: { slug: string; why: string }[];
+  /** Questions buyers ask about this specific product. */
+  faqs?: { question: string; answer: string }[];
+
   image: string;
   imageWidth: number;
   imageHeight: number;

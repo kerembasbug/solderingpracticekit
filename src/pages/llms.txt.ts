@@ -28,7 +28,7 @@ export async function GET(context: APIContext) {
 
 > ${SITE.description}
 
-${SITE.name} is an independent review and buying-guide site for soldering practice kits, project kits, and beginner soldering tools. Product picks are hands-on ranked; every product links to Amazon (affiliate). Content is written for hobbyists, students, parents, and makers learning to solder.
+${SITE.name} is an independent review and buying-guide site for soldering practice kits, project kits, and beginner soldering tools. Product picks are researched and ranked editorially — we compare specifications, included accessories, instructions and owner feedback rather than lab-testing each unit; every product links to Amazon (affiliate). Content is written for hobbyists, students, parents, and makers learning to solder.
 
 ## Buying guides
 
@@ -64,7 +64,8 @@ ${reviewLines}
 
 ## About
 
-- [About](${origin}/about): Who we are and how we test and rank.
+- [About](${origin}/about): Who we are and how we research and rank.
+- [How We Rank](${origin}/how-we-rank): Our editorial method, what our scores mean, and what our reviews are not.
 - [Affiliate Disclosure](${origin}/affiliate-disclosure): As an Amazon Associate we earn from qualifying purchases.
 - [Contact](${origin}/contact)
 `;

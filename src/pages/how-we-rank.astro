@@ -1,0 +1,102 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { SITE } from '@/config/site';
+import { getProducts } from '@/lib/products';
+import { breadcrumbSchema, organizationSchema, jsonLdGraph } from '@/lib/seo';
+
+const all = await getProducts();
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'How We Rank', url: '/how-we-rank' },
+];
+const jsonLd = jsonLdGraph(organizationSchema(), breadcrumbSchema(crumbs));
+---
+
+<BaseLayout
+  title="How We Rank Soldering Kits and Tools"
+  description="Our editorial process: what we weigh when ranking soldering kits, irons and accessories, how our scores are built, what our reviews are not, and how affiliate links are handled."
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>How we rank soldering kits and tools</h1>
+      <p class="lead">
+        {SITE.name} currently covers {all.length} products. This page explains exactly how those
+        rankings are made, what our scores mean, and — just as importantly — what our reviews are
+        not.
+      </p>
+
+      <h2>What our reviews are, and what they are not</h2>
+      <p>
+        Our reviews are <strong>research-based editorial assessments</strong>. We do not run a
+        laboratory, and we do not claim to have bench-tested every product on this site. Saying
+        otherwise would be easy and dishonest, and it is exactly the kind of claim that makes
+        affiliate sites untrustworthy.
+      </p>
+      <p>What we do instead:</p>
+      <ul>
+        <li>Read the full specification and what is actually in the box, from the live listing.</li>
+        <li>Compare each product against every direct alternative we cover, not against a vacuum.</li>
+        <li>Weigh the pattern of owner feedback — recurring complaints matter more than single reviews.</li>
+        <li>Apply hands-on soldering knowledge: which tip shapes, wattages and features matter in practice, and which are marketing.</li>
+        <li>Name the weaknesses. Every review lists cons, and every roundup entry carries a "watch out for" line.</li>
+      </ul>
+
+      <h2>What we weigh</h2>
+      <h3>For kits</h3>
+      <ul>
+        <li><strong>Instructions</strong> — the single biggest predictor of whether someone finishes a kit.</li>
+        <li><strong>The finished result</strong> — a gadget worth keeping beats a board you throw away.</li>
+        <li><strong>Technique taught</strong> — through-hole fundamentals, surface-mount practice, or both.</li>
+        <li><strong>Joint count and difficulty</strong> — matched to who the kit is for.</li>
+        <li><strong>What you still have to buy</strong> — most kits do not include an iron or solder.</li>
+      </ul>
+      <h3>For irons, stations and accessories</h3>
+      <ul>
+        <li><strong>Temperature control</strong> — regulated heat is the difference between consistent joints and guesswork.</li>
+        <li><strong>Heat recovery</strong> — wattage matters on big joints; peak temperature rarely does.</li>
+        <li><strong>Tips</strong> — availability, shapes and cost over the life of the tool.</li>
+        <li><strong>What is included</strong> — a cheap station with helping hands and consumables can beat a pricier bare one.</li>
+        <li><strong>Safety</strong> — ESD-safe designs, stands, and fume handling.</li>
+      </ul>
+
+      <h2>How the score works</h2>
+      <p>
+        Every product carries a score out of 10. It is an editorial judgement of how well that
+        product serves <em>the person it is for</em>, not an absolute measure of quality — a budget
+        kit aimed at a first-timer and a professional station are scored against different
+        expectations. Ranked lists are ordered by that score, with our stated award (Best Overall,
+        Best Budget, and so on) explaining the role each product plays.
+      </p>
+      <p>
+        Scores change when the facts change: if a listing drops accessories, a model is revised, or
+        a better alternative arrives, the ranking is updated and the date on the page changes with it.
+      </p>
+
+      <h2>Why there are no prices on the site</h2>
+      <p>
+        Amazon prices move constantly, and a price printed on a review page is wrong almost
+        immediately. Rather than show a stale number, every product links to its current listing.
+        Our price tiers ($, $$, $$$) give you the rough bracket so you can plan a budget.
+      </p>
+
+      <h2>How affiliate links work here</h2>
+      <p>
+        {SITE.name} is funded by affiliate commissions. As an Amazon Associate we earn from
+        qualifying purchases, at no extra cost to you. Commission rates do not vary enough between
+        these products to make any of them worth promoting over another, and rankings are set before
+        links are added. Our <a href="/affiliate-disclosure">affiliate disclosure</a> has the full
+        detail.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If something here is wrong — a specification, a claim about what is in the box, or a product
+        that has changed since we wrote about it — tell us and we will fix it. Accuracy matters more
+        to us than any single recommendation. Use the <a href="/contact">contact page</a>.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

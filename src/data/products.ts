@@ -48,6 +48,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'If you only buy one soldering practice kit, make it this one. The Testudo turns practice joints into three gadgets you will actually keep, and because the board is Arduino-compatible you can reprogram it long after the soldering is done. The tutorials are genuinely beginner-grade, which is what separates a kit people finish from one that ends up in a drawer.',
+    roundupNote:
+      'Ranked first because it solves the problem that ends most soldering attempts: boredom. Three finished gadgets and genuinely beginner-grade tutorials keep people at the bench long enough for the technique to stick.',
+    inTheBox: [
+      'Testudo PCB with an Arduino-compatible microcontroller',
+      'Components for the digital piano, game console and keypad builds',
+      'Step-by-step PDF and video tutorials',
+      'No soldering iron or solder — you supply those',
+    ],
+    firstSteps:
+      'Read the tutorial for your first build all the way through before heating the iron, then lay the components out by value so you are not hunting for parts mid-joint. Solder the lowest-profile parts first — resistors and diodes sit flat and stay put when you flip the board — and leave the microcontroller header until your joints look consistent. Power it up after each section rather than at the very end; finding a dull joint after three components is far easier than after thirty.',
+    alternatives: [
+      {
+        slug: 'elenco-practical-soldering-project-kit',
+        why: 'Costs far less and has the clearest manual of any kit here, if you would rather learn on one simple project than three gadgets.',
+      },
+      {
+        slug: 'pemenol-retro-game-console-soldering-kit',
+        why: 'A better gift for a teenager who mainly wants a playable console at the end, with difficulty levels instead of three separate builds.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does the amomii Testudo come with a soldering iron?',
+        answer:
+          'No. The kit includes the board, the components and the tutorials, but you supply the iron and solder. A temperature-controlled station is the easiest pairing; if you have no tools at all, a complete iron kit covers everything else you need.',
+      },
+      {
+        question: 'Can you reprogram the Testudo after building it?',
+        answer:
+          'Yes — the board is Arduino-compatible, so once the soldering is done you can load your own sketches and change how the piano, console and keypad behave. That is what keeps it useful after the build, unlike kits that do one fixed thing.',
+      },
+      {
+        question: 'Is the Testudo suitable for a complete beginner?',
+        answer:
+          'It is, provided you take the tutorials in order. The joints are through-hole and forgiving, and the guides are written for first-timers. If you have never held an iron, practise a few joints on a scrap board first.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51+IGiK2DFL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -87,6 +124,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Elenco has been the default classroom soldering kit for a reason: the manual is clear, the project works when you finish, and it costs very little. It will not teach you surface-mount work, but for learning to make a clean, reliable through-hole joint there is no safer first purchase.',
+    roundupNote:
+      'The safest first purchase on this page. It has taught soldering in classrooms for years, and the illustrated manual explains not just what to do but why each joint should look the way it does.',
+    inTheBox: [
+      'SP-1A printed circuit board',
+      'All components needed to complete the project',
+      'Illustrated step-by-step assembly and instruction manual',
+      'Iron and solder are not included',
+    ],
+    firstSteps:
+      'Work through the manual in order rather than skipping to the assembly diagram — the early pages explain joint quality, which is the part most beginners get wrong. Bend the component leads before inserting so parts sit flush, solder one joint, then stop and compare it with the manual photo of a good joint. Trim leads only after the solder has cooled, and keep the offcuts: they make excellent material for testing your iron temperature.',
+    alternatives: [
+      {
+        slug: 'amomii-testudo-soldering-practice-kit',
+        why: 'Costs more but finishes as three reprogrammable gadgets, which keeps learners engaged for longer than a single project.',
+      },
+      {
+        slug: 'tingbowie-soldering-practice-kit',
+        why: 'Even cheaper and has no finished device to ruin, so you can solder and desolder the same joints repeatedly.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What do you build with the Elenco SP-1A?',
+        answer:
+          'You assemble a working electronic project from the included board and components while the manual teaches soldering technique step by step. The point is the skill rather than the gadget, which is why it has been a classroom staple for so long.',
+      },
+      {
+        question: 'Is the Elenco kit good for classrooms?',
+        answer:
+          'It is one of the most widely used education kits for exactly that reason: the instructions are clear enough for students to follow with light supervision, the cost per student is low, and every kit teaches the same fundamentals.',
+      },
+      {
+        question: 'Does the Elenco SP-1A teach surface-mount soldering?',
+        answer:
+          'No, it is through-hole only. That is the right place to start, because through-hole joints are far more forgiving. When you are ready for surface-mount work, move to a dedicated SMD practice board.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/512KBowQQ1L.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -126,6 +200,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Once you can make a clean through-hole joint, this is the board that teaches the next skill: placing and reflowing tiny surface-mount parts. It is inexpensive, so you can buy two and not panic about ruining the first. Pair it with a fine tip, good flux, and tweezers.',
+    roundupNote:
+      'The board we point people to the first time they try surface-mount work. The footprints step down in size as you go, and the indicator circuit lights up when you get it right, so you get a pass-or-fail answer on your own joints.',
+    inTheBox: [
+      'EK7028 SMD/SMT practice PCB',
+      'Assorted surface-mount components in several sizes',
+      'Indicator circuit parts so the finished board lights up',
+      'Tweezers, flux and a fine tip are not included',
+    ],
+    firstSteps:
+      'Surface-mount work rewards preparation more than speed. Add flux to the pads, tin one pad only, then hold the part with tweezers and reflow that single joint to tack it in place before soldering the other side. Start with the largest footprints and work down in size — by the time you reach the small parts your hands will have found the right rhythm. If a part shifts, add flux and reflow rather than adding more solder.',
+    alternatives: [
+      {
+        slug: 'dzrcoxi-smd-smt-practice-kit-3-pack',
+        why: 'Three boards instead of one, so you can repeat the same joints until the technique is automatic.',
+      },
+      {
+        slug: 'qlouni-100w-smd-soldering-practice-kit-with-iron',
+        why: 'Includes a digital iron with the boards, which makes it the better buy if you do not own a temperature-controlled iron yet.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What tools do you need for the Gikfun EK7028?',
+        answer:
+          'A fine conical or small chisel tip, fine tweezers, flux and good light are the practical minimum. Surface-mount parts are too small to hold by hand, and without flux the solder will not wet the pads cleanly.',
+      },
+      {
+        question: 'Is SMD soldering too hard for a beginner?',
+        answer:
+          'It is harder than through-hole, but it is a technique rather than a talent. Most people manage the larger footprints on this board in their first session. Learn clean through-hole joints first, then treat this board as the next step up.',
+      },
+      {
+        question: 'How do you know if the Gikfun board is soldered correctly?',
+        answer:
+          'The board includes an indicator circuit, so a correct build lights up when powered. If it does not, the most common causes are a part that is not actually bonded to its pad, a solder bridge between pads, or a component fitted the wrong way round.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/61WCERsPyXL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -165,6 +276,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Skill comes from reps, and this pack gives you three. The components are budget-grade and the instructions are thin, but for the price you get enough practice surface to genuinely improve. Buy it as a companion to a more guided kit.',
+    roundupNote:
+      'Picked purely on repetition value. Skill comes from doing the same joint until it stops being a decision, and three boards for the price of one gives you the reps without a second order.',
+    inTheBox: [
+      'Three SMD/SMT training boards',
+      'Assorted surface-mount components for each board',
+      'Basic assembly instructions',
+      'No iron, flux or tweezers included',
+    ],
+    firstSteps:
+      'Treat the first board as a throwaway. Use it to find the temperature and tip that work for you, and deliberately practise removing parts as well as fitting them — desoldering is the skill that rescues every later mistake. Build the second board carefully, and save the third for a session a week later, when you can see how much of the technique actually stuck.',
+    alternatives: [
+      {
+        slug: 'gikfun-smd-smt-welding-practice-board-ek7028',
+        why: 'A single board with graduated footprints and an indicator circuit that confirms a correct build.',
+      },
+      {
+        slug: 'gikfun-smd-smt-practice-board-ae1173',
+        why: 'The cheapest way to drill surface-mount joints if you only want one more board rather than three.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Are three practice boards worth it?',
+        answer:
+          'For surface-mount work, yes. The first attempt is usually about learning the tool and the second about learning the technique; the third is where joints start to look consistent. Buying a multi-pack removes the temptation to stop after one.',
+      },
+      {
+        question: 'What are the instructions like?',
+        answer:
+          'Basic. The kit is aimed at people who already understand the idea of soldering and want practice surface, not a guided tutorial. Pair it with our beginner guide if you want the technique explained alongside.',
+      },
+      {
+        question: 'Do these boards do anything when finished?',
+        answer:
+          'They are training boards rather than gadgets, so treat the finished result as evidence of technique rather than something to keep. If you want a working device at the end, a project kit is a better fit.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/61ZNeinUdnS.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -204,6 +352,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A barebones board for drilling surface-mount technique on the cheap. There is little hand-holding, so it suits someone who already understands the basics and just wants more reps without spending much.',
+    roundupNote:
+      'The budget option when you simply need more surface-mount reps. No tutorial, no gadget, no frills — just another board of footprints for very little money.',
+    inTheBox: [
+      'AE1173 surface-mount practice PCB',
+      'Assorted SMD components',
+      'Minimal printed instructions',
+      'Tools and consumables not included',
+    ],
+    firstSteps:
+      'Because there is little hand-holding, set your own goal before you start: consistent joints on one component size, then move down. Flux every pad, tack one side of each part first, and check your work under magnification — at these sizes a joint that looks fine to the naked eye can be sitting on the pad rather than bonded to it.',
+    alternatives: [
+      {
+        slug: 'gikfun-smd-smt-welding-practice-board-ek7028',
+        why: 'The better first SMD board: graduated sizes and an indicator circuit that tells you whether the build works.',
+      },
+      {
+        slug: 'dzrcoxi-smd-smt-practice-kit-3-pack',
+        why: 'Three boards for repetition, which is what actually builds surface-mount confidence.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this board suitable as a first SMD kit?',
+        answer:
+          'It works, but the instructions are minimal, so it suits someone who already knows the basics and wants cheap practice surface. A board with graduated footprints and a working indicator circuit is a friendlier introduction.',
+      },
+      {
+        question: 'What magnification do you need?',
+        answer:
+          'A helping-hands magnifier is enough for the larger footprints. For the smallest parts and any fine-pitch work, a head-mounted magnifier or an inexpensive USB microscope makes a noticeable difference to joint quality.',
+      },
+      {
+        question: 'Can you reuse the board after soldering it?',
+        answer:
+          'Partly. You can desolder parts with wick and refit them a few times, which is useful practice in itself, but pads eventually lift with repeated heat. At this price most people simply buy another board.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51GcjGLJmVL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -244,6 +429,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Nothing motivates a young solderer like a console they can actually play afterwards. The three difficulty levels mean it suits a nervous first-timer or a confident teen, and the finished gadget is good enough that it does not get abandoned. A genuinely great gift.',
+    roundupNote:
+      'The kit that gets teenagers to the last joint. Three difficulty levels mean the same box suits a nervous first-timer or a confident builder, and nobody abandons a console they are close to playing.',
+    inTheBox: [
+      'Handheld console PCB and through-hole components',
+      'Display, controls and housing parts for the finished console',
+      'STEM-focused assembly instructions with three difficulty levels',
+      'Iron, solder and batteries not included',
+    ],
+    firstSteps:
+      'Pick the difficulty level honestly — the easiest level still teaches every joint type, and finishing beats struggling. Fit the low components first and save the display and controls for last so nothing blocks your iron. Before closing the housing, power the console and test every button, because a button that does not respond is usually one unsoldered pin and is far easier to reach before assembly.',
+    alternatives: [
+      {
+        slug: 'akeysrc-led-arcade-soldering-kit',
+        why: 'More joints and a dot-matrix arcade with seven games, if you want a longer build with more practice.',
+      },
+      {
+        slug: 'mioyoow-line-following-robot-soldering-kit',
+        why: 'A robot that senses and follows a line, which holds attention longer than a console for a curious kid.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What age is the PEMENOL console kit suitable for?',
+        answer:
+          'It suits teenagers and adults, and younger children with an adult handling or closely supervising the iron. The build is longer than a first-solder kit, so it works best for someone who has soldered at least once before.',
+      },
+      {
+        question: 'How long does the build take?',
+        answer:
+          'Most people spend a couple of unhurried sessions on it. Rushing is the main cause of problems, so treat it as two evenings rather than one and check your work as you go.',
+      },
+      {
+        question: 'What games does it play?',
+        answer:
+          'It builds into a seven-in-one retro handheld — simple classic-style games rather than modern graphics. The appeal is that you soldered the console yourself, which is exactly what keeps learners motivated.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51JlI1PqsqL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -284,6 +506,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A clock is the perfect first project: not too many joints, and a result you will actually use. The acrylic case lifts it above the usual bare-board kit, and the brightness and alarm features make it a real desk gadget once assembled.',
+    roundupNote:
+      'The most practical first project here. A modest joint count, an acrylic case that makes the result look finished, and a clock that ends up on a desk instead of in a drawer.',
+    inTheBox: [
+      '4-digit digital clock PCB and components',
+      'Clear acrylic enclosure with fixings',
+      'Alarm and brightness control parts',
+      'Iron, solder and power supply not included',
+    ],
+    firstSteps:
+      'The display is the part people get wrong, so confirm its orientation against the silkscreen before any solder touches it. Solder resistors and small parts first, then the display, then any buttons. Test the clock before assembling the acrylic case — the panels are easy to fit but tedious to remove if you need to reach a joint underneath.',
+    alternatives: [
+      {
+        slug: 'mioyoow-led-desk-lamp-soldering-kit',
+        why: 'A similarly useful result with fewer joints, if you want a shorter build that still earns desk space.',
+      },
+      {
+        slug: 'diymore-fm-radio-soldering-kit',
+        why: 'A classic first project with a transparent case and an audible payoff rather than a display.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the clock kit good for a first project?',
+        answer:
+          'Yes. The joint count is manageable, the parts are through-hole, and the finished clock is genuinely usable — which matters, because people take more care over something they intend to keep.',
+      },
+      {
+        question: 'What are the instructions like?',
+        answer:
+          'Terse. The board is well marked, so most people manage by following the silkscreen, but if you want your hand held through each step, a kit with a fuller manual is a better first purchase.',
+      },
+      {
+        question: 'Does the clock keep time without power?',
+        answer:
+          'Treat it as a mains or USB-powered desk clock rather than a battery-backed one; check the current listing for the exact power arrangement before ordering if that matters to you.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51FF4o7ESrL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -324,6 +583,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Eighty-one LEDs is a lot of identical joints, and that is exactly the point — consistency comes from repetition. Mind the LED polarity and you will finish with a hypnotic running-light display and noticeably steadier hands.',
+    roundupNote:
+      'Eighty-one nearly identical joints is the entire point. Nothing builds consistent technique faster than repetition, and the running-light effect gives you something to watch at the end of it.',
+    inTheBox: [
+      'LED chaser PCB',
+      '81 LEDs plus supporting components',
+      'Basic assembly instructions',
+      'Iron, solder and power source not included',
+    ],
+    firstSteps:
+      'Check LED polarity once and then set up a rhythm: every LED goes in the same way round, so a single system — long leg toward the marked pad, every time — prevents the one mistake this kit punishes. Solder in rows of ten and inspect each row before moving on. If the chase pattern skips a position later, the fault is almost always that one LED reversed or one dull joint in that row.',
+    alternatives: [
+      {
+        slug: 'akeysrc-led-arcade-soldering-kit',
+        why: 'Also LED-heavy, but the finished board is a playable arcade rather than a light display.',
+      },
+      {
+        slug: 'tingbowie-soldering-practice-kit',
+        why: 'Cheaper repetition if you only want joint practice and do not need a finished effect.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 81 LEDs too many for a beginner?',
+        answer:
+          'No — it is repetitive rather than difficult, and repetition is exactly what turns a shaky joint into a reliable one. Break it into sessions rather than trying to finish in one sitting.',
+      },
+      {
+        question: 'What happens if one LED is backwards?',
+        answer:
+          'That position stays dark and the chase appears to skip it. Desolder the LED with wick or a pump, turn it round and reflow the joints; catching it early with row-by-row testing saves a lot of hunting.',
+      },
+      {
+        question: 'Does it need programming?',
+        answer:
+          'No. The running-light pattern is built into the circuit, so it works as soon as the board is correctly assembled and powered.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51IGIe6pyWL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -364,6 +660,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'There is a particular thrill the moment your soldered radio crackles into a real station. With a proper speaker and a case to house it, this kit produces a result you can use, and the tuning section adds a slightly more advanced challenge than a plain LED board.',
+    roundupNote:
+      'Hearing a real station come out of a board you soldered is a genuinely memorable first payoff, and the 2-inch speaker and case make this one feel like a product rather than a project.',
+    inTheBox: [
+      'FM radio PCB and components',
+      '2-inch speaker',
+      'Acrylic case with fixings',
+      'Iron, solder and power source not included',
+    ],
+    firstSteps:
+      'Radio boards are sensitive to sloppy joints around the tuning section, so keep your iron time short and your joints neat there. Fit the speaker wires last and give them a little slack before closing the case. When you power it up, expect to hunt for stations — a weak signal is usually the aerial arrangement rather than a soldering fault.',
+    alternatives: [
+      {
+        slug: 'diymore-fm-radio-soldering-kit',
+        why: 'A cheaper FM build with a digital display and transparent case, if you want the same payoff for less.',
+      },
+      {
+        slug: 'muxwell-bluetooth-speaker-soldering-kit',
+        why: 'Costs more but adds Bluetooth and USB playback, so the finished unit gets used far more often.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this a good STEM classroom project?',
+        answer:
+          'It works well for high-school groups: the build teaches ordinary through-hole technique, and the audible result makes it obvious to everyone in the room whether a board works.',
+      },
+      {
+        question: 'How good is the sound?',
+        answer:
+          'It is a small mono speaker in a plastic case, so expect clear speech and listenable music rather than hi-fi. The appeal is that it works at all from a board you assembled.',
+      },
+      {
+        question: 'What if it does not pick up stations?',
+        answer:
+          'Check the aerial connection first, then reflow the joints around the tuning components. Poor reception indoors is common; moving near a window is often enough to confirm the radio itself is fine.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41f-ZKGaUCL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -404,6 +737,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Most failed first attempts at soldering come down to a bad iron, not bad hands. A temperature-controlled station like the YIHUA 926 III removes that variable, and because it ships with tips, helping hands, and consumables, it is genuinely all you need to pair with any practice kit on this page.',
+    roundupNote:
+      'Our default recommendation for a first bench because of what arrives with it: helping hands, six tips, solder, a sucker and tweezers mean you can start the day it lands instead of placing a second order.',
+    inTheBox: [
+      '60W temperature-controlled station with digital display',
+      'Six spare iron tips',
+      'Two helping-hands holders',
+      'Lead-free solder, desoldering pump and tweezers',
+    ],
+    firstSteps:
+      'Calibrate expectations before you calibrate the station: set 315–340°C for leaded solder, tin the tip as soon as it reaches temperature, and leave the brass wool or sponge within reach. Fit the medium chisel tip rather than the fine conical one for general work — beginners usually blame the station when the real problem is a tip too small to move heat. Switch auto-sleep on so the tip is not idling hot between joints.',
+    alternatives: [
+      {
+        slug: 'crtsweker-100w-digital-soldering-station-kit',
+        why: 'More wattage and a similar accessory bundle for less money, if brand track record matters less to you.',
+      },
+      {
+        slug: 'hakko-fx888dx-digital-soldering-station',
+        why: 'Costs considerably more and comes with fewer extras, but it is the station people keep for a decade.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the YIHUA 926 III good for beginners?',
+        answer:
+          'It is our top beginner pick. Stable regulated heat removes the most common cause of bad joints, and because the kit bundles helping hands and consumables, nothing essential is missing on day one.',
+      },
+      {
+        question: 'What temperature should I set on the YIHUA 926 III?',
+        answer:
+          'Start at 315–340°C for leaded solder or 350–370°C for lead-free, and only raise it if the joint takes more than two or three seconds. Higher settings burn flux and shorten tip life rather than speeding you up.',
+      },
+      {
+        question: 'Can you replace the tips?',
+        answer:
+          'Yes, and six spares come in the box. Keep a medium chisel tip for general through-hole work and a fine tip for small parts; swapping tips solves more heat problems than turning up the temperature.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/518z061SWZL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -444,6 +814,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'When the soldering has to happen somewhere other than your bench, a cordless iron earns its keep. The Fanttik T1 Max heats almost instantly and its C210 tips are great for fine work; just keep an eye on battery life for longer builds.',
+    roundupNote:
+      'The most refined cordless iron here. You pay for build quality and a genuinely pocketable design rather than headline specifications.',
+    inTheBox: [
+      'T1 Max cordless soldering iron',
+      'Four C210 precision tips',
+      '360° swivel stand',
+      'USB charging cable and case (check the current listing)',
+    ],
+    firstSteps:
+      'The C210 tips are made for fine work, so match the job to the tool: connectors, small pads and repairs rather than heavy cable. Let it reach temperature on the stand before the first joint, and use auto-sleep rather than switching it off between joints — it wakes quickly and the battery lasts longer than repeated full heat-ups.',
+    alternatives: [
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'A clearer display and more temperature levels for less money, if value beats finish for you.',
+      },
+      {
+        slug: 'hoto-snapbloq-cordless-soldering-iron-kit',
+        why: 'Another design-led cordless kit, part of a modular tool range if you like the ecosystem idea.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How fast does the Fanttik T1 Max heat up?',
+        answer:
+          'It reaches working temperature in seconds, which is typical of current battery irons and one of the reasons cordless tools have become genuinely practical for repairs.',
+      },
+      {
+        question: 'Are C210 tips a good choice?',
+        answer:
+          'They are precision tips aimed at fine electronics, so they excel on small joints and are less suited to thick wires. Four come in the box, covering most detailed work.',
+      },
+      {
+        question: 'Is it suitable as a first iron?',
+        answer:
+          'It can be, if most of your soldering is small repairs away from a desk. For learning at a bench, a mains station holds heat more steadily and never interrupts you with a flat battery.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41ZVMABuiWL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -484,6 +891,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Not everyone wants to spend station money before they know they enjoy soldering. This kit gets you a working, adjustable iron and the basic accessories for very little. Outgrow it and step up to a proper station — but as a toe in the water, it does the job.',
+    roundupNote:
+      'A no-pressure entry point: an adjustable iron with five tips and a handful of accessories, for people who are not yet sure the hobby will stick.',
+    inTheBox: [
+      '60W adjustable-temperature iron, 110V',
+      'Five interchangeable tips',
+      '10-in-1 accessory bundle',
+      'Solder and practice board not included',
+    ],
+    firstSteps:
+      'Adjustable is not the same as regulated, so give the iron a minute to settle after changing the dial and judge by how the solder flows. Tin the tip as soon as it is hot and re-tin before putting it down. Keep sessions short at first — without closed-loop control the tip runs hotter at idle than you might expect.',
+    alternatives: [
+      {
+        slug: 'meakest-60w-soldering-iron-premium-kit',
+        why: 'Similar price with solder, flux paste and a pump included, so there is less left to buy.',
+      },
+      {
+        slug: 'plusivo-60w-digital-soldering-iron-kit',
+        why: 'A digital display for a little more, which makes temperature something you set rather than estimate.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between adjustable and temperature-controlled?',
+        answer:
+          'An adjustable iron changes the power going into the element; a temperature-controlled iron measures the tip and holds a set figure. The second is far more consistent, which is why stations produce more reliable joints.',
+      },
+      {
+        question: 'Is this enough for a practice kit?',
+        answer:
+          'Yes, for through-hole practice boards and simple project kits. Fine surface-mount work is where the lack of proper regulation starts to show.',
+      },
+      {
+        question: 'What should I buy alongside it?',
+        answer:
+          'Thin rosin-core solder, a brass-wool tip cleaner and something to solder. A practice board costs very little and saves you learning on a project you care about.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41rapiHruXL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -525,6 +969,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'If a gadget kit feels like too much pressure for a first attempt, this is the gentler route. It is just a board and parts, but that is the point — you can solder, desolder and resolder the same joints until they look right, without worrying about breaking a finished product.',
+    roundupNote:
+      'Included for people who find gadget kits intimidating. There is nothing to break and nothing to finish, which makes it the lowest-pressure way to make your first hundred joints.',
+    inTheBox: [
+      'Through-hole practice PCB',
+      'Assorted resistors, LEDs and header pins',
+      'Basic assembly sheet',
+      'No iron or solder included',
+    ],
+    firstSteps:
+      'Use this board as a laboratory rather than a project. Solder ten joints, then cut them off and do them again; deliberately make one joint too cold and one too hot so you can recognise both on sight later. Practise fitting header pins straight, because crooked headers are the most common cosmetic mistake on real boards.',
+    alternatives: [
+      {
+        slug: 'elenco-practical-soldering-project-kit',
+        why: 'Similar price, but you finish with a working device and a much better manual.',
+      },
+      {
+        slug: 'mioyoow-car-driving-simulator-soldering-kit',
+        why: 'Adds a simple playable result for a small extra outlay, which helps if motivation is the problem.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does this kit build anything?',
+        answer:
+          'No — it is a bare trainer. That is the point: there is no finished gadget to ruin, so you can concentrate entirely on what a good joint looks and feels like.',
+      },
+      {
+        question: 'How many joints can you practise on one board?',
+        answer:
+          'Enough for a full first session, and you can extend it by desoldering and refitting the same components. Each cycle of solder, remove and resolder teaches you as much as the original joint.',
+      },
+      {
+        question: 'Is this enough to learn soldering on its own?',
+        answer:
+          'It will teach you the mechanics. Pair it with a guide that explains joint quality and temperature, and you will get far more from the board than by working through it blind.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51ynuTvs3bL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -565,6 +1046,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A nice middle ground: more rewarding than a blank trainer, less daunting than a full console kit. The driving game is basic, but having something that actually does something at the end is exactly what keeps a nervous beginner soldering to the last joint.',
+    roundupNote:
+      'A middle ground between a blank trainer and a full gadget kit: enough joints to be real practice, and a small playable game at the end that gives students a reason to finish.',
+    inTheBox: [
+      'Driving simulator PCB',
+      'Through-hole components for the build',
+      'Assembly diagram',
+      'Iron, solder and batteries not included',
+    ],
+    firstSteps:
+      'Sort the components against the parts list before starting — student kits often arrive with parts loose in one bag. Fit and solder the passive components first, keep the LEDs and any polarised parts until you have double-checked their orientation on the silkscreen, and test the game before trimming every lead flush, in case a joint needs reworking.',
+    alternatives: [
+      {
+        slug: 'vogurtime-diy-piano-soldering-kit',
+        why: 'Similar difficulty and price, but the payoff is a playable mini piano rather than a driving game.',
+      },
+      {
+        slug: 'tingbowie-soldering-practice-kit',
+        why: 'Cheaper and lower pressure if you would rather drill joints than build a working game.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Who is this kit aimed at?',
+        answer:
+          'High-school and college students, and anyone who wants soldering practice with a small reward at the end. The joint count is modest and the layout is clear enough to follow without deep electronics knowledge.',
+      },
+      {
+        question: 'How complicated is the game?',
+        answer:
+          'Very simple — it is a novelty rather than a console. Its value is motivational: a board that does something when powered is far more likely to get finished than a bare trainer.',
+      },
+      {
+        question: 'What else do you need to complete it?',
+        answer:
+          'A temperature-controlled iron, thin rosin-core solder and side cutters for trimming leads. A helping-hands holder is worth having, because the board moves while you work if nothing is holding it.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51cl55wBt7L.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -605,6 +1123,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Once clean through-hole joints feel easy, this is a brilliant next challenge. The denser board and real sensor push your technique while teaching genuine electronics — the kind of project that turns a beginner into someone who actually understands what they are building.',
+    roundupNote:
+      'The pick for improvers. The denser board and real TCS34725 sensor force tidier joints than a blinking-LED kit, and you come away understanding how colour is actually measured.',
+    inTheBox: [
+      'Colour recognition PCB with TCS34725 sensor',
+      '1.69-inch TFT display module',
+      'Supporting components for the four learning modes',
+      'Iron, solder and tools not included',
+    ],
+    firstSteps:
+      'Check the display and sensor orientation twice before soldering — both are awkward to remove once fitted. Solder the low-profile passives first, then the headers, and only then the modules, so the board sits flat while you work. Keep the iron time short around the sensor and give it a moment to cool between adjacent pins.',
+    alternatives: [
+      {
+        slug: 'amomii-testudo-soldering-practice-kit',
+        why: 'More guidance and three separate builds, which suits someone who is still learning rather than improving.',
+      },
+      {
+        slug: 'gikfun-smd-smt-welding-practice-board-ek7028',
+        why: 'A cheaper way to practise fine joints if you want technique drill rather than a finished instrument.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this a good first soldering kit?',
+        answer:
+          'It is better as a second or third. The joints are tighter than on a beginner board and the modules are worth protecting, so it rewards someone who can already make a clean joint without thinking about it.',
+      },
+      {
+        question: 'What does the finished kit actually do?',
+        answer:
+          'It reads colour with the TCS34725 sensor and shows the result on the TFT display across four modes, which is a practical way to see how RGB and HSV values relate to what your eye sees.',
+      },
+      {
+        question: 'Does it need programming?',
+        answer:
+          'No — the modes are built in, so it works once assembled. The electronics are interesting enough that people often go on to experiment with the sensor in their own projects afterwards.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/518M1mf-BvL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -647,6 +1202,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'One of the most rewarding kits on the list because the result is something you genuinely use. Bluetooth, USB and FM in a case you soldered yourself is a real confidence builder — and a far better motivator than a board that just lights up.',
+    roundupNote:
+      'The build with the most useful end product on this page. Bluetooth, USB playback and FM in an enclosure you assembled yourself is a gadget people actually keep using after the soldering is done.',
+    inTheBox: [
+      'Bluetooth, USB and FM receiver PCB',
+      'Speaker and audio components',
+      'Enclosure parts and fixings',
+      'Iron, solder and power source not included',
+    ],
+    firstSteps:
+      'This has more joints than a beginner blinky kit, so work in stages and test between them. Complete the power section first and confirm the board powers up before adding the audio stages; that way a fault is isolated to the handful of joints you just made. Keep the speaker leads tidy inside the enclosure so they do not rattle against the driver.',
+    alternatives: [
+      {
+        slug: 'lepanda-fm-radio-soldering-kit',
+        why: 'Cheaper and simpler if you only want radio and a speaker rather than Bluetooth and USB playback.',
+      },
+      {
+        slug: 'pemenol-retro-game-console-soldering-kit',
+        why: 'A similar step up in build length, but the payoff is a playable console instead of audio.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the MUXWELL kit suitable for beginners?',
+        answer:
+          'It is best as a second or third build. The joints themselves are ordinary through-hole work, but there are enough of them that a first-timer can lose track. Someone comfortable with a practice board will be fine.',
+      },
+      {
+        question: 'Does it come with the enclosure?',
+        answer:
+          'Yes — the kit includes the case as well as the PCB and components, which is why the finished speaker looks like a product rather than a bare board.',
+      },
+      {
+        question: 'What powers the finished speaker?',
+        answer:
+          'Check the current listing for the exact power and battery arrangement, as sellers revise these kits. Plan for a USB supply on the bench while you test it before final assembly.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41x4ORinbIL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -687,6 +1279,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A radio is the quintessential first soldering project for good reason: enough components to teach you something, a clear payoff when it powers on, and a transparent case that lets you admire (or critique) every joint. A reliable, low-stress choice.',
+    roundupNote:
+      'A classic first project done cheaply: a working FM radio with a digital display, in a clear case that puts your own joints on show.',
+    inTheBox: [
+      'FM radio receiver PCB and components',
+      'Speaker and digital tuning display',
+      'Transparent case',
+      'Iron, solder and power source not included',
+    ],
+    firstSteps:
+      'Because the case is transparent, joint appearance matters more than usual — keep solder volumes small and trim leads flush. Solder the display module last so the board stays flat while you work on everything else, and test tuning before you screw the case together.',
+    alternatives: [
+      {
+        slug: 'lepanda-fm-radio-soldering-kit',
+        why: 'A larger 2-inch speaker and acrylic case, if you want better sound from the finished radio.',
+      },
+      {
+        slug: 'mioyoow-diy-digital-clock-soldering-kit',
+        why: 'A similar price and difficulty, with a desk clock instead of a radio as the result.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this kit beginner-friendly?',
+        answer:
+          'Yes. The layout is forgiving through-hole work and the component count is modest, which makes it one of the easier ways to finish with a device that does something.',
+      },
+      {
+        question: 'Does it receive DAB or only FM?',
+        answer:
+          'FM only. If you want digital radio or Bluetooth, a Bluetooth speaker kit is the better build.',
+      },
+      {
+        question: 'Why does the transparent case matter?',
+        answer:
+          'Beyond looking good, it keeps your work visible — which is quietly motivating, because tidy joints stay on display instead of disappearing inside a plastic box.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51L-xvzc6rL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -727,6 +1356,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A musical payoff is a great motivator, and this little piano delivers one cheaply. The sound is no concert grand, but pressing a key you wired yourself and hearing a note come out is exactly the kind of small win that turns a one-off attempt into a hobby.',
+    roundupNote:
+      'Cheap, quick and musical. Pressing a key you wired yourself and hearing a note is the kind of small win that turns a one-off attempt into a hobby.',
+    inTheBox: [
+      'Electronic piano PCB and components',
+      'Key contacts and sounder',
+      'Basic assembly instructions',
+      'Iron, solder and batteries not included',
+    ],
+    firstSteps:
+      'Solder the resistors and small components first, then the key contacts, keeping each one flat against the board — a key that sits proud feels unresponsive later. Test the tones before final assembly. If one key is silent, the fault is nearly always that key contact rather than the sound circuit.',
+    alternatives: [
+      {
+        slug: 'mioyoow-car-driving-simulator-soldering-kit',
+        why: 'Similar price and difficulty if you would rather finish with a small game than an instrument.',
+      },
+      {
+        slug: 'akeysrc-led-arcade-soldering-kit',
+        why: 'A longer, more rewarding build for someone who wants more practice and a playable arcade.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the piano kit good for children?',
+        answer:
+          'With an adult on the iron, yes — the build is short and the musical result holds a child\'s attention. For a first solder with very few joints, a Jitterbug-style kit is simpler still.',
+      },
+      {
+        question: 'How good does it sound?',
+        answer:
+          'Basic — simple tones from a small sounder rather than musical quality. The point is the connection between a joint you made and a note you hear.',
+      },
+      {
+        question: 'What do you need besides the kit?',
+        answer:
+          'A temperature-controlled iron, thin rosin-core solder, side cutters and batteries. A helping-hands holder makes the key contacts easier to fit squarely.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51A-vtBDITL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -767,6 +1433,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The dot-matrix arcade hits the sweet spot of practice and payoff: enough LEDs to genuinely build your technique, and a console you actually want to play afterward. A strong gift pick for a teen who likes games and is curious about how they work.',
+    roundupNote:
+      'The best balance of practice and payoff for a teenager: a long run of LED joints that genuinely builds technique, and a seven-game arcade to play once the last one is done.',
+    inTheBox: [
+      'LED dot-matrix arcade PCB',
+      'Dot-matrix display and control components',
+      'USB power connection',
+      'Iron, solder and tools not included',
+    ],
+    firstSteps:
+      'Work in sections and power the board over USB between them rather than saving all the testing for the end. Dot-matrix displays are unforgiving about orientation, so check the marked pin against the silkscreen before soldering more than two pins. If a column or row is dead later, look for a single unsoldered or bridged pin on the display header.',
+    alternatives: [
+      {
+        slug: 'pemenol-retro-game-console-soldering-kit',
+        why: 'A shorter build with adjustable difficulty, better suited to someone soldering for the first time.',
+      },
+      {
+        slug: 'gikfun-led-chaser-soldering-kit',
+        why: 'Cheaper LED repetition if you want the practice without the game at the end.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How long does this kit take to build?',
+        answer:
+          'Longer than a beginner kit — there are a lot of joints. Most people split it across two sessions, which also makes it easier to test in stages rather than debugging a finished board.',
+      },
+      {
+        question: 'Does it need batteries?',
+        answer:
+          'No, it runs from USB power, which removes the battery hassle and makes it easy to test partway through the build.',
+      },
+      {
+        question: 'Is it suitable for kids?',
+        answer:
+          'For older children with supervision, yes. The joints are ordinary through-hole work, but the length of the build means younger makers may need it split across sittings.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51Eisz71cJL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -807,6 +1510,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Usefulness is underrated as a motivator. A lamp you built yourself and keep on the desk is a daily reminder that you can solder — and that quiet confidence is worth more than another blinking board destined for a drawer.',
+    roundupNote:
+      'Chosen because usefulness is underrated as a motivator. A rechargeable lamp you built yourself sits on the desk as a daily reminder that you can solder.',
+    inTheBox: [
+      'LED gooseneck lamp PCB and components',
+      'Gooseneck and base parts',
+      'USB charging circuitry',
+      'Iron and solder not included',
+    ],
+    firstSteps:
+      'Fit the electronics before any mechanical assembly, and test the lamp on USB power while the board is still accessible. Keep solder away from the gooseneck fixing points so the mechanical parts still seat properly, and check the brightness control works through its full range before final assembly.',
+    alternatives: [
+      {
+        slug: 'mioyoow-diy-digital-clock-soldering-kit',
+        why: 'Another genuinely useful desk gadget, with a slightly longer build and an alarm function.',
+      },
+      {
+        slug: 'vogurtime-diy-piano-soldering-kit',
+        why: 'Cheaper and quicker, if you want a fun result rather than a practical one.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How many joints does this kit involve?',
+        answer:
+          'Fewer than a console or arcade build, which makes it a good short project — an evening rather than a weekend — while still teaching proper through-hole technique.',
+      },
+      {
+        question: 'Is the finished lamp actually usable?',
+        answer:
+          'Yes, that is the appeal: a rechargeable gooseneck lamp with adjustable brightness. The gooseneck is lightweight, so treat it as a desk lamp rather than a workshop light.',
+      },
+      {
+        question: 'Is it a good kit for a student?',
+        answer:
+          'It suits students well — low cost, a manageable build, and a result that earns space in a dorm room or on a study desk.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41FdoL5sO4L.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -847,6 +1587,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Some kits earn their place by being beautiful rather than useful. The rotating, glowing globe is a genuine showpiece — the kind of finished build people pick up and ask about, which makes it a memorable gift and a strong motivator to get every joint right.',
+    roundupNote:
+      'The showpiece build. Moving parts and lighting make it the kit people pick up and ask about, which is exactly what you want from a gift.',
+    inTheBox: [
+      'Rotating globe kit with LED lighting',
+      'Motor and music circuitry',
+      'Brightness and speed controls',
+      'Iron, solder and power source not included',
+    ],
+    firstSteps:
+      'Mechanical kits punish rushed assembly, so dry-fit the moving parts before soldering anything permanent. Solder the electronics first and test the motor and lights on the bench; a globe that wobbles usually needs the mechanical fit corrected rather than the circuit reworked. Keep the wiring to the motor tidy so nothing catches as it turns.',
+    alternatives: [
+      {
+        slug: 'mioyoow-line-following-robot-soldering-kit',
+        why: 'Also has moving parts, but teaches sensors and motor control rather than being purely decorative.',
+      },
+      {
+        slug: 'akeysrc-led-arcade-soldering-kit',
+        why: 'A similar price with a playable result, if you want the recipient to keep using it rather than display it.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this kit decorative or educational?',
+        answer:
+          'Mostly decorative. You learn the same through-hole technique as any kit, but the payoff is a display piece rather than a tool or a game — which makes it a strong gift build.',
+      },
+      {
+        question: 'Can you adjust the lighting and speed?',
+        answer:
+          'Yes, brightness and rotation speed are both adjustable, and the kit includes built-in music. Test all three before final assembly while the board is still easy to reach.',
+      },
+      {
+        question: 'What age is it suitable for?',
+        answer:
+          'Teenagers and adults. The moving parts need careful assembly, so younger children will want help with the mechanical stage as well as the iron.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51XwGGdAgzL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -887,6 +1664,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'If you are teaching a child to solder, start here. The Jitterbug has been the go-to first kit at maker workshops for years because it works: a few big, forgiving joints, then it buzzes to life and runs across the table. Nothing builds a kid’s confidence faster. Adult supervision with the hot iron is a must.',
+    roundupNote:
+      'The workshop staple for a first-ever solder. A handful of large joints, a battery in the box, and a bug that buzzes across the table within one sitting.',
+    inTheBox: [
+      'Jitterbug PCB with vibration motor',
+      'Battery included',
+      'Legs and small hardware',
+      'Iron and solder not included',
+    ],
+    firstSteps:
+      'This is the kit to hand a child, so set the bench up first: iron in a stand, board held in a clamp or helping hands, and an adult on the hot end. Solder the battery contacts and motor leads with a big enough tip that each joint takes two seconds rather than ten. Test on a smooth table — carpet stops the bug moving and looks like a fault.',
+    alternatives: [
+      {
+        slug: 'mioyoow-line-following-robot-soldering-kit',
+        why: 'The natural next step once a child has one successful build behind them, with sensors and a robot that follows a line.',
+      },
+      {
+        slug: 'vogurtime-diy-piano-soldering-kit',
+        why: 'Also short and cheap, with a musical result instead of a moving one.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What age can a child build the Jitterbug?',
+        answer:
+          'With close adult supervision of the iron, many children manage it from around eight. The joint count is tiny and the pads are large, which is exactly why workshops have used it for years.',
+      },
+      {
+        question: 'Does it include a battery?',
+        answer:
+          'Yes — the battery is in the box, so the bug can run the moment the last joint cools. That immediacy is a large part of why it works so well as a first project.',
+      },
+      {
+        question: 'Will an older child find it too simple?',
+        answer:
+          'Probably. It is deliberately minimal. For a ten-year-old and up, a line-following robot or a console kit gives far more to do.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/411UnO-oQ3L.jpg',
     imageWidth: 400,
     imageHeight: 500,
@@ -927,6 +1741,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A robot that follows a line is pure magic to a curious kid — and the fact that they soldered it themselves makes it stick. It is a step more involved than a buzzing bug, so it suits slightly older children, but the payoff in engagement and learning is hard to beat.',
+    roundupNote:
+      'Picked for lasting play value. A robot that follows a drawn line invites new tracks long after the soldering is finished, which keeps a curious child coming back to it.',
+    inTheBox: [
+      'Line-following robot car PCB and chassis parts',
+      'Line sensors and DC motors',
+      'Wheels and hardware',
+      'Iron, solder and batteries not included',
+    ],
+    firstSteps:
+      'Solder the sensor components carefully and at the specified height — sensors that sit too far from the floor read the line poorly, which looks like a circuit fault but is a mechanical one. Test the motors before fitting the wheels, and if the car veers off the line, check sensor spacing and the line width before suspecting your joints. Draw the first track with a thick black marker on white paper.',
+    alternatives: [
+      {
+        slug: 'learn-to-solder-jitterbug-kit',
+        why: 'Far fewer joints, so it is the better choice for a younger child or a genuine first solder.',
+      },
+      {
+        slug: 'pemenol-retro-game-console-soldering-kit',
+        why: 'A playable console instead of a robot, for a teenager more interested in games than mechanics.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How does a line-following robot work?',
+        answer:
+          'Infrared sensors underneath look for the contrast between a dark line and a light surface, and the circuit steers the motors to keep the line centred. Building one is a tidy introduction to sensors and motor control.',
+      },
+      {
+        question: 'What age is this kit for?',
+        answer:
+          'Around ten and up with supervision, or younger alongside an adult. It is a step up from a buzzing-bug kit in both joint count and assembly.',
+      },
+      {
+        question: 'Why does the car not follow the line?',
+        answer:
+          'Usually the surface or the line itself: a thin, faint or glossy line confuses the sensors. Use a wide matte black line on white paper, then check sensor height and motor wiring before reworking joints.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41se1JnhstL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -969,6 +1820,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Cordless irons used to be a compromise; this one mostly is not. The fast heat-up and clear temperature readout make it a genuinely capable tool for repairs and small projects, and the freedom from a cable is more liberating than it sounds. For heavy bench work a mains station still wins, but as a grab-and-go iron it is excellent.',
+    roundupNote:
+      'The cordless iron we recommend first. A 2600mAh battery, three-second heat-up and a colour display mean it behaves like a proper iron rather than a compromise you tolerate for portability.',
+    inTheBox: [
+      'HS-03 cordless soldering iron with 2600mAh battery',
+      'Soldering tip fitted',
+      'USB charging cable',
+      'Storage case and accessories (check the current listing)',
+    ],
+    firstSteps:
+      'Charge it fully before the first session, then set a level rather than defaulting to the maximum — battery irons drain far faster at high temperatures. Use it for what it is good at: connectors, small joints and repairs away from the bench. If it struggles on a thick wire, that is the battery format rather than a fault, and a mains iron is the right tool for that joint.',
+    alternatives: [
+      {
+        slug: 'fanttik-t1-max-cordless-soldering-iron',
+        why: 'A more premium, pocketable build with C210 precision tips, if finish matters more than the display.',
+      },
+      {
+        slug: 'pinecil-smart-mini-portable-soldering-iron',
+        why: 'Cheaper and smaller, and runs from any capable USB-C power bank instead of an internal battery.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How long does the FNIRSI HS-03 battery last?',
+        answer:
+          'Enough for a repair session or a short build rather than a full evening at the bench, and it drains faster at higher temperature settings. Use a moderate level and let auto-sleep work between joints.',
+      },
+      {
+        question: 'Can you use the HS-03 while charging?',
+        answer:
+          'Charging over USB while working is the usual way people extend a session. Check the current listing for the exact charging behaviour, since revisions differ.',
+      },
+      {
+        question: 'Is the HS-03 powerful enough as an only iron?',
+        answer:
+          'For light electronics, repairs and practice kits it is fine. If you plan long bench sessions or heavy joints, keep a mains station as the main iron and use this one for portability.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51Nbu2U06OL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1009,6 +1897,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A smart pencil iron like this blurs the line with a full station: the integrated display and presets give you proper temperature control, and 100W means it does not sag when you hit a big ground plane. With six tips and a case included, it is a complete, capable kit for anyone past the absolute-beginner stage.',
+    roundupNote:
+      'The compact iron that behaves like a station. 100W of mains power with presets and a display, in a pen that takes up almost no bench space.',
+    inTheBox: [
+      '100W corded smart soldering iron',
+      'Six F245 interchangeable tips',
+      'Stand and storage case',
+      'Solder not included',
+    ],
+    firstSteps:
+      'Set your three presets deliberately — one for fine work, one for general through-hole and one for heavy joints — so you can move between jobs without menu fiddling. Fit the tip shape to the joint rather than raising the temperature; with 100W behind it, a chisel tip at a moderate setting handles far more than a fine tip run hot.',
+    alternatives: [
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'The cordless sibling, for repairs away from an outlet at the cost of sustained power.',
+      },
+      {
+        slug: 'hakko-fx888dx-digital-soldering-station',
+        why: 'A full bench station with a far wider tip range, if desk space is not the constraint.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the FNIRSI HS-02A better than a soldering station?',
+        answer:
+          'It is a different shape rather than a lesser tool: 100W with proper regulation in a compact pen. A station offers a sturdier stand, a wider tip range and often more accessories, but for a small desk this gives you station-class heat in far less space.',
+      },
+      {
+        question: 'What tips does the HS-02A use?',
+        answer:
+          'F245-style tips, with six included. That covers most jobs out of the box, which is unusual at this price and part of why the kit represents good value.',
+      },
+      {
+        question: 'Does it need a separate power supply?',
+        answer:
+          'No — it is mains powered, so it heats fast and holds temperature indefinitely. That is its main advantage over battery irons like the HS-03.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41LqndmUpuL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1048,6 +1973,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'This is the iron people buy once and keep for a decade. Weller has been the reference brand on professional and educational benches for generations, and the WE1010NA brings that reliability to a hobbyist desk with precise digital control and an ESD-safe build. It costs more than the budget and mid-range picks on this page, but if you have outgrown a starter iron and want something that will not need replacing, this is the upgrade.',
+    roundupNote:
+      'Here for buyers who want the brand that repair benches and classrooms have trusted for decades. You pay for ESD-safe build quality and longevity rather than a box full of accessories.',
+    inTheBox: [
+      '70W digital soldering station with WEP 70 iron',
+      'Safety iron stand with sponge',
+      'Starter tip fitted',
+      'Solder and accessories not included',
+    ],
+    firstSteps:
+      'Set the temperature for the solder you use rather than the maximum the station allows, and keep the supplied sponge damp rather than wet. Because the accessory bundle is minimal, order thin rosin-core solder, brass wool and a tip or two alongside it. If you work on modern electronics, pair the ESD-safe station with a grounded mat so the protection is not undone at the bench surface.',
+    alternatives: [
+      {
+        slug: 'hakko-fx888dx-digital-soldering-station',
+        why: 'The other buy-once station, with a wider tip range and quick dial control instead of button entry.',
+      },
+      {
+        slug: 'yihua-926-iii-soldering-station',
+        why: 'A fraction of the price with far more in the box, and enough for most hobby soldering.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the Weller WE1010NA worth the money?',
+        answer:
+          'If you solder often, yes — you are buying reliability over years rather than a feature the cheap stations lack. For occasional hobby use, a well-reviewed budget station performs similarly for much less.',
+      },
+      {
+        question: 'Does the WE1010NA come with extra tips?',
+        answer:
+          'It ships as a compact station-and-iron kit with a stand rather than a loaded accessory bundle, so plan to buy the tip shapes you need separately.',
+      },
+      {
+        question: 'What does ESD-safe mean on this station?',
+        answer:
+          'It means the iron and station are designed to avoid static discharge that can damage sensitive components. It matters for board-level repair work, especially combined with a grounded mat or wrist strap.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41yRK+nzODL.jpg',
     imageWidth: 500,
     imageHeight: 362,
@@ -1090,6 +2052,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Flux fumes are the one soldering hazard beginners most often ignore. A basic absorber like this will not replace real ventilation, but it pulls the smoke away from your face for next to nothing — and that makes it one of the easiest, smartest accessories to add to any bench.',
+    roundupNote:
+      'The cheapest meaningful health upgrade a bench can get. Solder smoke is vaporised flux, and this pulls it away from your face for the price of a tip set.',
+    inTheBox: [
+      'Desktop fume extractor fan',
+      'Activated-carbon filter fitted',
+      'Power lead',
+      'Replacement filters sold separately',
+    ],
+    firstSteps:
+      'Position matters more than power: place the fan on the far side of the board so smoke is drawn away from you, roughly level with the joint rather than above it. Switch it on before the iron, not after. Check the carbon filter every few months and replace it when it darkens — a clogged filter moves air without cleaning it.',
+    alternatives: [
+      {
+        slug: 'kaisiking-helping-hands-magnifier',
+        why: 'The other bench upgrade beginners notice immediately, if ventilation is already handled by an open window.',
+      },
+      {
+        slug: 'hgmzzq-60-40-rosin-core-solder',
+        why: 'Better solder reduces how long you hold heat on a joint, which is the other way to cut fume exposure.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do solder fumes actually need extracting?',
+        answer:
+          'The smoke is vaporised flux rather than lead, and it is a respiratory irritant you should not breathe. A carbon-filter fan plus an open window is the sensible minimum for indoor soldering.',
+      },
+      {
+        question: 'Is a carbon filter as good as ducted extraction?',
+        answer:
+          'No. A carbon filter absorbs some of what passes through it and moves the rest away from your face; ducted extraction removes it from the room entirely. For hobby use at this price, the fan is a big improvement over nothing.',
+      },
+      {
+        question: 'How often should the filter be replaced?',
+        answer:
+          'It depends on how much you solder, but inspect it every few months and replace it once it is visibly discoloured or the airflow smells of flux. Filters are inexpensive and are the part that does the actual work.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51uH8w4+wdL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1130,6 +2129,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A solder sucker is the first accessory every beginner should buy after the iron itself, because mistakes are how you learn. This one has strong suction and a tip that does not gum up, so undoing a bad joint and trying again becomes a quick, low-stress part of the process rather than a disaster.',
+    roundupNote:
+      'The first accessory we tell beginners to buy after the iron, because mistakes are how you learn and this is the tool that undoes them in seconds.',
+    inTheBox: [
+      'Spring-loaded manual desoldering pump',
+      'No-clog silicone tip',
+      'One-handed trigger operation',
+      'No power or consumables needed',
+    ],
+    firstSteps:
+      'Prime the pump before heating the joint so you are not fumbling while solder cools. Melt the joint fully, seat the nozzle against the pad, then fire — hesitation is what causes a half-cleared hole. Clear the barrel regularly by cycling it over a bin, and if suction weakens, check the tip rather than assuming the pump has worn out.',
+    alternatives: [
+      {
+        slug: 'towot-solder-wick-flux-kit',
+        why: 'Wick reaches flat pads and surface-mount joints where a pump cannot, and the two work best together.',
+      },
+      {
+        slug: 'kaisiking-helping-hands-magnifier',
+        why: 'Holds the board steady while you work the pump one-handed, which makes desoldering far easier.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'How do you use a solder sucker properly?',
+        answer:
+          'Prime it first, melt the joint until the solder is fully liquid, press the nozzle over the pad and release the plunger in one movement. If solder remains, add a little fresh solder and flux and try again rather than reheating a dry joint.',
+      },
+      {
+        question: 'Why is my solder sucker not picking up solder?',
+        answer:
+          'Usually the solder was not fully molten, or the nozzle is clogged with old solder. A no-clog silicone tip helps, but the barrel still needs clearing occasionally.',
+      },
+      {
+        question: 'Do you need wick as well?',
+        answer:
+          'For flat pads, solder bridges and surface-mount work, yes. A pump empties holes; wick lifts thin films. Most benches end up with both because they cover different jobs.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/31rk0JL5ZmL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1170,6 +2206,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A solder sucker and a roll of wick cover different jobs, and you want both. Wick is what lifts solder off flat pads and fine SMD work, and the included flux is the secret to joints that flow cleanly. For the price, this combo belongs on every bench.',
+    roundupNote:
+      'Two consumables that fix different problems, bought together for very little: braid for cleaning up pads and bridges, flux for making every joint flow.',
+    inTheBox: [
+      '10ft of desoldering braid (solder wick)',
+      '10cc no-clean flux paste',
+      'Braid dispenser',
+      'No tools required',
+    ],
+    firstSteps:
+      'Lay the braid flat over the joint, press the iron on top and wait for the solder to climb into it — do not drag or saw the braid across the pad. Add a dab of flux first, which makes a dramatic difference to how fast the braid pulls solder. Snip off the used, solder-filled section each time; reusing a loaded section is the main reason wick seems not to work.',
+    alternatives: [
+      {
+        slug: 'viralloy-solder-sucker',
+        why: 'Faster for emptying through-hole joints, which is the one job wick does poorly.',
+      },
+      {
+        slug: 'hgmzzq-60-40-rosin-core-solder',
+        why: 'If joints are dull rather than over-filled, better solder and its rosin core may be the actual fix.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is solder wick used for?',
+        answer:
+          'Removing excess solder: clearing bridges between pins, cleaning pads before fitting a new part, and lifting thin films where a pump cannot reach. It is the surface-mount counterpart to a desoldering pump.',
+      },
+      {
+        question: 'Why is flux included with the wick?',
+        answer:
+          'Flux dramatically improves how quickly braid absorbs solder. Without it, wick often sits on the joint doing very little, which is why the pairing in one kit makes sense.',
+      },
+      {
+        question: 'Does no-clean flux residue need cleaning?',
+        answer:
+          'It is designed to be left in place safely. Many people still wipe it off with isopropyl alcohol for appearance, especially on boards that will be inspected or photographed.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41ZX-67ptyL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1210,6 +2283,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Soldering needs three hands: one for the iron, one for the solder, and one to hold the work. This is the third hand — and the magnifier on top makes fine joints far easier to see. It is the accessory that quietly improves every single thing you solder afterward.',
+    roundupNote:
+      'The accessory that quietly improves everything you solder afterwards. Four arms hold the work, the magnifier shows you the joint, and both hands stay free for iron and solder.',
+    inTheBox: [
+      'Weighted base with four flexible arms',
+      'Magnifying glass on an adjustable arm',
+      'Alligator clips for boards and wires',
+      'Assembly required, no tools needed',
+    ],
+    firstSteps:
+      'Set the base at the front edge of your bench and bring the magnifier to your natural seated eye level rather than leaning into it. Slip heat-shrink or silicone over the clip jaws if you are holding a delicate board — bare metal clips can mark a PCB. Position the arms so the joint is over the base, not cantilevered out, or the whole thing tips.',
+    alternatives: [
+      {
+        slug: 'kotto-solder-fume-extractor',
+        why: 'The other cheap bench upgrade, and arguably the more important one if you solder indoors.',
+      },
+      {
+        slug: 'kepiog-100w-lcd-soldering-iron-kit',
+        why: 'Bundles helping hands with a 100W iron, which works out cheaper than buying both separately.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Do you really need helping hands for soldering?',
+        answer:
+          'Soldering needs three hands: iron, solder and the work. A holder supplies the third, which is why most people notice an immediate improvement in joint quality once they stop chasing a sliding board.',
+      },
+      {
+        question: 'Is the magnifier strong enough for SMD work?',
+        answer:
+          'It is fine for larger surface-mount parts and fine through-hole joints. Very small or fine-pitch components are easier with a head-mounted magnifier or a USB microscope.',
+      },
+      {
+        question: 'Will the clips damage a circuit board?',
+        answer:
+          'They can mark soft boards or bend thin PCBs if overtightened. Slide silicone tubing or heat-shrink over the jaws, or clamp on the board edges rather than across components.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/31tcA0cC4JL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1250,6 +2360,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The solder you learn on matters more than beginners realise. Leaded 60/40 with a rosin core melts low and flows easily, so your joints come out shiny instead of dull and lumpy. Practice with this first; once your technique is solid you can move to lead-free if you need it. Just wash your hands and keep the air moving.',
+    roundupNote:
+      'The solder we suggest learning on. Leaded 60/40 melts low and flows easily, so your early joints come out shiny instead of dull — which teaches you what "good" actually looks like.',
+    inTheBox: [
+      '50g spool of 60/40 tin-lead solder',
+      'Rosin flux core',
+      '0.8 mm (0.031") diameter',
+      'Suitable for general electronics soldering',
+    ],
+    firstSteps:
+      'Feed the solder into the joint rather than onto the iron tip — the joint should be hot enough to melt it. At 0.8 mm you rarely need more than a short feed for a through-hole joint, so watch how little it takes to form a smooth fillet. Wash your hands after a session and keep the spool away from food, as with any leaded solder.',
+    alternatives: [
+      {
+        slug: 'towot-solder-wick-flux-kit',
+        why: 'Extra flux and braid for cleanup, which makes even good solder behave better on stubborn joints.',
+      },
+      {
+        slug: 'viralloy-solder-sucker',
+        why: 'The tool for removing the solder you have just added when a joint needs a second attempt.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 0.8 mm solder the right size?',
+        answer:
+          'It is the best all-rounder for hobby electronics: fine enough for control on small pads, thick enough not to feel slow on ordinary through-hole joints. Move to 0.5–0.6 mm for surface-mount work.',
+      },
+      {
+        question: 'Is leaded solder safe to use?',
+        answer:
+          'With sensible habits, yes: ventilate the flux smoke, do not eat at the bench and wash your hands afterwards. The fumes you see are flux rather than lead. Use lead-free if children will handle the finished item.',
+      },
+      {
+        question: 'What does rosin core mean?',
+        answer:
+          'The wire is hollow with flux running through the middle, so flux is released exactly where the solder melts. It is what lets solder wet the pad cleanly — never use acid-core plumbing solder on electronics.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/516xpO8aJtL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1292,6 +2439,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Most practice kits leave you to buy the iron separately; this one does not. The graded boards are a sensible path from comfortable 1206 parts down to 0402 and fine-pitch ICs, and the digital iron has the temperature control that surface-mount work needs. It is a demanding first kit because everything is SMD, so absolute beginners may want a through-hole kit first — but for anyone ready for surface-mount, it is a genuinely complete starting point.',
+    roundupNote:
+      'The rare practice kit that ships with its own iron. Three graded SMD boards plus a 100W digital iron means one order takes you from nothing to practising surface-mount work.',
+    inTheBox: [
+      '100W digital soldering iron, 180–520°C',
+      'Three SMD/SMT practice boards',
+      'Surface-mount components from 1206 down to 0402',
+      'QFP44 and SOP-14 IC practice footprints',
+    ],
+    firstSteps:
+      'Set the iron around 320–340°C for leaded solder and start on the 1206 parts, which are large enough to hold with ordinary tweezers. Add flux generously, tack one corner, then finish the opposite side. Only move down to 0603 and 0402 once the larger parts sit flat and shiny every time; the fine-pitch ICs are best attempted with a drag-soldering technique and plenty of flux.',
+    alternatives: [
+      {
+        slug: 'gikfun-smd-smt-welding-practice-board-ek7028',
+        why: 'Much cheaper if you already own an iron and only need practice boards.',
+      },
+      {
+        slug: 'elenco-practical-soldering-project-kit',
+        why: 'A gentler start if surface-mount work feels like too big a first step — through-hole first, SMD later.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is this a good kit for a first-ever solder?',
+        answer:
+          'It is a demanding start, because everything on the boards is surface-mount. If you have never soldered, a through-hole kit first will make this one far less frustrating. If you are ready for SMD, having the iron included makes it excellent value.',
+      },
+      {
+        question: 'What temperature should the included iron be set to?',
+        answer:
+          'Around 320–340°C suits leaded solder and small surface-mount parts, rising to about 350–370°C for lead-free. Use the lowest setting that lets the joint form in two or three seconds.',
+      },
+      {
+        question: 'Does the kit include solder and flux?',
+        answer:
+          'Listings vary, so check the current one before ordering. Flux in particular is essential for surface-mount work — if it is not in the box, add a flux pen or paste to your order.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/513D2zJq8tL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1332,6 +2516,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'If you are starting from nothing, this kit removes most of the shopping list in one go: an iron you can actually see the temperature on, a spread of tips, solder, a stand and a pump for fixing mistakes. A bench station holds heat more steadily for long sessions, but as a complete, low-cost way to get soldering it is hard to argue with. Add a practice kit and you are set.',
+    roundupNote:
+      'The best complete starter bundle at the low end. A digital pen with a readout plus the consumables a beginner otherwise forgets to order, in one box.',
+    inTheBox: [
+      '60W digital soldering iron with LED display',
+      'Five replaceable tips',
+      'Solder wire, stand and desoldering pump',
+      '21-piece kit with assorted accessories, 120V plug',
+    ],
+    firstSteps:
+      'Start at 320–340°C with leaded solder and fit the chisel tip rather than the fine one for general work. Use the included pump on a scrap joint before you need it in anger. The bundled solder is adequate for learning, but a spool of good 0.8 mm rosin-core wire is the first upgrade worth making.',
+    alternatives: [
+      {
+        slug: 'crtsweker-100w-digital-soldering-station-kit',
+        why: 'A proper bench station with helping hands for a little more money, if you have the desk space.',
+      },
+      {
+        slug: 'meakest-60w-soldering-iron-premium-kit',
+        why: 'Cheaper still, with flux paste included, if you want the lowest-risk way to try the hobby.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a 60W pen iron enough for beginners?',
+        answer:
+          'Yes for practice kits, PCB work and general hobby soldering. Thick wires and large ground planes are where you would want a higher-wattage iron or a station.',
+      },
+      {
+        question: 'What makes this different from a cheap unregulated iron?',
+        answer:
+          'The digital display and adjustable temperature. Knowing and setting the tip temperature is the single biggest step up from a basic plug-in iron that simply runs as hot as it runs.',
+      },
+      {
+        question: 'Do you still need anything else?',
+        answer:
+          'A practice board to solder, and eventually better solder and a helping-hands holder. The kit covers the tools; it does not include anything to build.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/510KIpAw7wL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1372,6 +2593,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The helping hands are the quiet star here — holding the board steady is the upgrade beginners notice most, and this kit includes one with a magnifier. The 100W iron has enough headroom to stay hot on larger joints and wires. Check the listing option you choose, since bundle contents vary, but as a powerful all-in-one starter it is a strong pick.',
+    roundupNote:
+      'Bundles the thing most starter kits leave out: a magnifier and helping hands, alongside a 100W iron with an LCD readout.',
+    inTheBox: [
+      '100W LCD digital soldering iron',
+      'Helping hands with magnifying glass',
+      'Assorted tips and repair accessories',
+      'Solder and consumables (check the current listing)',
+    ],
+    firstSteps:
+      'Set the magnifier and arms up before your first joint and adjust them to your seated eye level — a magnifier at the wrong height gets ignored. Run the iron at a moderate temperature and let the 100W element handle recovery. Keep the board clamped rather than held; the whole point of the included arms is to free both hands.',
+    alternatives: [
+      {
+        slug: 'plusivo-60w-digital-soldering-iron-kit',
+        why: 'A tidier consumables bundle if you already own a magnifier or helping hands.',
+      },
+      {
+        slug: 'crtsweker-100w-digital-soldering-station-kit',
+        why: 'Similar power in a bench station format, with a stand and a separate control unit.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 100W too much for small electronics?',
+        answer:
+          'No. Wattage is about heat recovery, not tip temperature, and the iron is still regulated. Set a normal working temperature and the extra power simply means less stalling on bigger joints.',
+      },
+      {
+        question: 'How useful is the included magnifier?',
+        answer:
+          'Genuinely useful for fine through-hole work and small surface-mount parts, and it doubles as a board holder. Fixed magnification is the limitation, but at this price it is a lot of bench for the money.',
+      },
+      {
+        question: 'Is this a full soldering setup?',
+        answer:
+          'Close. You get the iron, the holder and accessories; add good solder, a brass-wool tip cleaner and something to practise on and the bench is complete.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51PSRaCG6GL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1412,6 +2670,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Not everyone wants to spend station money before they know they enjoy soldering. This kit covers the true basics — an adjustable iron, solder, flux paste and a pump — for very little. There is no digital readout and the build is budget-grade, so plan to upgrade if soldering sticks. As a first toe in the water, it does the job.',
+    roundupNote:
+      'The lowest-risk way to find out whether you enjoy soldering. Iron, solder, flux paste and a pump for less than the price of a restaurant meal.',
+    inTheBox: [
+      '60W iron with ceramic heater, adjustable 200–450°C',
+      'Assorted soldering tips',
+      'Solder wire and flux paste',
+      'Desoldering pump — 12-in-1 kit',
+    ],
+    firstSteps:
+      'Dial control means no readout, so calibrate by result rather than number: find the setting where solder flows in two or three seconds and mark it. Use the included flux sparingly on stubborn joints, and clean the tip often — budget irons oxidise faster, and a black tip is the most common reason a cheap iron feels dead.',
+    alternatives: [
+      {
+        slug: 'plusivo-60w-digital-soldering-iron-kit',
+        why: 'A digital readout instead of a dial, which makes temperature repeatable rather than guesswork.',
+      },
+      {
+        slug: 'yihua-926-iii-soldering-station',
+        why: 'The obvious upgrade once you know soldering will stick: steadier heat and a far better bundle.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a dial-controlled iron good enough to learn on?',
+        answer:
+          'It is workable. You lose repeatability compared with a digital readout, but the important habit — adjusting until solder flows quickly without burning flux — is the same. Many people start here and upgrade later.',
+      },
+      {
+        question: 'What is the flux paste for?',
+        answer:
+          'Flux cleans the metal so solder can wet it. Rosin-core solder contains some already, but a dab of extra paste rescues oxidised wire and old joints that refuse to take solder.',
+      },
+      {
+        question: 'How long will this kit last?',
+        answer:
+          'Long enough to learn on. The build is budget-grade, so expect to replace tips and eventually the iron if soldering becomes regular — at which point a temperature-controlled station is the right next purchase.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51k0bP+5e6L.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1453,6 +2748,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The Pinecil is the best portable iron for people who already live on USB-C. It is not cordless in the battery sense, but paired with a capable power bank it goes anywhere a battery iron does, and with a good charger at a desk it heats and recovers far better than its size suggests. Budget for a strong USB-C power source, because a weak one is the difference between a great iron and a sluggish one.',
+    roundupNote:
+      'The enthusiast favourite: a tiny open-firmware iron that turns any capable USB-C charger or power bank into a surprisingly serious soldering setup.',
+    inTheBox: [
+      'Pinecil soldering iron with display',
+      'One soldering tip (check the current listing)',
+      'USB-C powered — no battery inside',
+      'Power supply, stand and solder not included',
+    ],
+    firstSteps:
+      'Your power source decides how good this iron feels, so pair it with a USB-C charger or power bank that supplies high-wattage Power Delivery rather than a phone charger from a drawer. Set the sleep timeout short to protect the tip, explore the firmware settings once and then leave them, and pick up a spare tip shape early — its usefulness scales with tips, not settings.',
+    alternatives: [
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'A true battery iron, if you want to work without carrying a power bank.',
+      },
+      {
+        slug: 'fnirsi-hs-02a-soldering-iron',
+        why: 'Mains powered with 100W and six tips included, for a bench rather than a backpack.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the Pinecil cordless?',
+        answer:
+          'Not in the battery sense — it has no internal battery and draws power over USB-C. With a capable power bank it is just as portable as a battery iron; with a good charger at a desk it performs like a compact smart iron.',
+      },
+      {
+        question: 'What power supply does the Pinecil need?',
+        answer:
+          'A USB-C source that supports higher-wattage Power Delivery. A weak charger will still heat the iron, but it will recover slowly and feel underpowered on larger joints.',
+      },
+      {
+        question: 'Why do people like the open-source firmware?',
+        answer:
+          'It means settings, sleep behaviour and the display can be customised, and the community keeps improving it. For most users the stock firmware is fine, but the option is part of the appeal.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/21bKPAjxqBL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1492,6 +2824,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'If you already have M12 batteries in the van or garage, this is the easiest cordless iron to justify: it slots into a system you own and handles wiring, connectors and field repairs with no cable. For delicate PCB work a slim pen iron is nicer to hold, and if you do not own M12 batteries the total cost climbs quickly — so this is a pick for existing Milwaukee users first.',
+    roundupNote:
+      'Here for people who already own M12 batteries. Slotting a rugged cordless iron into a battery platform you use daily is a far easier decision than buying into a new one.',
+    inTheBox: [
+      'M12 cordless soldering iron (bare tool)',
+      'Soldering tip fitted',
+      'No battery or charger included',
+      'Solder and accessories not included',
+    ],
+    firstSteps:
+      'Treat it as a field tool rather than a board-level iron: it shines on connectors, automotive wiring and repairs away from power. Bring a charged battery and a second if the job is long, and pair it with a butane or mains iron for anything fine-pitch, where a slim pen is easier to control.',
+    alternatives: [
+      {
+        slug: 'lexivon-butane-soldering-iron-kit-lx-770',
+        why: 'No batteries to charge at all, which suits vehicles, boats and remote work even better.',
+      },
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'Far cheaper as a complete tool, and better suited to electronics and fine joints.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Does the M12 soldering iron include a battery?',
+        answer:
+          'No, it is sold as a bare tool. That keeps the price sensible for existing Milwaukee owners but means a battery and charger are extra if you are not already on the platform.',
+      },
+      {
+        question: 'Is it suitable for circuit boards?',
+        answer:
+          'It will work, but it is built for field and automotive repair rather than delicate PCB work. A slim pen iron with fine tips gives far more control on small joints.',
+      },
+      {
+        question: 'Who should buy this iron?',
+        answer:
+          'Electricians, installers and car hobbyists who already own M12 batteries and want a cordless iron that shares them. If you do not own any, a self-contained battery iron is better value.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/21ibO5MjffL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1532,6 +2901,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'A butane iron solves a problem no battery iron can: it keeps working as long as you have a can of gas. That makes the LEXIVON a great glovebox or boat-kit tool for heavier wires and connectors. It is the wrong choice for delicate circuit boards, where an electric iron with a readout gives you far more control — treat it as a specialist cordless tool, not your main electronics iron.',
+    roundupNote:
+      'The answer when there is no power and no way to charge. Gas keeps working in a van, on a boat or at the far end of a field, which no battery iron can promise.',
+    inTheBox: [
+      'Butane soldering iron with self-igniting ignition',
+      'Seven-piece tip set including hot knife and blower attachments',
+      'Storage case',
+      'Butane fuel not included',
+    ],
+    firstSteps:
+      'Fill with quality butane and let the iron stand for a minute before igniting so the gas settles. Set a small flame first and work up: too much gas gives you heat you cannot control on delicate work. Use it outdoors or with good ventilation, keep it away from anything flammable, and let it cool fully in the case before packing it away.',
+    alternatives: [
+      {
+        slug: 'milwaukee-m12-soldering-iron',
+        why: 'Cordless without an open flame, if you already own M12 batteries and work on vehicles.',
+      },
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'Precise, adjustable electronic temperature control, which butane cannot match for circuit boards.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a butane soldering iron good for electronics?',
+        answer:
+          'It is workable for wires and connectors but a poor choice for circuit boards, because the heat is far harder to control than an electronically regulated tip. Keep it as a field tool and use an electric iron at the bench.',
+      },
+      {
+        question: 'How long does a fill of butane last?',
+        answer:
+          'Long enough for a typical repair session, and refilling takes seconds with a standard butane can. The practical advantage is that a spare can weighs almost nothing and never needs charging.',
+      },
+      {
+        question: 'What can the extra tips do?',
+        answer:
+          'The kit includes attachments beyond a plain soldering tip — hot knife and hot-air style heads — which makes it useful for cutting rope, shrinking tubing and small heat jobs as well as soldering.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51fNVstxlwL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1571,6 +2977,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'HOTO builds tools people are happy to leave out on the desk, and the SNAPBLOQ iron follows that pattern: tidy, portable and ready for quick electronics repairs. It is a newer model than the FNIRSI or Fanttik, so it has less of a track record, and like every battery iron it suits short jobs better than marathon sessions. If design matters to you, it is an appealing cordless option.',
+    roundupNote:
+      'The design-led option. HOTO builds tools people leave out on the desk, and the SNAPBLOQ iron brings that finish to a cordless kit that is ready to use out of the box.',
+    inTheBox: [
+      'SNAPBLOQ I-A06 cordless soldering iron',
+      'Interchangeable tips',
+      'Five-piece kit with stand and accessories',
+      'Solder not included',
+    ],
+    firstSteps:
+      'Charge fully, then use the first session for small, forgiving joints while you learn how quickly it recovers heat. Keep the tip tinned between jobs — compact irons lose tips to oxidation faster than bench stations because they cool quickly and often live in a drawer rather than a stand.',
+    alternatives: [
+      {
+        slug: 'fnirsi-hs-03-cordless-soldering-iron',
+        why: 'A longer track record, a bigger battery and more temperature levels for similar money.',
+      },
+      {
+        slug: 'fanttik-t1-max-cordless-soldering-iron',
+        why: 'The other premium-feeling cordless iron, with C210 precision tips for fine work.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is SNAPBLOQ?',
+        answer:
+          'It is HOTO\'s modular tool range, designed so tools in the family share a consistent design language and accessories. The soldering iron is one piece of that system rather than a standalone product line.',
+      },
+      {
+        question: 'Is this iron good for beginners?',
+        answer:
+          'It is approachable and tidy, which suits a beginner doing small repairs. For learning at a bench, a mains station still gives steadier heat and unlimited session length.',
+      },
+      {
+        question: 'How does it compare with the FNIRSI HS-03?',
+        answer:
+          'The FNIRSI has a longer track record, a larger battery and a more informative display; the HOTO wins on design and kit presentation. Both suit portable repair work rather than heavy bench sessions.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41HqBviyyhL.jpg',
     imageWidth: 400,
     imageHeight: 500,
@@ -1612,6 +3055,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The FX-888 line has been a default recommendation on electronics benches for years, and the DX version keeps what made it great: rock-steady heat, a comfortable iron and an enormous tip range. The rotary encoder makes it quicker to set than older button-driven models. It costs more than budget stations and does not come loaded with extras, but it is the kind of station you buy once.',
+    roundupNote:
+      'Top of the ranking because it is the station people stop shopping after. Steady heat, a comfortable iron and an enormous T18 tip range make it a bench fixture rather than a purchase you revisit.',
+    inTheBox: [
+      '70W digital station with FX-8801 iron',
+      'Iron holder with cleaning wire and sponge',
+      'Starter T18 tip fitted',
+      'Solder and extra tips not included',
+    ],
+    firstSteps:
+      'Use the rotary encoder to set a working temperature and then leave it alone — the FX-888DX holds it well, so chasing the dial is unnecessary. Use the coiled cleaning wire rather than only the sponge; it removes oxide without the thermal shock of a wet sponge. Buy one extra T18 chisel tip early, because having the right shape makes a bigger difference than any setting.',
+    alternatives: [
+      {
+        slug: 'weller-we1010na-soldering-station',
+        why: 'The equally trusted alternative, worth choosing if you already own Weller tips or work somewhere standardised on Weller.',
+      },
+      {
+        slug: 'yihua-939d-plus-digital-soldering-station',
+        why: 'An ESD-safe station at a fraction of the price, for hobbyists who want precision without the premium.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the Hakko FX-888DX worth it for a hobbyist?',
+        answer:
+          'If soldering is a regular hobby, it is easy to justify: stable heat, a light iron and tips for every job, all built to last. For someone who solders a few times a year, a budget station does the same work for much less.',
+      },
+      {
+        question: 'What tips does the FX-888DX use?',
+        answer:
+          'Hakko T18-series tips, which come in a wide range of shapes and are widely available. That tip ecosystem is one of the main reasons the station stays useful for years.',
+      },
+      {
+        question: 'Hakko FX-888DX or Weller WE1010NA?',
+        answer:
+          'Both are excellent. The Hakko wins on tip range and quick dial adjustment; the Weller suits anyone already in the Weller ecosystem. Our full comparison breaks down where each one pulls ahead.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/319cZZIybkL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1652,6 +3132,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'For a first bench station on a tight budget, this kit covers a lot of ground: a 100W digital station that recovers heat well, plus the helping hands and consumables a beginner would otherwise buy separately. The accessories are budget-grade and the brand is less established than the big names, but as a complete starting setup it is excellent value.',
+    roundupNote:
+      'The most station for the least money here: 100W of heat recovery plus the helping hands, pump and consumables that beginners otherwise buy piecemeal.',
+    inTheBox: [
+      '100W digital soldering station, 356–896°F',
+      'Two helping-hands holders',
+      'Five tips, solder wire and desoldering pump',
+      'Tweezers, sponge and tip cleaner',
+    ],
+    firstSteps:
+      'Do not let the 100W rating tempt you into high settings — start at 315–340°C for leaded solder and let the wattage handle recovery between joints. Fit the helping hands before your first joint rather than after the board slides for the third time, and use the included pump to practise removing a joint deliberately, so desoldering is familiar before you need it.',
+    alternatives: [
+      {
+        slug: 'yihua-926-iii-soldering-station',
+        why: 'A better-known brand with a similar bundle, if you would rather buy the established name.',
+      },
+      {
+        slug: 'plusivo-60w-digital-soldering-iron-kit',
+        why: 'Cheaper still and pen-style rather than a station, for a smaller desk or a tighter budget.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a 100W station overkill for beginners?',
+        answer:
+          'No. Wattage governs how quickly the tip recovers heat, not how hot it runs, so a regulated 100W station is simply less likely to stall on a big joint. You still set a normal working temperature.',
+      },
+      {
+        question: 'How good are the included accessories?',
+        answer:
+          'Budget-grade but genuinely usable — the value is in having helping hands, a pump and solder in one box. Most people upgrade the solder and tweezers first as they get more serious.',
+      },
+      {
+        question: 'Is the brand a concern?',
+        answer:
+          'It is a newer name rather than an established one, so it does not carry the track record of Hakko, Weller or YIHUA. As a first station at this price the trade-off is reasonable, but plan on a known brand if it becomes a daily tool.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51vdfzMttrL.jpg',
     imageWidth: 500,
     imageHeight: 500,
@@ -1692,6 +3209,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'The 939D+ is the YIHUA to choose when you care more about the station than the bundle. Its transformer-based, ESD-safe design and precise control make it a better fit for sensitive electronics than a kit-style station, and it stays compact on the bench. If you still need helping hands and consumables, the 926 III kit is better value; if you already have them, this is the more serious tool.',
+    roundupNote:
+      'The value pick for people who care about the station itself rather than the bundle: transformer-based, ESD-safe and precise, in a footprint that stays out of the way.',
+    inTheBox: [
+      '75W-equivalent digital station with built-in transformer',
+      'Soldering iron and stand',
+      'Starter tips and consumables (check the current listing)',
+      'ESD-safe, °C/°F display',
+    ],
+    firstSteps:
+      'Because this station is aimed at electronics rather than heavy wire, keep a fine or small chisel tip fitted and let the regulation do the work at 315–340°C. Ground your mat and, if you work on chips, add a wrist strap — the ESD-safe design only helps if the rest of the bench matches it. Check what consumables arrived; the box is leaner than kit-style stations.',
+    alternatives: [
+      {
+        slug: 'yihua-926-iii-soldering-station',
+        why: 'The same brand with helping hands, six tips and consumables included — better if you are starting from nothing.',
+      },
+      {
+        slug: 'hakko-fx888dx-digital-soldering-station',
+        why: 'A significant step up in build quality and tip range when you are ready to buy once and keep it.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is the difference between the YIHUA 939D+ and the 926 III?',
+        answer:
+          'The 939D+ is the more electronics-focused station: transformer-based, ESD-safe and compact. The 926 III is a kit — slightly less specialised, but it arrives with helping hands, tips and consumables, which is better value if you have no accessories yet.',
+      },
+      {
+        question: 'Is 75W enough for hobby soldering?',
+        answer:
+          'For circuit boards, connectors and general electronics, yes. Thick wires and large ground planes benefit from a 100W station, but for the fine work this one targets it has ample headroom.',
+      },
+      {
+        question: 'Does it work on thick wires?',
+        answer:
+          'It will, with a broad chisel tip and a little patience, but a higher-wattage station recovers heat faster on heavy joints. Match the tip to the wire before raising the temperature.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/41l0ECVpfIL.jpg',
     imageWidth: 500,
     imageHeight: 498,
@@ -1732,6 +3286,43 @@ export const PRODUCTS: Product[] = [
     ],
     verdict:
       'Once you start working with surface-mount parts, hot air stops being a luxury: it lifts chips and reflows pads in a way no iron can. The WEP 882D puts that capability next to a regular soldering iron in one bench unit, with enough nozzles and tips to get going. If you only ever build through-hole kits it is more than you need — but for SMD practice and repair it is a smart, space-saving upgrade.',
+    roundupNote:
+      'Included because hot air stops being a luxury the moment you touch surface-mount parts. Having the iron and the rework gun in one unit saves both money and bench space.',
+    inTheBox: [
+      '2-in-1 soldering iron and hot air rework station',
+      'Five soldering tips and three hot air nozzles',
+      'Two spools of solder wire',
+      'Brass wool tip cleaner, tweezers and desoldering pump',
+    ],
+    firstSteps:
+      'Learn the hot air side on scrap boards before touching anything you care about. Start around 300–330°C with moderate airflow and a nozzle sized to the component, keep the nozzle moving, and preheat the area rather than blasting one spot. Practise lifting a part and refitting it; if the board discolours, your airflow is too high or you are too close.',
+    alternatives: [
+      {
+        slug: 'yihua-939d-plus-digital-soldering-station',
+        why: 'Cheaper and simpler if you only need a soldering iron and have no plans for surface-mount rework.',
+      },
+      {
+        slug: 'hakko-fx888dx-digital-soldering-station',
+        why: 'A better iron on its own, for people who would rather buy hot air separately later.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is hot air rework used for?',
+        answer:
+          'It heats a whole component at once so surface-mount parts can be removed or reflowed without touching each pin with an iron. It is the practical way to lift chips, connectors and small SMD parts without damaging pads.',
+      },
+      {
+        question: 'Do beginners need a hot air station?',
+        answer:
+          'Not for through-hole kits. It becomes worth having when you start repairing devices or working with surface-mount components, which is when an iron alone stops being enough.',
+      },
+      {
+        question: 'What temperature should the hot air be set to?',
+        answer:
+          'Commonly somewhere around 300–400°C depending on the part, nozzle and airflow. Start low, keep the nozzle moving and increase gradually — overheating lifts pads and warps plastic parts.',
+      },
+    ],
     image: 'https://m.media-amazon.com/images/I/51K1RG-ctWL.jpg',
     imageWidth: 500,
     imageHeight: 500,

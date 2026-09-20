@@ -30,7 +30,7 @@ export const SITE = {
   name: 'Soldering Practice Kit',
   /** Used in <title> templates and the brand mark. */
   shortName: 'SolderingPracticeKit',
-  tagline: 'Hands-on soldering kits, reviewed and ranked',
+  tagline: 'Soldering kits and tools, researched and ranked',
   description:
     'Independent reviews and buying guides for the best soldering practice kits. Learn to solder with confidence — compare beginner kits, tools, and projects, then buy on Amazon.',
   /** Default social-share image (1200x630), lives in /public. */
@@ -93,6 +93,7 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; href: stri
       { label: 'Best Accessories', href: '/best-soldering-accessories' },
       { label: 'Guides & How-Tos', href: '/guides' },
       { label: 'About Us', href: '/about' },
+      { label: 'How We Rank', href: '/how-we-rank' },
       { label: 'Contact', href: '/contact' },
     ],
   },
