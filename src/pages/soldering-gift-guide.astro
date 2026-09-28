@@ -1,0 +1,194 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import AffiliateButton from '@/components/AffiliateButton.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import type { Product } from '@/lib/types';
+import { articleSchema, faqSchema, breadcrumbSchema, itemListSchema, jsonLdGraph } from '@/lib/seo';
+
+const all = await getProducts();
+const bySlug = (s: string) => all.find((p) => p.slug === s);
+
+// Each pick is matched to a recipient, with its own reason — not the review's copy.
+const RECIPIENTS: { who: string; slug: string; why: string }[] = [
+  { who: 'A child soldering for the first time (8+ with an adult)', slug: 'learn-to-solder-jitterbug-kit', why: 'A handful of large joints, battery included, and a bug that buzzes across the table in one sitting — the gift that makes a first solder a success rather than a struggle.' },
+  { who: 'A curious 10–14-year-old', slug: 'mioyoow-line-following-robot-soldering-kit', why: 'A robot that follows a line they draw themselves keeps a child experimenting long after the soldering is finished.' },
+  { who: 'A teenager who loves games', slug: 'pemenol-retro-game-console-soldering-kit', why: 'Three difficulty levels mean it suits a nervous beginner or a confident teen, and nobody abandons a console they are close to playing.' },
+  { who: 'A teen or adult who wants something useful', slug: 'muxwell-bluetooth-speaker-soldering-kit', why: 'Bluetooth, USB and FM in an enclosure they built — the finished gadget earns a permanent spot on the desk.' },
+  { who: 'An adult beginner learning a new hobby', slug: 'amomii-testudo-soldering-practice-kit', why: 'Three gadgets on an Arduino-compatible board, with tutorials that people actually finish — and it can be reprogrammed afterwards.' },
+  { who: 'Someone with no tools at all', slug: 'yihua-926-iii-soldering-station', why: 'A temperature-controlled station with helping hands, tips, solder and a pump: pair it with any kit above and the recipient can start on the day.' },
+  { who: 'The maker who already has an iron', slug: 'fnirsi-hs-03-cordless-soldering-iron', why: 'A cordless iron that heats in seconds is the upgrade people rarely buy for themselves, and it goes wherever the repair is.' },
+  { who: 'The tinkerer who fixes everything', slug: 'astroai-trms-6000-auto-ranging-multimeter', why: 'An auto-ranging True RMS meter finds faults in kits, cars and household gadgets — a genuinely useful tool at a gift-friendly price.' },
+  { who: 'The electronics enthusiast who has everything', slug: 'fnirsi-2c53t-oscilloscope-multimeter', why: 'A handheld two-channel scope, multimeter and signal generator in one — a big step up for someone ready to see signals, not just measure them.' },
+];
+
+const picks = RECIPIENTS.map((r) => ({ ...r, product: bySlug(r.slug) })).filter(
+  (r): r is typeof r & { product: Product } => Boolean(r.product),
+);
+
+const STOCKING = ['viralloy-solder-sucker', 'hgmzzq-60-40-rosin-core-solder', 'towot-solder-wick-flux-kit', 'kaisiking-helping-hands-magnifier']
+  .map(bySlug)
+  .filter((p): p is Product => Boolean(p));
+
+const giftable = sortByScore(
+  all.filter((p) => p.category === 'project' || p.category === 'practice'),
+);
+const tiers = [
+  { tier: '$', label: 'Budget gifts' },
+  { tier: '$$', label: 'Mid-range gifts' },
+] as const;
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Soldering Gift Guide', url: '/soldering-gift-guide' },
+];
+
+const faqs = [
+  {
+    question: 'Is a soldering kit a good gift?',
+    answer:
+      'For a curious child, a teenager into gadgets or an adult who likes making things, it is one of the few gifts that teaches a real skill and ends with something they built. Choose a kit with a finished result the recipient will actually want — a game, a speaker, a robot.',
+  },
+  {
+    question: 'Do soldering kits come with a soldering iron?',
+    answer:
+      'Most do not. If the recipient has no tools, pair the kit with an iron or station, or choose a complete kit that includes one. Check the listing before buying so the gift can be used on the day.',
+  },
+  {
+    question: 'What age is appropriate for a soldering kit gift?',
+    answer:
+      'With close adult supervision, many children can start from around eight on a very simple kit. From about ten to twelve, longer builds such as robots and consoles work well. Teenagers can usually solder independently after a supervised first session.',
+  },
+  {
+    question: 'What is a good soldering gift for someone who already solders?',
+    answer:
+      'Upgrades they would not buy themselves: a cordless iron, a better multimeter, a handheld oscilloscope, a fume extractor or a quality helping-hands holder. Consumables like good solder and wick make excellent stocking fillers.',
+  },
+  {
+    question: 'Should I choose lead-free solder for a child?',
+    answer:
+      'Lead-free is the sensible choice for children and anything they will handle. It melts a little hotter than leaded solder, so a temperature-controlled iron makes it easier to use. Always ventilate and wash hands after soldering.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Soldering Gift Guide: The Best STEM Electronics Gifts for Every Age',
+    description:
+      'Soldering and electronics gifts matched to the recipient — first kits for children, builds for teens, starter bundles for adults and upgrades for makers who already solder.',
+    url: '/soldering-gift-guide',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  itemListSchema(picks.map((p) => p.product), '/soldering-gift-guide'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Soldering Gift Guide: Best STEM Electronics Gifts by Age"
+  description="Soldering and electronics gifts matched to the person: first kits for kids, builds for teens, starter bundles for adults and upgrades for makers who already solder."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Soldering Gift Guide: STEM Electronics Gifts for Every Age
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        A soldering kit is one of the few gifts that teaches a real skill and ends with something the
+        recipient built themselves. The trick is matching the kit to the person — a first-timer needs
+        a quick win, a teenager needs a payoff worth finishing, and a maker who already solders wants
+        the upgrade they would never buy for themselves. Here is what to give whom.
+      </p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The right gift for each person</h2>
+      <div class="mt-6 space-y-5">
+        {
+          picks.map((r) => (
+            <div class="grid gap-5 rounded-2xl border border-ink-200 bg-white p-5 sm:grid-cols-[120px_1fr_auto] sm:items-center">
+              <a href={`/reviews/${r.product.slug}`} class="block h-28 w-28 overflow-hidden rounded-xl border border-ink-100 bg-white p-2">
+                <img src={r.product.image} alt={r.product.fullTitle} width={r.product.imageWidth} height={r.product.imageHeight} loading="lazy" decoding="async" class="h-full w-full object-contain" />
+              </a>
+              <div>
+                <p class="text-xs font-bold uppercase tracking-wide text-brand-700">{r.who}</p>
+                <h3 class="mt-1 text-lg font-bold leading-snug text-ink-900">
+                  <a href={`/reviews/${r.product.slug}`} class="hover:text-brand-600">{r.product.title}</a>
+                </h3>
+                <p class="mt-2 text-sm leading-relaxed text-ink-600">{r.why}</p>
+              </div>
+              <div class="sm:w-48">
+                <AffiliateButton product={r.product} variant="card" position="card" fullWidth showTimestamp={false} />
+              </div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Before you buy a soldering gift</h2>
+      <h3>Check whether an iron is included</h3>
+      <p>
+        Almost every kit ships without a soldering iron or solder. If the recipient has no tools,
+        either add a <a href="/best-soldering-irons">temperature-controlled iron</a> to the gift or
+        choose one of our <a href="/best-complete-soldering-kits">complete kits</a> that include one.
+        Nothing deflates a gift faster than a kit that cannot be started until another parcel arrives.
+      </p>
+      <h3>Match the build length to the person</h3>
+      <p>
+        A young child needs something finishable in one sitting; a teenager can take on a weekend
+        build; an adult learner will enjoy a kit with several stages. Our
+        <a href="/best-soldering-kits-for-kids">kids kit rankings</a> are ordered with younger makers
+        first, and the <a href="/guides/best-soldering-kits-for-kids-and-teens">parent's guide</a>
+        covers age and safety in detail.
+      </p>
+      <h3>Plan the first session</h3>
+      <p>
+        For a child, the best gift includes an adult's time: a safe setup, safety glasses, good
+        ventilation and a supervised first joint. Our <a href="/guides/how-to-solder-for-beginners">beginner
+        soldering guide</a> is a good thing to read together before starting.
+      </p>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Stocking fillers for people who already solder</h2>
+      <p class="mt-2 max-w-3xl text-ink-600">
+        Small, inexpensive and genuinely used: the consumables and bench helpers every solderer runs
+        out of or wishes they owned.
+      </p>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {STOCKING.map((p) => <ProductCard product={p} />)}
+      </div>
+    </section>
+
+    {
+      tiers.map((t) => {
+        const items = giftable.filter((p) => p.priceTier === t.tier).slice(0, 6);
+        if (!items.length) return null;
+        return (
+          <section class="mt-16">
+            <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">{t.label}: kits by budget ({t.tier})</h2>
+            <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+              {items.map((p) => <ProductCard product={p} />)}
+            </div>
+          </section>
+        );
+      })
+    }
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
