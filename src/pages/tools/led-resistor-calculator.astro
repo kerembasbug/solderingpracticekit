@@ -1,0 +1,231 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import FAQ from '@/components/FAQ.astro';
+import { LED_PRESETS, ledResistor } from '@/lib/led';
+import { formatOhms } from '@/lib/resistor';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const SUPPLIES = [3.3, 5, 9, 12];
+const examples = SUPPLIES.map((v) => ({
+  v,
+  red: ledResistor(v, 2.0, 1, 20),
+  white: ledResistor(v, 3.1, 1, 20),
+}));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: '/tools' },
+  { name: 'LED Resistor Calculator', url: '/tools/led-resistor-calculator' },
+];
+
+const faqs = [
+  {
+    question: 'What resistor do I need for an LED?',
+    answer:
+      'Subtract the LED forward voltage from the supply voltage, then divide by the current you want in amps: R = (Vsupply − Vf) ÷ I. For a red LED (about 2V) on 5V at 20mA, that is 3V ÷ 0.02A = 150Ω. Round up to the next standard value so the current stays at or below your target.',
+  },
+  {
+    question: 'What resistor do I need for an LED on 5V?',
+    answer:
+      'At 20mA, a red LED needs about 150Ω and a white or blue LED about 100Ω. For indicator LEDs that only need to be visible, 10–15mA is plenty, which means roughly 220Ω for red and 150Ω for white — cooler, longer-lived and still bright.',
+  },
+  {
+    question: 'Why does an LED need a resistor?',
+    answer:
+      'An LED does not limit its own current. Once the supply exceeds its forward voltage, current rises very quickly and the LED overheats and fails. The resistor sets the current to a safe value.',
+  },
+  {
+    question: 'Can several LEDs share one resistor?',
+    answer:
+      'LEDs in series can share one resistor — add their forward voltages together, as this calculator does. LEDs in parallel should each have their own resistor, because small differences in forward voltage make one LED hog the current.',
+  },
+  {
+    question: 'What wattage resistor do I need?',
+    answer:
+      'Calculate the power the resistor dissipates (P = I² × R) and choose a rating at least double that. For single indicator LEDs this is almost always well under 1/8W, so a standard 1/4W resistor is fine.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'LED Resistor Calculator: What Resistor Does My LED Need?',
+    description:
+      'Free LED resistor calculator: enter supply voltage, LED color or forward voltage, current and LEDs in series to get the resistor value, nearest standard value and wattage.',
+    url: '/tools/led-resistor-calculator',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="LED Resistor Calculator: What Resistor Does My LED Need?"
+  description="Free LED resistor calculator. Enter supply voltage, LED color, current and LEDs in series to get the exact resistor, the nearest standard value and the wattage to use."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        LED Resistor Calculator
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Every LED needs a current-limiting resistor. Enter your supply voltage and LED, and this
+        calculator gives you the exact value, the nearest standard resistor to buy, and the wattage
+        rating to use.
+      </p>
+    </header>
+
+    <section class="mt-10 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card)] lg:p-8" data-led>
+      <div class="grid gap-4 sm:grid-cols-2">
+        <label class="block text-sm font-semibold text-ink-700">Supply voltage (V)
+          <input data-in="vs" type="number" inputmode="decimal" step="0.1" min="0" value="5" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 px-3" />
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">LED color
+          <select data-in="preset" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {LED_PRESETS.map((p) => <option value={p.vf}>{p.name} (~{p.vf} V)</option>)}
+            <option value="custom">Custom forward voltage</option>
+          </select>
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">LED forward voltage (V)
+          <input data-in="vf" type="number" inputmode="decimal" step="0.1" min="0" value="2" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 px-3" />
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">LED current (mA)
+          <input data-in="ma" type="number" inputmode="decimal" step="1" min="1" value="20" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 px-3" />
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">LEDs in series
+          <input data-in="n" type="number" inputmode="numeric" step="1" min="1" value="1" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 px-3" />
+        </label>
+      </div>
+
+      <div class="mt-6 rounded-2xl bg-ink-900 p-5 text-white" aria-live="polite">
+        <div data-ok>
+          <p class="text-sm font-semibold uppercase tracking-wide text-ink-300">Use a standard resistor of</p>
+          <p class="mt-1 text-3xl font-extrabold" data-out-std>150 Ω</p>
+          <dl class="mt-3 grid gap-x-6 gap-y-1 text-sm text-ink-200 sm:grid-cols-2">
+            <div>Exact value: <span class="font-semibold text-white" data-out-exact>150 Ω</span></div>
+            <div>Actual current: <span class="font-semibold text-white" data-out-ma>20 mA</span></div>
+            <div>Resistor power: <span class="font-semibold text-white" data-out-w>0.06 W</span></div>
+            <div>Resistor rating: <span class="font-semibold text-white" data-out-rating>1/4 W (standard)</span></div>
+          </dl>
+        </div>
+        <p data-err hidden class="font-semibold text-brand-200">
+          The supply voltage is not higher than the LEDs' total forward voltage, so they will not light.
+          Use fewer LEDs in series or a higher supply voltage.
+        </p>
+      </div>
+      <p class="mt-3 text-xs text-ink-500">
+        Forward voltages are typical values; check your LED's datasheet. Standard values are rounded up to the E12 series, so the real current is slightly below your target.
+      </p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>The LED resistor formula</h2>
+      <p>
+        The resistor has to drop whatever voltage the LEDs do not use, at the current you want:
+      </p>
+      <p><strong>R = (V<sub>supply</sub> − n × V<sub>f</sub>) ÷ I</strong></p>
+      <p>
+        where V<sub>f</sub> is one LED's forward voltage, n is the number of LEDs in series and I is
+        the current in amps (20mA = 0.02A). For a red LED on 5V at 20mA: (5 − 2.0) ÷ 0.02 = 150Ω.
+        Always round <em>up</em> to the next standard value, which keeps the current at or below
+        your target.
+      </p>
+
+      <h2>Quick answers for common supplies</h2>
+      <p>One LED at 20mA, rounded up to a standard E12 value:</p>
+      <table>
+        <thead><tr><th>Supply</th><th>Red LED (~2.0V)</th><th>White / blue LED (~3.1V)</th></tr></thead>
+        <tbody>
+          {examples.map((e) => (
+            <tr>
+              <td><strong>{e.v} V</strong></td>
+              <td>{e.red.ok ? formatOhms(e.red.standard) : 'Supply too low'}</td>
+              <td>{e.white.ok ? formatOhms(e.white.standard) : 'Supply too low'}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+      <p>
+        On 3.3V a white or blue LED has very little headroom, so its brightness varies a lot with
+        small changes in supply — a common surprise on microcontroller projects.
+      </p>
+
+      <h2>How much current should an LED get?</h2>
+      <p>
+        20mA is the familiar maximum for standard 5mm LEDs, but it is rarely needed. An indicator LED
+        is clearly visible at 5–10mA, and running below the maximum makes it cooler and longer-lived.
+        High-power LEDs are a different category: they need a constant-current driver rather than a
+        simple resistor.
+      </p>
+
+      <h2>Series vs parallel</h2>
+      <p>
+        LEDs in series share one resistor: add their forward voltages, which is what the "LEDs in
+        series" field does. LEDs in parallel should each get their own resistor, because tiny
+        differences in forward voltage make one LED take most of the current. That is why kits like
+        the <a href="/reviews/gikfun-led-chaser-soldering-kit">81-LED chaser</a> are designed with the
+        resistors they are.
+      </p>
+
+      <h2>Reading and checking the resistor</h2>
+      <p>
+        Found the value you need? Our <a href="/tools/resistor-color-code-calculator">resistor color code
+        calculator</a> shows which bands to look for, and a
+        <a href="/best-multimeters-for-electronics">multimeter</a> confirms it before you solder. If an
+        LED stays dark after soldering, check its orientation first — the flat edge and shorter leg
+        are the cathode — and see our <a href="/guides/common-soldering-mistakes">common soldering
+        mistakes</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { ledResistor } from '@/lib/led';
+  import { formatOhms } from '@/lib/resistor';
+
+  const root = document.querySelector<HTMLElement>('[data-led]');
+  if (root) {
+    const inp = (k: string) => root.querySelector<HTMLInputElement & HTMLSelectElement>(`[data-in="${k}"]`)!;
+    const out = (k: string) => root.querySelector<HTMLElement>(`[data-out-${k}]`)!;
+    const ok = root.querySelector<HTMLElement>('[data-ok]')!;
+    const err = root.querySelector<HTMLElement>('[data-err]')!;
+
+    const update = () => {
+      const r = ledResistor(
+        parseFloat(inp('vs').value),
+        parseFloat(inp('vf').value),
+        parseInt(inp('n').value, 10),
+        parseFloat(inp('ma').value),
+      );
+      ok.hidden = !r.ok;
+      err.hidden = r.ok;
+      if (!r.ok) return;
+      out('std').textContent = formatOhms(r.standard);
+      out('exact').textContent = formatOhms(r.exact);
+      out('ma').textContent = `${r.actualmA.toFixed(1)} mA`;
+      out('w').textContent = `${r.resistorW < 0.01 ? r.resistorW.toFixed(4) : r.resistorW.toFixed(3)} W`;
+      out('rating').textContent = r.rating;
+    };
+
+    inp('preset').addEventListener('change', () => {
+      if (inp('preset').value !== 'custom') inp('vf').value = inp('preset').value;
+      update();
+    });
+    inp('vf').addEventListener('input', () => {
+      inp('preset').value = 'custom';
+      update();
+    });
+    root.addEventListener('input', update);
+    update();
+  }
+</script>

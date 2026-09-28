@@ -1,0 +1,76 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: '/tools' },
+];
+const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs));
+
+const TOOLS = [
+  {
+    href: '/tools/resistor-color-code-calculator',
+    title: 'Resistor Color Code Calculator',
+    desc: 'Pick the bands on a 4- or 5-band resistor to get its value and tolerance, with a full color chart and the common values found in kits.',
+  },
+  {
+    href: '/tools/led-resistor-calculator',
+    title: 'LED Resistor Calculator',
+    desc: 'Enter your supply voltage and LED to get the resistor value, the nearest standard part and the wattage rating to use.',
+  },
+];
+
+const REFERENCE = [
+  { href: '/guides/soldering-iron-temperature-guide', title: 'Soldering temperature chart', desc: 'Iron settings by solder type and job, with melting points.' },
+  { href: '/guides/solder-wire-types-and-gauge', title: 'Solder wire gauge chart', desc: 'Solder diameters in mm, inches and AWG, and which to use.' },
+  { href: '/guides/how-to-read-a-schematic', title: 'Schematic symbol chart', desc: 'Common symbols, designators and value shorthand like 4k7.' },
+];
+---
+
+<BaseLayout
+  title="Free Electronics Calculators & Soldering Reference Charts"
+  description="Free electronics tools for hobbyists: a resistor color code calculator, an LED resistor calculator, and soldering reference charts for temperatures, solder gauge and schematics."
+  jsonLd={jsonLd}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Electronics Calculators &amp; Reference Charts
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Free tools for the calculations that come up while you build: working out a resistor from its
+        colors, and choosing the right resistor for an LED. Plus the reference charts people keep open
+        next to the bench.
+      </p>
+    </header>
+
+    <section class="mt-10">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Calculators</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2">
+        {TOOLS.map((t) => (
+          <a href={t.href} class="group flex flex-col rounded-2xl border border-ink-200 bg-white p-6 transition-shadow hover:shadow-[var(--shadow-card)]">
+            <h3 class="text-lg font-bold text-ink-900 group-hover:text-brand-700">{t.title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{t.desc}</p>
+            <span class="mt-4 text-sm font-semibold text-brand-600">Open the calculator →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+
+    <section class="mt-14">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Reference charts</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-3">
+        {REFERENCE.map((t) => (
+          <a href={t.href} class="group flex flex-col rounded-2xl border border-ink-200 bg-white p-6 transition-shadow hover:shadow-[var(--shadow-card)]">
+            <h3 class="text-base font-bold text-ink-900 group-hover:text-brand-700">{t.title}</h3>
+            <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{t.desc}</p>
+            <span class="mt-4 text-sm font-semibold text-brand-600">View the chart →</span>
+          </a>
+        ))}
+      </div>
+    </section>
+  </div>
+</BaseLayout>

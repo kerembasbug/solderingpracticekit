@@ -1,0 +1,239 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import FAQ from '@/components/FAQ.astro';
+import { COLORS, formatOhms, ohmsToFourBand, byName } from '@/lib/resistor';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const digitColors = COLORS.filter((c) => c.digit !== undefined);
+const multColors = COLORS.filter((c) => c.multiplier !== undefined);
+const tolColors = COLORS.filter((c) => c.tolerance !== undefined);
+const fmtMult = (m: number) => (m >= 1 ? `×${formatOhms(m).replace(' Ω', '').replace(' ', '')}` : `×${m}`);
+
+const COMMON = [10, 47, 100, 220, 330, 470, 680, 1000, 2200, 4700, 10000, 22000, 47000, 100000, 1000000];
+const common = COMMON.map((v) => ({ value: formatOhms(v), bands: ohmsToFourBand(v) ?? [] }));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Tools', url: '/tools' },
+  { name: 'Resistor Color Code Calculator', url: '/tools/resistor-color-code-calculator' },
+];
+
+const faqs = [
+  {
+    question: 'How do you read a resistor color code?',
+    answer:
+      'Hold the resistor so the tolerance band — usually gold or silver, and often set slightly apart — is on the right. Read the bands from left to right: the first two (or three, on a 5-band resistor) are digits, the next is the multiplier, and the last is the tolerance. For example, yellow–violet–red–gold is 4, 7, ×100 = 4,700 Ω, or 4.7 kΩ ±5%.',
+  },
+  {
+    question: 'Which end of a resistor do you start reading from?',
+    answer:
+      'Start from the end furthest from the tolerance band. Gold and silver never appear as a first band, so if one end is gold or silver, that is the right-hand end. On precision resistors the tolerance band is often slightly separated from the others.',
+  },
+  {
+    question: 'What is the difference between 4-band and 5-band resistors?',
+    answer:
+      'A 4-band resistor has two digit bands; a 5-band resistor has three, which allows more precise values. Five-band resistors are usually precision (1% or better) metal-film parts. The multiplier and tolerance bands work the same way on both.',
+  },
+  {
+    question: 'What color code is a 10k resistor?',
+    answer:
+      'On a 4-band resistor, 10 kΩ is brown–black–orange, followed by the tolerance band (gold for ±5%). On a 5-band resistor it is brown–black–black–red, then the tolerance band (brown for ±1%).',
+  },
+  {
+    question: 'What if I cannot tell the colors apart?',
+    answer:
+      'Brown, red and orange, and blue and violet, are easy to confuse under warm light. When in doubt, measure the resistor with a multimeter on its resistance setting before soldering it — it takes seconds and removes the guesswork.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Resistor Color Code Calculator (4-Band and 5-Band)',
+    description:
+      'Free resistor color code calculator for 4-band and 5-band resistors, with a full color chart, common values and how to read a resistor.',
+    url: '/tools/resistor-color-code-calculator',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Resistor Color Code Calculator (4 & 5 Band)"
+  description="Free resistor color code calculator for 4-band and 5-band resistors. Pick the colors to get the value and tolerance, plus a full color chart and common values."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Resistor Color Code Calculator
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Pick the colors on your resistor to get its value and tolerance instantly. Works for
+        4-band and 5-band resistors — the ones in almost every soldering kit.
+      </p>
+    </header>
+
+    <section class="mt-10 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card)] lg:p-8" data-rcc>
+      <fieldset class="flex flex-wrap gap-3">
+        <legend class="sr-only">Number of bands</legend>
+        <label class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-ink-200 px-4 font-semibold text-ink-800 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+          <input type="radio" name="bands" value="4" checked class="accent-brand-500" /> 4 bands
+        </label>
+        <label class="inline-flex min-h-11 cursor-pointer items-center gap-2 rounded-xl border border-ink-200 px-4 font-semibold text-ink-800 has-[:checked]:border-brand-500 has-[:checked]:bg-brand-50">
+          <input type="radio" name="bands" value="5" class="accent-brand-500" /> 5 bands
+        </label>
+      </fieldset>
+
+      <svg viewBox="0 0 360 90" class="mt-6 w-full max-w-md" role="img" aria-label="Resistor showing the selected color bands">
+        <line x1="0" y1="45" x2="360" y2="45" stroke="#9aa3ad" stroke-width="5" />
+        <rect x="70" y="18" width="220" height="54" rx="22" fill="#e9d3a8" stroke="#c9ad7c" />
+        <rect data-band="0" x="98" y="18" width="14" height="54" fill="#7a4a24" />
+        <rect data-band="1" x="128" y="18" width="14" height="54" fill="#1f1f1f" />
+        <rect data-band="2" x="158" y="18" width="14" height="54" fill="#d0312d" />
+        <rect data-band="3" x="188" y="18" width="14" height="54" fill="#d0312d" />
+        <rect data-band="4" x="252" y="18" width="14" height="54" fill="#c8a23a" />
+      </svg>
+
+      <div class="mt-6 grid gap-4 sm:grid-cols-5">
+        <label class="block text-sm font-semibold text-ink-700">1st digit
+          <select data-sel="d1" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {digitColors.filter((c) => c.digit !== 0).map((c) => <option value={c.name} selected={c.name === 'Brown'}>{c.name} ({c.digit})</option>)}
+          </select>
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">2nd digit
+          <select data-sel="d2" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {digitColors.map((c) => <option value={c.name} selected={c.name === 'Black'}>{c.name} ({c.digit})</option>)}
+          </select>
+        </label>
+        <label class="block text-sm font-semibold text-ink-700" data-third hidden>3rd digit
+          <select data-sel="d3" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {digitColors.map((c) => <option value={c.name} selected={c.name === 'Black'}>{c.name} ({c.digit})</option>)}
+          </select>
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">Multiplier
+          <select data-sel="mult" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {multColors.map((c) => <option value={c.name} selected={c.name === 'Red'}>{c.name} ({fmtMult(c.multiplier!)})</option>)}
+          </select>
+        </label>
+        <label class="block text-sm font-semibold text-ink-700">Tolerance
+          <select data-sel="tol" class="mt-1 block min-h-11 w-full rounded-lg border border-ink-300 bg-white px-2">
+            {tolColors.map((c) => <option value={c.name} selected={c.name === 'Gold'}>{c.name} (±{c.tolerance}%)</option>)}
+            <option value="None">None (±20%)</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="mt-6 rounded-2xl bg-ink-900 p-5 text-white" aria-live="polite">
+        <p class="text-sm font-semibold uppercase tracking-wide text-ink-300">Resistance</p>
+        <p class="mt-1 text-3xl font-extrabold" data-out-value>1 kΩ</p>
+        <p class="mt-1 text-sm text-ink-200" data-out-range>±5% · 950 Ω – 1.05 kΩ</p>
+      </div>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to read a resistor color code</h2>
+      <ol>
+        <li><strong>Find the tolerance band.</strong> It is usually gold or silver and often sits a little apart from the others. Put it on the right.</li>
+        <li><strong>Read the digit bands from the left.</strong> Two digits on a 4-band resistor, three on a 5-band.</li>
+        <li><strong>Apply the multiplier.</strong> The next band says how many zeros to add — or, for gold and silver, to divide by 10 or 100.</li>
+        <li><strong>Note the tolerance.</strong> The last band tells you how far the real value may be from the marked one.</li>
+      </ol>
+      <p>
+        Example: <strong>yellow–violet–red–gold</strong> reads 4, 7, then ×100, giving 4,700 Ω —
+        written 4.7 kΩ or "4k7" on a <a href="/guides/how-to-read-a-schematic">schematic</a> — with a
+        tolerance of ±5%.
+      </p>
+
+      <h2>Resistor color chart</h2>
+      <table>
+        <thead><tr><th>Color</th><th>Digit</th><th>Multiplier</th><th>Tolerance</th></tr></thead>
+        <tbody>
+          {COLORS.map((c) => (
+            <tr>
+              <td><span style={`display:inline-block;width:0.9em;height:0.9em;border-radius:3px;border:1px solid #94a3b8;vertical-align:-0.1em;margin-right:0.4em;background:${c.hex}`}></span>{c.name}</td>
+              <td>{c.digit ?? '—'}</td>
+              <td>{c.multiplier !== undefined ? fmtMult(c.multiplier) : '—'}</td>
+              <td>{c.tolerance !== undefined ? `±${c.tolerance}%` : '—'}</td>
+            </tr>
+          ))}
+          <tr><td>None</td><td>—</td><td>—</td><td>±20%</td></tr>
+        </tbody>
+      </table>
+
+      <h2>Common resistor values and their colors</h2>
+      <p>The values you will meet most often in soldering kits, as 4-band codes (add the tolerance band, usually gold):</p>
+      <table>
+        <thead><tr><th>Value</th><th>Bands 1–3</th></tr></thead>
+        <tbody>
+          {common.map((r) => (<tr><td><strong>{r.value}</strong></td><td>{r.bands.join(' – ')}</td></tr>))}
+        </tbody>
+      </table>
+
+      <h2>4-band vs 5-band resistors</h2>
+      <p>
+        A 4-band resistor gives two significant digits, which is enough for common ±5% carbon-film
+        parts. A 5-band resistor gives three, so it can mark values like 4.99 kΩ — you will find these
+        on precision ±1% metal-film resistors. A few resistors carry a sixth band for temperature
+        coefficient; ignore it for the value.
+      </p>
+
+      <h2>When in doubt, measure it</h2>
+      <p>
+        Brown, red and orange look alike under warm light, and so do blue and violet. Before
+        soldering, a <a href="/best-multimeters-for-electronics">multimeter</a> on its resistance
+        setting confirms the value in seconds — and it is far easier than desoldering the wrong part
+        later. Working out what resistor an LED needs? Use the
+        <a href="/tools/led-resistor-calculator">LED resistor calculator</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
+
+<script>
+  import { byName, formatOhms, bandsToOhms } from '@/lib/resistor';
+
+  const root = document.querySelector<HTMLElement>('[data-rcc]');
+  if (root) {
+    const sel = (k: string) => root.querySelector<HTMLSelectElement>(`[data-sel="${k}"]`)!;
+    const band = (i: number) => root.querySelector<SVGRectElement>(`[data-band="${i}"]`)!;
+    const third = root.querySelector<HTMLElement>('[data-third]')!;
+    const outValue = root.querySelector<HTMLElement>('[data-out-value]')!;
+    const outRange = root.querySelector<HTMLElement>('[data-out-range]')!;
+
+    const update = () => {
+      const five = root.querySelector<HTMLInputElement>('input[name="bands"]:checked')?.value === '5';
+      third.hidden = !five;
+      const digits = five ? [sel('d1').value, sel('d2').value, sel('d3').value] : [sel('d1').value, sel('d2').value];
+      const mult = sel('mult').value;
+      const tolName = sel('tol').value;
+      const tol = tolName === 'None' ? 20 : byName(tolName)?.tolerance ?? 20;
+
+      const colors = [...digits, mult];
+      [0, 1, 2, 3].forEach((i) => {
+        const c = colors[i];
+        band(i).setAttribute('visibility', c ? 'visible' : 'hidden');
+        if (c) band(i).setAttribute('fill', byName(c)!.hex);
+      });
+      band(4).setAttribute('visibility', tolName === 'None' ? 'hidden' : 'visible');
+      if (tolName !== 'None') band(4).setAttribute('fill', byName(tolName)!.hex);
+
+      const ohms = bandsToOhms(digits, mult);
+      if (ohms === null) return;
+      outValue.textContent = formatOhms(ohms);
+      outRange.textContent = `±${tol}% · ${formatOhms(ohms * (1 - tol / 100))} – ${formatOhms(ohms * (1 + tol / 100))}`;
+    };
+
+    root.addEventListener('change', update);
+    update();
+  }
+</script>

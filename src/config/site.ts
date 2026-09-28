@@ -96,6 +96,7 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; href: stri
       { label: 'Bench Power Supplies', href: '/best-bench-power-supplies' },
       { label: 'Oscilloscopes', href: '/best-oscilloscopes-for-beginners' },
       { label: 'Guides & How-Tos', href: '/guides' },
+      { label: 'Calculators & Charts', href: '/tools' },
       { label: 'About Us', href: '/about' },
       { label: 'How We Rank', href: '/how-we-rank' },
       { label: 'Contact', href: '/contact' },

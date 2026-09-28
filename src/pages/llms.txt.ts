@@ -59,6 +59,11 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [YIHUA 926 III vs Weller WE1010NA](${origin}/yihua-926-iii-vs-weller-we1010na): Budget station bundle versus the premium, professional-grade Weller brand.
 - [Hakko FX-888DX vs Weller WE1010NA](${origin}/hakko-fx888dx-vs-weller-we1010na): The two trusted pro station brands compared on tips, control and value.
 
+## Tools
+
+- [Resistor Color Code Calculator](${origin}/tools/resistor-color-code-calculator): 4- and 5-band resistor values and tolerance from their colors, with a color chart.
+- [LED Resistor Calculator](${origin}/tools/led-resistor-calculator): Resistor value, standard part and wattage for an LED from supply voltage, LED type and current.
+
 ## Guides
 
 ${guideLines}

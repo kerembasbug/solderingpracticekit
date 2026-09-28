@@ -96,7 +96,7 @@ Values are written next to the designator, often in a compact shorthand:
 | 10µ or 10uF, 25V | 10 µF electrolytic, rated 25 V — observe the + side |
 | 3V3 | 3.3 V |
 
-Letters-as-decimal-points exist because a printed dot is easy to lose; "4k7" can never be misread as 47k.
+Letters-as-decimal-points exist because a printed dot is easy to lose; "4k7" can never be misread as 47k. On the parts themselves, resistor values are printed as colored bands — our [resistor color code calculator](/tools/resistor-color-code-calculator) decodes them.
 
 ## A worked example: a simple LED circuit
 
@@ -107,7 +107,7 @@ Picture the smallest useful schematic: a **+5V** label, a resistor **R1 220R**, 
 3. **Continue to D1.** The triangle points toward the bar, so this LED is the right way round when its anode (triangle side) faces R1 and its cathode (bar side) faces ground. On the part itself, the cathode is usually the shorter leg and the flat edge of the LED.
 4. **End at GND.** The circuit is complete.
 
-With a typical red LED dropping about 2 V, the resistor carries the remaining 3 V, so the current is roughly 3 V ÷ 220 Ω ≈ 13 mA — comfortably bright and safe. If the LED does not light when you build it, this map tells you exactly what to check: power at the resistor, the LED's orientation, and a solid ground joint.
+With a typical red LED dropping about 2 V, the resistor carries the remaining 3 V, so the current is roughly 3 V ÷ 220 Ω ≈ 13 mA — comfortably bright and safe. The [LED resistor calculator](/tools/led-resistor-calculator) does this sum for any supply and LED. If the LED does not light when you build it, this map tells you exactly what to check: power at the resistor, the LED's orientation, and a solid ground joint.
 
 ## How to read a circuit board
 
