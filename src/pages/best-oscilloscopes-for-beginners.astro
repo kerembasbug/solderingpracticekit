@@ -1,0 +1,137 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import { TEST_GEAR_GROUPS } from '@/data/testGear';
+import { itemListSchema, faqSchema, breadcrumbSchema, articleSchema, jsonLdGraph } from '@/lib/seo';
+
+const group = TEST_GEAR_GROUPS.find((g) => g.key === 'oscilloscopes')!;
+const all = await getProducts();
+const items = sortByScore(all.filter((p) => (group.slugs as readonly string[]).includes(p.slug)));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Electronics Workbench', url: '/electronics-workbench-essentials' },
+  { name: 'Best Oscilloscopes for Beginners', url: '/best-oscilloscopes-for-beginners' },
+];
+
+const faqs = [
+  {
+    question: 'What is the best oscilloscope for a beginner?',
+    answer:
+      'For most hobbyists, a two-channel 50MHz handheld such as the FNIRSI 2C53T is the best start — it also works as a multimeter and signal generator. If the scope will live on a bench, a benchtop model like the Hantek DSO2C10 is easier to learn on thanks to its bigger screen and dedicated knobs.',
+  },
+  {
+    question: 'How much bandwidth do I need?',
+    answer:
+      'A common rule of thumb is bandwidth several times higher than the fastest signal you want to see accurately. For audio, PWM and slow signals, even a few hundred kilohertz works; for Arduino-class digital projects, 50–100MHz is comfortable.',
+  },
+  {
+    question: 'Handheld or benchtop oscilloscope?',
+    answer:
+      'Benchtop scopes have larger screens and a knob for every control, which makes learning and everyday debugging faster. Handhelds are cheaper, portable and often combine a multimeter and signal generator. Choose by where the scope will be used.',
+  },
+  {
+    question: 'Do I need an oscilloscope to learn soldering?',
+    answer:
+      'No — a multimeter handles most kit fault finding. An oscilloscope becomes valuable when a circuit powers up but misbehaves, because it shows how signals change over time.',
+  },
+  {
+    question: 'How many channels should an oscilloscope have?',
+    answer:
+      'Two channels cover most hobby work, such as comparing an input with an output. Four channels help when debugging digital circuits with several related signals, such as a clock, data and chip-select line.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'The Best Oscilloscopes for Beginners and Hobbyists (2026)',
+    description: 'The best oscilloscopes for beginners, ranked — a budget learning scope, a 3-in-1 handheld, a 100MHz bench scope and a four-channel favourite.',
+    url: '/best-oscilloscopes-for-beginners',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  itemListSchema(items, '/best-oscilloscopes-for-beginners'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Oscilloscope for Beginners & Hobbyists (2026)"
+  description={`The ${items.length} best oscilloscopes for beginners, ranked — a budget learning scope, a 3-in-1 handheld with multimeter and signal generator, and two benchtop scopes.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Oscilloscopes for Beginners
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        A multimeter tells you a single number; an oscilloscope shows you what a signal does over
+        time. That is the difference between knowing a circuit has power and seeing why it
+        misbehaves. We ranked the scopes that make sense for hobbyists, from a pocket learning tool to
+        a four-channel bench instrument.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 28, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={items} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The oscilloscopes, reviewed</h2>
+      {items.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose your first oscilloscope</h2>
+      <h3>The three specifications that matter</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Specification</th><th scope="col" class="px-4 py-3">What it means</th><th scope="col" class="px-4 py-3">Hobby guideline</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Bandwidth</th><td class="px-4 py-3">The highest frequency it shows accurately</td><td class="px-4 py-3">50–100MHz for digital projects; less for audio and PWM</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Sample rate</th><td class="px-4 py-3">How often it measures the signal</td><td class="px-4 py-3">Well above the bandwidth — 1GSa/s is comfortable</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Channels</th><td class="px-4 py-3">How many signals you can see at once</td><td class="px-4 py-3">Two for most work; four for digital debugging</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>What you can see with a scope that a meter misses</h3>
+      <p>
+        A meter averages; a scope shows shape. With one you can see whether a 555 timer in a kit is
+        actually oscillating, whether a PWM signal driving an LED or motor has the duty cycle you
+        expect, whether a power rail is noisy, and whether a microcontroller is sending anything on its
+        communication pins. Those are exactly the faults that leave a board powered but not working.
+      </p>
+      <h3>Getting good measurements</h3>
+      <p>
+        Match the probe attenuation setting to the probe switch, compensate each probe on the scope's
+        calibration output, and keep the ground lead short. Most confusing first measurements come
+        from one of those three. For power, pair the scope with a current-limited
+        <a href="/best-bench-power-supplies">bench power supply</a>, and keep a
+        <a href="/best-multimeters-for-electronics">multimeter</a> for quick continuity checks.
+      </p>
+      <p>
+        New to building a bench? Our <a href="/electronics-workbench-essentials">electronics
+        workbench guide</a> explains which tool to buy first and why.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

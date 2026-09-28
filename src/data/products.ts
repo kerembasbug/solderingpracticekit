@@ -3328,4 +3328,930 @@ export const PRODUCTS: Product[] = [
     imageHeight: 500,
     updatedAt: '2026-09-15',
   },
+
+  // ---- Test & measurement: multimeters (2026-09) ----
+  {
+    asin: 'B01ISAMUA6',
+    slug: 'astroai-am33d-digital-multimeter',
+    title: 'AstroAI AM33D Digital Multimeter',
+    fullTitle:
+      'AstroAI Digital Multimeter Tester 2000 Counts with DC AC Voltmeter and Ohm Volt Amp Meter; Measures Voltage, Current, Resistance, Continuity and Diode, Blue',
+    brand: 'AstroAI',
+    category: 'test',
+    award: 'Best Budget Multimeter',
+    rank: 44,
+    ourScore: 8.4,
+    priceTier: '$',
+    featured: false,
+    tagline: 'The inexpensive first meter that covers every check a kit builder needs.',
+    excerpt:
+      'A compact 2000-count meter that measures DC and AC voltage, current, resistance, continuity and diodes. It is the cheapest sensible way to stop guessing whether a joint, a battery or an LED is the problem.',
+    bestFor: 'Kit builders and beginners who need a first meter for continuity and voltage checks.',
+    pros: [
+      'Covers voltage, current, resistance, continuity and diodes',
+      'Continuity beeper makes checking joints fast',
+      'Very low cost for a genuinely useful tool',
+      'Small enough to live on the soldering bench',
+    ],
+    cons: [
+      '2000-count resolution is basic for precision work',
+      'Not rated for serious mains electrical work',
+    ],
+    features: [
+      '2000-count digital display',
+      'DC/AC voltage, DC current and resistance',
+      'Continuity buzzer and diode test',
+      'Test leads included',
+    ],
+    verdict:
+      'Every soldering bench needs a meter, and this is the one to buy when you do not yet know how much you will use it. The continuity beeper alone finds most kit faults — a joint that looks fine but does not connect, or a solder bridge that shorts two pins. It will not satisfy an electrician, but for electronics hobby work it is all the meter many people ever need.',
+    roundupNote:
+      'The meter we suggest first because of the continuity beeper: it finds the unconnected joints and solder bridges behind most kit faults, for very little money.',
+    inTheBox: [
+      'AM33D digital multimeter',
+      'Pair of test leads',
+      'Battery fitted or included (check the current listing)',
+      'User manual',
+    ],
+    firstSteps:
+      'Learn continuity mode first — touch the probes together to hear the beep, then use it to check every suspicious joint on a board that does not work. Always power the circuit off before measuring resistance or continuity. When measuring current, move the red lead to the current socket and remember to move it back afterwards; leaving it there is the classic way to blow a meter fuse on the next voltage reading.',
+    alternatives: [
+      {
+        slug: 'astroai-trms-6000-auto-ranging-multimeter',
+        why: 'Auto-ranging, True RMS and capacitance for a small step up in price — less dial-turning and more measurements.',
+      },
+      {
+        slug: 'klein-tools-mm325-multimeter',
+        why: 'A tougher, trade-brand build if the meter will also come out for household electrical checks.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a cheap multimeter good enough for soldering projects?',
+        answer:
+          'Yes. For kit building and hobby electronics you mostly check continuity, battery voltage and resistor values, and a 2000-count meter does all of that. Precision and safety ratings only start to matter for professional or mains work.',
+      },
+      {
+        question: 'How do you test a solder joint with a multimeter?',
+        answer:
+          'With the circuit unpowered, set continuity mode and touch one probe to the component lead and the other to the track it should connect to. A beep means a connection; silence points to a cold or cracked joint. Also check neighbouring pins to catch solder bridges.',
+      },
+      {
+        question: 'What does 2000 counts mean?',
+        answer:
+          'It is the display resolution: the meter can show up to 1999 before switching range. Higher-count meters show more digits at each range, which matters for precision measurements rather than everyday hobby checks.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/41Ul9is2kxL.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B071JL6LLL',
+    slug: 'astroai-trms-6000-auto-ranging-multimeter',
+    title: 'AstroAI True RMS 6000-Count Auto-Ranging Multimeter',
+    fullTitle:
+      'AstroAI Digital Multimeter, True RMS 6000 Counts Auto-Ranging Volt Meter for Automotive & Home Electrical Troubleshooting, AC/DC Voltage Current Resistance Continuity Capacitance Temperature Tester',
+    brand: 'AstroAI',
+    category: 'test',
+    award: 'Best Value Multimeter',
+    rank: 45,
+    ourScore: 8.8,
+    priceTier: '$',
+    featured: true,
+    tagline: 'Auto-ranging, True RMS and capacitance without leaving the budget bracket.',
+    excerpt:
+      'A 6000-count True RMS meter that picks its own range and adds capacitance and temperature to the usual voltage, current, resistance and continuity. It is the sweet spot for hobbyists who want one meter that covers electronics and household jobs.',
+    bestFor: 'Hobbyists who want a single meter for electronics, cars and home troubleshooting.',
+    pros: [
+      'Auto-ranging removes most dial fiddling',
+      'True RMS reads AC accurately on non-sine waveforms',
+      'Capacitance and temperature modes included',
+      '6000-count resolution for finer readings',
+    ],
+    cons: [
+      'Auto-ranging is slightly slower to settle than manual',
+      'Not a replacement for a professional-rated meter',
+    ],
+    features: [
+      'True RMS, 6000-count display',
+      'Auto-ranging',
+      'AC/DC voltage and current, resistance, continuity',
+      'Capacitance and temperature measurement',
+    ],
+    verdict:
+      'This is the meter most hobbyists should buy. Auto-ranging means you choose what to measure rather than which range, True RMS keeps AC readings honest, and capacitance mode lets you check a suspect capacitor before blaming your soldering. It costs only a little more than a basic meter and removes the two things that make basic meters frustrating.',
+    roundupNote:
+      'Our overall pick for most benches: auto-ranging and True RMS remove the two frustrations of basic meters, and capacitance mode helps diagnose kits as well as test joints.',
+    inTheBox: [
+      'True RMS auto-ranging multimeter',
+      'Test leads',
+      'Temperature probe (check the current listing)',
+      'Battery and user manual',
+    ],
+    firstSteps:
+      'Use auto-ranging for everything at first, and switch to manual range only when a reading keeps hopping between ranges. Discharge capacitors before measuring them — a charged electrolytic can give a false reading or damage the meter. Keep a note of the resistance your test leads read when shorted together, and subtract it when you measure very low resistances.',
+    alternatives: [
+      {
+        slug: 'astroai-am33d-digital-multimeter',
+        why: 'Cheaper still if continuity and voltage checks are all you need.',
+      },
+      {
+        slug: 'fluke-17b-plus-digital-multimeter',
+        why: 'The buy-once professional option, with a safety rating and build quality for serious electrical work.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is True RMS and do I need it?',
+        answer:
+          'True RMS meters measure the real effective value of AC signals, including distorted waveforms from dimmers, motor drives and switching supplies. For batteries and DC electronics it makes no difference; for AC and anything with modern power electronics, it gives more trustworthy readings.',
+      },
+      {
+        question: 'Is auto-ranging better than manual ranging?',
+        answer:
+          'For most people, yes — you pick the quantity and the meter picks the range. Manual ranging can be marginally faster for repeated readings at a known range, which is why some experienced users still prefer it.',
+      },
+      {
+        question: 'Can it test capacitors from a kit?',
+        answer:
+          'Yes, within its capacitance range. Discharge the capacitor first and measure it out of circuit where possible, since other components in parallel will distort the reading.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/51d2N7iy4BL.jpg',
+    imageWidth: 440,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B0B57L9FNL',
+    slug: 'klein-tools-mm325-multimeter',
+    title: 'Klein Tools MM325 Manual-Ranging Multimeter',
+    fullTitle:
+      'Klein Tools MM325 Multimeter, Digital Manual-Ranging 600V AC/DC Voltage Tester, Tests Batteries, Current, Resistance, Diodes, and Continuity',
+    brand: 'Klein Tools',
+    category: 'test',
+    award: 'Most Rugged Budget Meter',
+    rank: 46,
+    ourScore: 8.5,
+    priceTier: '$',
+    featured: false,
+    tagline: 'A trade-brand meter tough enough for the toolbox as well as the bench.',
+    excerpt:
+      'A manual-ranging meter from a brand electricians already trust, measuring AC/DC voltage to 600V, current, resistance, diodes, continuity and batteries. It is built to be dropped in a toolbox, not just to sit on a desk.',
+    bestFor: 'People who want one sturdy meter for electronics and occasional household electrical checks.',
+    pros: [
+      'Trusted trade brand with a robust build',
+      'Measures to 600V AC/DC',
+      'Dedicated battery test function',
+      'Simple, predictable manual ranging',
+    ],
+    cons: [
+      'Manual ranging means choosing the range yourself',
+      'No capacitance or temperature modes',
+    ],
+    features: [
+      'Manual-ranging digital multimeter',
+      '600V AC/DC voltage',
+      'Current, resistance, diode and continuity',
+      'Battery test function',
+    ],
+    verdict:
+      'The MM325 is the meter for people whose multimeter lives in a toolbox rather than a drawer. Manual ranging is old-fashioned but predictable, the battery test is genuinely handy, and Klein builds for trade abuse. If you only do bench electronics, the auto-ranging AstroAI gives you more for the money; if the meter will travel, this is the tougher choice.',
+    roundupNote:
+      'The pick for a meter that lives in a toolbox as well as on the bench — a trade-brand build with a battery test function, at a budget price.',
+    inTheBox: [
+      'MM325 multimeter',
+      'Test leads',
+      'Batteries',
+      'Instruction manual',
+    ],
+    firstSteps:
+      'With manual ranging, start on a range above what you expect and step down until the reading resolves — starting too low only gives an overload indication, but it is a good habit for voltage. Use the battery test position rather than plain DC volts when checking cells, since it tests under a small load and gives a more honest picture of a tired battery.',
+    alternatives: [
+      {
+        slug: 'astroai-trms-6000-auto-ranging-multimeter',
+        why: 'Auto-ranging, True RMS and capacitance for bench electronics at a similar price.',
+      },
+      {
+        slug: 'fluke-17b-plus-digital-multimeter',
+        why: 'A professional meter with a higher voltage rating when household electrical work becomes regular.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the Klein MM325 good for electronics?',
+        answer:
+          'Yes for the essentials — continuity, voltage, resistance and diode checks. It lacks capacitance and temperature modes, so a hobbyist who mainly builds kits may get more from an auto-ranging meter with those extras.',
+      },
+      {
+        question: 'What does manual ranging mean?',
+        answer:
+          'You turn the dial to the range you expect, such as 20V for a 9V battery. It takes a moment more thought than auto-ranging, but the reading settles instantly and there are no surprises about which range the meter chose.',
+      },
+      {
+        question: 'Can it test household outlets?',
+        answer:
+          'It measures AC voltage to 600V, so it can read an outlet, but mains work carries real risk. Follow the manual, use the correct socket and range, and leave anything beyond simple checks to a qualified electrician.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/41IRyK7Ud3L.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B0779621KZ',
+    slug: 'fluke-17b-plus-digital-multimeter',
+    title: 'Fluke 17B+ Digital Multimeter',
+    fullTitle:
+      'Fluke 17B+ Digital Multimeter, for Electrical Applications, Measures AC/DC Voltage 1000V, Current Measurements to 10A, Resistance, Continuity, Diode, Capacitance, Frequency, and Temperature Testing',
+    brand: 'Fluke',
+    category: 'test',
+    award: 'Best Professional Multimeter',
+    rank: 47,
+    ourScore: 9.2,
+    priceTier: '$$$',
+    featured: false,
+    tagline: 'The brand professionals trust, with capacitance, frequency and temperature built in.',
+    excerpt:
+      'A Fluke meter measuring AC/DC voltage to 1000V, current to 10A, resistance, continuity, diodes, capacitance, frequency and temperature. You are paying for accuracy, safety engineering and a meter that lasts for decades.',
+    bestFor: 'Serious hobbyists and anyone doing regular electrical work who wants a buy-once meter.',
+    pros: [
+      'Fluke build quality and long-term reliability',
+      'Measures to 1000V AC/DC and 10A',
+      'Capacitance, frequency and temperature included',
+      'Designed with electrical safety in mind',
+    ],
+    cons: [
+      'Several times the price of a hobby meter',
+      'More capability than kit building strictly needs',
+    ],
+    features: [
+      'AC/DC voltage to 1000V, current to 10A',
+      'Resistance, continuity and diode test',
+      'Capacitance, frequency and temperature',
+      'Test leads and temperature probe',
+    ],
+    verdict:
+      'A Fluke is the meter people stop replacing. For pure kit building it is more than you need, but if you also work on household wiring, cars or anything where a wrong reading matters, the safety engineering and accuracy are worth paying for. Buy it when the meter has become a tool you rely on rather than an occasional helper.',
+    roundupNote:
+      'The buy-once meter. Overkill for kit building alone, but the one to own if the meter also comes out for household wiring or car electrics.',
+    inTheBox: [
+      'Fluke 17B+ multimeter',
+      'Test leads',
+      'Thermocouple temperature probe',
+      'Batteries and manual',
+    ],
+    firstSteps:
+      'Read the safety section of the manual once — a professional meter is only as safe as the way it is used, and the voltage ratings assume the correct sockets and leads. Keep the supplied leads rather than swapping in cheap ones, since the leads are part of the safety rating. For electronics, the capacitance and frequency modes are the features you will reach for most.',
+    alternatives: [
+      {
+        slug: 'astroai-trms-6000-auto-ranging-multimeter',
+        why: 'Most of the same measurements for a fraction of the price, if you only do hobby electronics.',
+      },
+      {
+        slug: 'klein-tools-mm325-multimeter',
+        why: 'A cheaper trade-brand meter for basic electrical and electronics checks.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is a Fluke multimeter worth it for a hobbyist?',
+        answer:
+          'Only if the meter will also be used for electrical work or you want one that lasts for decades. For kit building and small projects, a good budget auto-ranging meter covers the same everyday measurements.',
+      },
+      {
+        question: 'Does the Fluke 17B+ measure capacitance?',
+        answer:
+          'Yes, along with frequency and temperature. Those modes make it useful for diagnosing electronics as well as electrical circuits.',
+      },
+      {
+        question: 'Why are professional meters so much more expensive?',
+        answer:
+          'Largely for safety engineering — input protection, rated leads and fusing designed for high-energy electrical circuits — plus accuracy and durability. For low-voltage hobby electronics those margins are rarely tested.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/31mvCY3SN5L.jpg',
+    imageWidth: 500,
+    imageHeight: 333,
+    updatedAt: '2026-09-28',
+  },
+
+  // ---- Test & measurement: oscilloscopes (2026-09) ----
+  {
+    asin: 'B0FDPYNQBC',
+    slug: 'fnirsi-dso152-handheld-oscilloscope',
+    title: 'FNIRSI DSO152 Handheld Oscilloscope',
+    fullTitle: 'FNIRSI DSO152 Handheld Oscilloscope 200kHz Bandwidth, 2.5MS/s Sampling Rate',
+    brand: 'FNIRSI',
+    category: 'test',
+    award: 'Best First Oscilloscope',
+    rank: 48,
+    ourScore: 8.0,
+    priceTier: '$',
+    featured: false,
+    tagline: 'A pocket scope for learning what a waveform actually looks like.',
+    excerpt:
+      'A small single-channel handheld scope with 200kHz bandwidth and a 2.5MS/s sampling rate. It is a learning instrument: enough to see audio signals, PWM and slow digital lines, at a price that makes the oscilloscope less intimidating.',
+    bestFor: 'Beginners and students who want to see signals for the first time without a big outlay.',
+    pros: [
+      'Very low cost for a working oscilloscope',
+      'Pocket-sized and battery friendly',
+      'Good for audio, PWM and slow signals',
+      'Makes learning scope basics approachable',
+    ],
+    cons: [
+      '200kHz bandwidth rules out fast digital signals',
+      'Single channel limits comparison work',
+    ],
+    features: [
+      '200kHz bandwidth',
+      '2.5MS/s sampling rate',
+      'Handheld format with built-in display',
+      'Probe included (check the current listing)',
+    ],
+    verdict:
+      'Treat the DSO152 as a teaching tool rather than a lab instrument. Its bandwidth is far too low for microcontroller buses, but for seeing a 555 timer oscillate, checking PWM on a motor driver or watching an audio signal, it makes waveforms click in a way a multimeter never can. When you outgrow it, you will know exactly what a better scope needs to do.',
+    roundupNote:
+      'The cheapest way to learn what an oscilloscope shows you. Fine for audio, PWM and 555-timer kits; too slow for microcontroller signals.',
+    inTheBox: [
+      'DSO152 handheld oscilloscope',
+      'Signal probe',
+      'USB charging cable',
+      'User manual',
+    ],
+    firstSteps:
+      'Start with a known signal: many kits include a 555 timer or a PWM output, which is ideal. Set the trigger to auto, adjust the timebase until you see a few cycles, then switch to normal trigger to stabilise the trace. Keep in mind the bandwidth limit — a signal that looks rounded or smaller than expected may simply be faster than this scope can show.',
+    alternatives: [
+      {
+        slug: 'fnirsi-2c53t-oscilloscope-multimeter',
+        why: 'Two channels, 50MHz and a built-in multimeter and signal generator — the handheld to buy if you plan to keep using it.',
+      },
+      {
+        slug: 'hantek-dso2c10-digital-oscilloscope',
+        why: 'A proper 100MHz bench scope when you are ready to debug microcontroller projects.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What can a 200kHz oscilloscope measure?',
+        answer:
+          'Audio signals, PWM from motor and LED drivers, 555 timer outputs and other slow signals. It cannot faithfully show fast digital communication such as SPI or fast I2C, which needs tens of megahertz of bandwidth.',
+      },
+      {
+        question: 'Is a handheld scope good for beginners?',
+        answer:
+          'It is a low-risk way to learn triggering, timebase and voltage scale. Many people start with one and upgrade to a bench scope once they know which features they actually need.',
+      },
+      {
+        question: 'Do you need an oscilloscope for soldering kits?',
+        answer:
+          'Not to build them — a multimeter handles most fault finding. A scope becomes valuable when a circuit powers up but does not behave, because it shows what the signal is actually doing over time.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/510r7Pc4JEL.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B0D6VX6BFL',
+    slug: 'fnirsi-2c53t-oscilloscope-multimeter',
+    title: 'FNIRSI 2C53T 3-in-1 Oscilloscope, Multimeter & Signal Generator',
+    fullTitle: 'FNIRSI 2C53T 3-in-1 50MHz 2CH Oscilloscope Multimeter DDS Signal Generator',
+    brand: 'FNIRSI',
+    category: 'test',
+    award: 'Best Handheld Oscilloscope',
+    rank: 49,
+    ourScore: 8.9,
+    priceTier: '$$',
+    featured: true,
+    tagline: 'A two-channel scope, a multimeter and a signal generator in one handheld.',
+    excerpt:
+      'A handheld 50MHz two-channel oscilloscope that also works as a multimeter and a DDS signal generator. For a hobby bench it replaces three instruments, and it is small enough to take to a repair.',
+    bestFor: 'Hobbyists who want a capable scope that is portable and covers three jobs.',
+    pros: [
+      'Two channels and 50MHz bandwidth',
+      'Built-in multimeter and signal generator',
+      'Portable enough for field repairs',
+      'Strong value against buying three instruments',
+    ],
+    cons: [
+      'Small screen compared with a bench scope',
+      'Handheld controls are slower than dedicated knobs',
+    ],
+    features: [
+      '50MHz, 2-channel oscilloscope',
+      'Integrated digital multimeter',
+      'DDS signal generator',
+      'Rechargeable handheld format',
+    ],
+    verdict:
+      'The 2C53T is the scope that makes sense for most hobby benches. Two channels let you compare an input with an output, 50MHz covers typical microcontroller projects, and having a signal generator built in means you can inject a test signal without another box. A bench scope still wins on screen size and controls, but none of them fit in a toolbag.',
+    roundupNote:
+      'Our pick for most hobbyists: two channels, 50MHz, plus a multimeter and signal generator, in a handheld that also goes to repairs.',
+    inTheBox: [
+      '2C53T handheld oscilloscope/multimeter/generator',
+      'Oscilloscope probes',
+      'Multimeter test leads',
+      'USB cable and manual',
+    ],
+    firstSteps:
+      'Set each probe to the same attenuation on the probe and in the menu — a mismatch is the most common reason readings look ten times too big or too small. Compensate the probes on the built-in square-wave output before measuring anything real. Use the signal generator to feed a known waveform into a kit and watch it on the second channel; it is the quickest way to learn triggering.',
+    alternatives: [
+      {
+        slug: 'fnirsi-dso152-handheld-oscilloscope',
+        why: 'A fraction of the price if you only want to learn scope basics on slow signals.',
+      },
+      {
+        slug: 'rigol-ds1054z-digital-oscilloscope',
+        why: 'Four channels and a large screen for bench work when portability does not matter.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is 50MHz enough for hobby electronics?',
+        answer:
+          'For most Arduino-class projects, audio and power electronics, yes. Very fast digital edges and high-speed buses need more bandwidth, but those are rarely the first things a hobbyist needs to debug.',
+      },
+      {
+        question: 'What is the signal generator useful for?',
+        answer:
+          'It produces known waveforms you can feed into a circuit — for example into an amplifier kit — and then compare input and output on the scope. That makes it much easier to see where a signal goes wrong.',
+      },
+      {
+        question: 'Can it replace a separate multimeter?',
+        answer:
+          'For bench use it can, but many people keep a cheap dedicated meter anyway, because switching the handheld between modes is slower than grabbing a second instrument for continuity checks.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/51eDvvHvG7L.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B08Y6SKTX6',
+    slug: 'hantek-dso2c10-digital-oscilloscope',
+    title: 'Hantek DSO2C10 100MHz Digital Oscilloscope',
+    fullTitle: 'Hantek DSO2C10 Digital Storage Oscilloscope 100MHz Bandwidth 2CH',
+    brand: 'Hantek',
+    category: 'test',
+    award: 'Best Budget Bench Scope',
+    rank: 50,
+    ourScore: 8.6,
+    priceTier: '$$',
+    featured: false,
+    tagline: 'A real benchtop scope with 100MHz bandwidth at a hobby-friendly price.',
+    excerpt:
+      'A two-channel 100MHz digital storage oscilloscope in a proper benchtop format, with a larger screen and dedicated controls. It is the step up from a handheld when you start debugging microcontroller projects seriously.',
+    bestFor: 'Hobbyists moving to microcontroller debugging who want a bench scope on a budget.',
+    pros: [
+      '100MHz bandwidth on two channels',
+      'Benchtop screen and dedicated controls',
+      'Storage and capture functions for one-off events',
+      'Affordable for a bench instrument',
+    ],
+    cons: [
+      'Only two channels',
+      'Firmware and interface less polished than premium brands',
+    ],
+    features: [
+      '100MHz bandwidth, 2 channels',
+      'Digital storage oscilloscope',
+      'Benchtop format with dedicated controls',
+      'Probes included',
+    ],
+    verdict:
+      'The DSO2C10 is the budget route to a real bench scope. Dedicated knobs and a bigger screen make everyday debugging much faster than a handheld, and 100MHz covers the signals most hobby projects produce. It lacks the polish and four channels of pricier models, but for learning and troubleshooting it is a very capable first bench instrument.',
+    roundupNote:
+      'The cheapest route to a real benchtop scope: 100MHz and dedicated controls make microcontroller debugging much quicker than on a handheld.',
+    inTheBox: [
+      'DSO2C10 benchtop oscilloscope',
+      'Two oscilloscope probes',
+      'Power cord and USB cable',
+      'User manual',
+    ],
+    firstSteps:
+      'Compensate both probes on the front-panel calibration output before your first real measurement. Learn single-shot trigger early — capturing one event, such as a button press or a startup glitch, is what bench scopes do far better than handhelds. Ground the probe as close to the measurement point as possible; long ground leads add ringing that is not really in your circuit.',
+    alternatives: [
+      {
+        slug: 'rigol-ds1054z-digital-oscilloscope',
+        why: 'Four channels from a better-known brand, if you need to watch more signals at once.',
+      },
+      {
+        slug: 'fnirsi-2c53t-oscilloscope-multimeter',
+        why: 'Portable, with a multimeter and signal generator built in, if bench space is short.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Handheld or bench oscilloscope for a beginner?',
+        answer:
+          'A bench scope is easier to learn on because every control has its own knob and the screen is larger. A handheld wins on portability and price. If the scope will live on your bench, choose the bench model.',
+      },
+      {
+        question: 'Is two channels enough?',
+        answer:
+          'For most hobby work, yes — you typically compare one signal with another, such as input and output, or clock and data. Four channels help with more complex digital debugging.',
+      },
+      {
+        question: 'What does digital storage mean?',
+        answer:
+          'The scope samples and stores the signal, so you can freeze, zoom and inspect a waveform — including one-off events — instead of watching a live trace that disappears.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/51Xp5sfbn5L.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B012938E76',
+    slug: 'rigol-ds1054z-digital-oscilloscope',
+    title: 'Rigol DS1054Z 4-Channel Digital Oscilloscope',
+    fullTitle: 'Rigol DS1054Z Digital Oscilloscope, 50MHz, 4 Channel, 1GSa/s, Best Value',
+    brand: 'Rigol',
+    category: 'test',
+    award: 'Best 4-Channel Scope',
+    rank: 51,
+    ourScore: 9.1,
+    priceTier: '$$$',
+    featured: false,
+    tagline: 'The long-running hobbyist favourite: four channels and a big screen.',
+    excerpt:
+      'A 50MHz, four-channel benchtop oscilloscope sampling at 1GSa/s, from one of the best-known test equipment brands. It has been a standard recommendation for hobby benches for years because four channels make digital debugging far easier.',
+    bestFor: 'Makers debugging digital and microcontroller circuits who want four channels.',
+    pros: [
+      'Four channels for watching several signals at once',
+      '1GSa/s sampling rate',
+      'Large benchtop display',
+      'Long-standing reputation with a huge user community',
+    ],
+    cons: [
+      '50MHz bandwidth is modest for the price',
+      'Bulky compared with handheld options',
+    ],
+    features: [
+      '50MHz bandwidth, 4 channels',
+      '1GSa/s sampling rate',
+      'Benchtop format with large display',
+      'Probes included',
+    ],
+    verdict:
+      'The DS1054Z earned its reputation by putting four channels on a hobby budget, and that is still its strength: watching a clock, a chip select and two data lines at once turns guesswork into diagnosis. Its bandwidth is modest, but for Arduino-class projects it is plenty, and the enormous user community means every question has already been answered online.',
+    roundupNote:
+      'The one to buy if you debug digital circuits: four channels let you watch clock, data and control lines together, and the user community is huge.',
+    inTheBox: [
+      'DS1054Z benchtop oscilloscope',
+      'Oscilloscope probes',
+      'Power cord and USB cable',
+      'Quick guide',
+    ],
+    firstSteps:
+      'Colour-code your probes to the channel colours on screen before you start, which saves confusion once four traces are running. Compensate every probe. When debugging a microcontroller bus, trigger on the chip-select or clock line and view data on the other channels — that single habit is why four channels are worth having.',
+    alternatives: [
+      {
+        slug: 'hantek-dso2c10-digital-oscilloscope',
+        why: 'Higher bandwidth for less money if two channels are enough for your projects.',
+      },
+      {
+        slug: 'fnirsi-2c53t-oscilloscope-multimeter',
+        why: 'A portable handheld with a multimeter and generator, for a smaller desk and budget.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Is the Rigol DS1054Z still worth buying?',
+        answer:
+          'For four-channel hobby debugging it remains a sound choice, largely because of its channel count, sampling rate and the depth of community knowledge around it. Newer models offer higher resolution and bandwidth at higher prices.',
+      },
+      {
+        question: 'Why would you need four channels?',
+        answer:
+          'Digital circuits involve several related signals — a clock, data lines and control lines. Seeing them together, aligned in time, is how you find timing problems that a single channel cannot reveal.',
+      },
+      {
+        question: 'Is 50MHz bandwidth a limitation?',
+        answer:
+          'For typical microcontroller projects it is adequate. If you work with fast edges or high-speed interfaces, choose a higher-bandwidth model.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/41x7+1UipnL.jpg',
+    imageWidth: 500,
+    imageHeight: 334,
+    updatedAt: '2026-09-28',
+  },
+
+  // ---- Test & measurement: bench power supplies (2026-09) ----
+  {
+    asin: 'B09YSJQWRG',
+    slug: 'jesverty-sps-3010-bench-power-supply',
+    title: 'Jesverty SPS-3010 30V 10A Bench Power Supply',
+    fullTitle:
+      'Jesverty DC Power Supply Variable, 0-30V 0-10A Adjustable Switching DC Regulated Bench Power Supply with High Precision 4-Digit LED Display, 5V/2A USB Port, Coarse and Fine Adjustment SPS-3010',
+    brand: 'Jesverty',
+    category: 'test',
+    award: 'Best Bench Power Supply',
+    rank: 52,
+    ourScore: 8.8,
+    priceTier: '$',
+    featured: true,
+    tagline: 'The bestselling adjustable supply: 0–30V, 0–10A with a precise 4-digit display.',
+    excerpt:
+      'An adjustable 0–30V, 0–10A switching bench supply with a 4-digit LED display, coarse and fine adjustment and a 5V USB port. It is the tool that lets you power a project with a current limit instead of hoping a battery or wall adapter does not cook it.',
+    bestFor: 'Hobbyists who want to power and test projects safely with an adjustable current limit.',
+    pros: [
+      'Wide 0–30V, 0–10A adjustable range',
+      '4-digit display for precise voltage and current',
+      'Coarse and fine adjustment knobs',
+      'Handy 5V USB output',
+    ],
+    cons: [
+      'Switching design has more output noise than a linear supply',
+      'Potentiometer controls lack memory presets',
+    ],
+    features: [
+      '0–30V, 0–10A adjustable output',
+      '4-digit LED voltage and current display',
+      'Coarse and fine adjustment',
+      '5V/2A USB port',
+    ],
+    verdict:
+      'A current-limited bench supply is the most underrated tool on a hobby bench: set the voltage, set a sensible current limit, and a wiring mistake shows up as a current reading instead of a burnt component. The SPS-3010 does that simply and precisely. Its switching design is noisier than a linear supply, which matters only for sensitive audio or analogue work.',
+    roundupNote:
+      'The one to start with: a precise, current-limited supply that turns first power-up from a gamble into a controlled test.',
+    inTheBox: [
+      'SPS-3010 bench power supply',
+      'Output test leads',
+      'Power cord',
+      'User manual',
+    ],
+    firstSteps:
+      'Before connecting anything, set the voltage with the output open, then short the leads briefly and set the current limit — for a small kit, a few hundred milliamps is a sensible start. Connect the project and watch the current display: if it hits the limit immediately, there is a short or a reversed part. Raise the limit only when the circuit behaves.',
+    alternatives: [
+      {
+        slug: 'wanptek-tps-c3010h-bench-power-supply',
+        why: 'Adds memory presets and a key lock, useful if you switch between the same voltages often.',
+      },
+      {
+        slug: 'nankadf-30v-10a-bench-power-supply',
+        why: 'An encoder knob and an output on/off button for a similar price.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why use a bench power supply instead of batteries?',
+        answer:
+          'A bench supply lets you set an exact voltage and, crucially, a current limit. A short circuit or reversed component then draws only the current you allowed, instead of whatever a battery can deliver, which protects both the project and you.',
+      },
+      {
+        question: 'What current limit should I set for a soldering kit?',
+        answer:
+          'Start low — a few hundred milliamps for most small kits — and check the current reading when you power up. If the supply goes straight into current limit, look for a short or a reversed part before raising it.',
+      },
+      {
+        question: 'Switching or linear bench supply?',
+        answer:
+          'Switching supplies are lighter, cheaper and more efficient; linear supplies have lower output noise. For digital projects, LED kits and charging, switching is fine. For sensitive audio or analogue work, a linear supply is quieter.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/413B1lBD-hL.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B09BFCF13Y',
+    slug: 'nankadf-30v-10a-bench-power-supply',
+    title: 'NANKADF 30V 10A Bench Power Supply',
+    fullTitle:
+      'DC Power Supply Variable, Bench Power Supply with Encoder Adjustment Knob, Output Enable/Disable Button, Adjustable Power Supplies with USB Quick-Charge, Short Circuit Alam (30V 10A Black)',
+    brand: 'NANKADF',
+    category: 'test',
+    award: 'Best Output-Switch Supply',
+    rank: 53,
+    ourScore: 8.5,
+    priceTier: '$',
+    featured: false,
+    tagline: 'An encoder knob and a proper output on/off button make setup safer.',
+    excerpt:
+      'A 30V 10A adjustable bench supply with an encoder adjustment knob, a dedicated output enable button, USB quick-charge and a short-circuit alarm. The output switch lets you set everything before a single volt reaches your circuit.',
+    bestFor: 'Beginners who want the safety of setting voltage and current before enabling the output.',
+    pros: [
+      'Output enable/disable button',
+      'Encoder knob for precise, repeatable adjustment',
+      'Short-circuit alarm',
+      'USB quick-charge port',
+    ],
+    cons: [
+      'Switching-supply noise for sensitive analogue work',
+      'Lesser-known brand than the market leaders',
+    ],
+    features: [
+      '30V 10A adjustable output',
+      'Encoder adjustment knob',
+      'Output enable/disable button',
+      'USB quick-charge, short-circuit alarm',
+    ],
+    verdict:
+      'The output button is the feature that matters here. Being able to dial in voltage and current with the output off, then switch it on deliberately, removes the most common way beginners damage a project with a bench supply. Add an encoder knob and a short-circuit alarm and it is a thoughtful first supply for the money.',
+    roundupNote:
+      'Chosen for its output on/off button: set voltage and current first, then switch power on deliberately — the safest habit a beginner can learn.',
+    inTheBox: [
+      '30V 10A bench power supply',
+      'Output leads',
+      'Power cord',
+      'User manual',
+    ],
+    firstSteps:
+      'Make the output button part of your routine: output off, set voltage, set current limit, connect the project, then enable the output while watching the current reading. Switch the output off before disconnecting or changing wiring. The short-circuit alarm is a helpful warning, but the current limit is what actually protects the circuit.',
+    alternatives: [
+      {
+        slug: 'jesverty-sps-3010-bench-power-supply',
+        why: 'The bestselling supply in the category, with coarse and fine potentiometer control.',
+      },
+      {
+        slug: 'wanptek-30v-10a-bench-power-supply',
+        why: 'Adds USB-C quick charge and overcurrent protection at a similar price.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'Why does an output on/off button matter?',
+        answer:
+          'It lets you set and check voltage and current before power reaches your circuit. Without it, the supply is live the moment it is switched on, so any setting mistake goes straight into the project.',
+      },
+      {
+        question: 'Can you charge batteries with it?',
+        answer:
+          'You can charge some batteries using the voltage and current limits, but lithium cells need a proper charging profile and supervision. Use a dedicated charger for lithium batteries unless you know exactly what you are doing.',
+      },
+      {
+        question: 'Is 10A more than a hobbyist needs?',
+        answer:
+          'Most kits draw well under 1A, so 10A is headroom rather than a requirement. It becomes useful for motors, LED strips and higher-power projects later on.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/51J2ypqHaML.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B0CN989377',
+    slug: 'wanptek-30v-10a-bench-power-supply',
+    title: 'WANPTEK 30V 10A Bench Power Supply with USB-C',
+    fullTitle:
+      'DC Power Supply Variable 0-30V 0-10A, Adjustable Switching Regulated Bench Power Supply with Encoder Coarse & Fine Knob, 3.6A USB & Type-C Quick-Charge, OCP Overcurrent Protection',
+    brand: 'WANPTEK',
+    category: 'test',
+    award: 'Best Supply for Charging Devices',
+    rank: 54,
+    ourScore: 8.5,
+    priceTier: '$',
+    featured: false,
+    tagline: 'Encoder coarse and fine control plus USB-A and USB-C quick-charge.',
+    excerpt:
+      'An adjustable 0–30V, 0–10A switching supply with encoder coarse and fine adjustment, overcurrent protection and USB and Type-C quick-charge ports. It doubles as a bench supply and a charging station for the gadgets around your desk.',
+    bestFor: 'Makers who want a bench supply that also charges phones, tools and USB-C devices.',
+    pros: [
+      'Encoder with coarse and fine adjustment',
+      'Overcurrent protection',
+      'USB and Type-C quick-charge ports',
+      'Wide 0–30V, 0–10A range',
+    ],
+    cons: [
+      'Switching-supply noise',
+      'No memory presets on this model',
+    ],
+    features: [
+      '0–30V, 0–10A adjustable output',
+      'Encoder coarse and fine knob',
+      'OCP overcurrent protection',
+      'USB and Type-C quick-charge',
+    ],
+    verdict:
+      'This WANPTEK is a practical all-rounder: the encoder makes precise adjustment easy, overcurrent protection guards the circuit, and the USB-C port turns it into the desk charger you would otherwise buy separately. It is a sensible choice when bench space is tight and one box has to do two jobs.',
+    roundupNote:
+      'The practical all-rounder: encoder control and overcurrent protection for projects, plus USB-C charging so one box does two jobs on a small desk.',
+    inTheBox: [
+      'Bench power supply',
+      'Output test leads',
+      'Power cord',
+      'User manual',
+    ],
+    firstSteps:
+      'Use coarse adjustment to get near the voltage you need and fine adjustment to land on it exactly. Set the current limit before connecting a project, and check whether overcurrent protection is set to cut the output or to limit current — the two behave differently when a fault occurs. Keep the USB ports for charging rather than powering sensitive circuits.',
+    alternatives: [
+      {
+        slug: 'wanptek-tps-c3010h-bench-power-supply',
+        why: 'The same brand with memory presets and a key lock for repeatable setups.',
+      },
+      {
+        slug: 'jesverty-sps-3010-bench-power-supply',
+        why: 'The category bestseller, with a straightforward coarse and fine control layout.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What is OCP on a bench power supply?',
+        answer:
+          'Overcurrent protection. When the current exceeds your set limit, the supply acts to protect the circuit — either limiting the current or switching the output off, depending on the model and setting.',
+      },
+      {
+        question: 'Is it safe to charge a phone from the USB-C port?',
+        answer:
+          'The quick-charge ports are designed for charging devices, separate from the adjustable main output. Use those ports for phones and gadgets rather than the adjustable terminals.',
+      },
+      {
+        question: 'Coarse and fine adjustment — why both?',
+        answer:
+          'Coarse gets you close to the target quickly and fine lets you set it precisely. Together they make it easy to hit an exact voltage such as 3.3V or 5.0V.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/417jNtg1vQL.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
+  {
+    asin: 'B0DR12RNPY',
+    slug: 'wanptek-tps-c3010h-bench-power-supply',
+    title: 'WANPTEK TPS-C 3010H Bench Power Supply with Memory',
+    fullTitle:
+      'WANPTEK DC Bench Power Supply 30V 10A, Regulated Variable Lab Power Supply with Memory Presets, Encoder Knob,OCP Protection, Output Switch, 4-Digit LED, USB Fast Charge and Key Lock for Repair',
+    brand: 'WANPTEK',
+    category: 'test',
+    award: 'Best Supply for Repeat Setups',
+    rank: 55,
+    ourScore: 8.7,
+    priceTier: '$$',
+    featured: false,
+    tagline: 'Memory presets, an output switch and a key lock for repeatable, safe setups.',
+    excerpt:
+      'A 30V 10A bench supply with memory presets, an encoder knob, overcurrent protection, an output switch, a 4-digit display, USB fast charge and a key lock. It is built for people who power the same kinds of circuits again and again.',
+    bestFor: 'Repair benches and makers who switch between the same voltages often.',
+    pros: [
+      'Memory presets recall common voltages instantly',
+      'Output switch and key lock prevent accidents',
+      'Encoder knob with 4-digit display',
+      'Overcurrent protection',
+    ],
+    cons: [
+      'Costs more than basic supplies',
+      'Switching-supply noise for sensitive analogue work',
+    ],
+    features: [
+      '30V 10A adjustable output',
+      'Memory presets',
+      'Output switch and key lock',
+      'OCP, 4-digit LED, USB fast charge',
+    ],
+    verdict:
+      'Memory presets change how a bench supply feels to use: 3.3V, 5V and 12V become a button press rather than a careful dial adjustment, and the key lock stops an elbow from changing a setting mid-test. For a repair bench or anyone who powers the same circuits repeatedly, those conveniences are worth the small premium.',
+    roundupNote:
+      'Worth the small premium for memory presets and a key lock: common voltages become one button press, and an accidental knob turn cannot ruin a test.',
+    inTheBox: [
+      'TPS-C 3010H bench power supply',
+      'Output test leads',
+      'Power cord',
+      'User manual',
+    ],
+    firstSteps:
+      'Store the voltages you use most — typically 3.3V, 5V and 12V, each with a sensible current limit — as presets on day one. Enable the key lock once a test is running. With the output switch, make it a habit to switch the output off before touching the wiring, then back on to resume.',
+    alternatives: [
+      {
+        slug: 'wanptek-30v-10a-bench-power-supply',
+        why: 'The same brand without presets for less money, if you rarely change voltages.',
+      },
+      {
+        slug: 'jesverty-sps-3010-bench-power-supply',
+        why: 'The simplest precise supply in the category if presets are not important to you.',
+      },
+    ],
+    faqs: [
+      {
+        question: 'What are memory presets on a power supply?',
+        answer:
+          'Stored combinations of voltage and current limit that you can recall with a button. They save time and reduce setting mistakes when you regularly power circuits at standard voltages.',
+      },
+      {
+        question: 'What does the key lock do?',
+        answer:
+          'It disables the front-panel controls so a setting cannot be changed accidentally during a test — useful on a busy bench.',
+      },
+      {
+        question: 'Do I need presets as a beginner?',
+        answer:
+          'Not strictly. They become valuable once you regularly work with a few standard voltages. A simpler supply with a current limit covers the essentials for learning.',
+      },
+    ],
+    image: 'https://m.media-amazon.com/images/I/41flWyuwH3L.jpg',
+    imageWidth: 500,
+    imageHeight: 500,
+    updatedAt: '2026-09-28',
+  },
 ];

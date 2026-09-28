@@ -1,0 +1,136 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import { TEST_GEAR_GROUPS } from '@/data/testGear';
+import { itemListSchema, faqSchema, breadcrumbSchema, articleSchema, jsonLdGraph } from '@/lib/seo';
+
+const group = TEST_GEAR_GROUPS.find((g) => g.key === 'power-supplies')!;
+const all = await getProducts();
+const items = sortByScore(all.filter((p) => (group.slugs as readonly string[]).includes(p.slug)));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Electronics Workbench', url: '/electronics-workbench-essentials' },
+  { name: 'Best Bench Power Supplies', url: '/best-bench-power-supplies' },
+];
+
+const faqs = [
+  {
+    question: 'Do I need a bench power supply for electronics projects?',
+    answer:
+      'It is the safest way to power a project you have just built. By setting a current limit, a short circuit or reversed part draws only the current you allowed instead of whatever a battery or adapter can deliver, which protects both the components and you.',
+  },
+  {
+    question: 'What size bench power supply should a hobbyist buy?',
+    answer:
+      'A 0–30V, 0–5A or 0–10A adjustable supply covers nearly all hobby work. Most kits draw well under 1A; the extra current is headroom for motors, LED strips and larger projects later.',
+  },
+  {
+    question: 'Switching or linear bench power supply?',
+    answer:
+      'Switching supplies are lighter, cheaper and more efficient, and are fine for digital circuits, LED kits and general hobby work. Linear supplies are heavier but have lower output noise, which matters for sensitive audio and analogue circuits.',
+  },
+  {
+    question: 'How do you set the current limit on a bench supply?',
+    answer:
+      'With the output off or open, set the voltage. Then briefly short the output leads (or read the limit on supplies that show it) and set the current limit — a few hundred milliamps for a small kit. Connect the project and watch the current reading as you power up.',
+  },
+  {
+    question: 'Can a bench power supply charge batteries?',
+    answer:
+      'It can charge some chemistries using its voltage and current limits, but lithium cells need a proper charging profile and supervision. Use a dedicated charger for lithium batteries unless you know exactly what you are doing.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'The Best Bench Power Supplies for Hobby Electronics (2026)',
+    description: 'The best adjustable bench power supplies for hobby electronics, ranked — current-limited 30V 10A supplies with output switches, presets and USB charging.',
+    url: '/best-bench-power-supplies',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  itemListSchema(items, '/best-bench-power-supplies'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Bench Power Supply for Hobby Electronics (2026)"
+  description={`The ${items.length} best bench power supplies for hobby electronics, ranked — adjustable, current-limited 30V 10A supplies with output switches, memory presets and USB charging.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Bench Power Supplies for Hobby Electronics
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        The first time you power a board you just soldered is the riskiest moment in any project. A
+        current-limited bench supply turns it into a controlled test: set the voltage, set a sensible
+        current limit, and a mistake shows up as a number on the display instead of a burnt
+        component. These are the adjustable supplies worth putting on a hobby bench.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 28, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={items} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The power supplies, reviewed</h2>
+      {items.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a bench power supply</h2>
+      <h3>Features that make a supply safer to use</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Feature</th><th scope="col" class="px-4 py-3">Why it matters</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Adjustable current limit</th><td class="px-4 py-3">Caps the damage from a short or reversed part — the single most important feature</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Output on/off switch</th><td class="px-4 py-3">Set everything first, then apply power deliberately</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Coarse and fine control</th><td class="px-4 py-3">Hit exact voltages such as 3.3V and 5.0V quickly</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Memory presets</th><td class="px-4 py-3">Recall common voltages with one button and fewer mistakes</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">4-digit display</th><td class="px-4 py-3">Reads current in milliamps precisely enough to spot faults</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>A safe first power-up</h3>
+      <p>
+        Set the voltage with nothing connected, set the current limit, connect the project, and only
+        then enable the output while watching the current. A kit that draws far more than expected —
+        or sends the supply straight into current limiting — has a short, a reversed component or a
+        solder bridge. Switch off and check the board with a
+        <a href="/best-multimeters-for-electronics">multimeter</a> before raising the limit; our
+        <a href="/guides/common-soldering-mistakes">common soldering mistakes</a> guide lists the usual
+        suspects.
+      </p>
+      <p>
+        See the <a href="/electronics-workbench-essentials">electronics workbench essentials</a> for
+        where a supply fits alongside the iron, meter and oscilloscope, and the
+        <a href="/best-oscilloscopes-for-beginners">best oscilloscopes for beginners</a> when you are
+        ready to see signals as well as measure them.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

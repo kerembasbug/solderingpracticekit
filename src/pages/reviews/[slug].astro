@@ -9,6 +9,7 @@ import ProductCard from '@/components/ProductCard.astro';
 import StarRating from '@/components/StarRating.astro';
 import StickyCta from '@/components/StickyCta.astro';
 import { getProducts } from '@/lib/products';
+import { testGearGroupFor } from '@/data/testGear';
 import type { Product } from '@/lib/types';
 import FAQ from '@/components/FAQ.astro';
 import { productSchema, breadcrumbSchema, faqSchema, jsonLdGraph } from '@/lib/seo';
@@ -26,8 +27,13 @@ interface Props {
 }
 const { product } = Astro.props;
 const all = await getProducts();
+const testGroup = product.category === 'test' ? testGearGroupFor(product.slug) : undefined;
 const related = all
-  .filter((p) => p.category === product.category && p.slug !== product.slug)
+  .filter((p) =>
+    testGroup
+      ? (testGroup.slugs as readonly string[]).includes(p.slug) && p.slug !== product.slug
+      : p.category === product.category && p.slug !== product.slug,
+  )
   .slice(0, 3);
 
 const categoryLabel =
@@ -35,17 +41,21 @@ const categoryLabel =
     ? 'Soldering Irons & Stations'
     : product.category === 'accessory'
       ? 'Soldering Accessories'
-      : product.category === 'project'
-        ? 'Project Kits'
-        : 'Practice Kits';
+      : product.category === 'test'
+        ? (testGroup?.label ?? 'Test & Measurement')
+        : product.category === 'project'
+          ? 'Project Kits'
+          : 'Practice Kits';
 const categoryUrl =
   product.category === 'tool'
     ? '/best-soldering-irons'
     : product.category === 'accessory'
       ? '/best-soldering-accessories'
-      : product.category === 'project'
-        ? '/best-soldering-project-kits'
-        : '/best-soldering-practice-kits';
+      : product.category === 'test'
+        ? (testGroup?.href ?? '/electronics-workbench-essentials')
+        : product.category === 'project'
+          ? '/best-soldering-project-kits'
+          : '/best-soldering-practice-kits';
 
 const crumbs = [
   { name: 'Home', url: '/' },

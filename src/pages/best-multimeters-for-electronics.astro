@@ -1,0 +1,144 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import ComparisonTable from '@/components/ComparisonTable.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts, sortByScore } from '@/lib/products';
+import { TEST_GEAR_GROUPS } from '@/data/testGear';
+import { itemListSchema, faqSchema, breadcrumbSchema, articleSchema, jsonLdGraph } from '@/lib/seo';
+
+const group = TEST_GEAR_GROUPS.find((g) => g.key === 'multimeters')!;
+const all = await getProducts();
+const items = sortByScore(all.filter((p) => (group.slugs as readonly string[]).includes(p.slug)));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Electronics Workbench', url: '/electronics-workbench-essentials' },
+  { name: 'Best Multimeters for Electronics', url: '/best-multimeters-for-electronics' },
+];
+
+const faqs = [
+  {
+    question: 'What is the best multimeter for beginners in electronics?',
+    answer:
+      'An auto-ranging True RMS meter such as the AstroAI 6000-count model is the easiest to learn on: you choose what to measure and the meter picks the range. If budget is tight, a basic 2000-count meter with a continuity beeper still covers every check a kit builder needs.',
+  },
+  {
+    question: 'What should I look for in a multimeter for soldering projects?',
+    answer:
+      'A loud continuity beeper, DC voltage and resistance modes, and a diode test cover almost all kit fault finding. Capacitance, auto-ranging and True RMS are useful extras. Safety ratings matter mainly if the meter will also be used on mains wiring.',
+  },
+  {
+    question: 'Do I need a True RMS multimeter?',
+    answer:
+      'For batteries and DC electronics, no. True RMS matters for accurate AC readings on distorted waveforms — from dimmers, motor drives and switching supplies. If you also do household or automotive work, it is worth having.',
+  },
+  {
+    question: 'Is a Fluke worth the money for a hobbyist?',
+    answer:
+      'Only if the meter will do regular electrical work or you want one that lasts for decades. For hobby electronics alone, a good budget auto-ranging meter makes the same everyday measurements.',
+  },
+  {
+    question: 'How do you check a solder joint with a multimeter?',
+    answer:
+      'With the circuit unpowered, use continuity mode between the component lead and the track it should reach. A beep confirms the connection; silence points to a cold or cracked joint. Test neighbouring pins too, to catch solder bridges.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'The Best Multimeters for Electronics and Soldering (2026)',
+    description: 'The best multimeters for electronics, ranked — budget meters for kit building, an auto-ranging True RMS all-rounder, a rugged trade meter and a professional Fluke.',
+    url: '/best-multimeters-for-electronics',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  itemListSchema(items, '/best-multimeters-for-electronics'),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Best Multimeter for Electronics & Soldering (2026)"
+  description={`The ${items.length} best multimeters for electronics and soldering projects, ranked — from a budget continuity-checker to an auto-ranging True RMS all-rounder and a professional Fluke.`}
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Multimeters for Electronics and Soldering
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        A multimeter is the second tool every solderer needs, right after the iron. Most kit faults
+        — a joint that looks fine but does not connect, a solder bridge, a reversed diode — are found
+        in seconds with a continuity beeper. We ranked the meters worth owning, from a budget first
+        meter to the professional tool people keep for decades.
+      </p>
+      <p class="mt-4 text-sm text-ink-500">Last updated September 28, 2026</p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="mt-12">
+      <h2 class="mb-5 text-2xl font-extrabold tracking-tight text-ink-900">At a glance</h2>
+      <ComparisonTable products={items} />
+    </section>
+
+    <section class="mt-16 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">The multimeters, reviewed</h2>
+      {items.map((p, i) => <RankedReview product={p} position={i + 1} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a multimeter for electronics</h2>
+      <h3>The features that matter for soldering</h3>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Feature</th><th scope="col" class="px-4 py-3">Why it matters</th><th scope="col" class="px-4 py-3">Do you need it?</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Continuity beeper</th><td class="px-4 py-3">Finds open joints and solder bridges without looking at the screen</td><td class="px-4 py-3">Essential</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Diode test</th><td class="px-4 py-3">Confirms LED and diode orientation</td><td class="px-4 py-3">Essential</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Auto-ranging</th><td class="px-4 py-3">You pick the quantity, the meter picks the range</td><td class="px-4 py-3">Strongly recommended</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Capacitance</th><td class="px-4 py-3">Checks suspect capacitors in kits and repairs</td><td class="px-4 py-3">Useful</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">True RMS</th><td class="px-4 py-3">Accurate AC readings on distorted waveforms</td><td class="px-4 py-3">For AC and electrical work</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Safety rating (CAT)</th><td class="px-4 py-3">Protection on high-energy mains circuits</td><td class="px-4 py-3">For household wiring</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Counts, ranging and accuracy</h3>
+      <p>
+        "Counts" describes display resolution: a 2000-count meter shows up to 1999 before changing
+        range, a 6000-count meter up to 5999. More counts means finer readings, which matters for
+        precision measurement rather than everyday checks. Auto-ranging is the bigger quality-of-life
+        upgrade for beginners, because choosing the wrong range is the most common source of confusing
+        readings.
+      </p>
+      <h3>Using a meter on your first kit</h3>
+      <p>
+        Power off before measuring resistance or continuity, and move the red lead back to the
+        voltage socket after measuring current — leaving it in the current socket is how most meter
+        fuses get blown. Our <a href="/guides/how-to-fix-a-cold-solder-joint">cold solder joint guide</a>
+        shows what to look for once the meter has found a bad connection, and
+        <a href="/guides/common-soldering-mistakes">common soldering mistakes</a> covers the faults the
+        continuity beeper catches most often.
+      </p>
+      <p>
+        Building out a full bench? See the <a href="/electronics-workbench-essentials">electronics
+        workbench essentials</a> for the order to buy tools in, plus our rankings of
+        <a href="/best-bench-power-supplies">bench power supplies</a> and
+        <a href="/best-oscilloscopes-for-beginners">oscilloscopes for beginners</a>.
+      </p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

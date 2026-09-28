@@ -11,6 +11,8 @@ const groups = [
   { key: 'practice', label: 'Practice & Skill Boards', href: '/best-soldering-practice-kits' },
   { key: 'project', label: 'Project Kits', href: '/best-soldering-project-kits' },
   { key: 'tool', label: 'Irons & Tools', href: '/best-soldering-irons' },
+  { key: 'accessory', label: 'Accessories', href: '/best-soldering-accessories' },
+  { key: 'test', label: 'Test & Measurement', href: '/electronics-workbench-essentials' },
 ] as const;
 
 const crumbs = [
@@ -21,8 +23,8 @@ const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs), itemListSchema(all, '/revie
 ---
 
 <BaseLayout
-  title="All Soldering Kit & Tool Reviews"
-  description="Browse every soldering practice kit, project kit and soldering iron we've reviewed — organized by type, with our scores, pros and cons, and who each one suits."
+  title="All Soldering Kit, Tool & Test Gear Reviews"
+  description="Browse every soldering kit, iron, accessory and piece of test gear we have reviewed — organized by type, with our scores, pros and cons, and who each one suits."
   jsonLd={jsonLd}
 >
   <div class="container-px py-8 lg:py-12">
@@ -30,8 +32,9 @@ const jsonLd = jsonLdGraph(breadcrumbSchema(crumbs), itemListSchema(all, '/revie
     <header class="mt-6 max-w-3xl">
       <h1 class="text-4xl font-extrabold tracking-tight text-ink-900 sm:text-5xl">Reviews</h1>
       <p class="mt-4 text-lg leading-relaxed text-ink-600">
-        Every kit and tool we've put through its paces, grouped by what it's for. Each review covers
-        the build experience, what you learn, and an honest take on the value.
+        Every kit and tool we have researched and ranked, grouped by what it is for. Each review
+        covers what is in the box, who it suits, the alternatives worth weighing, and an honest take
+        on the value.
       </p>
     </header>
     <div class="mt-6 max-w-3xl"><AffiliateDisclosure /></div>

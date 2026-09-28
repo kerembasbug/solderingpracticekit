@@ -1,0 +1,154 @@
+---
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import ProductCard from '@/components/ProductCard.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
+
+const all = await getProducts();
+const pick = (slug: string) => all.find((p) => p.slug === slug);
+const picks = [
+  pick('yihua-926-iii-soldering-station'),
+  pick('astroai-trms-6000-auto-ranging-multimeter'),
+  pick('jesverty-sps-3010-bench-power-supply'),
+  pick('fnirsi-2c53t-oscilloscope-multimeter'),
+].filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Electronics Workbench Essentials', url: '/electronics-workbench-essentials' },
+];
+
+const faqs = [
+  {
+    question: 'What tools do I need for an electronics workbench?',
+    answer:
+      'Start with a temperature-controlled soldering iron, solder, flush cutters and a way to remove solder. Add a multimeter next, then a current-limited bench power supply, then an oscilloscope once you are debugging circuits that power up but misbehave.',
+  },
+  {
+    question: 'What should I buy after a soldering iron?',
+    answer:
+      'A multimeter. It finds most kit faults in seconds — open joints, solder bridges and reversed parts — and costs very little. A bench power supply is the next step, because it makes powering a new project safe.',
+  },
+  {
+    question: 'Is an oscilloscope necessary for a beginner?',
+    answer:
+      'Not at first. It becomes worthwhile when you work on circuits with changing signals — timers, PWM, audio or microcontrollers — and need to see what is happening over time rather than a single reading.',
+  },
+  {
+    question: 'How much does a basic electronics bench cost?',
+    answer:
+      'A capable starter bench — a station, a budget auto-ranging meter and an adjustable power supply — sits in the price range of a single mid-range power tool. You can spread the purchases out in the order this guide suggests.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Electronics Workbench Essentials: What to Buy, and in What Order',
+    description: 'The tools for a hobby electronics bench — soldering iron, multimeter, bench power supply and oscilloscope — in the order to buy them, with what each one is for.',
+    url: '/electronics-workbench-essentials',
+    datePublished: '2026-09-28',
+    dateModified: '2026-09-28',
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Electronics Workbench Essentials: What to Buy First"
+  description="The tools for a hobby electronics bench — soldering iron, multimeter, bench power supply and oscilloscope — in the order to buy them, and exactly what each one is for."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-09-28"
+  modifiedTime="2026-09-28"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Electronics Workbench Essentials: What to Buy, and in What Order
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Soldering gets a circuit built. Test gear tells you whether it works — and why not when it
+        does not. You do not need everything at once: each tool below earns its place at a particular
+        stage, and buying them in order means you are never paying for an instrument you cannot use
+        yet.
+      </p>
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="prose prose-lg mt-12 max-w-3xl">
+      <h2>The four tools, in the order you need them</h2>
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[600px] text-left text-sm">
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Stage</th><th scope="col" class="px-4 py-3">Tool</th><th scope="col" class="px-4 py-3">What it does for you</th><th scope="col" class="px-4 py-3">Buy it when</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">1</th><td class="px-4 py-3"><a class="font-semibold text-brand-700 hover:text-brand-600" href="/best-soldering-irons">Soldering iron</a></td><td class="px-4 py-3">Builds the circuit</td><td class="px-4 py-3">Day one</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">2</th><td class="px-4 py-3"><a class="font-semibold text-brand-700 hover:text-brand-600" href="/best-multimeters-for-electronics">Multimeter</a></td><td class="px-4 py-3">Finds open joints, bridges and reversed parts</td><td class="px-4 py-3">With your first kit</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">3</th><td class="px-4 py-3"><a class="font-semibold text-brand-700 hover:text-brand-600" href="/best-bench-power-supplies">Bench power supply</a></td><td class="px-4 py-3">Powers new builds safely with a current limit</td><td class="px-4 py-3">When you build your own circuits</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">4</th><td class="px-4 py-3"><a class="font-semibold text-brand-700 hover:text-brand-600" href="/best-oscilloscopes-for-beginners">Oscilloscope</a></td><td class="px-4 py-3">Shows signals over time — timers, PWM, audio, data</td><td class="px-4 py-3">When a board powers up but misbehaves</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h2>1. The soldering iron</h2>
+      <p>
+        Everything starts here, and it is the one tool not to economise on too far: regulated,
+        adjustable temperature is what makes clean joints repeatable. A station kit with helping hands
+        and consumables gets a first bench running in one purchase. See our
+        <a href="/best-soldering-irons">soldering iron rankings</a>, or the
+        <a href="/best-complete-soldering-kits">complete kits</a> if you are starting from nothing.
+      </p>
+
+      <h2>2. The multimeter</h2>
+      <p>
+        The meter pays for itself on your first kit. Its continuity beeper finds the joint that looks
+        fine but does not connect, the solder bridge between two pins and the diode fitted backwards —
+        the causes behind most "it does not work" moments. An auto-ranging meter is easiest to learn
+        on. See the <a href="/best-multimeters-for-electronics">best multimeters for electronics</a>.
+      </p>
+
+      <h2>3. The bench power supply</h2>
+      <p>
+        Once you build your own circuits rather than kits with a battery box, a current-limited supply
+        becomes the safest way to power them. Set the voltage, set a sensible current limit, and a
+        wiring mistake shows up on the display instead of in a puff of smoke. See the
+        <a href="/best-bench-power-supplies">best bench power supplies</a>.
+      </p>
+
+      <h2>4. The oscilloscope</h2>
+      <p>
+        A scope is the tool for the hardest faults: a board that powers up but behaves wrongly. It
+        shows whether a timer oscillates, whether PWM has the duty cycle you expect, and whether a
+        microcontroller is talking at all. A two-channel handheld is a sensible first scope; a
+        benchtop model is easier to learn on if it will stay on the bench. See the
+        <a href="/best-oscilloscopes-for-beginners">best oscilloscopes for beginners</a>.
+      </p>
+
+      <h2>The small tools that make a big difference</h2>
+      <p>
+        Alongside the four big tools, a few inexpensive accessories change the day-to-day experience:
+        a desoldering pump and wick for fixing mistakes, a helping-hands holder, flush cutters and a
+        fume extractor. Our <a href="/best-soldering-accessories">soldering accessories roundup</a>
+        covers the ones worth owning, and the
+        <a href="/guides/soldering-tools-checklist-for-beginners">beginner tools checklist</a> lists
+        them in one place.
+      </p>
+    </section>
+
+    <section class="mt-16">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Our pick at each stage</h2>
+      <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+        {picks.map((p) => <ProductCard product={p} />)}
+      </div>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

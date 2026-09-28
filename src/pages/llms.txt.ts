@@ -40,6 +40,10 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Best Soldering Accessories](${origin}/best-soldering-accessories): Desoldering pumps, wick and flux, helping hands, and fume extractors.
 - [Best Soldering Kits for Kids & Teens](${origin}/best-soldering-kits-for-kids): Safe, fun STEM builds ranked for younger makers.
 - [Best Complete Soldering Kits for Beginners](${origin}/best-complete-soldering-kits): Kits that bundle the iron, solder and basic tools in one box.
+- [Electronics Workbench Essentials](${origin}/electronics-workbench-essentials): Which test and bench tools to buy after a soldering iron, and in what order.
+- [Best Multimeters for Electronics](${origin}/best-multimeters-for-electronics): Budget to professional multimeters for soldering and hobby electronics.
+- [Best Bench Power Supplies](${origin}/best-bench-power-supplies): Current-limited adjustable supplies for safely powering new builds.
+- [Best Oscilloscopes for Beginners](${origin}/best-oscilloscopes-for-beginners): Handheld and benchtop scopes for hobby electronics debugging.
 - [All Reviews](${origin}/reviews): Every individual product review.
 
 ## Comparisons (X vs Y)
