@@ -1,9 +1,9 @@
 ---
 title: 'Soldering Fume Safety: What You''re Breathing and How to Stop It'
-seoTitle: 'Soldering Fume Safety & Fume Extractors'
+seoTitle: 'Soldering Fume Safety: Risks, Ventilation & Extractors'
 description: 'Soldering fumes explained: what flux smoke actually is, the health risks, and how to protect yourself with ventilation and a fume extractor.'
 pubDate: 2026-06-23
-updatedDate: 2026-06-23
+updatedDate: 2026-09-30
 category: 'Safety'
 heroImage: '/images/guides/soldering-fume-safety.jpg'
 relatedProducts:
@@ -17,6 +17,10 @@ faqs:
     answer: 'Lead does not vaporise at normal soldering temperatures, so the fumes themselves are essentially lead-free. The lead risk from leaded solder comes from handling it and then touching your face or food — which is why you wash your hands. The airborne hazard is the flux smoke.'
   - question: 'Is a fan enough, or do I need a proper extractor?'
     answer: 'A simple carbon-filter fan that pulls smoke away from your face is a big improvement over nothing and is enough for occasional hobby use. For frequent or long sessions, combine it with real ventilation — an open window or a ducted extractor that vents outside.'
+  - question: 'Where should a fume extractor be placed?'
+    answer: 'Close to the joint and slightly to one side, so smoke is drawn away before it rises past your face. An extractor placed high above or far across the bench captures much less.'
+  - question: 'How often should a fume extractor filter be changed?'
+    answer: 'It depends on use, but check it every few months and replace it once it looks discoloured or the smell of flux returns during soldering. The filter is the part that does the work.'
 ---
 
 The wisp of smoke that curls up when solder melts is so routine that most beginners never think about it. They should — not because it is acutely dangerous, but because it is the one soldering hazard that is genuinely easy to ignore and genuinely worth managing.
@@ -50,5 +54,39 @@ The dose makes the poison. A few minutes a month near an open window is very dif
 ## A sensible setup
 
 You do not need a lab. A [decent station](/reviews/yihua-926-iii-soldering-station) or iron, a small fume absorber beside your work, a window cracked open, and clean hands afterward covers the vast majority of hobby soldering safely. Add safety glasses when clipping component legs and you have a bench you can use for years without worry.
+
+## Ventilation options compared
+
+| Option | What it does | Good for |
+| --- | --- | --- |
+| **Open window** | Dilutes fumes in the room | The minimum for any indoor soldering |
+| **Desk fan blowing away from you** | Moves smoke out of your breathing zone | Occasional short sessions |
+| **Carbon-filter fume extractor** | Pulls smoke through a filter beside the work | Regular hobby use — see the [KOTTO extractor](/reviews/kotto-solder-fume-extractor) |
+| **Extractor with a flexible arm** | Captures smoke right at the joint | Longer or more frequent sessions |
+| **Ducted extraction to outside** | Removes fumes from the room entirely | Classrooms, makerspaces, heavy use |
+
+Position matters as much as the device: an extractor works best close to the joint and slightly to the side, not above your head where the smoke passes your face first.
+
+## Choosing a fume extractor
+
+- **Capture distance:** the closer it sits to the joint, the more it catches; a small unit near the work beats a bigger one across the bench.
+- **Filter type:** activated carbon absorbs some of the fumes; units with a particle pre-filter handle heavier use better.
+- **Replaceable filters:** check they are available and inexpensive, and replace them when they darken or the smell returns.
+- **Noise:** you will run it for whole sessions, so a quieter fan matters.
+
+## The other soldering hazards
+
+Fumes are the easiest hazard to ignore, but not the only one:
+
+- **Burns:** always return the iron to its stand, and never catch a falling iron.
+- **Eyes:** solder and flux can spit, and clipped leads fly — wear safety glasses.
+- **Lead hygiene:** with leaded solder, wash your hands after soldering and never eat or drink at the bench.
+- **Flux on skin:** some people find rosin irritating; wash it off and consider gloves for long rework sessions.
+- **Fire:** keep paper and solvents away from the iron, and switch it off when you leave the bench.
+
+## Soldering with children and in classrooms
+
+Groups multiply the fumes. Use extraction at every station or strong ventilation, keep sessions short, and choose lead-free solder for anything children will handle. Our [parent's guide to soldering with kids](/guides/best-soldering-kits-for-kids-and-teens) covers supervision and age.
+
 
 For the full beginner kit, see our [tools checklist](/guides/soldering-tools-checklist-for-beginners), and if children are involved, read our [soldering with kids guide](/best-soldering-kits-for-kids).

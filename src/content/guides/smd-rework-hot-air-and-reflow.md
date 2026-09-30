@@ -3,7 +3,7 @@ title: 'SMD Rework Basics: Hot Air and Reflow Soldering Explained'
 seoTitle: 'SMD Rework: Hot Air & Reflow Basics'
 description: 'An introduction to surface-mount rework: how hot air rework stations and reflow work, when you need them, and how to remove and replace SMD components.'
 pubDate: 2026-06-23
-updatedDate: 2026-06-23
+updatedDate: 2026-09-30
 category: 'Technique'
 heroImage: '/images/guides/smd-rework-hot-air-and-reflow.jpg'
 relatedProducts:
@@ -17,6 +17,10 @@ faqs:
     answer: 'Hand-soldering heats one joint at a time with an iron. Reflow heats the whole board (or a region) so solder paste melts on all joints simultaneously — using a hot air station, a hot plate, or a reflow oven. Reflow is how surface-mount boards are assembled at scale.'
   - question: 'Can a beginner learn SMD soldering?'
     answer: 'Yes. Start with larger surface-mount parts (0805 resistors, SOIC chips) on a practice board using just a fine iron, flux and wick. The technique — flux, tack one corner, solder the rest, wick away bridges — is very learnable before you ever touch hot air.'
+  - question: 'What temperature should hot air be for SMD rework?'
+    answer: 'Commonly somewhere around 300–370°C depending on the part, nozzle and airflow. Start at the lower end with low airflow, add flux, and increase gradually rather than blasting at maximum.'
+  - question: 'How do I stop hot air from blowing small parts away?'
+    answer: 'Use low airflow and a suitably small nozzle, and approach from a little further away before moving closer. Flux also helps hold small parts in place as the solder melts.'
 ---
 
 Surface-mount (SMD/SMT) components are everywhere in modern electronics: tiny, leadless, packed tight. Working with them feels like a different craft from through-hole soldering, but the fundamentals carry over — and you can go a long way before you need any special equipment.
@@ -63,5 +67,28 @@ You do not need an industrial oven to try reflow. Hobbyists use:
 All rely on the same idea: solder paste plus even heat equals every joint forming at once.
 
 ## Where to start
+
+## Hot air starting settings
+
+| Job | Temperature | Airflow | Notes |
+| --- | --- | --- | --- |
+| Small passives (0603–1206) | ~300–330°C | Low | Small nozzle; keep it moving |
+| SOIC / TSSOP chips | ~330–360°C | Low to medium | Preheat the area first |
+| QFN / leadless chips | ~340–370°C | Medium | Plenty of flux; lift only when fully molten |
+| Plastic connectors nearby | Lower, with shielding | Low | Cover with foil or heat-resistant tape |
+
+These are starting points, not rules — nozzle size, distance and the board itself all change the result. Start low, add flux, and increase gradually.
+
+## Protecting nearby parts
+
+- **Shield neighbours** with foil or heat-resistant tape, especially plastic connectors and electrolytic capacitors.
+- **Preheat** larger boards gently so the target part melts sooner and the board flexes less.
+- **Keep the nozzle moving** in small circles instead of parking it on one spot.
+- **Lift, do not pull:** wait until all the solder is molten, then lift the part straight up with tweezers.
+
+## Choosing a rework setup
+
+A **2-in-1 station** with an iron and hot air in one unit, such as the [WEP 882D](/reviews/wep-882d-hot-air-rework-soldering-station), is the space-saving choice for a hobby bench. A separate hot air station makes sense once you already own a good iron. For practice, a graded [SMD practice board](/reviews/qlouni-100w-smd-soldering-practice-kit-with-iron) gives you parts to remove and refit without risking a real device. The [best soldering stations](/best-soldering-stations) ranking compares the options.
+
 
 Do not buy a hot air station on day one. Learn clean through-hole joints first, then practise [hand-soldering larger SMD parts](/guides/through-hole-vs-surface-mount-soldering) with flux and wick on a cheap board. Add hot air when your projects genuinely call for leadless parts. By then the fundamentals — flux, heat control, patience — will already be second nature.
