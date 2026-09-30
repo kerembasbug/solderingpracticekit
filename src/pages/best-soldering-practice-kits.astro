@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
@@ -87,9 +88,7 @@ const jsonLd = jsonLdGraph(
         of technique they teach. Here are the {countWord} we recommend, from absolute-beginner boards to
         surface-mount training boards.
       </p>
-      <p class="mt-4 text-sm text-ink-500">
-        Last updated September 15, 2026 · Written by the {`SolderingPracticeKit`} team
-      </p>
+      <Byline updated="September 15, 2026" />
     </header>
 
     <div class="mt-8 max-w-3xl">

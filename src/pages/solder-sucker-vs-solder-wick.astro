@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
@@ -78,6 +79,7 @@ const jsonLd = jsonLdGraph(
         it up. They sound like rivals, but they are really a team. Here is what each does best, and
         why you probably want both.
       </p>
+      <Byline />
     </header>
 
     <div class="mx-auto mt-8 max-w-3xl"><AffiliateDisclosure /></div>

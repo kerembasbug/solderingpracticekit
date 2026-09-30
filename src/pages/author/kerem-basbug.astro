@@ -1,0 +1,85 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import { AUTHOR } from '@/config/author';
+import { SITE } from '@/config/site';
+import { getProducts } from '@/lib/products';
+import { breadcrumbSchema, personSchema, jsonLdGraph } from '@/lib/seo';
+
+const guides = (await getCollection('guides', ({ data }) => !data.draft))
+  .sort((a, b) => (b.data.updatedDate ?? b.data.pubDate).getTime() - (a.data.updatedDate ?? a.data.pubDate).getTime())
+  .slice(0, 8);
+const productCount = (await getProducts()).length;
+
+const RANKINGS = [
+  { href: '/best-soldering-practice-kits', title: 'Best Soldering Practice Kits' },
+  { href: '/best-soldering-irons', title: 'Best Soldering Iron' },
+  { href: '/best-soldering-stations', title: 'Best Soldering Stations' },
+  { href: '/best-multimeters-for-electronics', title: 'Best Multimeters for Electronics' },
+  { href: '/best-soldering-kits-for-kids', title: 'Best Soldering Kits for Kids' },
+  { href: '/soldering-gift-guide', title: 'Soldering Gift Guide' },
+];
+
+const description = `${AUTHOR.name} is the founder and editor of ${SITE.name}, responsible for its soldering guides, product reviews and rankings.`;
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: AUTHOR.name, url: AUTHOR.path },
+];
+const jsonLd = jsonLdGraph(personSchema(description), breadcrumbSchema(crumbs));
+---
+
+<BaseLayout title={`${AUTHOR.name} — ${AUTHOR.role}`} description={description} jsonLd={jsonLd}>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <div class="prose prose-lg mx-auto mt-8 max-w-3xl">
+      <h1>{AUTHOR.name}</h1>
+      <p class="lead">{AUTHOR.role}, {SITE.name}</p>
+
+      <p>
+        {AUTHOR.name} founded {SITE.name} and is responsible for every guide, review and ranking on
+        the site — currently {productCount} products and the guides that sit alongside them. The aim
+        is simple: help people learning to solder spend their money on the kits and tools that
+        actually make the skill easier to learn.
+      </p>
+      <p>
+        He also runs a small group of independent sites about other build-it-yourself hobbies:
+        <a href="https://metalmodelkit.com">metal model kits</a>,
+        <a href="https://booknookkit.diy">book nook kits</a> and
+        <a href="https://cubicfunshop.com">3D puzzles</a>. The sites are separate, but they share the
+        same approach to research and the same rules about honesty.
+      </p>
+
+      <h2>How the reviews are made</h2>
+      <p>
+        Reviews and rankings here are <strong>research-based editorial judgements</strong>, not
+        laboratory tests. Each product is assessed from its full specification and what is actually
+        in the box, compared against every direct alternative the site covers, and weighed against the
+        pattern of owner feedback. Weaknesses are stated on every review. The full process is on
+        <a href="/how-we-rank">How We Rank</a>.
+      </p>
+      <p>
+        The site is funded by Amazon affiliate commissions, explained in the
+        <a href="/affiliate-disclosure">affiliate disclosure</a>. Rankings are decided before links are
+        added, and no brand pays to be included.
+      </p>
+
+      <h2>Corrections</h2>
+      <p>
+        If a specification is wrong, a product has changed, or a claim does not match what you
+        received, please say so on the <a href="/contact">contact page</a>. Corrections are made and
+        the page's date updated.
+      </p>
+
+      <h2>Recently updated guides</h2>
+      <ul>
+        {guides.map((g) => <li><a href={`/guides/${g.id}`}>{g.data.title}</a></li>)}
+      </ul>
+
+      <h2>Main rankings</h2>
+      <ul>
+        {RANKINGS.map((r) => <li><a href={r.href}>{r.title}</a></li>)}
+      </ul>
+    </div>
+  </div>
+</BaseLayout>

@@ -1,0 +1,16 @@
+---
+import { AUTHOR } from '@/config/author';
+
+interface Props {
+  updated?: string;
+  verb?: 'Written' | 'Reviewed' | 'Compiled';
+  class?: string;
+}
+const { updated, verb = 'Written', class: cls = 'mt-4 text-sm text-ink-500' } = Astro.props;
+---
+
+<p class={cls}>
+  {verb} by <a href={AUTHOR.path} rel="author" class="font-semibold text-ink-700 hover:text-brand-600">{AUTHOR.name}</a>
+  {updated && <span> · Last updated {updated}</span>}
+  <span> · <a href="/how-we-rank" class="underline decoration-ink-300 underline-offset-2 hover:text-brand-600">How we rank</a></span>
+</p>

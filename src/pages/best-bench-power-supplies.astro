@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
@@ -81,7 +82,7 @@ const jsonLd = jsonLdGraph(
         current limit, and a mistake shows up as a number on the display instead of a burnt
         component. These are the adjustable supplies worth putting on a hobby bench.
       </p>
-      <p class="mt-4 text-sm text-ink-500">Last updated September 28, 2026</p>
+      <Byline updated="September 28, 2026" />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

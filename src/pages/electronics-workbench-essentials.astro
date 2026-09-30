@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
@@ -77,6 +78,7 @@ const jsonLd = jsonLdGraph(
         stage, and buying them in order means you are never paying for an instrument you cannot use
         yet.
       </p>
+      <Byline />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

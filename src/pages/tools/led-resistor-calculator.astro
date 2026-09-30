@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import FAQ from '@/components/FAQ.astro';
@@ -80,6 +81,7 @@ const jsonLd = jsonLdGraph(
         calculator gives you the exact value, the nearest standard resistor to buy, and the wattage
         rating to use.
       </p>
+      <Byline />
     </header>
 
     <section class="mt-10 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card)] lg:p-8" data-led>

@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
@@ -96,7 +97,7 @@ const jsonLd = jsonLdGraph(
         a USB-C portable iron and a butane iron, because "no cable" can mean three quite different
         tools. Here is which one suits the work you actually do.
       </p>
-      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+      <Byline updated="September 15, 2026" />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

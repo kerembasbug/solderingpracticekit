@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import type { GetStaticPaths } from 'astro';
 import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '@/layouts/BaseLayout.astro';
@@ -81,9 +82,8 @@ const dateFmt = (d: Date) =>
         {data.title}
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-ink-600">{data.description}</p>
-      <p class="mt-4 text-sm text-ink-500">
-        {dateFmt(data.updatedDate ?? data.pubDate)} · {readingTime} min read
-      </p>
+      <Byline updated={dateFmt(data.updatedDate ?? data.pubDate)} />
+      <p class="mt-1 text-sm text-ink-500">{readingTime} min read</p>
     </header>
 
     {

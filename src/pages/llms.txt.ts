@@ -76,6 +76,7 @@ ${reviewLines}
 
 - [About](${origin}/about): Who we are and how we research and rank.
 - [How We Rank](${origin}/how-we-rank): Our editorial method, what our scores mean, and what our reviews are not.
+- [Kerem Başbuğ, Founder & Editor](${origin}/author/kerem-basbug): Who is responsible for the site's guides, reviews and rankings.
 - [Affiliate Disclosure](${origin}/affiliate-disclosure): As an Amazon Associate we earn from qualifying purchases.
 - [Contact](${origin}/contact)
 `;

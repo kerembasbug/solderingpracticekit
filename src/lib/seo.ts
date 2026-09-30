@@ -1,4 +1,5 @@
 import { SITE } from '@/config/site';
+import { AUTHOR } from '@/config/author';
 import { affiliateUrl } from '@/lib/amazon/links';
 import type { Product } from '@/lib/types';
 
@@ -75,7 +76,7 @@ export function productSchema(product: Product) {
         bestRating: 5,
         worstRating: 1,
       },
-      author: { '@type': 'Organization', name: SITE.name },
+      author: authorRef(),
     },
   };
 
@@ -121,7 +122,7 @@ export function articleSchema(opts: {
     description: opts.description,
     image: opts.image ? absoluteUrl(opts.image) : absoluteUrl(SITE.ogImage),
     mainEntityOfPage: { '@type': 'WebPage', '@id': absoluteUrl(opts.url) },
-    author: { '@type': 'Organization', name: SITE.name },
+    author: authorRef(),
     publisher: { '@id': `${SITE.url}/#organization` },
     ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
     ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
@@ -137,4 +138,21 @@ function validUntil(): string {
 /** Wrap one or more schema objects into a single @graph document. */
 export function jsonLdGraph(...nodes: Record<string, unknown>[]): string {
   return JSON.stringify({ '@context': 'https://schema.org', '@graph': nodes });
+}
+
+/** Reference to the site's named editor, used as author on articles and reviews. */
+export function authorRef() {
+  return { '@type': 'Person', name: AUTHOR.name, url: absoluteUrl(AUTHOR.path) };
+}
+
+export function personSchema(description: string) {
+  return {
+    '@type': 'Person',
+    '@id': `${absoluteUrl(AUTHOR.path)}#person`,
+    name: AUTHOR.name,
+    url: absoluteUrl(AUTHOR.path),
+    jobTitle: AUTHOR.role,
+    description,
+    worksFor: { '@id': `${SITE.url}/#organization` },
+  };
 }

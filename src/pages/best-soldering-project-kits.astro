@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
@@ -73,7 +74,7 @@ const jsonLd = jsonLdGraph(
         something. These project kits turn practice into a working clock, radio or handheld
         console — the kind of result that keeps beginners (and <a href="/best-soldering-kits-for-kids" class="font-semibold text-brand-600 hover:text-brand-700">kids and teens</a>) soldering to the last joint.
       </p>
-      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+      <Byline updated="September 15, 2026" />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

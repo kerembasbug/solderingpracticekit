@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
@@ -109,6 +110,7 @@ const jsonLd = jsonLdGraph(
         a quick win, a teenager needs a payoff worth finishing, and a maker who already solders wants
         the upgrade they would never buy for themselves. Here is what to give whom.
       </p>
+      <Byline />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>

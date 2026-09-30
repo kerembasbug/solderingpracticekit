@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import FAQ from '@/components/FAQ.astro';
@@ -79,6 +80,7 @@ const jsonLd = jsonLdGraph(
         Pick the colors on your resistor to get its value and tolerance instantly. Works for
         4-band and 5-band resistors — the ones in almost every soldering kit.
       </p>
+      <Byline />
     </header>
 
     <section class="mt-10 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 shadow-[var(--shadow-card)] lg:p-8" data-rcc>

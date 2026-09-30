@@ -1,4 +1,5 @@
 ---
+import Byline from '@/components/Byline.astro';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import ComparisonTable from '@/components/ComparisonTable.astro';
@@ -93,7 +94,7 @@ const jsonLd = jsonLdGraph(
         and clear instructions. For the full safety and age rundown, read our
         <a href="/guides/best-soldering-kits-for-kids-and-teens" class="font-semibold text-brand-600 hover:text-brand-700">parent's guide to soldering with kids</a>.
       </p>
-      <p class="mt-4 text-sm text-ink-500">Last updated September 15, 2026</p>
+      <Byline updated="September 15, 2026" />
     </header>
 
     <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
