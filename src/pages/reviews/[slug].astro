@@ -124,7 +124,10 @@ const jsonLd = jsonLdGraph(
 // SEO <title> carries a year for freshness and to differ from the on-page H1
 // (`${product.title} Review`), avoiding the duplicate H1/title warning.
 const reviewYear = new Date(`${product.updatedAt}T00:00:00Z`).getUTCFullYear();
-const seoTitle = `${product.title} Review (${reviewYear})`;
+const baseSeoTitle = `${product.title} Review (${reviewYear})`;
+// Add the "Pros & Cons" hook when it still fits in ~60 chars (CTR on "X review" queries).
+const seoTitle =
+  product.pros?.length && baseSeoTitle.length + 13 <= 60 ? `${baseSeoTitle}: Pros & Cons` : baseSeoTitle;
 ---
 
 <BaseLayout

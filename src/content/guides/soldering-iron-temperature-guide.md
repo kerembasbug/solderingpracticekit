@@ -1,7 +1,7 @@
 ---
 heroImage: '/images/guides/soldering-iron-temperature-guide.jpg'
 title: 'Soldering Iron Temperature Guide (Settings Chart)'
-seoTitle: 'Soldering Iron Temperature Chart (°C & °F) by Job'
+seoTitle: 'Soldering Iron Temperature Chart (°C & °F): Beginner Guide'
 description: 'The right soldering iron temperature by solder type and job — plus solder melting points, desoldering and hot air settings, and how hot basic 25W–60W irons really run.'
 pubDate: 2026-03-30
 updatedDate: 2026-09-16
