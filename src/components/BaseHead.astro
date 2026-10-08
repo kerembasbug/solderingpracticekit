@@ -15,6 +15,8 @@ interface Props {
   noindex?: boolean;
   publishedTime?: string;
   modifiedTime?: string;
+  /** Use `title` as the full <title> verbatim (no brand suffix) — for titles written as the final tag. */
+  rawTitle?: boolean;
 }
 
 const {
@@ -27,6 +29,7 @@ const {
   noindex = false,
   publishedTime,
   modifiedTime,
+  rawTitle = false,
 } = Astro.props;
 
 const canonical = absoluteUrl(path);
@@ -34,7 +37,7 @@ const ogImage = absoluteUrl(image);
 // Keep the <title> under ~60 chars: append the brand only when it still fits.
 const brandSuffix = ` | ${SITE.name}`;
 const fullTitle =
-  path === '/' || title.length + brandSuffix.length > 60 ? title : `${title}${brandSuffix}`;
+  rawTitle || path === '/' || title.length + brandSuffix.length > 60 ? title : `${title}${brandSuffix}`;
 ---
 
 <meta charset="utf-8" />

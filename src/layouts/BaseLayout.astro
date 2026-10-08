@@ -13,6 +13,8 @@ interface Props {
   noindex?: boolean;
   publishedTime?: string;
   modifiedTime?: string;
+  /** Pass the title through verbatim as the <title> (no brand suffix). */
+  rawTitle?: boolean;
 }
 
 const props = Astro.props;
