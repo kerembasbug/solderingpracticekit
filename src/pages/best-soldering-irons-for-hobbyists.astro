@@ -1,0 +1,214 @@
+---
+// Q4-DALGA-2026-10 ADAPTOR — uret/adaptor/solderingpracticekit_com.py ile solderingpracticekit.com~1 sayfasından üretildi (2026-10-09).
+// Elle düzenleme bir sonraki üretimde ezilir; değişikliği sayfa JSON'unda ya da adaptörde yapın.
+import Byline from '@/components/Byline.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const PATH = "/best-soldering-irons-for-hobbyists";
+// Quick picks: label = badge, why = card note. One card per product on the page.
+const PICKS = [
+  {"slug": "hakko-fx888dx-digital-soldering-station", "label": "Best overall for a hobby bench", "why": "A 70W ESD-safe digital station on Hakko's T18 tip family. The buy-once choice if you solder regularly."},
+  {"slug": "yihua-926-iii-soldering-station", "label": "Best value station kit", "why": "A 60W temperature-controlled station with six tips, helping hands, solder, a pump and tweezers. It covers a whole first bench."},
+  {"slug": "pinecil-smart-mini-portable-soldering-iron", "label": "Best compact smart iron for Arduino work", "why": "Pen-sized, USB-C powered and on open-source firmware. Plan for a USB-C PD supply and a stand, because neither is included."},
+  {"slug": "weller-we1010na-soldering-station", "label": "Premium alternative station", "why": "A 70W ESD-safe Weller station with the WEP 70 iron, for hobbyists who prefer Weller's ET tip range."},
+  {"slug": "fnirsi-hs-02a-soldering-iron", "label": "Best smart pencil iron for small desks", "why": "A 100W corded pen iron with three temperature presets, six tips, a stand and a case. No base unit taking up bench space."},
+  {"slug": "plusivo-60w-digital-soldering-iron-kit", "label": "Best budget pick for occasional use", "why": "A 60W digital iron with an LED display, five tips, solder, a stand and a pump. A low-commitment start for a few projects a year."}
+];
+// Products carded under the section that first introduces them (same order as the sections).
+const SECTION_SLUGS: string[][] = [
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  ["hgmzzq-60-40-rosin-core-solder", "towot-solder-wick-flux-kit", "kotto-solder-fume-extractor"],
+  []
+];
+
+const all = await getProducts();
+const bySlug = (slug: string) => all.find((p) => p.slug === slug);
+const picks = PICKS.map((k) => ({ ...k, product: bySlug(k.slug) })).filter(
+  (k): k is typeof k & { product: NonNullable<ReturnType<typeof bySlug>> } => Boolean(k.product),
+);
+const sectionProducts = SECTION_SLUGS.map((list) =>
+  list.map(bySlug).filter((p): p is NonNullable<typeof p> => Boolean(p)),
+);
+const listed = [...picks.map((k) => k.product), ...sectionProducts.flat()];
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: "Best Soldering Iron for Electronics Hobbyists (2026 Picks)", url: PATH },
+];
+
+const faqs = [
+  {
+    "question": "What wattage soldering iron do I need for circuit boards?",
+    "answer": "Temperature control matters more than wattage. Neurochrome says a temperature-controlled station of 50–90W covers most hobbyists' needs. More wattage mainly helps the tip recover on ground planes and connector tabs."
+  },
+  {
+    "question": "What temperature should I solder Arduino headers and through-hole parts at?",
+    "answer": "Use about 320–370°C (600–700°F) for leaded solder and about 370–425°C (700–800°F) for lead-free, per Neurochrome. Start at the low end and raise it only if the solder won't flow."
+  },
+  {
+    "question": "Is a USB-C smart iron like the Pinecil good enough instead of a station?",
+    "answer": "For occasional headers and small boards, yes. You'll need a USB-C PD power supply and a stand, and Tom's Hardware's results came on a 20V adapter. For long sessions or heavy ground planes, a station with a base and holder is more comfortable."
+  },
+  {
+    "question": "Do I need an ESD-safe soldering iron as a hobbyist?",
+    "answer": "It becomes more useful once you handle ICs and microcontroller boards. Among these picks, the Hakko FX-888DX and Weller WE1010NA are listed as ESD-safe. Our ESD safety guide covers the other precautions."
+  },
+  {
+    "question": "Which tip should I use for through-hole soldering?",
+    "answer": "A small chisel or bevel tip, because it transfers heat into pads, headers and leads better than a fine point. Save fine conical tips for fine-pitch work."
+  },
+  {
+    "question": "Can I use a cheap soldering iron kit for electronics?",
+    "answer": "For occasional projects, an adjustable-temperature kit like the Plusivo works. Avoid irons with no temperature control. Neurochrome even suggests a used professional station over a cheap uncontrolled iron."
+  }
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: "The Best Soldering Iron for Electronics Hobbyists: 2026 Picks by How Often You Solder",
+    description: "Six soldering irons for Arduino headers, kits and PCB repair, matched to how often you solder, plus what else to buy, tip advice and safe temperatures.",
+    url: PATH,
+    datePublished: "2026-10-09",
+    dateModified: "2026-10-09",
+  }),
+  ...(listed.length ? [itemListSchema(listed, PATH)] : []),
+  breadcrumbSchema(crumbs),
+  ...(faqs.length
+    ? [faqSchema(faqs.map((f) => ({ question: f.question, answer: f.answer.replace(/<[^>]+>/g, '') })))]
+    : []),
+);
+---
+
+<BaseLayout
+  title={"Best Soldering Iron for Electronics Hobbyists (2026 Picks)"}
+  description={"Six soldering irons for Arduino headers, kits and PCB repair, matched to how often you solder, plus what else to buy, tip advice and safe temperatures."}
+  rawTitle
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime={"2026-10-09"}
+  modifiedTime={"2026-10-09"}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        The Best Soldering Iron for Electronics Hobbyists: 2026 Picks by How Often You Solder
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Six temperature-controlled irons for Arduino headers, through-hole kits and small PCB repairs, matched to how often you solder. Each pick lists what&#x27;s in the box and what you still need.
+      </p>
+      <Byline updated={"October 9, 2026"} />
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="prose prose-lg mt-10 max-w-3xl">
+      <p>For most electronics hobbyists, the best soldering iron is a temperature-controlled station. Choose the <a href="/reviews/hakko-fx888dx-digital-soldering-station">Hakko FX-888DX</a> for a buy-once bench tool, or the <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a> for a complete first bench in one box. If you only solder a few Arduino headers a year or work at a cramped desk, a pen-sized smart iron like the <a href="/reviews/pinecil-smart-mini-portable-soldering-iron">Pinecil</a> or <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a> does the job. The <a href="/reviews/plusivo-60w-digital-soldering-iron-kit">Plusivo 60W kit</a> covers occasional use at entry level.</p><p>This guide sorts the usual brand names by how often you solder and what you solder. Every pick lists what you still need to buy, because a Pinecil without a power supply and a stand isn't a working tool yet. We stick to PCB, through-hole and small-board work. For everything else, see our <a href="/best-soldering-irons">full soldering iron roundup</a>.</p>
+    </section>
+
+    <section class="mt-12 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Quick picks</h2>
+      {picks.map((k, i) => <RankedReview product={k.product} position={i + 1} badge={k.label} note={k.why} showScore={false} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Pick by how often you solder</h2>
+      <p>Most hobbyists don't need the most powerful iron. They need one that matches how often they sit down at the bench. Find the row that sounds like you.</p><table><thead><tr><th>How you solder</th><th>Good fit</th><th>Why</th></tr></thead><tbody><tr><td>A few Arduino headers or one small kit a year</td><td><a href="/reviews/plusivo-60w-digital-soldering-iron-kit">Plusivo 60W kit</a> or <a href="/reviews/pinecil-smart-mini-portable-soldering-iron">Pinecil</a></td><td>Low commitment. The Plusivo includes solder, a stand and a pump, and the Pinecil fits in a drawer.</td></tr><tr><td>A kit every weekend</td><td><a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a> or <a href="/reviews/hakko-fx888dx-digital-soldering-station">Hakko FX-888DX</a></td><td>A station with a base, holder and temperature control is easier to live with during hour-long builds.</td></tr><tr><td>Small desk or shared space</td><td><a href="/reviews/pinecil-smart-mini-portable-soldering-iron">Pinecil</a> or <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a></td><td>Pen format with no base unit. Both pack away between projects.</td></tr><tr><td>Buy once, keep for years</td><td><a href="/reviews/hakko-fx888dx-digital-soldering-station">Hakko FX-888DX</a> or <a href="/reviews/weller-we1010na-soldering-station">Weller WE1010NA</a></td><td>70W ESD-safe stations built around long-running tip families.</td></tr></tbody></table><p>This page leaves out soldering guns, butane irons and automotive tools on purpose. If you need a battery iron for field work, our <a href="/best-cordless-soldering-irons">cordless soldering irons</a> guide covers them.</p>
+    </section>
+
+    <section class="mt-12 max-w-3xl">
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <caption class="px-4 pt-3 text-left text-sm text-ink-500">The six picks compared: type, power, tips and what&#x27;s in the box</caption>
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Model</th><th scope="col" class="px-4 py-3">Type</th><th scope="col" class="px-4 py-3">Power</th><th scope="col" class="px-4 py-3">Tip system</th><th scope="col" class="px-4 py-3">Listed ESD-safe</th><th scope="col" class="px-4 py-3">In the box</th><th scope="col" class="px-4 py-3">Still to buy</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Hakko FX-888DX</th><td class="px-4 py-3">Digital station</td><td class="px-4 py-3">70W</td><td class="px-4 py-3">Hakko T18</td><td class="px-4 py-3">Yes</td><td class="px-4 py-3">Station, FX-8801 iron, holder with cleaning wire and sponge, starter tip</td><td class="px-4 py-3">Solder, extra tips</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">YIHUA 926 III</th><td class="px-4 py-3">Temperature-controlled station</td><td class="px-4 py-3">60W</td><td class="px-4 py-3">—</td><td class="px-4 py-3">—</td><td class="px-4 py-3">Station, 6 spare tips, 2 helping hands, lead-free solder, desoldering pump, tweezers</td><td class="px-4 py-3">Optional 60/40 solder and flux</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">PINECIL</th><td class="px-4 py-3">USB-C smart pencil iron</td><td class="px-4 py-3">USB-C PD / QC 3.0, 12–20V, 3A</td><td class="px-4 py-3">TS100/TS101-compatible</td><td class="px-4 py-3">—</td><td class="px-4 py-3">Iron with display, one tip</td><td class="px-4 py-3">USB-C PD supply, stand, solder</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Weller WE1010NA</th><td class="px-4 py-3">Digital station</td><td class="px-4 py-3">70W</td><td class="px-4 py-3">Weller ET series</td><td class="px-4 py-3">Yes</td><td class="px-4 py-3">Station, WEP 70 iron, stand with sponge, starter tip</td><td class="px-4 py-3">Solder, extra tips</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">FNIRSI HS-02A</th><td class="px-4 py-3">Corded smart pencil iron</td><td class="px-4 py-3">100W</td><td class="px-4 py-3">FNIRSI F245</td><td class="px-4 py-3">—</td><td class="px-4 py-3">Iron, 6 F245 tips, stand, storage case</td><td class="px-4 py-3">Solder</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Plusivo 21-in-1</th><td class="px-4 py-3">Digital pen iron kit</td><td class="px-4 py-3">60W</td><td class="px-4 py-3">—</td><td class="px-4 py-3">—</td><td class="px-4 py-3">Iron, 5 tips, solder wire, stand, desoldering pump, accessories</td><td class="px-4 py-3">Optional flux</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>What a hobbyist actually needs from a soldering iron</h2>
+      <h3>Temperature control is the one non-negotiable</h3><p>An iron that can't hold a set temperature either struggles on a ground pad or overheats small parts and pads. Neurochrome's advice for electronics is simple: get a temperature-controlled iron. It adds that a controlled station of 50–90W covers most hobbyists' needs. Microcontrollerslab agrees. For anything beyond occasional repairs, it recommends a temperature-controlled station or a smart iron such as the Pinecil.</p><h3>Wattage buys recovery, not a hotter tip</h3><p>Extra wattage doesn't push the tip past the temperature you set. It buys recovery. When the tip touches a large copper plane or a connector tab, the iron has to put heat back in quickly. Neurochrome notes that temperature-controlled irons heat large copper planes and connector tabs faster. That matters on power headers and ground pours far more than on a resistor lead. The stations here are rated at 60–70W and the HS-02A at 100W.</p><h3>A tip family you can keep buying into</h3><p>Tips wear out, and sooner or later you'll want more than one shape. Check that replacement tips are easy to find before you choose. Hakko's T18 series, Weller's ET series and the TS100/TS101-style tips the Pinecil takes are all long-running families. Tip care matters as much as tip choice. Our guide to <a href="/guides/how-to-clean-and-tin-a-soldering-iron-tip">cleaning and tinning a soldering iron tip</a> covers the routine.</p><h3>Comfort and a proper stand</h3><p>A kit build can mean an hour or more with the iron in your hand. A comfortable handpiece and a stable place to park it matter more than most spec sheets suggest. The Hakko, Weller, FNIRSI and Plusivo come with a stand or holder. The Pinecil doesn't, so budget for one.</p><h3>ESD safety as you move to chips</h3><p>Static becomes a real concern once you move from resistors and LEDs to ICs and microcontroller boards. The <a href="/reviews/hakko-fx888dx-digital-soldering-station">Hakko FX-888DX</a> and <a href="/reviews/weller-we1010na-soldering-station">Weller WE1010NA</a> are both listed as ESD-safe. Our <a href="/guides/esd-safety-for-soldering">ESD safety guide</a> explains what else protects sensitive parts. Still learning the basics? Start with <a href="/guides/how-to-choose-a-soldering-iron">how to choose a soldering iron</a>.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Best overall for a hobby bench: Hakko FX-888DX</h2>
+      <p><strong>Best for:</strong> hobbyists who solder regularly and want one station that lasts.</p><p>The <a href="/reviews/hakko-fx888dx-digital-soldering-station">Hakko FX-888DX</a> is a 70W digital station with:</p><ul><li>rotary-encoder temperature control</li><li>an ESD-safe design</li><li>Hakko's widely stocked T18-series tips</li></ul><p>Review sites keep returning to Hakko's FX-888 line as the hobby bench standard, and Tom's Hardware named the FX-888D its best soldering station.</p><p>Reviews often blur the model names. The FX-888D is the predecessor; the FX-888DX is the current model on this page. Read FX-888D test results as a guide to the line, not as specs for this exact unit.</p><p>One lesson from that test applies to any station. Tom's Hardware found 350°C a little low for a thick PCB with leaded solder, and raising it to 400°C got the solder flowing. Making that change quickly is the point of a controlled station.</p><p><strong>In the box:</strong> the station with the FX-8801 iron, an iron holder with cleaning wire and sponge, and a starter T18 tip.</p><p><strong>What else to buy:</strong> solder, plus a chisel-style T18 tip for headers and ground pads.</p><p><strong>Skip it if:</strong> you solder a couple of times a year, or you want solder, spare tips and helping hands in the same box. The YIHUA below covers that.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Best value station kit: YIHUA 926 III</h2>
+      <p><strong>Best for:</strong> new hobbyists who want a whole first bench in one purchase.</p><p>The <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a> is a 60W temperature-controlled station with a digital display, °C/°F switching, auto-sleep and calibration support. The box sets it apart. It also contains:</p><ul><li>six spare tips</li><li>two helping-hands holders</li><li>lead-free solder</li><li>a desoldering pump and tweezers</li></ul><p>If you're moving from breadboards to soldered Arduino shields, that handles most of a starter bench at once.</p><p><strong>The trade-off:</strong> the included solder is lead-free, which needs a hotter tip than leaded solder. Many hobbyists find 60/40 leaded rosin-core easier to learn on. Our <a href="/guides/lead-free-vs-leaded-solder">lead-free vs leaded solder</a> guide sets out the pros and cons, including safety.</p><p><strong>What else to buy:</strong> nothing essential. Add a spool of 60/40 rosin-core and some flux if you prefer leaded solder.</p><p><strong>Skip it if:</strong> you already own helping hands, a pump and solder and just want the iron. The extras are wasted on you, and the Hakko or Weller is the better long-term station.</p><p>Still deciding? See <a href="/yihua-926-iii-vs-weller-we1010na">YIHUA 926 III vs Weller WE1010NA</a> for value versus premium, or <a href="/yihua-926-iii-vs-fnirsi-hs-02a">YIHUA 926 III vs FNIRSI HS-02A</a> for station versus smart pencil iron.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Best compact smart iron for Arduino and small desks: Pinecil</h2>
+      <p><strong>Best for:</strong> occasional Arduino header and small kit work, especially on a tight desk where you already have USB-C power.</p><p>The <a href="/reviews/pinecil-smart-mini-portable-soldering-iron">Pinecil</a> from PINE64 is a pen-sized smart iron powered over USB-C, with an on-iron display and open-source firmware. Tom's Hardware tested the Pinecil V2 and reported:</p><ul><li>350°C in about 20 seconds on a 20V USB-C adapter</li><li>a 450°C maximum</li><li>power from USB-C PD or QC 3.0 at 12–20V, 3A</li><li>compatibility with TS100/TS101 tips</li></ul><p>The firmware is a real strength. You can set temperature profiles, flip the display for left- or right-handed use and choose how the iron sleeps.</p><p><strong>In the box:</strong> the iron with its display and one tip. There is no battery inside.</p><p><strong>What else to buy:</strong> a USB-C PD power supply, a stand and solder. Tom's Hardware's result came on a 20V adapter, so pick a supply that can deliver 20V. Without the supply and stand, the Pinecil isn't a usable bench tool.</p><p><strong>Skip it if:</strong> you build in long sessions or work on boards with heavy ground planes. A station with a base and fixed holder is more comfortable there. Our <a href="/soldering-station-vs-cordless-iron">soldering station vs cordless iron</a> comparison goes deeper.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Premium alternative: Weller WE1010NA</h2>
+      <p><strong>Best for:</strong> hobbyists who have outgrown a starter iron and want the kind of station found in labs and classrooms.</p><p>The <a href="/reviews/weller-we1010na-soldering-station">Weller WE1010NA</a> is a 70W digital station with the WEP 70 iron and an ESD-safe grounded design. It uses Weller's ET-series tips. One long-term owner writing at Siytek points to the wide range of ET tip sizes as a reason to stay with it.</p><p>It's the natural rival to the Hakko: same power class, same ESD-safe rating. The choice usually comes down to which tip family and handpiece you'd rather live with.</p><p><strong>In the box:</strong> the station with the WEP 70 iron, a safety iron stand with sponge, and a starter tip.</p><p><strong>What else to buy:</strong> solder and extra ET tips, starting with a chisel for headers.</p><p><strong>Skip it if:</strong> you want an all-in-one kit with solder and helping hands, or your desk can't spare room for a base unit.</p><p>Torn between the two premium stations? Read <a href="/hakko-fx888dx-vs-weller-we1010na">Hakko FX-888DX vs Weller WE1010NA</a>, or compare more models in our <a href="/best-soldering-stations">best soldering stations</a> guide.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Best smart pencil iron for limited space: FNIRSI HS-02A</h2>
+      <p><strong>Best for:</strong> small or shared desks where a station base won't fit.</p><p>The <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a> is a 100W corded smart iron with three preset temperature groups. According to the listing, it covers 212–842°F, and FNIRSI claims 3-second heating. It comes with six F245 interchangeable tips, a stand and a storage case, so the whole setup packs away between projects.</p><p>The appeal is station-class power in a pen-shaped tool. The presets help if you switch between leaded and lead-free solder, or between headers and bigger joints.</p><p><strong>What else to buy:</strong> solder. When the tips wear, look for FNIRSI's F245 replacements.</p><p><strong>Skip it if:</strong> you want a tool listed as ESD-safe. Among these picks, only the Hakko and the Weller are.</p><p>Related comparisons: <a href="/yihua-926-iii-vs-fnirsi-hs-02a">YIHUA 926 III vs FNIRSI HS-02A</a> and <a href="/fnirsi-hs-02a-vs-fnirsi-hs-03">FNIRSI HS-02A vs HS-03</a>.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Best budget pick for occasional use: Plusivo 60W 21-in-1 kit</h2>
+      <p><strong>Best for:</strong> someone soldering a few projects a year who wants one low-commitment purchase.</p><p>The <a href="/reviews/plusivo-60w-digital-soldering-iron-kit">Plusivo 21-in-1 kit</a> is built around a 60W digital solder pen with an LED display. Around it you get:</p><ul><li>five replaceable tips</li><li>solder wire</li><li>a stand</li><li>a desoldering pump</li><li>assorted accessories</li></ul><p>It runs on a 120V US plug. Because the temperature is adjustable, it's a different class of tool from the bare, uncontrolled irons Neurochrome warns against for electronics.</p><p><strong>What to expect:</strong> it suits occasional header and kit work. If soldering becomes a weekly habit, expect to move up to a station such as the YIHUA or Hakko.</p><p><strong>What else to buy:</strong> nothing to get started. A little flux makes joints easier.</p><p><strong>Skip it if:</strong> you already know you'll solder every weekend. Go straight to a station. For more all-in-one bundles, see our <a href="/best-complete-soldering-kits">complete soldering kits</a> guide.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>What temperature to use on circuit boards</h2>
+      <p>One rule of thumb covers Arduino headers, through-hole kits and small repairs. These ranges come from Neurochrome's guidance for electronics:</p><table><thead><tr><th>Solder</th><th>Tip temperature</th></tr></thead><tbody><tr><td>Leaded (60/40, 63/37)</td><td>About 320–370°C (600–700°F)</td></tr><tr><td>Lead-free (e.g. SAC305)</td><td>About 370–425°C (700–800°F)</td></tr></tbody></table><p>Start at the low end and raise the temperature only if the solder won't flow. Thick boards and big copper areas are the usual reason to go higher. In Tom's Hardware's test, raising a Hakko station from 350°C to 400°C got leaded solder flowing on a thick PCB.</p><p>For settings by job and component, see our full <a href="/guides/soldering-iron-temperature-guide">soldering iron temperature guide</a>.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Tips, solder and the extras that matter more than the iron</h2>
+      <h3>Tip shape</h3><p>For through-hole parts and Arduino headers, a small chisel or bevel tip moves heat into the pad and pin far better than a needle point. Keep a fine conical tip for fine-pitch work. If your iron came with only a conical starter tip, a chisel is the first extra to add.</p><h3>Solder</h3><p>For small electronics, 0.6–0.8mm rosin-core solder is the useful range. Never use plumbing solder: its acid flux can damage electronics. <a href="/reviews/hgmzzq-60-40-rosin-core-solder">HGMZZQ 60/40 rosin-core</a> is a 0.8mm leaded wire on a 50g spool, and a forgiving choice for learning. Our <a href="/guides/solder-wire-types-and-gauge">solder wire types and gauge</a> guide covers the alternatives.</p><h3>Flux and wick</h3><p>Extra flux helps solder wet the pad, and braid cleans up mistakes on flat pads. The <a href="/reviews/towot-solder-wick-flux-kit">TOWOT kit</a> pairs 10ft of desoldering braid with 10cc of no-clean flux paste. Learn when and how to apply it in <a href="/guides/how-to-use-flux">how to use soldering flux</a>.</p><h3>Tip cleaner and fume extraction</h3><p>A brass-wire tip cleaner is gentler on tips than a soaking sponge, and the Hakko's holder already includes cleaning wire. Indoors, a fume extractor keeps flux smoke out of your face. The <a href="/reviews/kotto-solder-fume-extractor">KOTTO extractor</a> is a compact desktop fan with an activated-carbon filter; replacement filters are sold separately. Read <a href="/guides/soldering-fume-safety">soldering fume safety</a> for what you're actually breathing.</p><p>For helping hands, mats and the rest, see our <a href="/best-soldering-accessories">best soldering accessories</a> guide.</p>
+    </section>
+
+    <div class="mt-10 space-y-12">
+      {sectionProducts[9].map((p) => <RankedReview product={p} badge="" showScore={false} />)}
+    </div>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>When a better iron isn&#x27;t the answer</h2>
+      <ul><li><strong>SMD rework and multi-pin parts:</strong> lifting a chip with many pins is a job for hot air, not a bigger iron. Our <a href="/guides/smd-rework-hot-air-and-reflow">SMD rework guide</a> explains hot air and reflow. See also <a href="/guides/through-hole-vs-surface-mount-soldering">through-hole vs surface-mount soldering</a>.</li><li><strong>Removing parts:</strong> technique and the right tool beat raw power. See <a href="/guides/how-to-desolder">how to desolder</a>.</li><li><strong>Field, car and away-from-the-bench work:</strong> a battery iron fits better. Our <a href="/best-cordless-soldering-irons">cordless roundup</a> covers those.</li><li><strong>Joints that still look dull or lumpy:</strong> that's usually practice, not hardware. A board from our <a href="/best-soldering-practice-kits">soldering practice kits</a> guide and <a href="/guides/how-to-fix-a-cold-solder-joint">how to fix a cold solder joint</a> will do more than a new iron.</li></ul>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
