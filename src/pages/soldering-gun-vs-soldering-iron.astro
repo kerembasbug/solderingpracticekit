@@ -1,0 +1,207 @@
+---
+// Q4-DALGA-2026-10 ADAPTOR — uret/adaptor/solderingpracticekit_com.py ile solderingpracticekit.com~4 sayfasından üretildi (2026-10-09).
+// Elle düzenleme bir sonraki üretimde ezilir; değişikliği sayfa JSON'unda ya da adaptörde yapın.
+import Byline from '@/components/Byline.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const PATH = "/soldering-gun-vs-soldering-iron";
+// Quick picks: label = badge, why = card note. One card per product on the page.
+const PICKS = [
+  {"slug": "yihua-926-iii-soldering-station", "label": "Best for most people: electronics, kits and PCBs", "why": "For anyone who mostly solders at a bench. This 60 W station holds a set temperature and has a digital °C/°F display and auto-sleep. The box adds six extra tips, two helping hands, lead-free solder, a solder sucker and tweezers. Skip it if you mostly solder heavy cable away from a bench."},
+  {"slug": "fnirsi-hs-02a-soldering-iron", "label": "Most power in pencil form: electronics plus heavier wire", "why": "For hobbyists who want gun-like power without losing control. It's a 100 W corded smart iron with three temperature presets across 212–842°F and six F245 tips. That means quick heat recovery on battery leads and thicker wire, with enough precision for boards. Solder isn't included, and it won't replace a gun on big lugs."},
+  {"slug": "lexivon-butane-soldering-iron-kit-lx-770", "label": "Best with no outlet: vehicle, marine and off-grid", "why": "For car, boat and field repairs far from a socket. This self-igniting butane iron has an adjustable flame and a seven-tip set, including hot knife and blower attachments that are handy for heat-shrink. It's listed as a 125-watt equivalent. Butane is sold separately, and bench electronics users are better served by a station."},
+  {"slug": "milwaukee-m12-soldering-iron", "label": "For electricians and installers on Milwaukee M12", "why": "For tradespeople who already carry M12 batteries. This cordless iron has replaceable tips and is built for field and automotive repairs. It's sold as a bare tool with no battery or charger, so it only makes sense if you already own M12 packs."}
+];
+// Products carded under the section that first introduces them (same order as the sections).
+const SECTION_SLUGS: string[][] = [
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  ["meakest-60w-soldering-iron-premium-kit"],
+  [],
+  ["kotto-solder-fume-extractor", "hgmzzq-60-40-rosin-core-solder"]
+];
+
+const all = await getProducts();
+const bySlug = (slug: string) => all.find((p) => p.slug === slug);
+const picks = PICKS.map((k) => ({ ...k, product: bySlug(k.slug) })).filter(
+  (k): k is typeof k & { product: NonNullable<ReturnType<typeof bySlug>> } => Boolean(k.product),
+);
+const sectionProducts = SECTION_SLUGS.map((list) =>
+  list.map(bySlug).filter((p): p is NonNullable<typeof p> => Boolean(p)),
+);
+const listed = [...picks.map((k) => k.product), ...sectionProducts.flat()];
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: "Soldering Gun vs Soldering Iron: Which to Use? (2026)", url: PATH },
+];
+
+const faqs = [
+  {
+    "question": "Can I use a soldering gun for electronics?",
+    "answer": "It can work for large through-hole joints and wiring, but it's a poor choice for circuit boards. The big loop tip, high power and lack of a set temperature make it easy to overheat parts or lift pads. A temperature-controlled iron or station is the better tool."
+  },
+  {
+    "question": "Is a soldering gun hotter than a soldering iron?",
+    "answer": "A gun usually delivers more power, with typical models rated at 100 to 240 W, and it heats quickly. But wattage isn't temperature: a temperature-controlled iron can run at comparable working temperatures and hold them steady. The gun's strength is pushing lots of heat into big joints fast."
+  },
+  {
+    "question": "What is a soldering gun used for?",
+    "answer": "Heavy electrical connections such as thick cable, lugs and chassis grounds, plus light sheet-metal work and stained glass assembly. Weller, which makes guns, describes them as tools for heavier work like cables and sheet metal."
+  },
+  {
+    "question": "Should I use a gun or an iron for car wiring?",
+    "answer": "It depends on wire size. A higher-wattage temperature-controlled iron or a butane iron handles most automotive wiring, while a gun suits big terminals and heavy cable; practitioners often treat about 16 AWG and heavier as the point to reach for a gun or large iron. Crimping is also a solid option for many splices."
+  },
+  {
+    "question": "What wattage soldering iron can replace a gun?",
+    "answer": "There's no single number. A temperature-controlled iron in the 60–100 W range with a large chisel tip covers medium wire and battery leads. For big lugs and sheet metal, a true gun or a large iron is still the better tool."
+  },
+  {
+    "question": "Do I need both a soldering gun and a soldering iron?",
+    "answer": "Most hobbyists only need an iron or station. Add a gun if you regularly make heavy joints; electricians and car hobbyists often own both."
+  }
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: "Soldering Gun vs Soldering Iron: Which Should You Use in 2026?",
+    description: "Soldering gun or iron? See which suits PCBs, car wiring and thick cable, how to spot Amazon 'guns' that are really pencil irons, and what to buy.",
+    url: PATH,
+    datePublished: "2026-10-09",
+    dateModified: "2026-10-09",
+  }),
+  ...(listed.length ? [itemListSchema(listed, PATH)] : []),
+  breadcrumbSchema(crumbs),
+  ...(faqs.length
+    ? [faqSchema(faqs.map((f) => ({ question: f.question, answer: f.answer.replace(/<[^>]+>/g, '') })))]
+    : []),
+);
+---
+
+<BaseLayout
+  title={"Soldering Gun vs Soldering Iron: Which to Use? (2026)"}
+  description={"Soldering gun or iron? See which suits PCBs, car wiring and thick cable, how to spot Amazon 'guns' that are really pencil irons, and what to buy."}
+  rawTitle
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime={"2026-10-09"}
+  modifiedTime={"2026-10-09"}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Soldering Gun vs Soldering Iron: Which Should You Use in 2026?
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        For electronics, kits and most hobby work, a temperature-controlled iron wins. A true soldering gun is a heavy-joint specialist for thick cable, lugs and sheet metal. Here&#x27;s which job needs which tool, and how to avoid mislabeled &#x27;guns&#x27;.
+      </p>
+      <Byline updated={"October 9, 2026"} />
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="prose prose-lg mt-10 max-w-3xl">
+      <p>For circuit boards, kits, guitar wiring and most hobby electronics, use a temperature-controlled soldering iron or station. A true soldering gun (the pistol-grip, trigger-heated transformer tool) is built for heavy joints like thick cable, big lugs, chassis grounds and light sheet metal, so most people only need one as a second tool.</p><p>Below, we match each tool to the job by wire size and project type, explain why so many Amazon 'soldering guns' are really pencil irons, and show which modern irons can take over much of a gun's work. For a deeper dive on wattage, temperature control and tips, read <a href="/guides/how-to-choose-a-soldering-iron/">how to choose a soldering iron</a>.</p>
+    </section>
+
+    <section class="mt-12 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Quick picks</h2>
+      {picks.map((k, i) => <RankedReview product={k.product} position={i + 1} badge={k.label} note={k.why} showScore={false} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Soldering gun vs soldering iron: the short answer</h2>
+      <p>Soldering circuit boards, kits, guitar pots, audio cables or most hobby projects? Get a temperature-controlled iron or station. It holds the tip at the temperature you set, takes fine tips and is easy to hold steady through a long session.</p><p>A real soldering gun is a different tool. It's a pistol-grip, transformer-powered unit that heats a copper loop tip only while you squeeze the trigger. Typical guns are rated at 100 to 240 W, according to Wikipedia. Lowe's lists guns as typically starting around 75 W, with industrial models reaching 300 W. That power is aimed at heavy joints: thick cable, big lugs, chassis grounds and light sheet metal. For most readers, a gun is a second tool, not a first one.</p><p>Even Weller, which makes both, says neither is better. Irons are for precise work on delicate joints such as electronics. Guns are for heavier work like soldering cables or sheet metal.</p>
+    </section>
+
+    <section class="mt-12 max-w-3xl">
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <caption class="px-4 pt-3 text-left text-sm text-ink-500">Soldering gun vs soldering iron at a glance</caption>
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Feature</th><th scope="col" class="px-4 py-3">Soldering gun</th><th scope="col" class="px-4 py-3">Soldering iron / station</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Shape</th><td class="px-4 py-3">Pistol grip with trigger</td><td class="px-4 py-3">Pencil handle; a station adds a base unit</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">How it heats</th><td class="px-4 py-3">Transformer drives high current through a copper loop tip</td><td class="px-4 py-3">Heating element warms the tip continuously</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Typical power</th><td class="px-4 py-3">100–240 W (Lowe&#x27;s: from about 75 W, up to 300 W for industrial models)</td><td class="px-4 py-3">6–175 W (per Lowe&#x27;s)</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Temperature control</th><td class="px-4 py-3">No set temperature; trigger with one or two heat stages</td><td class="px-4 py-3">Set temperature on controlled irons and stations</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Heat-up</th><td class="px-4 py-3">Seconds on trigger pull</td><td class="px-4 py-3">Stations slower to start; smart pencil irons heat in seconds</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Between joints</th><td class="px-4 py-3">Stops heating on release; can be set down a few seconds later</td><td class="px-4 py-3">Stays hot; park it in a stand (some have auto-sleep)</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Tips</th><td class="px-4 py-3">Loop tips</td><td class="px-4 py-3">Swappable pencil tips, fine to broad</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Circuit boards</th><td class="px-4 py-3">Not recommended</td><td class="px-4 py-3">Yes, with temperature control</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Best jobs</th><td class="px-4 py-3">Thick cable, lugs, chassis grounds, light sheet metal</td><td class="px-4 py-3">Electronics, kits, guitar and audio wiring, most hobby work</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Which to use for your job</h2>
+      <p>Pick by the job and the size of what you're joining. A bigger metal mass needs more heat, pushed in fast. A smaller, more delicate part needs temperature control and a fine tip.</p><table><thead><tr><th>Job</th><th>Best tool</th><th>Why</th></tr></thead><tbody><tr><td>Through-hole kits and circuit boards</td><td>Temperature-controlled iron or station</td><td>Small pads and heat-sensitive parts need a set temperature and a fine tip.</td></tr><tr><td>Surface-mount (SMD) parts</td><td>Fine-tip station</td><td>Tiny pads; a gun's loop tip is far too large. See our <a href="/guides/smd-rework-hot-air-and-reflow/">SMD rework guide</a>.</td></tr><tr><td>Guitar pots, pickups and audio wiring</td><td>Iron</td><td>Owners on guitar forums report guns are too powerful and awkward here; a 25–40 W iron is typical.</td></tr><tr><td>RC and drone battery leads</td><td>High-wattage temperature-controlled iron</td><td>Thick leads need heat recovery, but nearby electronics still need control. See <a href="/guides/soldering-for-rc-and-drones/">soldering for RC and drones</a>.</td></tr><tr><td>Car and trailer wiring</td><td>Iron or gun, depending on gauge</td><td>Thin signal wire suits an iron. A practitioner rule of thumb: around 16 AWG and heavier leans toward a gun or a large iron.</td></tr><tr><td>Big lugs, chassis grounds, heavy terminals</td><td>Soldering gun</td><td>Large metal masses soak up heat; a gun pushes it in fast.</td></tr><tr><td>Light sheet metal</td><td>Soldering gun</td><td>A listed gun use, per Weller and Wikipedia.</td></tr><tr><td>Stained glass assembly</td><td>A high-heat tool</td><td>Soldering guns are among the tools used for it.</td></tr></tbody></table><p>The 16 AWG line is a rule of thumb from people who do this work, not a specification. A large chisel tip on a 100 W temperature-controlled iron moves that line upward.</p><p>For many wire splices, crimping is a perfectly valid alternative. Our guide to <a href="/guides/how-to-solder-wires-together/">soldering wires together</a> covers splices, heat-shrink and tinning.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How each tool works (and why that decides what it&#x27;s good at)</h2>
+      <h3>The soldering iron</h3><p>A heating element warms the tip continuously while the iron is on. A basic iron simply runs hot. A temperature-controlled iron or station lets you set a tip temperature. It adds power when the tip touches a cold joint, so the temperature stays steady as you work.</p><h3>The soldering gun</h3><p>A gun is built around a transformer that steps mains power down to low voltage at high current. The tip has much higher resistance than the rest of that circuit, so the tip gets very hot while the body warms slowly. It heats only while the trigger is held. Many guns have a two-stage trigger for two heat settings, and an extra winding often powers a small work light.</p><h3>Why that matters</h3><p>The gun delivers fast, high, intermittent heat through a coarse tip. The iron delivers steady, controllable heat at a fine tip. One dumps heat into a big lump of copper quickly. The other puts just enough heat into a small pad without cooking the part next to it.</p><h3>Wattage is not temperature</h3><p>Some buying guides still claim any iron above roughly 30–45 W will damage components. That confuses power with temperature. Wattage is how quickly a tool pushes heat back into the tip when a joint soaks it up. Temperature control is what protects components.</p><p>A temperature-controlled 60 W station such as the <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a>, or a 100 W smart iron such as the <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a>, runs at the temperature you choose. The extra wattage just means faster recovery on bigger joints. That's why a 60–100 W temperature-controlled iron is safe on circuit boards and also handles much of the wiring people buy a gun for.</p><p>For reference, common solder melts at about 185°C (365°F). Our <a href="/guides/soldering-iron-temperature-guide/">soldering iron temperature guide</a> lists sensible settings by job.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Why a soldering gun is the wrong tool for circuit boards</h2>
+      <p>You can melt solder on a board with a gun, but you're fighting the tool. The loop tip is large next to modern pads, the body is heavy, and there's no set temperature. It's easy to keep heat on a joint too long. That's how parts overheat and copper pads lift, which is a repair job of its own.</p><p>Tom's Hardware rates a Weller 140 W gun as its best soldering gun, yet calls it heavy and 'a blunt instrument' not meant for precision work. Its recommended use is large-gauge automotive cable. That's a fair summary of where guns belong.</p><p>Comfort matters too. Every joint means lifting a pistol-shaped tool and squeezing a trigger. Across a kit with dozens or hundreds of joints, that gets tiring. A pencil iron is held like a pen, close to the work, so small, repeated joints are easier to place.</p><p>Some light-duty 100 W guns are marketed for fine wiring and electronics; Wall Lenk's 100 W kit with quick-change tips is one example. If you already own one, it can manage larger through-hole joints and wiring. For dense boards and anything surface-mount, a temperature-controlled iron is the safer choice.</p><p>Just starting out? Learn on an iron with one of our <a href="/best-soldering-practice-kits/">soldering practice kits</a>, and keep our list of <a href="/guides/common-soldering-mistakes/">common soldering mistakes</a> nearby.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Heat-up speed: is the gun still the fastest?</h2>
+      <p>Speed has always been the gun's party trick. It heats on the trigger pull and stops the moment you let go, so it cools quickly enough to set down a few seconds after use. An always-on iron has to be parked safely in a stand while powered. That makes the gun handy for the occasional quick joint, such as a single connection on a trailer harness.</p><p>Modern smart pencil irons have closed the gap. In Tom's Hardware's heat-up test, a FNIRSI HS-02 smart iron reached working temperature in 3.6 seconds, against 6 seconds for a Weller 9400PKS gun. That result is for the HS-02, not the <a href="/reviews/fnirsi-hs-02a-soldering-iron">HS-02A</a> we recommend here. FNIRSI does claim the HS-02A heats in about 3 seconds, as does the cordless <a href="/reviews/fnirsi-hs-03-cordless-soldering-iron">FNIRSI HS-03</a>, which has a 2600mAh battery and five temperature levels.</p><p>Stations take longer to come up to temperature, but they're meant to stay on through a bench session. Auto-sleep, as on the <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a>, cuts the 'forgot it was on' risk.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Gun alternatives for heavy work</h2>
+      <p>If your heavy jobs are mostly thicker wire rather than big lugs, you may not need a gun at all. These options cover much of the same ground.</p><h3>100 W corded smart pencil iron</h3><p>The <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a> pairs 100 W for heat recovery with temperature control (212–842°F, three presets) and six swappable F245 tips. It suits battery leads and heavier wire and stays usable on boards. It isn't a gun replacement for big lugs or chassis grounds.</p><h3>Butane iron</h3><p>The <a href="/reviews/lexivon-butane-soldering-iron-kit-lx-770">LEXIVON LX-770</a> needs no outlet. It self-ignites, has an adjustable flame and comes with seven tips, including hot knife and blower attachments that help with heat-shrink. It's built for vehicle, marine and off-grid repairs. The butane is sold separately.</p><h3>Cordless M12 iron</h3><p>The <a href="/reviews/milwaukee-m12-soldering-iron">Milwaukee M12 Soldering Iron</a> is for tradespeople already carrying M12 batteries, the same crowd that traditionally kept a gun in the truck. It has replaceable tips and is aimed at field and automotive work. It's sold as a bare tool with no battery or charger. Our <a href="/best-cordless-soldering-irons/">best cordless soldering irons</a> roundup covers it alongside other portable options.</p><h3>When you still want a true gun</h3><p>Large terminals, chassis grounds, heavy-gauge cable, light sheet metal and occasional quick heavy joints are still where a transformer gun earns its place. Those big metal masses pull heat away faster than most pencil tips can supply it.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Heads-up: many Amazon &#x27;soldering guns&#x27; are pencil irons</h2>
+      <p>Search Amazon for a soldering gun and much of what comes up isn't one. Amazon's own Soldering Guns category includes pencil-style iron kits with 'soldering gun' in the title, often next to an adjustable temperature range. Plenty of individual listings do the same.</p><h3>How to tell them apart</h3><ul><li><strong>A real transformer gun:</strong> pistol grip, trigger, copper loop tip and a bulky transformer body. Usually 100 W or more, with one or two heat stages and no temperature readout.</li><li><strong>A pencil iron with a 'gun' title:</strong> pen-shaped body with the cord going into the handle, a temperature dial or display, and a screw-in or slide-on pencil tip.</li></ul><h3>Why it matters</h3><p>If you want an electronics tool, one of these mislabeled listings may be exactly right, because adjustable temperature is what you need. If you want a heavy-duty gun for lugs and cable, read past the title. Check the shape, the tip and whether there's a trigger.</p><p>One example from our own catalog: the <a href="/reviews/meakest-60w-soldering-iron-premium-kit">MEAKEST 60W Soldering Iron Premium Kit</a> has 'Soldering Gun' in its Amazon title, but it's a 60 W pencil iron with a ceramic heater and an adjustable 200–450°C range. The 12-in-1 kit adds tips, solder wire, flux paste and a desoldering pump. It suits budget-minded first-timers testing whether soldering is for them. Skip it if you need a heavy-joint tool, because it isn't a transformer gun.</p>
+    </section>
+
+    <div class="mt-10 space-y-12">
+      {sectionProducts[6].map((p) => <RankedReview product={p} badge="" showScore={false} />)}
+    </div>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Which should you buy?</h2>
+      <ul><li><strong>Only one tool, mostly electronics or kits:</strong> a temperature-controlled station such as the <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a>. Its helping hands, solder, sucker and tweezers cover the bench work a gun can't do safely.</li><li><strong>Electronics plus heavier wire, limited bench space:</strong> a 100 W smart pencil iron such as the <a href="/reviews/fnirsi-hs-02a-soldering-iron">FNIRSI HS-02A</a>.</li><li><strong>Vehicle, marine or field work with no outlet:</strong> the <a href="/reviews/lexivon-butane-soldering-iron-kit-lx-770">LEXIVON LX-770</a> butane iron. Already on Milwaukee M12 batteries? The <a href="/reviews/milwaukee-m12-soldering-iron">M12 Soldering Iron</a>.</li><li><strong>Big lugs, chassis grounds and sheet metal on a regular basis:</strong> keep an iron for everything else and add a true transformer gun as a second tool.</li></ul><p>Most hobbyists never need that last item. Electricians and car hobbyists who do heavy joints often own both, and that's when the pairing makes sense.</p><p>For more options, see our roundups of the <a href="/best-soldering-irons/">best soldering irons</a>, the <a href="/best-soldering-stations/">best soldering stations</a> and the <a href="/best-cordless-soldering-irons/">best cordless irons</a>. Torn between a bench station and a portable iron? Our <a href="/soldering-station-vs-cordless-iron/">soldering station vs cordless iron</a> comparison is the natural next step.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Safety and care for either tool</h2>
+      <ul><li><strong>A gun's tip stays hot after you release the trigger.</strong> Set it on a stand or a heat-safe surface, never on the bench or your lap.</li><li><strong>Keep gun tips tight.</strong> If a gun seems slow to heat, owners report the tip-holding nuts have often worked loose. Check and retighten them.</li><li><strong>Use rosin-core solder for electrical work, never acid-core.</strong> A thin rosin-core wire such as <a href="/reviews/hgmzzq-60-40-rosin-core-solder">HGMZZQ 60/40</a> (0.8 mm) suits general electronics. It's leaded, so wash your hands afterward. Our <a href="/guides/lead-free-vs-leaded-solder/">lead-free vs leaded solder</a> guide explains the trade-offs.</li><li><strong>Ventilate.</strong> Flux smoke isn't something to breathe all afternoon. A desktop fan with an activated-carbon filter, like the <a href="/reviews/kotto-solder-fume-extractor">KOTTO fume extractor</a>, pulls it away from your face. See our <a href="/guides/soldering-fume-safety/">soldering fume safety guide</a>.</li><li><strong>Look after iron tips.</strong> Clean and tin the tip regularly so it keeps transferring heat. Our guide to <a href="/guides/how-to-clean-and-tin-a-soldering-iron-tip/">cleaning and tinning a soldering iron tip</a> walks through it.</li></ul><p>Confused by heat tools in general? Our explainer on <a href="/guides/soldering-vs-welding-vs-brazing/">soldering vs welding vs brazing</a> sorts out which process does what.</p>
+    </section>
+
+    <div class="mt-10 space-y-12">
+      {sectionProducts[8].map((p) => <RankedReview product={p} badge="" showScore={false} />)}
+    </div>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
