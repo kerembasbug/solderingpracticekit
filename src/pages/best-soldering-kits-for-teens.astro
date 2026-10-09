@@ -1,0 +1,216 @@
+---
+// Q4-DALGA-2026-10 ADAPTOR — uret/adaptor/solderingpracticekit_com.py ile solderingpracticekit.com~3 sayfasından üretildi (2026-10-09).
+// Elle düzenleme bir sonraki üretimde ezilir; değişikliği sayfa JSON'unda ya da adaptörde yapın.
+import Byline from '@/components/Byline.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import RankedReview from '@/components/RankedReview.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getProducts } from '@/lib/products';
+import {
+  itemListSchema,
+  faqSchema,
+  breadcrumbSchema,
+  articleSchema,
+  jsonLdGraph,
+} from '@/lib/seo';
+
+const PATH = "/best-soldering-kits-for-teens";
+// Quick picks: label = badge, why = card note. One card per product on the page.
+const PICKS = [
+  {"slug": "pemenol-retro-game-console-soldering-kit", "label": "Best overall: for gamers", "why": "For the teen who needs a reason to reach the last joint. It becomes a 7-in-1 handheld with its own display, controls and housing, and three difficulty levels fit very different skill levels."},
+  {"slug": "amomii-testudo-soldering-practice-kit", "label": "Best for future coders", "why": "For the self-taught teen curious about programming. Three builds (digital piano, game console, keypad) on a board with an Arduino-compatible microcontroller, with PDF and video tutorials."},
+  {"slug": "muxwell-bluetooth-speaker-soldering-kit", "label": "Best for music fans", "why": "For the motivated beginner who wants something to listen to. A Bluetooth, USB and FM speaker with its own enclosure. Through-hole throughout, but a substantial build."},
+  {"slug": "mioyoow-diy-digital-clock-soldering-kit", "label": "Best useful build", "why": "For the practical teen. A 4-digit alarm clock with adjustable brightness in a clear acrylic case, made for a desk or nightstand."},
+  {"slug": "lepanda-fm-radio-soldering-kit", "label": "Best classic project", "why": "For STEM classes and first-timers who like the idea of a radio. An FM build with a 2-inch speaker and acrylic case, pitched at high-school STEM."},
+  {"slug": "banria-color-recognition-soldering-kit", "label": "Best for a real challenge", "why": "For improvers who found LED kits too easy. A denser board with a TCS34725 colour sensor and 1.69-inch TFT display that teaches RGB and HSV across four modes."},
+  {"slug": "gikfun-smd-smt-welding-practice-board-ek7028", "label": "Best first surface-mount kit", "why": "For teens who already solder through-hole. It steps up through several SMD component sizes, and an indicator circuit lights when the board is done."}
+];
+// Products carded under the section that first introduces them (same order as the sections).
+const SECTION_SLUGS: string[][] = [
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  [],
+  ["yihua-926-iii-soldering-station", "kotto-solder-fume-extractor"],
+  [],
+  []
+];
+
+const all = await getProducts();
+const bySlug = (slug: string) => all.find((p) => p.slug === slug);
+const picks = PICKS.map((k) => ({ ...k, product: bySlug(k.slug) })).filter(
+  (k): k is typeof k & { product: NonNullable<ReturnType<typeof bySlug>> } => Boolean(k.product),
+);
+const sectionProducts = SECTION_SLUGS.map((list) =>
+  list.map(bySlug).filter((p): p is NonNullable<typeof p> => Boolean(p)),
+);
+const listed = [...picks.map((k) => k.product), ...sectionProducts.flat()];
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: "Soldering Kit for Teens: Best Builds for Ages 13–17 (2026)", url: PATH },
+];
+
+const faqs = [
+  {
+    "question": "What age is appropriate for a teen to start soldering on their own?",
+    "answer": "There is no official standard, and experience matters more than age. CircuitMess describes 13+ as ready for advanced builds, often with minimal supervision, but we recommend an adult present for the first sessions at any age. Our parent's guide covers supervision in more detail."
+  },
+  {
+    "question": "Do these soldering kits come with a soldering iron?",
+    "answer": "No. None of the kits picked here includes an iron or solder, and several also need batteries or a power supply. A station such as the YIHUA 926 III, which comes with lead-free solder, tips, helping hands and a desoldering pump, fills the gap in one go."
+  },
+  {
+    "question": "Should a teen use lead-free or leaded solder?",
+    "answer": "Default to lead-free, which is what CircuitMess advises for young makers. If leaded solder is used, wash hands after each session, keep food off the bench and ventilate the room. Our lead-free vs. leaded solder guide explains the trade-offs."
+  },
+  {
+    "question": "Does a teen need a fume extractor?",
+    "answer": "At minimum, work with an open window so flux smoke can clear. For regular indoor soldering, a desktop carbon-filter fan like the KOTTO pulls the smoke away from the work area and the teen's face."
+  },
+  {
+    "question": "What's a good soldering kit for a teen who has never soldered?",
+    "answer": "Choose a through-hole build with a clear payoff: the MiOYOOW clock, the LEPANDA radio, or the PEMENOL console started on its easiest difficulty level. If they need something even simpler, our kids' soldering kit page has very short first projects."
+  },
+  {
+    "question": "Which soldering kit makes the best gift for a teenager?",
+    "answer": "Pick the kit by interest: the console for a gamer, the speaker for a music fan, the Testudo for a coder. Then add a temperature-controlled iron and a fume fan so it works straight out of the box. Our soldering gift guide has more ideas."
+  }
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: "Soldering Kits for Teens: The Best Builds for Ages 13–17 (2026)",
+    description: "Seven soldering kits teens will finish and use: a game console, speaker, clock, Arduino board and more. Plus what to add and how much to supervise.",
+    url: PATH,
+    datePublished: "2026-10-09",
+    dateModified: "2026-10-09",
+  }),
+  ...(listed.length ? [itemListSchema(listed, PATH)] : []),
+  breadcrumbSchema(crumbs),
+  ...(faqs.length
+    ? [faqSchema(faqs.map((f) => ({ question: f.question, answer: f.answer.replace(/<[^>]+>/g, '') })))]
+    : []),
+);
+---
+
+<BaseLayout
+  title={"Soldering Kit for Teens: Best Builds for Ages 13–17 (2026)"}
+  description={"Seven soldering kits teens will finish and use: a game console, speaker, clock, Arduino board and more. Plus what to add and how much to supervise."}
+  rawTitle
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime={"2026-10-09"}
+  modifiedTime={"2026-10-09"}
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Soldering Kits for Teens: The Best Builds for Ages 13–17 (2026)
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Teen-level soldering kits picked by what they become: a playable console, a Bluetooth speaker, an Arduino-compatible board, a desk clock, a sensor gadget and a first surface-mount board. Plus what to add and how much supervision teens need.
+      </p>
+      <Byline updated={"October 9, 2026"} />
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <section class="prose prose-lg mt-10 max-w-3xl">
+      <p>For most teenagers, the best soldering kit is the <a href="/reviews/pemenol-retro-game-console-soldering-kit">PEMENOL 7-in-1 Retro Game Console</a>. It becomes a handheld they will actually play, and its three selectable difficulty levels suit a first-timer or a teen who has soldered before. For a teen who wants to code, the <a href="/reviews/amomii-testudo-soldering-practice-kit">amomii Testudo</a> is the better choice, because its board carries an Arduino-compatible microcontroller.</p><p>These picks are older and harder than the ones on our <a href="/best-soldering-kits-for-kids">soldering kits for kids</a> page. Each ends in something a 13–17-year-old will care about: a game, a speaker, a radio, a clock, a sensor gadget or real surface-mount skills. One thing to know before you buy: <strong>none of these kits includes a soldering iron or solder.</strong> The gift bundle section lists what to add so the kit works on day one.</p>
+    </section>
+
+    <section class="mt-12 space-y-12">
+      <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Quick picks</h2>
+      {picks.map((k, i) => <RankedReview product={k.product} position={i + 1} badge={k.label} note={k.why} showScore={false} />)}
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>How to choose a soldering kit for a 13–17-year-old</h2>
+      <p>Start with where the teen is now, not their age. Then pick the finished device they will care about, and check what the box leaves out.</p><h3>Match the skill stage</h3><ul><li><strong>First time soldering:</strong> through-hole parts on a forgiving layout. CircuitMess recommends through-hole for beginners and notes that surface-mount parts frustrate even adults. The clock, the radio, the Testudo and the PEMENOL console on its easiest level all fit here.</li><li><strong>Some experience:</strong> a denser board with a display or sensor, like the <a href="/reviews/banria-color-recognition-soldering-kit">BANRIA Color Recognition kit</a>.</li><li><strong>Ready for more:</strong> surface-mount (SMD) practice, like the <a href="/reviews/gikfun-smd-smt-welding-practice-board-ek7028">Gikfun EK7028</a>. CircuitMess places 50+ component builds, surface-mount work and multi-session projects at the 13+ stage.</li></ul><p>New to the terms? Our guide to <a href="/guides/through-hole-vs-surface-mount-soldering">through-hole vs. surface-mount soldering</a> explains the difference in plain language.</p><h3>Choose by the payoff</h3><p>A long build gets finished when the teen wants the result. CircuitMess names clear visual instructions and a satisfying finished device as key predictors of whether a kit gets finished. Give a gamer the console and a music fan the speaker. Give a teen who talks about coding the Testudo, and one who likes practical things the clock.</p><h3>Check what's in the box</h3><p>None of the seven kits here includes an iron or solder. Several also leave out batteries or a power supply. Each review below lists what ships and what you add. Unsure whether you want a practice board or a project that becomes a gadget? See our <a href="/practice-kit-vs-project-kit">practice kit vs project kit</a> comparison.</p><h3>Look at the instructions</h3><p>For a teen who teaches themselves, video helps. The Testudo is the one pick whose maker lists video tutorials alongside a PDF. The PEMENOL console's instructions are organised around its three difficulty levels.</p><h3>Treat age labels as a rough guide</h3><p>Age labels on Amazon listings are inconsistent, even for similar kits. One AKEYSRC arcade kit says "Ages 7-14 &amp; Adults", while a PEMENOL rotating-globe kit says "15 years and up". A 14-year-old who has finished two kits is better placed than a 17-year-old who has never held an iron. Go by experience first.</p>
+    </section>
+
+    <section class="mt-12 max-w-3xl">
+      <div class="not-prose overflow-x-auto rounded-xl border border-ink-200">
+        <table class="w-full min-w-[560px] text-left text-sm">
+          <caption class="px-4 pt-3 text-left text-sm text-ink-500">Soldering kits for teens compared</caption>
+          <thead class="bg-ink-50 text-xs font-bold uppercase tracking-wide text-ink-500">
+            <tr><th scope="col" class="px-4 py-3">Kit</th><th scope="col" class="px-4 py-3">Best for</th><th scope="col" class="px-4 py-3">What it becomes</th><th scope="col" class="px-4 py-3">Soldering type</th><th scope="col" class="px-4 py-3">Skill stage</th><th scope="col" class="px-4 py-3">You add</th></tr>
+          </thead>
+          <tbody class="divide-y divide-ink-100 text-ink-700">
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">PEMENOL 7-in-1 Retro Game Console</th><td class="px-4 py-3">Gamers</td><td class="px-4 py-3">7-in-1 handheld game console with display and housing</td><td class="px-4 py-3">Through-hole</td><td class="px-4 py-3">First kit to experienced (3 difficulty levels)</td><td class="px-4 py-3">Iron, solder, batteries</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">amomii Testudo</th><td class="px-4 py-3">Future coders</td><td class="px-4 py-3">Digital piano, game console and keypad on an Arduino-compatible board</td><td class="px-4 py-3">Through-hole</td><td class="px-4 py-3">First kit</td><td class="px-4 py-3">Iron, solder</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">MUXWELL Bluetooth Speaker</th><td class="px-4 py-3">Music fans</td><td class="px-4 py-3">Bluetooth, USB and FM stereo speaker with enclosure</td><td class="px-4 py-3">Through-hole</td><td class="px-4 py-3">Motivated beginner or second kit</td><td class="px-4 py-3">Iron, solder, power source</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">MiOYOOW Digital Clock</th><td class="px-4 py-3">Practical teens</td><td class="px-4 py-3">4-digit alarm clock in clear acrylic case</td><td class="px-4 py-3">Through-hole</td><td class="px-4 py-3">First or second kit</td><td class="px-4 py-3">Iron, solder, power supply</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">LEPANDA FM Radio</th><td class="px-4 py-3">STEM classes, classic builds</td><td class="px-4 py-3">FM radio with 2-inch speaker in acrylic case</td><td class="px-4 py-3">Through-hole</td><td class="px-4 py-3">First kit</td><td class="px-4 py-3">Iron, solder, power source</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">BANRIA Color Recognition</th><td class="px-4 py-3">A real challenge</td><td class="px-4 py-3">Colour sensor gadget with 1.69-inch TFT and 4 modes</td><td class="px-4 py-3">—</td><td class="px-4 py-3">Some experience</td><td class="px-4 py-3">Iron, solder, tools</td></tr>
+            <tr><th scope="row" class="px-4 py-3 font-semibold text-ink-900">Gikfun EK7028</th><td class="px-4 py-3">Surface-mount skills</td><td class="px-4 py-3">SMD practice board with indicator circuit</td><td class="px-4 py-3">Surface-mount (SMD)</td><td class="px-4 py-3">Ready for SMD</td><td class="px-4 py-3">Iron, solder, tweezers, flux, fine tip</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>PEMENOL 7-in-1 Retro Game Console Soldering Kit</h2>
+      <p><strong>Best for:</strong> gamers, and any teen who needs a reason to reach the last joint.</p><p><strong>What they build:</strong> a 7-in-1 retro handheld game console. The display, controls and housing parts are included, so the result is a finished handheld, not a bare circuit board.</p><p><strong>Skill level:</strong> first kit to experienced, thanks to three selectable difficulty levels. A first-timer starts on the easiest. A teen who has soldered before can take on more.</p><p><strong>In the box:</strong> console PCB and through-hole components, display, controls, housing parts and STEM-focused instructions.</p><p><strong>You add:</strong> an iron, solder and batteries.</p><p><strong>Watch out for:</strong> a beginner should not start on the hardest level. Batteries are extra, so have them ready before build day, or the first game has to wait.</p><p>Why it leads this list: the reward is something to play and pass around, which makes the build worth finishing and the console worth keeping.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>amomii Testudo Soldering Practice Kit</h2>
+      <p><strong>Best for:</strong> teens curious about programming, and self-learners who like to follow videos.</p><p><strong>What they build:</strong> three gadgets: a digital piano, a game console and a keypad. The board carries an Arduino-compatible microcontroller.</p><p><strong>Why it matters:</strong> it is the only pick here where the soldering project leads straight into coding. Once the joints are done, the Arduino-compatible board is a natural route into writing their own programs.</p><p><strong>Skill level:</strong> first kit. It uses through-hole components, and the manufacturer describes the tutorials as beginner-friendly.</p><p><strong>In the box:</strong> the Testudo PCB with its microcontroller, components for all three builds, and step-by-step PDF and video tutorials.</p><p><strong>You add:</strong> a soldering iron and solder.</p><p><strong>Watch out for:</strong> the box contents list no case or housing. The gadgets are working boards, not enclosed devices. That matters if the teen wants something that looks like a product.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>MUXWELL DIY Bluetooth Speaker Soldering Kit</h2>
+      <p><strong>Best for:</strong> music fans who want a build that stays on the desk and gets played.</p><p><strong>What they build:</strong> a stereo speaker with three sources: Bluetooth, a USB player and an FM receiver. It comes with its own enclosure, so it looks like a speaker, not a circuit.</p><p><strong>Skill level:</strong> a motivated beginner or a teen on their second kit. Every joint is through-hole, but it is a full audio project with speaker and receiver parts.</p><p><strong>In the box:</strong> the Bluetooth/USB/FM receiver PCB, speaker and audio components, enclosure parts and fixings.</p><p><strong>You add:</strong> an iron, solder and a power source.</p><p><strong>Watch out for:</strong> it is a substantial build. A teen who has never soldered may want a smaller project first, or a patient adult nearby for the first evening.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>MiOYOOW DIY Digital Clock Soldering Kit</h2>
+      <p><strong>Best for:</strong> practical teens who want something useful for a bedroom or dorm desk.</p><p><strong>What they build:</strong> a 4-digit digital alarm clock with adjustable display brightness. The clear acrylic enclosure shows off the soldering inside.</p><p><strong>Skill level:</strong> a good first or second kit. It is a through-hole project with a clear, finished result.</p><p><strong>In the box:</strong> the clock PCB and components, alarm and brightness-control parts, and the clear acrylic enclosure with fixings.</p><p><strong>You add:</strong> an iron, solder and a power supply.</p><p><strong>Watch out for:</strong> a teen who has built a few kits may find a clock a modest challenge. For them, the BANRIA sensor kit is the better stretch.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>LEPANDA DIY FM Radio Soldering Kit</h2>
+      <p><strong>Best for:</strong> STEM students, classrooms and teens who like the idea of building a radio from parts.</p><p><strong>What they build:</strong> an FM radio with a 2-inch speaker in an acrylic case. The listing pitches it for high-school STEM education, so it fits a teacher or school club easily.</p><p><strong>Skill level:</strong> first kit. It is a through-hole project.</p><p><strong>In the box:</strong> the FM radio PCB and components, a 2-inch speaker, and an acrylic case with fixings.</p><p><strong>You add:</strong> an iron, solder and a power source.</p><p><strong>Watch out for:</strong> a teen who mostly streams music may get more daily use from the MUXWELL speaker, which adds Bluetooth and USB on top of FM.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>BANRIA Color Recognition Soldering Kit</h2>
+      <p><strong>Best for:</strong> improvers who found LED blinky kits too easy and want electronics that does something clever.</p><p><strong>What they build:</strong> a colour-recognition gadget built around a TCS34725 colour sensor and a 1.69-inch TFT display. It has four colour-learning modes and teaches the RGB and HSV colour models.</p><p><strong>Skill level:</strong> some experience. The layout is denser than a first kit, which makes it good practice for finer joints.</p><p><strong>In the box:</strong> the colour-recognition PCB with sensor, the TFT display module, and supporting components for the four modes.</p><p><strong>You add:</strong> an iron, solder and tools.</p><p><strong>Watch out for:</strong> skip it as a very first kit. Tight spacing punishes shaky technique. Read our guide to <a href="/guides/how-to-fix-a-cold-solder-joint">fixing a cold solder joint</a> before starting.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Gikfun SMD/SMT Welding Practice Board (EK7028)</h2>
+      <p><strong>Best for:</strong> older or experienced teens ready to move from through-hole to surface-mount soldering.</p><p><strong>What they build:</strong> a compact training board with surface-mount footprints in several component sizes, so the difficulty rises as they go. Assembled correctly, an indicator circuit lights up, which shows plainly whether the work succeeded.</p><p><strong>Skill level:</strong> ready for SMD. CircuitMess puts surface-mount work at the 13+ stage, and also warns that SMD parts frustrate even adults. Through-hole experience first is the safe order.</p><p><strong>In the box:</strong> the EK7028 practice PCB, assorted surface-mount components and the indicator-circuit parts.</p><p><strong>You add:</strong> an iron and solder, plus tweezers, flux and a fine tip.</p><p><strong>Watch out for:</strong> the payoff is a lit indicator, not a gadget. It suits a teen who wants the skill itself. For the bigger picture, see our <a href="/guides/smd-rework-hot-air-and-reflow">SMD rework basics</a> guide and how to <a href="/guides/how-to-use-flux">use flux</a>.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>What you need besides the kit (the complete gift bundle)</h2>
+      <p>Every kit above needs at least an iron and solder before the first joint. A complete gift has four parts: a kit chosen by interest, a temperature-controlled iron, a way to deal with smoke, and power for the finished project.</p><h3>A temperature-controlled iron</h3><p>The <a href="/reviews/yihua-926-iii-soldering-station">YIHUA 926 III</a> covers most of what the kits leave out in one box. According to the listing, it is a 60W temperature-controlled station with a digital display, °C/°F switching, auto-sleep and calibration. It ships with six spare tips, two helping hands, lead-free solder, a desoldering pump and tweezers.</p><p>Temperature control matters for a learner. The teen sets the tip heat and reads it on the display, instead of guessing with an unregulated iron. Our <a href="/guides/soldering-iron-temperature-guide">soldering iron temperature guide</a> gives starting settings.</p><p>For the Gikfun SMD board, the YIHUA box covers tweezers. Add flux, and a fine tip if none of the spares suits small pads.</p><p>Prefer a different setup? Our <a href="/best-complete-soldering-kits">complete soldering kits</a> and <a href="/best-soldering-stations">soldering stations</a> roundups cover the alternatives.</p><h3>A fume extractor</h3><p>Heated flux sends smoke straight up toward whoever is leaning over the board. The <a href="/reviews/kotto-solder-fume-extractor">KOTTO Solder Fume Extractor</a> is a compact desktop fan with an activated-carbon filter that pulls solder smoke away from the work area. Its small footprint suits a bedroom desk or kitchen table. The filter is replaceable; replacement filters are sold separately.</p><h3>A way to fix mistakes</h3><p>On a multi-hour build, something will need undoing. The YIHUA kit includes a desoldering pump. Our <a href="/solder-sucker-vs-solder-wick">solder sucker vs solder wick</a> comparison explains when wick is the better tool.</p><h3>Lead-free solder, not 60/40</h3><p>We do not recommend leaded 60/40 solder as the default for a teen. CircuitMess advises lead-free solder for young makers. Leaded solder also brings rules that are easy to forget: wash hands after every session and keep food off the bench. The lead-free solder in the YIHUA box avoids that. Our <a href="/guides/lead-free-vs-leaded-solder">lead-free vs. leaded solder</a> guide covers the trade-offs.</p><h3>Power for the finished project</h3><p>The PEMENOL console needs batteries. The MUXWELL speaker and LEPANDA radio need a power source, and the MiOYOOW clock needs a power supply. Sort this out beforehand and the project works the moment the last joint cools.</p><h3>Putting the gift together</h3><p>Pick the kit by the teen's interest, then add the station and the fume fan. For more ideas by age and experience, see our <a href="/soldering-gift-guide">soldering gift guide</a>.</p>
+    </section>
+
+    <div class="mt-10 space-y-12">
+      {sectionProducts[8].map((p) => <RankedReview product={p} badge="" showScore={false} />)}
+    </div>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>Is soldering safe for teens? Supervision and safety</h2>
+      <p>Yes, with sensible habits. The main hazard is heat: according to CircuitMess, soldering involves temperatures above 300°C (570°F).</p><h3>How much supervision</h3><p>There is no official standard. CircuitMess describes the 13+ stage as ready for advanced builds, often with minimal supervision. Our recommendation: let experience set the level as much as age. A first-timer at 16 still benefits from an adult in the room for the first session. Step back once the teen reliably returns the iron to its stand, works with ventilation and unplugs when done. For the detailed version, read our <a href="/guides/best-soldering-kits-for-kids-and-teens">parent's guide to soldering with kids and teens</a>.</p><h3>The bench rules</h3><ul><li><strong>The iron lives in its stand</strong> whenever it is not touching the board.</li><li><strong>Ventilate.</strong> Open a window at minimum. For regular indoor soldering, use a carbon-filter fan like the <a href="/reviews/kotto-solder-fume-extractor">KOTTO</a>. Our <a href="/guides/soldering-fume-safety">soldering fume safety</a> guide explains what is in the smoke.</li><li><strong>Lead-free solder by default.</strong> If leaded solder is ever used, wash hands afterward and keep food and drinks away from the bench.</li><li><strong>Safety glasses</strong> for every session.</li><li><strong>A heat-resistant work surface</strong>, not the bedspread or a varnished table.</li><li><strong>Unplug when finished.</strong></li></ul><p>Before the first session, read our <a href="/guides/how-to-solder-for-beginners">beginner's soldering guide</a> together.</p>
+    </section>
+
+    <section class="prose prose-lg mt-16 max-w-3xl">
+      <h2>What comes after the first kit</h2>
+      <p>Teens who enjoy their first build usually want a harder one. A sensible ladder:</p><ol><li><strong>A through-hole project</strong> with a clear payoff: the console, clock, radio or speaker above.</li><li><strong>A denser board with a sensor and display:</strong> the <a href="/reviews/banria-color-recognition-soldering-kit">BANRIA Color Recognition kit</a>, for finer joints and real electronics concepts.</li><li><strong>Surface-mount practice:</strong> the <a href="/reviews/gikfun-smd-smt-welding-practice-board-ek7028">Gikfun EK7028</a>, working down through smaller component sizes.</li><li><strong>Hot air and rework:</strong> the next skill after hand-soldered SMD, covered in our <a href="/guides/smd-rework-hot-air-and-reflow">SMD rework guide</a>.</li></ol><p>A teen drawn to code can branch off at any point with the <a href="/reviews/amomii-testudo-soldering-practice-kit">amomii Testudo</a>, whose Arduino-compatible microcontroller turns a soldering project into something to program. For more builds beyond this list, browse our <a href="/best-soldering-project-kits">soldering project kits</a>.</p><p>When the iron starts holding them back, such as struggling with fine tips or wanting a better station for a growing bench, see our <a href="/best-soldering-stations">soldering stations</a> and <a href="/best-soldering-irons">soldering irons</a> roundups. The <a href="/electronics-workbench-essentials">workbench essentials</a> guide covers the order to add tools in.</p>
+    </section>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>
