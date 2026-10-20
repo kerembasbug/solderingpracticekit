@@ -3,9 +3,10 @@ title: 'How to Fix a Cold Solder Joint (Spot It and Reflow It)'
 seoTitle: 'Cold Solder Joint: How to Spot, Test and Fix It'
 description: 'What a cold solder joint looks like, how to test for one, why it happens, how to reflow it — and how it differs from cracked joints caused by solder cold flow (creep).'
 pubDate: 2026-06-23
-updatedDate: 2026-09-28
+updatedDate: 2026-10-20
 category: 'Troubleshooting'
 heroImage: '/images/guides/how-to-fix-a-cold-solder-joint.jpg'
+set: 'desoldering-kit'
 relatedProducts:
   - viralloy-solder-sucker
   - towot-solder-wick-flux-kit

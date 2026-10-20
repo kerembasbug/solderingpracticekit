@@ -4,8 +4,9 @@ title: 'How to Desolder: Removing Solder and Components Safely'
 seoTitle: 'How to Desolder: Wick, Pump, Hot Air & SMD Parts'
 description: 'How to desolder: using solder wick and a solder sucker, removing through-hole and SMD components, clearing stubborn holes, and avoiding lifted pads.'
 pubDate: 2026-04-05
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Technique'
+set: 'desoldering-kit'
 relatedProducts:
   - viralloy-solder-sucker
   - towot-solder-wick-flux-kit

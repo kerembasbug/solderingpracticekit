@@ -1,0 +1,91 @@
+---
+import Byline from '@/components/Byline.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import SetCard from '@/components/SetCard.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getSets, setHref } from '@/lib/sets';
+import { articleSchema, breadcrumbSchema, faqSchema, jsonLdGraph, absoluteUrl } from '@/lib/seo';
+
+const sets = await getSets();
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Shopping Sets', url: '/sets' },
+];
+
+const faqs = [
+  {
+    question: 'What is a shopping set?',
+    answer:
+      'A short list of everything one job needs — the iron, consumables, safety gear and a first project — chosen to work together. Each line says what the item does and why we picked that one, and one button puts the whole list in your Amazon cart so you do not have to hunt for each part.',
+  },
+  {
+    question: 'Do I have to buy the whole set?',
+    answer:
+      'No. Each item has its own link, and the cart button simply pre-fills your Amazon cart — remove anything you already own before you check out. The sets are a starting point, not a bundle.',
+  },
+  {
+    question: 'How are the items chosen?',
+    answer:
+      'From the products we have already reviewed and ranked, plus a handful of consumables (flux, wire, heat-shrink, safety glasses) that do not need a review page but every bench needs. Our how-we-rank page explains the editorial method; we do not accept payment for placement.',
+  },
+];
+
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title: 'Soldering Shopping Sets: Complete Kit Lists by Job',
+    description: 'Ready-made shopping lists for soldering: beginner bench, kids and teens, SMD rework, RC and drones, battery tabs, wire repair and a full electronics workbench.',
+    url: '/sets',
+    datePublished: '2026-10-20',
+    dateModified: '2026-10-20',
+  }),
+  {
+    '@type': 'ItemList',
+    name: 'Soldering shopping sets',
+    url: absoluteUrl('/sets'),
+    numberOfItems: sets.length,
+    itemListElement: sets.map((s, i) => ({
+      '@type': 'ListItem',
+      position: i + 1,
+      name: s.title,
+      url: absoluteUrl(setHref(s.id)),
+    })),
+  },
+  breadcrumbSchema(crumbs),
+  faqSchema(faqs),
+);
+---
+
+<BaseLayout
+  title="Soldering Shopping Sets: Complete Kit Lists by Job"
+  description="Ready-made soldering shopping lists — beginner bench, kids and teens, SMD rework, RC and drones, battery tabs, wire repair and a full electronics workbench — with one-click Amazon carts."
+  type="article"
+  jsonLd={jsonLd}
+  publishedTime="2026-10-20"
+  modifiedTime="2026-10-20"
+>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mt-6 max-w-3xl">
+      <h1 class="text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">
+        Soldering shopping sets
+      </h1>
+      <p class="mt-5 text-lg leading-relaxed text-ink-600">
+        Everything one job needs, on one list. Each set pairs a reviewed iron or kit with the consumables
+        and safety gear that product listings leave out, explains why each item is there, and puts the
+        whole list in your Amazon cart with one click.
+      </p>
+      <Byline verb="Compiled" updated="October 20, 2026" />
+    </header>
+
+    <div class="mt-8 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mt-10 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+      {sets.map((s) => <SetCard set={s} />)}
+    </div>
+
+    <section class="mt-16"><FAQ faqs={faqs} /></section>
+  </div>
+</BaseLayout>

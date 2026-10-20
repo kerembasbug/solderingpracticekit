@@ -3,9 +3,10 @@ title: 'How to Use Soldering Flux (and Which Type to Buy)'
 seoTitle: 'How to Use Flux When Soldering (Paste, Pen & Liquid)'
 description: 'How flux works in soldering, the types and forms (paste, pen, liquid, gel), how to apply it for through-hole, SMD and wires, and how to clean the residue.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-28
+updatedDate: 2026-10-20
 category: 'Materials'
 heroImage: '/images/guides/how-to-use-flux.jpg'
+set: 'desoldering-kit'
 relatedProducts:
   - towot-solder-wick-flux-kit
   - hgmzzq-60-40-rosin-core-solder

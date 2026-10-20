@@ -3,9 +3,10 @@ title: 'How to Solder Wires Together (Splice, Heat-Shrink and Tin)'
 seoTitle: 'How to Solder Wires Together: Step by Step'
 description: 'How to solder wires together step by step: tip and temperature by wire gauge, tinning, Western Union, inline and pigtail splices, heat-shrink sizing, and when to crimp instead.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-16
+updatedDate: 2026-10-20
 category: 'Technique'
 heroImage: '/images/guides/how-to-solder-wires-together.jpg'
+set: 'wire-splicing-kit'
 relatedProducts:
   - kaisiking-helping-hands-magnifier
   - hgmzzq-60-40-rosin-core-solder

@@ -6,6 +6,8 @@ import ComparisonTable from '@/components/ComparisonTable.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import RankedReview from '@/components/RankedReview.astro';
 import FAQ from '@/components/FAQ.astro';
+import ProductSet from '@/components/ProductSet.astro';
+import { getSetById } from '@/lib/sets';
 import { getProducts, sortByScore } from '@/lib/products';
 import {
   itemListSchema,
@@ -28,6 +30,9 @@ const COMPLETE_SLUGS = [
 const all = await getProducts();
 const kits = sortByScore(all.filter((p) => COMPLETE_SLUGS.includes(p.slug)));
 const practicePick = all.find((p) => p.slug === 'elenco-practical-soldering-project-kit');
+
+const shoppingSet = await getSetById('beginner-soldering-bench');
+if (!shoppingSet) throw new Error('Set beginner-soldering-bench not found');
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -135,6 +140,11 @@ const jsonLd = jsonLdGraph(
         covers what to add next, and the <a href="/best-soldering-accessories">accessories roundup</a>
         has the upgrades worth making.
       </p>
+    </section>
+
+    <section class="mx-auto mt-16 max-w-3xl" aria-label="Shopping set">
+      <p class="mb-4 text-sm font-semibold text-ink-600">Rather not hunt for each part? Here is the whole list, ready for your cart.</p>
+      <ProductSet set={shoppingSet} />
     </section>
 
     <section class="mt-16"><FAQ faqs={faqs} /></section>

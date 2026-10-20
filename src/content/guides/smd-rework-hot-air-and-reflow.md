@@ -3,9 +3,10 @@ title: 'SMD Rework Basics: Hot Air and Reflow Soldering Explained'
 seoTitle: 'SMD Rework: Hot Air & Reflow Basics'
 description: 'An introduction to surface-mount rework: how hot air rework stations and reflow work, when you need them, and how to remove and replace SMD components.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Technique'
 heroImage: '/images/guides/smd-rework-hot-air-and-reflow.jpg'
+set: 'smd-rework-bench'
 relatedProducts:
   - towot-solder-wick-flux-kit
   - banria-color-recognition-soldering-kit

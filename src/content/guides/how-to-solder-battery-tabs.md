@@ -3,9 +3,10 @@ title: 'How to Solder Battery Tabs (18650 and Pack Building Safely)'
 seoTitle: 'How to Solder Battery Tabs Safely'
 description: 'How to solder tabs and wires to 18650 and lithium cells safely: why heat is the enemy, when to spot-weld instead, and a safe step-by-step method.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Technique'
 heroImage: '/images/guides/how-to-solder-battery-tabs.jpg'
+set: 'battery-pack-tabbing-kit'
 relatedProducts:
   - fnirsi-hs-02a-soldering-iron
   - hgmzzq-60-40-rosin-core-solder

@@ -4,8 +4,9 @@ title: 'How to Choose a Soldering Iron: A Beginner''s Buying Guide'
 seoTitle: 'How to Choose a Soldering Iron: Types, Watts & Tips'
 description: 'How to choose a soldering iron: the types (station, pen, cordless, USB-C, butane, gun), the specs that matter, tips, budget tiers and the mistakes to avoid.'
 pubDate: 2026-02-18
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Buying Guide'
+set: 'beginner-soldering-bench'
 relatedProducts:
   - yihua-926-iii-soldering-station
   - fnirsi-hs-02a-soldering-iron

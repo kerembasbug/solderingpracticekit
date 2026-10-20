@@ -9,6 +9,8 @@ import ProsCons from '@/components/ProsCons.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import StarRating from '@/components/StarRating.astro';
 import StickyCta from '@/components/StickyCta.astro';
+import SetCard from '@/components/SetCard.astro';
+import { getSetsForProduct } from '@/lib/sets';
 import { getProducts } from '@/lib/products';
 import { testGearGroupFor } from '@/data/testGear';
 import type { Product } from '@/lib/types';
@@ -110,6 +112,8 @@ const VS_LINKS: Record<string, { href: string; label: string }[]> = {
   ],
 };
 const vsLinks = VS_LINKS[product.slug] ?? [];
+
+const inSets = await getSetsForProduct(product.slug);
 
 const alternatives = (product.alternatives ?? [])
   .map((alt) => ({ ...alt, product: all.find((p) => p.slug === alt.slug) }))
@@ -329,6 +333,18 @@ const seoTitle =
                 </div>
               </div>
             ))}
+          </div>
+        </section>
+      )
+    }
+
+    {
+      inSets.length > 0 && (
+        <section class="mx-auto mt-16 max-w-5xl">
+          <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">Shopping sets that include the {product.title}</h2>
+          <p class="mt-2 text-ink-600">Everything else you need alongside it, on one list with a one-click Amazon cart.</p>
+          <div class="mt-6 grid gap-6 md:grid-cols-3">
+            {inSets.slice(0, 3).map((s) => <SetCard set={s} />)}
           </div>
         </section>
       )

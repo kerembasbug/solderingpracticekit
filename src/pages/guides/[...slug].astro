@@ -7,6 +7,8 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import FAQ from '@/components/FAQ.astro';
+import ProductSet from '@/components/ProductSet.astro';
+import { getSetById } from '@/lib/sets';
 import { getProducts } from '@/lib/products';
 import { articleSchema, breadcrumbSchema, faqSchema, jsonLdGraph } from '@/lib/seo';
 
@@ -24,6 +26,9 @@ const { data } = entry;
 
 const words = entry.body?.split(/\s+/).length ?? 0;
 const readingTime = Math.max(1, Math.round(words / 200));
+
+const set = data.set ? await getSetById(data.set) : undefined;
+if (data.set && !set) throw new Error(`Guide ${entry.id} references unknown set "${data.set}"`);
 
 const allProducts = await getProducts();
 const related = data.relatedProducts
@@ -83,7 +88,14 @@ const dateFmt = (d: Date) =>
       </h1>
       <p class="mt-4 text-lg leading-relaxed text-ink-600">{data.description}</p>
       <Byline updated={dateFmt(data.updatedDate ?? data.pubDate)} />
-      <p class="mt-1 text-sm text-ink-500">{readingTime} min read</p>
+      <p class="mt-1 text-sm text-ink-500">
+        {readingTime} min read
+        {set && (
+          <span>
+            {' '}· <a href={`#set-${set.id}`} class="font-semibold text-brand-600 hover:text-brand-700">Shopping list: {set.items.length} items ↓</a>
+          </span>
+        )}
+      </p>
     </header>
 
     {
@@ -109,7 +121,15 @@ const dateFmt = (d: Date) =>
     </div>
 
     {
-      related.length > 0 && (
+      set && (
+        <div class="mx-auto mt-14 max-w-3xl">
+          <ProductSet set={set} />
+        </div>
+      )
+    }
+
+    {
+      !set && related.length > 0 && (
         <section class="mx-auto mt-14 max-w-3xl rounded-3xl border border-ink-200 bg-white p-6 lg:p-8">
           <h2 class="text-xl font-extrabold tracking-tight text-ink-900">Recommended kits from this guide</h2>
           <div class="mt-6 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

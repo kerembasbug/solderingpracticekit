@@ -4,8 +4,9 @@ title: 'Soldering Tools Checklist for Beginners'
 seoTitle: 'Beginner Soldering Tools: Essential Checklist'
 description: 'A complete beginner soldering tools checklist: the must-have iron, solder and safety gear, plus the nice-to-have extras that make soldering easier.'
 pubDate: 2026-03-24
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Getting Started'
+set: 'beginner-soldering-bench'
 relatedProducts:
   - yihua-926-iii-soldering-station
   - amomii-testudo-soldering-practice-kit

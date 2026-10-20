@@ -1,0 +1,90 @@
+---
+import type { GetStaticPaths } from 'astro';
+import Byline from '@/components/Byline.astro';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Breadcrumbs from '@/components/Breadcrumbs.astro';
+import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
+import ProductSet from '@/components/ProductSet.astro';
+import SetCard from '@/components/SetCard.astro';
+import FAQ from '@/components/FAQ.astro';
+import { getSets, setHref, type ResolvedSet } from '@/lib/sets';
+import { articleSchema, breadcrumbSchema, faqSchema, jsonLdGraph } from '@/lib/seo';
+
+export const getStaticPaths = (async () => {
+  const sets = await getSets();
+  return sets.map((set) => ({ params: { id: set.id }, props: { set, all: sets } }));
+}) satisfies GetStaticPaths;
+
+interface Props {
+  set: ResolvedSet;
+  all: ResolvedSet[];
+}
+const { set, all } = Astro.props;
+const others = all.filter((s) => s.id !== set.id).slice(0, 3);
+
+const crumbs = [
+  { name: 'Home', url: '/' },
+  { name: 'Shopping Sets', url: '/sets' },
+  { name: set.title, url: setHref(set.id) },
+];
+
+const title = `${set.title}: ${set.items.length}-Item Shopping List`;
+const jsonLd = jsonLdGraph(
+  articleSchema({
+    title,
+    description: set.tagline,
+    url: setHref(set.id),
+    image: set.items[0]?.image,
+    datePublished: set.updatedAt,
+    dateModified: set.updatedAt,
+  }),
+  breadcrumbSchema(crumbs),
+  faqSchema(set.faqs),
+);
+
+const dateFmt = (d: string) =>
+  new Date(d).toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' });
+---
+
+<BaseLayout title={title} description={set.tagline} type="article" jsonLd={jsonLd} publishedTime={set.updatedAt} modifiedTime={set.updatedAt}>
+  <div class="container-px py-8 lg:py-12">
+    <Breadcrumbs items={crumbs} />
+    <header class="mx-auto mt-6 max-w-3xl">
+      <span class="text-xs font-bold uppercase tracking-wide text-brand-600">Shopping set</span>
+      <h1 class="mt-2 text-4xl font-extrabold leading-tight tracking-tight text-ink-900 sm:text-5xl">{set.title}</h1>
+      <p class="mt-4 text-lg leading-relaxed text-ink-600">{set.tagline}</p>
+      <Byline verb="Compiled" updated={dateFmt(set.updatedAt)} />
+    </header>
+
+    <div class="mx-auto mt-6 max-w-3xl"><AffiliateDisclosure /></div>
+
+    <div class="mx-auto mt-10 max-w-3xl">
+      <ProductSet set={set} as="h2" showPageLink={false} position="hero" />
+    </div>
+
+    <section class="prose prose-lg mx-auto mt-14 max-w-3xl">
+      <h2>Why these {set.items.length} items</h2>
+      {set.body.map((p) => <p>{p}</p>)}
+      {
+        set.readMore && (
+          <p>
+            Read the full guide: <a href={set.readMore.href}>{set.readMore.label}</a>.
+          </p>
+        )
+      }
+    </section>
+
+    <section class="mt-16"><FAQ faqs={set.faqs} /></section>
+
+    {
+      others.length > 0 && (
+        <section class="mx-auto mt-16 max-w-5xl">
+          <h2 class="text-2xl font-extrabold tracking-tight text-ink-900">More shopping sets</h2>
+          <div class="mt-6 grid gap-6 md:grid-cols-3">
+            {others.map((s) => <SetCard set={s} />)}
+          </div>
+        </section>
+      )
+    }
+  </div>
+</BaseLayout>

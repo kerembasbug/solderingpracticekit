@@ -4,9 +4,10 @@ title: 'How to Solder for Beginners: A Complete Step-by-Step Guide'
 seoTitle: 'How to Solder for Beginners: Step-by-Step Guide'
 description: 'Learn how to solder from scratch: the tools you need, safety, tinning the tip, making a good joint, soldering wires, fixing mistakes and a simple practice plan.'
 pubDate: 2026-02-01
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Beginner Guide'
 featured: true
+set: 'beginner-soldering-bench'
 relatedProducts:
   - amomii-testudo-soldering-practice-kit
   - elenco-practical-soldering-project-kit

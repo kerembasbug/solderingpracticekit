@@ -19,6 +19,8 @@ const guides = defineCollection({
       .array(z.object({ question: z.string(), answer: z.string() }))
       .default([]),
     heroImage: z.string().optional(),
+    /** Optional shopping set id (src/data/sets.ts) rendered after the article. */
+    set: z.string().optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

@@ -2,6 +2,7 @@ import type { APIContext } from 'astro';
 import { getCollection } from 'astro:content';
 import { SITE } from '@/config/site';
 import { getProducts } from '@/lib/products';
+import { getSets, setHref } from '@/lib/sets';
 
 /**
  * llms.txt — a Markdown guide for AI assistants (ChatGPT, Perplexity, Claude,
@@ -15,6 +16,10 @@ export async function GET(context: APIContext) {
     (a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime(),
   );
   const products = await getProducts();
+  const sets = await getSets();
+  const setLines = sets
+    .map((s) => `- [${s.title}](${origin}${setHref(s.id)}): ${s.tagline}`)
+    .join('\n');
 
   const guideLines = guides
     .map((g) => `- [${g.data.title}](${origin}/guides/${g.id}): ${g.data.description}`)
@@ -58,6 +63,11 @@ ${SITE.name} is an independent review and buying-guide site for soldering practi
 - [Jitterbug vs Robot Car Kit](${origin}/jitterbug-vs-robot-car-kit): The best first soldering kit for kids, by age and joint count.
 - [YIHUA 926 III vs Weller WE1010NA](${origin}/yihua-926-iii-vs-weller-we1010na): Budget station bundle versus the premium, professional-grade Weller brand.
 - [Hakko FX-888DX vs Weller WE1010NA](${origin}/hakko-fx888dx-vs-weller-we1010na): The two trusted pro station brands compared on tips, control and value.
+
+## Shopping sets (complete kit lists by job)
+
+- [All shopping sets](${origin}/sets): Every set, from a beginner bench to a full electronics workbench.
+${setLines}
 
 ## Tools
 

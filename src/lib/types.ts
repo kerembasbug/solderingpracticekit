@@ -73,3 +73,47 @@ export interface Product {
 
   updatedAt: string;
 }
+
+/** A consumable or accessory that completes a shopping set but has no review
+ *  page of its own. Links directly to Amazon. */
+export interface Extra {
+  asin: string;
+  slug: string;
+  title: string;
+  fullTitle: string;
+  brand: string;
+  /** One line on why it belongs on a bench. */
+  note: string;
+  image: string;
+  imageWidth: number;
+  imageHeight: number;
+}
+
+/** One line of a shopping set: a reviewed product or an extra, plus the job it does. */
+export interface SetItem {
+  /** Slug of a {@link Product} or an {@link Extra}. */
+  ref: string;
+  /** The job this item does in the set, e.g. "Iron", "Solder". */
+  role: string;
+  /** Why this one, in one sentence, written for this set. */
+  why: string;
+  /** Optional: skip the "Add set to Amazon cart" link for this item (e.g. bulky alternatives). */
+  optional?: boolean;
+}
+
+/** A curated shopping set — everything needed for one job, sent to Amazon together. */
+export interface ProductSet {
+  id: string;
+  title: string;
+  /** One sentence for cards and meta descriptions. */
+  tagline: string;
+  /** Who this set is for, 2–3 sentences shown above the list. */
+  intro: string;
+  /** Longer body for the set's own page (Markdown-free paragraphs). */
+  body: string[];
+  items: SetItem[];
+  faqs: { question: string; answer: string }[];
+  /** Guide or roundup this set accompanies, for the back-link. */
+  readMore?: { label: string; href: string };
+  updatedAt: string;
+}

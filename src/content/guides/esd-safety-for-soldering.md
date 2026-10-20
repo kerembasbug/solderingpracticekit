@@ -3,9 +3,10 @@ title: 'ESD Safety for Soldering: Protecting Sensitive Components'
 seoTitle: 'ESD Safety for Soldering (Beginner Guide)'
 description: 'What electrostatic discharge (ESD) is, which components it damages, and the simple, cheap steps to protect your projects with a wrist strap and mat.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Safety'
 heroImage: '/images/guides/esd-safety-for-soldering.jpg'
+set: 'esd-safe-electronics-bench'
 relatedProducts:
   - banria-color-recognition-soldering-kit
   - fnirsi-hs-03-cordless-soldering-iron

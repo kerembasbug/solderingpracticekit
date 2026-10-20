@@ -1,0 +1,36 @@
+---
+import type { ResolvedSet } from '@/lib/sets';
+import { setHref } from '@/lib/sets';
+
+interface Props {
+  set: ResolvedSet;
+}
+const { set } = Astro.props;
+const preview = set.items.slice(0, 4);
+---
+
+<a
+  href={setHref(set.id)}
+  class="group flex flex-col rounded-2xl border border-ink-200 bg-white p-5 transition-shadow hover:shadow-[var(--shadow-card)]"
+>
+  <div class="flex gap-2">
+    {
+      preview.map((i) => (
+        <span class="h-14 w-14 overflow-hidden rounded-lg border border-ink-100 bg-white p-1">
+          <img src={i.image} alt="" width={i.imageWidth} height={i.imageHeight} loading="lazy" decoding="async" class="h-full w-full object-contain" />
+        </span>
+      ))
+    }
+    {
+      set.items.length > 4 && (
+        <span class="grid h-14 w-14 place-items-center rounded-lg border border-ink-100 bg-ink-50 text-sm font-bold text-ink-600">
+          +{set.items.length - 4}
+        </span>
+      )
+    }
+  </div>
+  <span class="mt-4 text-xs font-bold uppercase tracking-wide text-brand-600">{set.items.length}-item set</span>
+  <h3 class="mt-1 text-lg font-bold leading-snug text-ink-900 group-hover:text-brand-700">{set.title}</h3>
+  <p class="mt-2 flex-1 text-sm leading-relaxed text-ink-600">{set.tagline}</p>
+  <span class="mt-4 text-sm font-semibold text-brand-600">See the set →</span>
+</a>

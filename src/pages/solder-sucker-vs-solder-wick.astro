@@ -5,12 +5,17 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import VsComparison from '@/components/VsComparison.astro';
 import FAQ from '@/components/FAQ.astro';
+import ProductSet from '@/components/ProductSet.astro';
+import { getSetById } from '@/lib/sets';
 import { getProductBySlug } from '@/lib/products';
 import { articleSchema, faqSchema, breadcrumbSchema, jsonLdGraph } from '@/lib/seo';
 
 const a = await getProductBySlug('viralloy-solder-sucker');
 const b = await getProductBySlug('towot-solder-wick-flux-kit');
 if (!a || !b) throw new Error('Comparison products not found');
+
+const shoppingSet = await getSetById('desoldering-kit');
+if (!shoppingSet) throw new Error('Set desoldering-kit not found');
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -145,6 +150,11 @@ const jsonLd = jsonLdGraph(
         meet a flat pad or a solder bridge. Learn the technique in our
         <a href="/guides/how-to-desolder">how to desolder guide</a>.
       </p>
+    </section>
+
+    <section class="mx-auto mt-16 max-w-3xl" aria-label="Shopping set">
+      <p class="mb-4 text-sm font-semibold text-ink-600">Rather not hunt for each part? Here is the whole list, ready for your cart.</p>
+      <ProductSet set={shoppingSet} />
     </section>
 
     <section class="mt-16"><FAQ faqs={faqs} /></section>

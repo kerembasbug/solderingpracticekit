@@ -21,3 +21,18 @@ export function affiliateSearchUrl(keywords: string, opts: { tag?: string } = {}
   const params = new URLSearchParams({ k: keywords, tag });
   return `https://www.${AMAZON.storefront}/s/?${params.toString()}`;
 }
+
+/**
+ * Amazon Associates "Add to Cart" form URL: puts every ASIN into the shopper's
+ * cart in one click, with the partner tag on the whole basket.
+ * See Associates Central → Product Linking → Add to Cart form.
+ */
+export function affiliateCartUrl(asins: string[], opts: { tag?: string } = {}): string {
+  const tag = opts.tag ?? AMAZON.partnerTag;
+  const params = new URLSearchParams({ AssociateTag: tag });
+  asins.forEach((asin, i) => {
+    params.set(`ASIN.${i + 1}`, asin);
+    params.set(`Quantity.${i + 1}`, '1');
+  });
+  return `https://www.${AMAZON.storefront}/gp/aws/cart/add.html?${params.toString()}`;
+}

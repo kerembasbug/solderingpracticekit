@@ -3,9 +3,10 @@ title: 'Soldering for RC and Drones: Connectors, ESCs and Battery Leads'
 seoTitle: 'Soldering for RC & Drones: A How-To'
 description: 'A practical guide to soldering for RC and FPV drones: tinning pads, soldering XT60 connectors, motor and ESC wires, and avoiding cold joints that cause crashes.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Technique'
 heroImage: '/images/guides/soldering-for-rc-and-drones.jpg'
+set: 'rc-drone-soldering-kit'
 relatedProducts:
   - fnirsi-hs-02a-soldering-iron
   - towot-solder-wick-flux-kit

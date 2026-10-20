@@ -4,8 +4,9 @@ title: 'Soldering for Kids: Age, Safety and First Projects (Parent''s Guide)'
 seoTitle: 'Soldering for Kids: What Age, Safety & First Kits'
 description: 'A parent''s guide to soldering for kids and teens: what age they can start, the safety rules that matter, how to run a first session, and what makes a good first project.'
 pubDate: 2026-03-05
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Gift Guide'
+set: 'kids-first-soldering-kit'
 relatedProducts:
   - pemenol-retro-game-console-soldering-kit
   - mioyoow-diy-digital-clock-soldering-kit

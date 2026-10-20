@@ -3,9 +3,10 @@ title: 'Helping Hands and PCB Holders: The Third Hand Every Bench Needs'
 seoTitle: 'Helping Hands & PCB Holders Explained'
 description: 'How helping-hands tools and PCB holders make soldering easier, what to look for, and why a third hand is the upgrade beginners notice most.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Buying Guide'
 heroImage: '/images/guides/helping-hands-and-pcb-holders.jpg'
+set: 'smd-rework-bench'
 relatedProducts:
   - kaisiking-helping-hands-magnifier
   - banria-color-recognition-soldering-kit

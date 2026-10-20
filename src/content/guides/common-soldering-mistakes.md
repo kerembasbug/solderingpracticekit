@@ -4,8 +4,9 @@ title: '10 Common Soldering Mistakes (and How to Fix Them)'
 seoTitle: '10 Common Soldering Mistakes and How to Fix Them'
 description: 'Cold joints, solder bridges, lifted pads and more — the most common soldering mistakes beginners make, why they happen, and how to fix and avoid them.'
 pubDate: 2026-02-26
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Troubleshooting'
+set: 'beginner-soldering-bench'
 relatedProducts:
   - dzrcoxi-smd-smt-practice-kit-3-pack
   - gikfun-led-chaser-soldering-kit

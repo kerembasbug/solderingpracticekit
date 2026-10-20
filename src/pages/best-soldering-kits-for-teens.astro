@@ -7,6 +7,8 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import RankedReview from '@/components/RankedReview.astro';
 import FAQ from '@/components/FAQ.astro';
+import ProductSet from '@/components/ProductSet.astro';
+import { getSetById } from '@/lib/sets';
 import { getProducts } from '@/lib/products';
 import {
   itemListSchema,
@@ -51,6 +53,9 @@ const sectionProducts = SECTION_SLUGS.map((list) =>
   list.map(bySlug).filter((p): p is NonNullable<typeof p> => Boolean(p)),
 );
 const listed = [...picks.map((k) => k.product), ...sectionProducts.flat()];
+
+const shoppingSet = await getSetById('teen-maker-soldering-set');
+if (!shoppingSet) throw new Error('Set teen-maker-soldering-set not found');
 
 const crumbs = [
   { name: 'Home', url: '/' },
@@ -209,6 +214,11 @@ const jsonLd = jsonLdGraph(
     <section class="prose prose-lg mt-16 max-w-3xl">
       <h2>What comes after the first kit</h2>
       <p>Teens who enjoy their first build usually want a harder one. A sensible ladder:</p><ol><li><strong>A through-hole project</strong> with a clear payoff: the console, clock, radio or speaker above.</li><li><strong>A denser board with a sensor and display:</strong> the <a href="/reviews/banria-color-recognition-soldering-kit">BANRIA Color Recognition kit</a>, for finer joints and real electronics concepts.</li><li><strong>Surface-mount practice:</strong> the <a href="/reviews/gikfun-smd-smt-welding-practice-board-ek7028">Gikfun EK7028</a>, working down through smaller component sizes.</li><li><strong>Hot air and rework:</strong> the next skill after hand-soldered SMD, covered in our <a href="/guides/smd-rework-hot-air-and-reflow">SMD rework guide</a>.</li></ol><p>A teen drawn to code can branch off at any point with the <a href="/reviews/amomii-testudo-soldering-practice-kit">amomii Testudo</a>, whose Arduino-compatible microcontroller turns a soldering project into something to program. For more builds beyond this list, browse our <a href="/best-soldering-project-kits">soldering project kits</a>.</p><p>When the iron starts holding them back, such as struggling with fine tips or wanting a better station for a growing bench, see our <a href="/best-soldering-stations">soldering stations</a> and <a href="/best-soldering-irons">soldering irons</a> roundups. The <a href="/electronics-workbench-essentials">workbench essentials</a> guide covers the order to add tools in.</p>
+    </section>
+
+    <section class="mx-auto mt-16 max-w-3xl" aria-label="Shopping set">
+      <p class="mb-4 text-sm font-semibold text-ink-600">Rather not hunt for each part? Here is the whole list, ready for your cart.</p>
+      <ProductSet set={shoppingSet} />
     </section>
 
     <section class="mt-16"><FAQ faqs={faqs} /></section>

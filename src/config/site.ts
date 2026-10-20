@@ -70,6 +70,7 @@ export const NAV: { label: string; href: string }[] = [
   { label: 'Best Kits', href: '/best-soldering-practice-kits' },
   { label: 'Reviews', href: '/reviews' },
   { label: 'Guides', href: '/guides' },
+  { label: 'Shopping Sets', href: '/sets' },
   { label: 'About', href: '/about' },
 ];
 
@@ -82,6 +83,7 @@ export const FOOTER_LINKS: { heading: string; links: { label: string; href: stri
       { label: 'Best Kits for Kids', href: '/best-soldering-kits-for-kids' },
       { label: 'Soldering Gift Guide', href: '/soldering-gift-guide' },
       { label: 'Complete Kits (Iron Included)', href: '/best-complete-soldering-kits' },
+      { label: 'Shopping Sets by Job', href: '/sets' },
       { label: 'All Reviews', href: '/reviews' },
     ],
   },
