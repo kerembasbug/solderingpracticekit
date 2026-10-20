@@ -2,6 +2,11 @@
 title: 'How to Use Soldering Flux (and Which Type to Buy)'
 seoTitle: 'How to Use Flux When Soldering (Paste, Pen & Liquid)'
 description: 'How flux works in soldering, the types and forms (paste, pen, liquid, gel), how to apply it for through-hole, SMD and wires, and how to clean the residue.'
+quickAnswer: 'Flux is a chemical cleaner that strips oxide from metal as it heats so solder can bond to it; rosin-core solder carries some, but a separate flux pen, paste or gel makes stubborn joints, surface-mount parts and desoldering far easier. Apply a small amount to the pad or lead before heating, and clean the residue with isopropyl alcohol unless it is a no-clean type.'
+takeaways:
+  - 'Use no-clean flux for general electronics; rosin for easy cleaning; never acid flux on boards.'
+  - 'Pens are tidiest for boards, paste or gel for SMD and larger joints.'
+  - 'If solder balls up or will not flow, the answer is almost always flux.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Materials'

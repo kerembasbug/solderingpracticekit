@@ -7,6 +7,8 @@ import AffiliateButton from '@/components/AffiliateButton.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import StarRating from '@/components/StarRating.astro';
 import FAQ from '@/components/FAQ.astro';
+import SetCard from '@/components/SetCard.astro';
+import { getSets } from '@/lib/sets';
 import { getProducts, getTopPicks } from '@/lib/products';
 import {
   websiteSchema,
@@ -17,6 +19,7 @@ import {
 } from '@/lib/seo';
 
 const all = await getProducts();
+const homeSets = (await getSets()).filter((s) => ['beginner-soldering-bench', 'kids-first-soldering-kit', 'electronics-workbench-starter'].includes(s.id));
 const topPicks = await getTopPicks(6);
 const hero = topPicks[0];
 
@@ -206,6 +209,19 @@ const categories = [
   </section>
 
   <!-- Head-to-head comparisons -->
+  <section class="container-px py-16" aria-labelledby="home-sets">
+    <div class="flex flex-wrap items-end justify-between gap-4">
+      <div>
+        <h2 id="home-sets" class="text-3xl font-extrabold tracking-tight text-ink-900">Shopping sets by job</h2>
+        <p class="mt-2 max-w-2xl text-ink-600">Everything one job needs on one list — a reviewed iron or kit plus the consumables and safety gear listings leave out — with a one-click Amazon cart.</p>
+      </div>
+      <a href="/sets" class="text-sm font-semibold text-brand-600 hover:text-brand-700">See All 10 →</a>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-3">
+      {homeSets.map((s) => <SetCard set={s} />)}
+    </div>
+  </section>
+
   <section class="border-y border-ink-200 bg-ink-50/40">
     <div class="container-px py-16">
       <h2 class="text-3xl font-extrabold tracking-tight text-ink-900">Head-to-head comparisons</h2>

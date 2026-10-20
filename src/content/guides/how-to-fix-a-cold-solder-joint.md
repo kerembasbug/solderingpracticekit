@@ -2,6 +2,11 @@
 title: 'How to Fix a Cold Solder Joint (Spot It and Reflow It)'
 seoTitle: 'Cold Solder Joint: How to Spot, Test and Fix It'
 description: 'What a cold solder joint looks like, how to test for one, why it happens, how to reflow it — and how it differs from cracked joints caused by solder cold flow (creep).'
+quickAnswer: 'A cold solder joint is one where the pad or lead never got hot enough, so the solder sits on the surface as a dull, grainy or cracked blob instead of flowing into a shiny, concave fillet. Fix it by cleaning the tip, adding a little flux, heating both the pad and the lead for two to three seconds and feeding a small amount of fresh solder.'
+takeaways:
+  - 'Spot it: dull, lumpy, a ring around the lead, or a joint that measures intermittent on a multimeter.'
+  - 'Cause: too little heat, a dirty tip, moving the joint while it cools, or no flux.'
+  - 'Cracked joints on old boards are usually cold flow (creep) from thermal cycling, not a bad original joint.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Troubleshooting'

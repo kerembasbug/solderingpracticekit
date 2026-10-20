@@ -2,8 +2,13 @@
 title: 'Solder Wire Types and Gauge: A Complete Buyer''s Guide'
 seoTitle: 'Solder Wire Gauge Chart & Types: Which to Buy'
 description: 'Solder wire explained: a size chart in mm, inches and AWG, 60/40 vs 63/37 vs lead-free, flux core types and percentages, and which diameter to use for electronics.'
+quickAnswer: 'For electronics, use thin rosin-core solder wire of 0.6–0.8 mm (about 22–20 AWG): 63/37 or 60/40 leaded if you want the easiest learning experience, or a lead-free SAC alloy if you prefer to avoid lead. Thicker 1.0–1.5 mm wire suits cables and connectors; anything with acid flux is for plumbing, not boards.'
+takeaways:
+  - 'Diameter controls how much solder each touch delivers — thin wire makes it hard to overdo.'
+  - 'Flux core type matters more than brand: rosin or no-clean for boards.'
+  - 'A 100 g spool lasts a hobbyist a long time; store it dry and wash hands after leaded solder.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-16
+updatedDate: 2026-10-20
 category: 'Materials'
 heroImage: '/images/guides/solder-wire-types-and-gauge.jpg'
 relatedProducts:

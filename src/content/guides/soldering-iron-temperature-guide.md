@@ -3,8 +3,13 @@ heroImage: '/images/guides/soldering-iron-temperature-guide.jpg'
 title: 'Soldering Iron Temperature Guide (Settings Chart)'
 seoTitle: 'Soldering Iron Temperature Chart (°C & °F): Beginner Guide'
 description: 'The right soldering iron temperature by solder type and job — plus solder melting points, desoldering and hot air settings, and how hot basic 25W–60W irons really run.'
+quickAnswer: 'Set a soldering iron to about 315–340°C (600–650°F) for leaded solder and 350–370°C (660–700°F) for lead-free on general electronics; go lower for small SMD parts and higher (up to 400°C) only for thick wires, connectors and ground planes. The solder melts far below these settings — the extra heat is what makes the joint flow in two to three seconds instead of cooking the board.'
+takeaways:
+  - 'Hotter is not faster: it burns flux, oxidizes the tip and lifts pads.'
+  - 'Use the lowest temperature that makes solder flow in 2–3 seconds.'
+  - 'Basic 25–60W irons without control run hot — over 400°C — which is why joints suffer.'
 pubDate: 2026-03-30
-updatedDate: 2026-09-16
+updatedDate: 2026-10-20
 category: 'Technique'
 relatedProducts:
   - yihua-926-iii-soldering-station

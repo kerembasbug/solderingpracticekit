@@ -3,6 +3,11 @@ heroImage: '/images/guides/through-hole-vs-surface-mount-soldering.jpg'
 title: 'Through-Hole vs. Surface-Mount Soldering Explained'
 seoTitle: 'Through-Hole vs Surface-Mount (SMD) Soldering Explained'
 description: 'Through-hole (THT) and surface-mount (SMD/SMT) soldering explained: the differences, which to learn first, and the tools and practice kits for each.'
+quickAnswer: 'Through-hole (THT) components have leads that pass through holes in the board and are soldered on the other side; surface-mount (SMD) components sit on pads on the same side and are much smaller. Learn through-hole first — the joints are bigger and more forgiving — then move to SMD with a fine tip, flux, tweezers and a graded practice board.'
+takeaways:
+  - 'Almost all beginner kits are through-hole; almost all modern products are surface-mount.'
+  - 'SMD needs flux, magnification and a steady board holder more than it needs a special iron.'
+  - 'Package sizes 1206 and 0805 are hand-solderable; 0402 and below is where hot air and skill matter.'
 pubDate: 2026-02-10
 updatedDate: 2026-10-20
 category: 'Technique'

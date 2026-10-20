@@ -2,8 +2,13 @@
 title: 'Soldering Fume Safety: What You''re Breathing and How to Stop It'
 seoTitle: 'Soldering Fume Safety: Risks, Ventilation & Extractors'
 description: 'Soldering fumes explained: what flux smoke actually is, the health risks, and how to protect yourself with ventilation and a fume extractor.'
+quickAnswer: 'Soldering smoke is mostly vaporized flux (rosin and its by-products), which irritates airways and can cause sensitisation over time; lead does not vaporize at soldering temperatures, so hygiene (wash hands, no food at the bench) is the lead precaution. Keep your face out of the plume, ventilate the room, and use a small fume extractor positioned a hand''s width from the joint.'
+takeaways:
+  - 'The plume rises straight into your face — an extractor or fan pulling it sideways is the simplest fix.'
+  - 'A carbon-filter desk extractor is enough for hobby use; a window fan works too.'
+  - 'Children and classrooms: extractor, lead-free solder and hand washing every session.'
 pubDate: 2026-06-23
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Safety'
 heroImage: '/images/guides/soldering-fume-safety.jpg'
 relatedProducts:

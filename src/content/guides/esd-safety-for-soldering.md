@@ -2,6 +2,11 @@
 title: 'ESD Safety for Soldering: Protecting Sensitive Components'
 seoTitle: 'ESD Safety for Soldering (Beginner Guide)'
 description: 'What electrostatic discharge (ESD) is, which components it damages, and the simple, cheap steps to protect your projects with a wrist strap and mat.'
+quickAnswer: 'Electrostatic discharge (ESD) is a static shock too small to feel that can weaken or destroy chips, often without visible damage. For LED and through-hole kits the risk is low; once you handle microcontrollers, sensors or repair modern boards, a grounded mat, a wrist strap and an ESD-safe iron are cheap insurance.'
+takeaways:
+  - 'Most ESD damage is latent: the part works today and fails weeks later.'
+  - 'A wrist strap should read about 1 MΩ to ground — check it with a multimeter, cords break.'
+  - 'Keep parts in their antistatic bags until the moment you fit them.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Safety'

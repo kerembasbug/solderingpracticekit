@@ -3,6 +3,11 @@ heroImage: '/images/guides/common-soldering-mistakes.jpg'
 title: '10 Common Soldering Mistakes (and How to Fix Them)'
 seoTitle: '10 Common Soldering Mistakes and How to Fix Them'
 description: 'Cold joints, solder bridges, lifted pads and more — the most common soldering mistakes beginners make, why they happen, and how to fix and avoid them.'
+quickAnswer: 'Almost every bad joint comes from one of three causes: the pad and lead were not hot enough (cold joint), there was too much or too little solder, or the joint moved while it cooled. Heat the joint rather than the solder, feed solder for two to three seconds, keep the tip clean and tinned, and use flux on anything that refuses to flow.'
+takeaways:
+  - 'Dull, grainy or cracked joints are cold — reflow them with a little fresh solder and flux.'
+  - 'Bridges and blobs mean too much solder; wick or sucker fixes them in seconds.'
+  - 'Lifted pads come from too much heat for too long — bigger tip, shorter contact.'
 pubDate: 2026-02-26
 updatedDate: 2026-10-20
 category: 'Troubleshooting'

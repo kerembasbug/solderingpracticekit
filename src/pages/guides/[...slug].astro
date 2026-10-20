@@ -61,6 +61,7 @@ const jsonLd = jsonLdGraph(
     url: `/guides/${entry.id}`,
     datePublished: data.pubDate.toISOString(),
     dateModified: (data.updatedDate ?? data.pubDate).toISOString(),
+    abstract: data.quickAnswer,
   }),
   breadcrumbSchema(crumbs),
   ...(data.faqs.length ? [faqSchema(data.faqs)] : []),
@@ -111,6 +112,25 @@ const dateFmt = (d: Date) =>
             class="w-full object-cover"
           />
         </div>
+      )
+    }
+
+    {
+      data.quickAnswer && (
+        <aside class="mx-auto mt-8 max-w-3xl rounded-2xl border border-brand-200 bg-brand-50 p-6" aria-labelledby="quick-answer">
+          <p id="quick-answer" class="text-xs font-bold uppercase tracking-wide text-brand-700">Quick answer</p>
+          <p class="mt-2 text-[1.05rem] leading-relaxed text-ink-800">{data.quickAnswer}</p>
+          {data.takeaways.length > 0 && (
+            <ul class="mt-4 space-y-2 text-sm leading-relaxed text-ink-700">
+              {data.takeaways.map((t) => (
+                <li class="flex gap-2.5">
+                  <span class="mt-[0.45rem] h-1.5 w-1.5 shrink-0 rounded-full bg-brand-500" aria-hidden="true" />
+                  <span>{t}</span>
+                </li>
+              ))}
+            </ul>
+          )}
+        </aside>
       )
     }
 

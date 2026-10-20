@@ -2,6 +2,11 @@
 title: 'SMD Rework Basics: Hot Air and Reflow Soldering Explained'
 seoTitle: 'SMD Rework: Hot Air & Reflow Basics'
 description: 'An introduction to surface-mount rework: how hot air rework stations and reflow work, when you need them, and how to remove and replace SMD components.'
+quickAnswer: 'Surface-mount rework uses hot air to melt every joint on a part at once so it can be lifted or placed, and reflow to solder many parts at the same time with paste. Start small passives at roughly 300–330°C with low airflow, always add flux, shield nearby plastic parts, and practise on a graded SMD board before touching a real device.'
+takeaways:
+  - 'Hand-soldering with a fine tip and flux handles most SMD parts; hot air is for removal and leadless packages.'
+  - 'Keep the nozzle moving and lift the part straight up only when all the solder is molten.'
+  - 'A combined iron + hot air station is the space-saving choice for a hobby bench.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Technique'

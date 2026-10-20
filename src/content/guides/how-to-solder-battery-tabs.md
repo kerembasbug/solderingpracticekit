@@ -2,6 +2,11 @@
 title: 'How to Solder Battery Tabs (18650 and Pack Building Safely)'
 seoTitle: 'How to Solder Battery Tabs Safely'
 description: 'How to solder tabs and wires to 18650 and lithium cells safely: why heat is the enemy, when to spot-weld instead, and a safe step-by-step method.'
+quickAnswer: 'Spot-welding nickel strip is the safe way to tab lithium cells; soldering is a compromise because heat damages the cell. If you must solder, use a powerful (80–100W) iron, plenty of flux and pure nickel strip, pre-tin both surfaces and make the joint in a second or two — or buy cells with pre-welded tabs and solder your wire to the tab instead of the cell.'
+takeaways:
+  - 'Short, hot contact beats long, gentle contact — a weak iron cooks the cell.'
+  - 'Pure nickel strip wets quickly and carries current; nickel-plated steel does neither well.'
+  - 'Match cell voltages with a multimeter before connecting them and wear safety glasses.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Technique'

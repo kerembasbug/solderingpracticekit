@@ -3,6 +3,11 @@ heroImage: '/images/guides/how-to-desolder.jpg'
 title: 'How to Desolder: Removing Solder and Components Safely'
 seoTitle: 'How to Desolder: Wick, Pump, Hot Air & SMD Parts'
 description: 'How to desolder: using solder wick and a solder sucker, removing through-hole and SMD components, clearing stubborn holes, and avoiding lifted pads.'
+quickAnswer: 'To desolder, melt the joint with a clean, tinned iron and remove the solder with a spring-loaded solder sucker for through-hole joints or desoldering braid (wick) for surface-mount pads and the last film of solder. Add fresh flux first — old solder has lost its flux and will not flow — and never pry a component before its pads are fully clear.'
+takeaways:
+  - 'Sucker first for the bulk of the solder, wick second for the residue.'
+  - 'Fresh flux is the difference between a clean pull and a stuck lead.'
+  - 'Hot air is the right tool for multi-leg surface-mount chips.'
 pubDate: 2026-04-05
 updatedDate: 2026-10-20
 category: 'Technique'

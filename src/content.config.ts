@@ -21,6 +21,10 @@ const guides = defineCollection({
     heroImage: z.string().optional(),
     /** Optional shopping set id (src/data/sets.ts) rendered after the article. */
     set: z.string().optional(),
+    /** 2–3 sentence direct answer shown above the article and emitted as the Article abstract. */
+    quickAnswer: z.string().optional(),
+    /** Up to three one-line takeaways shown with the quick answer. */
+    takeaways: z.array(z.string()).max(4).default([]),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

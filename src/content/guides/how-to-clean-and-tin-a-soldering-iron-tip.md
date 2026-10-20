@@ -3,8 +3,13 @@ heroImage: '/images/guides/how-to-clean-and-tin-a-soldering-iron-tip.jpg'
 title: 'How to Clean and Tin a Soldering Iron Tip (and Make It Last)'
 seoTitle: 'How to Clean a Soldering Iron Tip (and Tin It Properly)'
 description: 'How to clean a soldering iron tip, tin a new one, revive a black oxidized tip, which cleaners to use (brass wool, sponge, tip tinner) and the habits that make tips last.'
+quickAnswer: 'Clean a soldering iron tip by wiping it on brass wool between joints and coating it with a thin layer of fresh solder (tinning) every time it rests in the stand. A black, oxidized tip is revived with tip tinner or by rubbing it in flux and solder at a moderate temperature; a tip that no longer takes solder after that is worn out and should be replaced.'
+takeaways:
+  - 'Brass wool cleans without the thermal shock of a wet sponge, which is why tips last longer.'
+  - 'Tin the tip before switching off — a bare tip oxidizes while it cools.'
+  - 'Run the lowest temperature that makes solder flow in 2–3 seconds; heat is what kills tips.'
 pubDate: 2026-03-18
-updatedDate: 2026-09-30
+updatedDate: 2026-10-20
 category: 'Maintenance'
 relatedProducts:
   - yihua-926-iii-soldering-station

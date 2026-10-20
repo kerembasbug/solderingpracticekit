@@ -2,6 +2,11 @@
 title: 'How to Solder Wires Together (Splice, Heat-Shrink and Tin)'
 seoTitle: 'How to Solder Wires Together: Step by Step'
 description: 'How to solder wires together step by step: tip and temperature by wire gauge, tinning, Western Union, inline and pigtail splices, heat-shrink sizing, and when to crimp instead.'
+quickAnswer: 'To solder two wires together, strip and tin each end, twist or hook them together so the joint holds mechanically, heat the joint with the iron and feed a little solder until it flows through the strands, then slide heat-shrink over the cooled joint and shrink it. Use a chisel tip and more heat for thicker wire, and crimp instead of solder where the cable will flex or vibrate.'
+takeaways:
+  - 'Slide the heat-shrink on before you solder — everyone forgets once.'
+  - 'Tin both ends first; the final joint then takes seconds and the insulation survives.'
+  - 'Keep the solder on the joint: solder wicking up the wire makes a stiff section that cracks.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Technique'

@@ -2,6 +2,11 @@
 title: 'Soldering for RC and Drones: Connectors, ESCs and Battery Leads'
 seoTitle: 'Soldering for RC & Drones: A How-To'
 description: 'A practical guide to soldering for RC and FPV drones: tinning pads, soldering XT60 connectors, motor and ESC wires, and avoiding cold joints that cause crashes.'
+quickAnswer: 'RC and drone soldering needs heat capacity: an 80–100W iron with a large chisel tip, plenty of flux and pre-tinned leads so XT60 connectors and 12–14 AWG battery wires join in seconds without melting the housing. Use silicone wire, cover joints with heat-shrink, and check the power leads for a short with a multimeter before the first battery is plugged in.'
+takeaways:
+  - 'A small conical tip cannot push heat into a brass XT60 pin no matter how many watts the iron claims.'
+  - 'Pre-tin both sides; the final joint should take 2–3 seconds.'
+  - 'First power-up through a smoke stopper or current-limited supply, never straight from a full LiPo.'
 pubDate: 2026-06-23
 updatedDate: 2026-10-20
 category: 'Technique'

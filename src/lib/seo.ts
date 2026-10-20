@@ -115,6 +115,8 @@ export function articleSchema(opts: {
   image?: string;
   datePublished?: string;
   dateModified?: string;
+  /** Short, self-contained summary (schema.org abstract) for AI and rich results. */
+  abstract?: string;
 }) {
   return {
     '@type': 'Article',
@@ -126,6 +128,7 @@ export function articleSchema(opts: {
     publisher: { '@id': `${SITE.url}/#organization` },
     ...(opts.datePublished ? { datePublished: opts.datePublished } : {}),
     ...(opts.dateModified ? { dateModified: opts.dateModified } : {}),
+    ...(opts.abstract ? { abstract: opts.abstract } : {}),
   };
 }
 
