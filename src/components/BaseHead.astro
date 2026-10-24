@@ -77,15 +77,21 @@ const fullTitle =
 
 {
   SITE.ga4Id && (
-    <>
-      <script async src={`https://www.googletagmanager.com/gtag/js?id=${SITE.ga4Id}`}></script>
-      <script is:inline define:vars={{ ga4Id: SITE.ga4Id }}>
+    <script is:inline define:vars={{ ga4Id: SITE.ga4Id }}>
+      // GA4 with bot guard: automation browsers (navigator.webdriver), headless Chrome
+      // and square/odd screens (1280x1200, 1366x1366, 1600x1600) never load the tag.
+      (function () {
+        var w = screen.width, h = screen.height;
+        if (navigator.webdriver || w === h || (w === 1280 && h === 1200) || /HeadlessChrome/i.test(navigator.userAgent)) return;
         window.dataLayer = window.dataLayer || [];
         window.gtag = function () { dataLayer.push(arguments); };
         gtag('js', new Date());
         gtag('config', ga4Id);
-      </script>
-    </>
+        var s = document.createElement('script');
+        s.async = true; s.src = 'https://www.googletagmanager.com/gtag/js?id=' + ga4Id;
+        document.head.appendChild(s);
+      })();
+    </script>
   )
 }
 
