@@ -1,0 +1,47 @@
+---
+/**
+ * Compact single-product pick shown near the top of a guide, so readers who
+ * land on an informational page see one relevant product beside its image
+ * without scrolling to the end. Uses the shared AffiliateButton (card text,
+ * `inline` GA4 position).
+ */
+import type { Product } from '@/lib/types';
+import AffiliateButton from '@/components/AffiliateButton.astro';
+
+interface Props {
+  product: Product;
+  /** Small label above the product name, e.g. "Our pick for this guide". */
+  label?: string;
+  /** One or two sentences tying the product to the guide's topic. */
+  note: string;
+}
+const { product, label = 'Our pick for this guide', note } = Astro.props;
+const reviewHref = `/reviews/${product.slug}`;
+---
+
+<aside
+  class="mx-auto mt-6 flex max-w-3xl flex-col gap-5 rounded-2xl border border-ink-200 bg-white p-5 shadow-[var(--shadow-card)] sm:flex-row sm:items-center"
+  aria-label={`${label}: ${product.title}`}
+>
+  <a href={reviewHref} class="block shrink-0 self-center" aria-label={`Read our ${product.title} review`}>
+    <img
+      src={product.image}
+      alt={product.fullTitle}
+      width={product.imageWidth}
+      height={product.imageHeight}
+      loading="eager"
+      decoding="async"
+      class="h-28 w-28 rounded-lg bg-white object-contain"
+    />
+  </a>
+  <div class="min-w-0 flex-1">
+    <p class="text-xs font-bold uppercase tracking-wide text-brand-600">{label}</p>
+    <p class="mt-1 text-base font-bold leading-snug text-ink-900">
+      <a href={reviewHref} class="hover:text-brand-600">{product.title}</a>
+    </p>
+    <p class="mt-1.5 text-sm leading-relaxed text-ink-600">{note}</p>
+  </div>
+  <div class="shrink-0 sm:w-48">
+    <AffiliateButton product={product} variant="card" position="inline" fullWidth size="sm" />
+  </div>
+</aside>

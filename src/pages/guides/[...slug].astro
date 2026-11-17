@@ -7,6 +7,7 @@ import Breadcrumbs from '@/components/Breadcrumbs.astro';
 import AffiliateDisclosure from '@/components/AffiliateDisclosure.astro';
 import ProductCard from '@/components/ProductCard.astro';
 import FAQ from '@/components/FAQ.astro';
+import GuidePick from '@/components/GuidePick.astro';
 import ProductSet from '@/components/ProductSet.astro';
 import { getSetById } from '@/lib/sets';
 import { getProducts } from '@/lib/products';
@@ -34,6 +35,9 @@ const allProducts = await getProducts();
 const related = data.relatedProducts
   .map((slug) => allProducts.find((p) => p.slug === slug))
   .filter((p): p is NonNullable<typeof p> => Boolean(p));
+
+const pickProduct = data.pick ? allProducts.find((p) => p.slug === data.pick!.product) : undefined;
+if (data.pick && !pickProduct) throw new Error(`Guide ${entry.id} pick references unknown product "${data.pick.product}"`);
 
 // Related guides — same category first, then most recent. Strengthens internal
 // linking so every guide has several incoming links.
@@ -135,6 +139,8 @@ const dateFmt = (d: Date) =>
     }
 
     <div class="mx-auto mt-6 max-w-3xl"><AffiliateDisclosure /></div>
+
+    {pickProduct && data.pick && <GuidePick product={pickProduct} note={data.pick.note} label={data.pick.label} />}
 
     <div class="prose prose-lg mx-auto mt-10 max-w-3xl">
       <Content />

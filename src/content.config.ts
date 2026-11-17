@@ -25,6 +25,8 @@ const guides = defineCollection({
     quickAnswer: z.string().optional(),
     /** Up to three one-line takeaways shown with the quick answer. */
     takeaways: z.array(z.string()).max(4).default([]),
+    /** Optional single product shown under the quick answer (GuidePick). */
+    pick: z.object({ product: z.string(), note: z.string(), label: z.string().optional() }).optional(),
     featured: z.boolean().default(false),
     draft: z.boolean().default(false),
   }),

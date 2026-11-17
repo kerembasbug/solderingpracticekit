@@ -11,7 +11,12 @@ takeaways:
 pubDate: 2026-03-30
 updatedDate: 2026-10-20
 category: 'Technique'
+pick:
+  product: plusivo-60w-digital-soldering-iron-kit
+  label: 'An iron that shows its temperature'
+  note: 'A budget 60W pen iron with an LED readout, so you can actually dial in the settings from the chart below. Five tips, solder, a stand and a pump come in the box.'
 relatedProducts:
+  - plusivo-60w-digital-soldering-iron-kit
   - yihua-926-iii-soldering-station
   - hakko-fx888dx-digital-soldering-station
   - gikfun-smd-smt-welding-practice-board-ek7028
